@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">FindMyPhone</string>
+
+    <string name="text_on_boarding_1">Prank Air Horn &amp;siren sounds</string>
+    <string name="text_on_boarding_2">Fart sounds &amp; fart songs</string>
+    <string name="text_on_boarding_3">Hair clipper &amp; funny sounds</string>
+    <string name="get_started">Get Started</string>
+    <string name="this_action_can_contain_ads">This action can contain ads...</string>
+    <string name="do_you_like_our_app">Do you like our App?</string>
+    <string name="write_your_feedback">Write your feedback...</string>
+    <string name="first_content_rate">We’re working hard for a better user experience.</string>
+    <string name="second_content_rate">We’d greatly appreciate if you can rate us.</string>
+    <string name="thank_you">Thank you</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="learn_more">Learn more</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="privacy">Privacy</string>
+    <string name="feedback_us">Feedback Us</string>
+    <string name="share">Share</string>
+    <string name="settings">Settings</string>
+    <string name="home">Home</string>
+    <string name="add">Add</string>
+    <string name="sound">Sound</string>
+    <string name="next">Next</string>
+</resources>

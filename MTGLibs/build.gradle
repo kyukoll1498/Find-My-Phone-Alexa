@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+android {
+    namespace 'com.common.control'
+    compileSdkVersion 32
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 32
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    viewBinding {
+        enabled true
+    }
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.gms:play-services-ads:21.2.0'
+
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
+    def lifecycle_version = "2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
+
+    implementation 'com.github.yangmbin:RatingBar:1.0.0'
+
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    implementation "androidx.multidex:multidex:2.0.1"
+
+    def billing_version = "5.0.0"
+
+    implementation "com.android.billingclient:billing:$billing_version"
+
+
+    implementation('com.akexorcist:localization:1.2.10') {
+        exclude group: 'androidx.core', module: 'core'
+    }
+
+    implementation 'com.adjust.sdk:adjust-android:4.32.0'
+
+
+    implementation platform('com.google.firebase:firebase-bom:30.0.1')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.firebase:firebase-messaging'
+
+}

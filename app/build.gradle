@@ -1,0 +1,175 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+android {
+    namespace 'com.mtg.tool.findmyphone'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.mtg.tool.findmyphone"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        def formattedDate = new Date().format('MMM.dd.yyyy.hh.mm.ss')
+        archivesBaseName = "${namespace}_V${versionName}_${formattedDate}"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('key/release.jks')
+            storePassword 'com.mtg.tool.findmyphone'
+            keyAlias 'release'
+            keyPassword 'com.mtg.tool.findmyphone'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures{
+        viewBinding = true
+    }
+
+    flavorDimensions "dimen"
+    productFlavors{
+        vDevelop_{
+            applicationId "com.mtg.tool.findmyphone"
+
+            buildConfigField "boolean", "TEST_AD", "true"
+//            buildConfigField "boolean", "TEST_AD", "false"
+            buildConfigField "boolean", "PURCHASED", "false"
+            dimension "dimen"
+            versionName "develop"
+
+            def addConstantTo = { target, constantName, constantValue ->
+                target.manifestPlaceholders += [(constantName): constantValue]
+                target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
+            }
+
+
+            addConstantTo(owner, "FACEBOOKE_APP_ID", "1009208823763081")
+
+            addConstantTo(owner, "APP_ID", "ca-app-pub-3940256099942544~3347511713")
+            addConstantTo(owner, "open_app", "ca-app-pub-3940256099942544/3419835294")
+            addConstantTo(owner, "inter_splash", "ca-app-pub-3940256099942544/1033173712")
+            addConstantTo(owner, "banner_main", "ca-app-pub-3940256099942544/6300978111")
+            addConstantTo(owner, "inter_open_topic", "ca-app-pub-3940256099942544/1033173712")
+            addConstantTo(owner, "banner_sound", "ca-app-pub-3940256099942544/6300978111")
+            addConstantTo(owner, "inter_back_topic", "ca-app-pub-3940256099942544/1033173712")
+            addConstantTo(owner, "banner_list_sound", "ca-app-pub-3940256099942544/6300978111")
+            addConstantTo(owner, "native_sound_play", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "inter_back_sound_play", "ca-app-pub-3940256099942544/1033173712")
+            addConstantTo(owner, "inter_open_sound_play", "ca-app-pub-3940256099942544/1033173712")
+            addConstantTo(owner, "inter_open_favorite", "ca-app-pub-3940256099942544/1033173712")
+
+//
+            addConstantTo(owner, "native_guide", "ca-app-pub-3940256099942544/1044960115")
+            addConstantTo(owner, "native_language", "ca-app-pub-3940256099942544/2247696110")
+//            addConstantTo(owner, "native_sounds_dog", "ca-app-pub-3940256099942544/2247696110")
+//            addConstantTo(owner, "banner_training_dog", "ca-app-pub-3940256099942544/6300978111")
+//            addConstantTo(owner, "native_setting_fakecall", "ca-app-pub-3940256099942544/2247696110")
+//            addConstantTo(owner, "reward_inter_dog_translator", "ca-app-pub-3940256099942544/5224354917")
+//            addConstantTo(owner, "inter_sound", "ca-app-pub-3940256099942544/1033173712")
+        }
+        vOfficial_ {
+            applicationId "com.mtg.toolwork.findmyphone"
+
+            buildConfigField "boolean", "TEST_AD", "false"
+            buildConfigField "boolean", "PURCHASED", "false"
+            dimension "dimen"
+
+            def addConstantTo = { target, constantName, constantValue ->
+                target.manifestPlaceholders += [(constantName): constantValue]
+                target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
+            }
+
+        }
+    }
+
+    lintOptions {
+        disable 'ContentDescription'
+        disable 'SpUsage'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'com.google.android.play:review-ktx:2.0.1'
+    implementation 'com.google.android.gms:play-services-ads:21.2.0'
+    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    implementation "com.google.code.gson:gson:2.9.0"
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.firebase:firebase-database'
+    implementation project(path: ':MTGLibs')
+
+    implementation('com.akexorcist:localization:1.2.10') {
+        exclude group: 'androidx.core', module: 'core'
+    }
+
+    implementation "io.reactivex.rxjava3:rxjava:3.0.12"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
+
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation "com.github.skydoves:powermenu:2.2.0"
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.airbnb.android:lottie:5.2.0'
+
+    //permission
+    implementation 'com.karumi:dexter:6.2.3'
+
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.github.yangmbin:RatingBar:1.0.0'
+//    implementation 'com.github.guilhe:circular-progress-view:2.0.0'
+    implementation 'com.emredavarci:CircleProgressBar:1.0.8'
+    implementation 'org.wysaid:gpuimage-plus:2.6.3'
+    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+
+    //fb sdk
+//    implementation 'com.facebook.android:facebook-android-sdk:[4,5]'
+    implementation 'com.facebook.android:audience-network-sdk:6.14.0'
+    implementation 'com.facebook.android:facebook-android-sdk:16.0.0'
+
+
+
+    // Lifecycle components
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+}
