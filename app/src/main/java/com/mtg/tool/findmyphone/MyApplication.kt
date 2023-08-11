@@ -8,6 +8,7 @@ import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
+import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.main.activity.SplashActivity
 import com.mtg.tool.findmyphone.utils.EventLogger
 import java.util.*
@@ -22,6 +23,8 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 
 
     override fun onApplicationCreate() {
+        RoomDatabase.initDatabase(this)
+
 
         AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
         AppOpenManager.getInstance().disableAppResumeWithActivity(PermissionStorageDialog::class.java)
