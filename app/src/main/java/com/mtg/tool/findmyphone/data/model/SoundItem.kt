@@ -11,6 +11,7 @@ data class SoundItem(
     @ColumnInfo(name = "name") var name: String? = null,
     @ColumnInfo(name = "time_import") var timeImport: Long? = null,
     @ColumnInfo(name = "image") var image: Int? = null,
+    @ColumnInfo(name = "avatar") var avatar: Int? = null,
     @ColumnInfo(name = "sound_path") var soundPath: String? = null
 ): Serializable {
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Long? = null
