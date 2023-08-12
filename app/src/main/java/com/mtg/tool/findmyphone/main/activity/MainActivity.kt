@@ -1,11 +1,10 @@
 package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.google.firebase.crashlytics.internal.common.CommonUtils
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
@@ -27,15 +26,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun addEvent() {
         binding.btnHome.setOnClickListener {
+            changeUITools(binding.viewpagerMain.currentItem, 0)
             binding.viewpagerMain.setCurrentItem(0, false)
         }
         binding.btnSound.setOnClickListener {
+            changeUITools(binding.viewpagerMain.currentItem, 1)
             binding.viewpagerMain.setCurrentItem(1, false)
         }
         binding.btnAdd.setOnClickListener {
+            changeUITools(binding.viewpagerMain.currentItem, 2)
             binding.viewpagerMain.setCurrentItem(2, false)
         }
         binding.btnSetting.setOnClickListener {
+            changeUITools(binding.viewpagerMain.currentItem, 3)
             binding.viewpagerMain.setCurrentItem(3, false)
         }
         binding.btnDrawer.setOnClickListener {
@@ -44,6 +47,54 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
 
     }
+
+    private fun changeUITools(currentItem: Int, nextItem: Int) {
+        if (currentItem != nextItem) {
+            when (currentItem) {
+                0 -> {
+                    binding.ivHome.setImageDrawable(getDrawable(R.drawable.ic_home))
+                    binding.tvHome.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+                }
+
+                1 -> {
+                    binding.ivSound.setImageDrawable(getDrawable(R.drawable.ic_sound))
+                    binding.tvSound.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+                }
+
+                2 -> {
+                    binding.ivAdd.setImageDrawable(getDrawable(R.drawable.ic_import))
+                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+                }
+
+                3 -> {
+                    binding.ivSetting.setImageDrawable(getDrawable(R.drawable.ic_settings))
+                    binding.tvSetting.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+                }
+            }
+            when (nextItem) {
+                0 -> {
+                    binding.ivHome.setImageDrawable(getDrawable(R.drawable.ic_home_selected))
+                    binding.tvHome.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+                }
+
+                1 -> {
+                    binding.ivSound.setImageDrawable(getDrawable(R.drawable.ic_sound_selected))
+                    binding.tvSound.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+                }
+
+                2 -> {
+                    binding.ivAdd.setImageDrawable(getDrawable(R.drawable.ic_import_selected))
+                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+                }
+
+                3 -> {
+                    binding.ivSetting.setImageDrawable(getDrawable(R.drawable.ic_settings_selected))
+                    binding.tvSetting.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+                }
+            }
+        }
+    }
+
 
     private fun setupDrawerNavigation() {
         binding.navContent.imgFlag.setImageResource(LanguageUtils.getFlagResourceID(this))
@@ -69,10 +120,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             ActionUtils.showPolicy(this)
         }
     }
+
     private fun hideRate() {
         binding.btnRate.hide()
         binding.navContent.btnRateNavigation.hide()
     }
+
     private fun setupViewpager() {
         binding.viewpagerMain.apply {
             adapter = ViewPagerAddFragmentsAdapter(supportFragmentManager, lifecycle).apply {
@@ -84,13 +137,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
         binding.viewpagerMain.offscreenPageLimit = 2
         binding.viewpagerMain.isUserInputEnabled = false
-        binding.viewpagerMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.viewpagerMain.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                binding.imgHome.isSelected = position == 0
-                binding.imgSound.isSelected = position == 1
-                binding.imgAdd.isSelected = position == 2
-                binding.imgSetting.isSelected = position == 3
+                binding.ivHome.isSelected = position == 0
+                binding.ivSound.isSelected = position == 1
+                binding.ivAdd.isSelected = position == 2
+                binding.ivSetting.isSelected = position == 3
 
             }
         })
