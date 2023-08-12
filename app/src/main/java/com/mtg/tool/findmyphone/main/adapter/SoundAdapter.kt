@@ -4,27 +4,36 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.common.control.dialog.PermissionStorageDialog.callback
+import com.common.control.manager.AdmobManager
+import com.mtg.tool.findmyphone.ADAPTER_ADS_TYPE
+import com.mtg.tool.findmyphone.ADAPTER_ITEM_TYPE
+import com.mtg.tool.findmyphone.ADS_SOUND_TYPE
+import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseAdapter
-import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.data.model.SoundItem
-import com.mtg.tool.findmyphone.databinding.ItemLanguageBinding
+import com.mtg.tool.findmyphone.databinding.ItemNativeHolderBinding
 import com.mtg.tool.findmyphone.databinding.ItemSoundBinding
 import com.mtg.tool.findmyphone.utils.constant.Constants
-import com.mtg.tool.findmyphone.utils.setSize
 
 class SoundAdapter(mList: List<SoundItem?>?, context: Context?) :
     BaseAdapter<SoundItem?>(mList!!, context) {
 
 
-
-
     override fun viewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        val binding =
-            ItemSoundBinding.inflate(LayoutInflater.from(parent!!.context), parent, false)
-        return SoundViewHolder(binding)
+        return if (viewType == ADAPTER_ADS_TYPE) {
+            val binding =
+                ItemNativeHolderBinding.inflate(LayoutInflater.from(parent!!.context), parent, false)
+            NativeViewHolder(binding)
+        } else {
+            val binding =
+                ItemSoundBinding.inflate(LayoutInflater.from(parent!!.context), parent, false)
+            SoundViewHolder(binding)
+        }
+
     }
 
     override fun onBindView(viewHolder: RecyclerView.ViewHolder?, position: Int) {
@@ -48,6 +57,32 @@ class SoundAdapter(mList: List<SoundItem?>?, context: Context?) :
 
         override fun onClick(v: View) {
             mCallback?.run { callback(Constants.KEY_LANGUAGE, itemView.tag) }
+        }
+    }
+
+    inner class NativeViewHolder(binding: ItemNativeHolderBinding) :
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+        init {
+            AdmobManager.getInstance().loadNative(
+                context,
+                BuildConfig.native_sound_play,
+                binding.frAds,
+                R.layout.custom_native_language
+            )
+        }
+
+        override fun onClick(v: View?) {
+
+        }
+
+    }
+
+
+    override fun getItemViewType(position: Int): Int {
+        return if (mList[position]?.type == ADS_SOUND_TYPE) {
+            ADAPTER_ADS_TYPE
+        } else {
+            ADAPTER_ITEM_TYPE
         }
     }
 }

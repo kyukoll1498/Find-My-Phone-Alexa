@@ -34,4 +34,5 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     override fun getItemCount(): Int {
         return mList.size
     }
+
 }

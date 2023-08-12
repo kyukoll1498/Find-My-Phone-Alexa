@@ -23,4 +23,14 @@
     <string name="add">Add</string>
     <string name="sound">Sound</string>
     <string name="next">Next</string>
+    <string name="trumpet">Trumpet</string>
+    <string name="police_whistle">Police Whistle</string>
+    <string name="party_horn">Party Horn</string>
+    <string name="door_bell">Door Bell</string>
+    <string name="car_horn">Car Horn</string>
+    <string name="hello">Hello</string>
+    <string name="whistle">Whistle</string>
+    <string name="hey_stay_here">Hey Stay Here</string>
+    <string name="dog_barking">Dog Barking</string>
+    <string name="cat_meowing">Cat Meowing</string>
 </resources>
