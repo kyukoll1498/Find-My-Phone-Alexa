@@ -12,12 +12,12 @@ import com.mtg.tool.findmyphone.ADAPTER_ADS_TYPE
 import com.mtg.tool.findmyphone.ADAPTER_ITEM_TYPE
 import com.mtg.tool.findmyphone.ADS_SOUND_TYPE
 import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseAdapter
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ItemNativeHolderBinding
 import com.mtg.tool.findmyphone.databinding.ItemSoundBinding
-import com.mtg.tool.findmyphone.utils.constant.Constants
 
 class SoundAdapter(mList: List<SoundItem?>?, context: Context?) :
     BaseAdapter<SoundItem?>(mList!!, context) {
@@ -56,7 +56,7 @@ class SoundAdapter(mList: List<SoundItem?>?, context: Context?) :
         }
 
         override fun onClick(v: View) {
-            mCallback?.run { callback(Constants.KEY_LANGUAGE, itemView.tag) }
+            mCallback?.run { callback(KEY_SOUND, itemView.tag) }
         }
     }
 

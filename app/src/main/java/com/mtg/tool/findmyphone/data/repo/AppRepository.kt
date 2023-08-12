@@ -3,6 +3,7 @@ package com.mtg.tool.findmyphone.data.repo
 import android.content.Context
 import com.mtg.tool.findmyphone.ADS_SOUND_TYPE
 import com.mtg.tool.findmyphone.DEFAULT_SOUND_TYPE
+import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.data.model.SoundItem
 
@@ -89,7 +90,8 @@ object AppRepository {
                 R.drawable.image_sound_10,
                 R.drawable.avatar_sound_10,
                 "file:///android_asset/cat_meowing.mp3"
-            )
+            ),
+            SoundItem(IMPORT_SOUND_TYPE,"",10, R.drawable.image_sound_1, R.drawable.avatar_sound_1, "/storage/emulated/0/Download/abc.mp3")
         )
     }
 }

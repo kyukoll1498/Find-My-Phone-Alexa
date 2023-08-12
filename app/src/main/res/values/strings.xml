@@ -33,4 +33,9 @@
     <string name="hey_stay_here">Hey Stay Here</string>
     <string name="dog_barking">Dog Barking</string>
     <string name="cat_meowing">Cat Meowing</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="volume">Volume</string>
+    <string name="duration">Duration</string>
+    <string name="apply">Apply</string>
 </resources>

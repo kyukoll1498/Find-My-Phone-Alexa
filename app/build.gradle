@@ -136,6 +136,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-config'
     implementation 'com.google.firebase:firebase-database'
     implementation project(path: ':MTGLibs')
+    implementation project(path: ':custom_seekbar')
 
     implementation('com.akexorcist:localization:1.2.10') {
         exclude group: 'androidx.core', module: 'core'
@@ -178,4 +179,7 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.5.2'
     annotationProcessor "androidx.room:room-compiler:2.5.2"
     kapt "androidx.room:room-compiler:2.5.2"
+
+    //Audio tool
+    implementation ("com.github.lincollincol:AudioTool:1.2.1")
 }
