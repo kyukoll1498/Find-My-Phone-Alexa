@@ -76,6 +76,8 @@ class PlaySoundActivity :
 
             }
         })
+
+        binding.btnBack.setOnClickListener { finish() }
     }
     private fun registerVolumeReceiver() {
         receiver = VolumeChangeReceiver(this, this)
