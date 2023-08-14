@@ -1,7 +1,9 @@
 package com.mtg.tool.findmyphone.utils.app
 
 import android.content.Context
+import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
 import com.mtg.tool.findmyphone.MODE_FLASH_DISCO
+import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
 import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 
 class AppPreferences (val context: Context) :
@@ -18,7 +20,7 @@ class AppPreferences (val context: Context) :
 
     inline var currentVibrate: Int
         get() {
-            return getInt(KEY_VIBRATE, MODE_VIBRATE_STRONG)
+            return getInt(KEY_VIBRATE, MODE_VIBRATE_DEFAULT)
         }
         set(value) {
             putInt(KEY_VIBRATE, value)
@@ -26,7 +28,7 @@ class AppPreferences (val context: Context) :
 
     inline var currentFlash: Int
         get() {
-            return getInt(KEY_FLASH, MODE_FLASH_DISCO)
+            return getInt(KEY_FLASH, MODE_FLASH_DEFAULT)
         }
         set(value) {
             putInt(KEY_FLASH, value)

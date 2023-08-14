@@ -9,11 +9,48 @@ import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 import com.mtg.tool.findmyphone.MODE_VIBRATE_TICKTOCK
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.databinding.FragmentSettingBinding
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
-    override fun initView() {
+    private var appPreferences = AppPreferences.instance
 
+    override fun initView() {
+        setUpSelection()
+    }
+
+    private fun setUpSelection() {
+        when (appPreferences.currentFlash) {
+            MODE_FLASH_DEFAULT -> {
+                binding.rbFlashDefault.isChecked = true
+            }
+
+            MODE_FLASH_DISCO -> {
+                binding.rbFlashDisco.isChecked = true
+            }
+
+            MODE_FLASH_SOS -> {
+                binding.rbFlashSos.isChecked = true
+            }
+        }
+
+        when (appPreferences.currentVibrate) {
+            MODE_VIBRATE_DEFAULT -> {
+                binding.rbVibrateDefault.isChecked = true
+            }
+
+            MODE_VIBRATE_STRONG -> {
+                binding.rbVibrateStrong.isChecked = true
+            }
+
+            MODE_VIBRATE_HEART -> {
+                binding.rbVibrateHeart.isChecked = true
+            }
+
+            MODE_VIBRATE_TICKTOCK -> {
+                binding.rbVibrateTicktock.isChecked = true
+            }
+        }
     }
 
     override fun addEvent() {
