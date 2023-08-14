@@ -40,7 +40,7 @@
         android:layout_marginBottom="@dimen/_20sdp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/animation_splash" />
+        app:lottie_rawRes="@raw/animation_clap" />
 
     <TextView
         android:id="@+id/txt_loading"

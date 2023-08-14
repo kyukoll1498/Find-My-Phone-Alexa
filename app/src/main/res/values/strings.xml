@@ -33,6 +33,12 @@
     <string name="hey_stay_here">Hey Stay Here</string>
     <string name="dog_barking">Dog Barking</string>
     <string name="cat_meowing">Cat Meowing</string>
+    <string name="tap_to_active">Tap to deactivate</string>
+    <string name="tap_to_inactive">Tap to activate</string>
+    <string name="activation_text">Click to activate button and clap to find your phone</string>
+    <string name="txt_active">Clap to find your phone</string>
+    <string name="txt_inactive">Click to activate button and clap to find your phone</string>
+
     <string name="play">Play</string>
     <string name="pause">Pause</string>
     <string name="volume">Volume</string>

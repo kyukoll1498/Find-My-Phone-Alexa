@@ -10,6 +10,9 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : Fragment() {
     val binding: B by lazy { bindingFactory(layoutInflater) }
+
+    open fun loadAds() {}
+
     abstract fun initView()
 
     abstract fun addEvent()
@@ -26,5 +29,6 @@ abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater
         super.onViewCreated(view, savedInstanceState)
         initView()
         addEvent()
+        loadAds()
     }
 }
