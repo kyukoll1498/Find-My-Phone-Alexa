@@ -146,6 +146,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     }
 
     private fun lockFlash() {
+        VibrateFlashThread.stopFlash()
         binding.rgFlash.alpha = 0.3F
         binding.vLockFlash.visibility = View.VISIBLE
     }
@@ -156,6 +157,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     }
 
     private fun lockVibrate() {
+        VibrateFlashThread.stopVibrate()
         binding.rgVibrate.alpha = 0.3F
         binding.vLockVibrate.visibility = View.VISIBLE
     }
