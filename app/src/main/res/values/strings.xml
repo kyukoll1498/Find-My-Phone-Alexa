@@ -38,4 +38,12 @@
     <string name="volume">Volume</string>
     <string name="duration">Duration</string>
     <string name="apply">Apply</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="txt_default">Default</string>
+    <string name="disco_mode">Disco Mode</string>
+    <string name="sos_mode">SOS Mode</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="strong_vibration">Strong Vibration</string>
+    <string name="heartbeat">Heartbeat</string>
+    <string name="ticktock">Ticktock</string>
 </resources>

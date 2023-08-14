@@ -1,11 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="@dimen/_30sdp"
-        android:text="Setting"
-        android:gravity="center"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/ll_sound_controller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:background="@drawable/bg_radius_12"
+                android:backgroundTint="#CCFFFFFF"
+                android:gravity="center_vertical"
+                android:paddingVertical="@dimen/_14sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_16sdp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sound_settings" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/sound"
+                    android:textColor="#404040"
+                    android:textSize="@dimen/_14sdp" />
+
+                <com.mtg.tool.findmyphone.main.widget.SwitchButton
+                    android:layout_width="@dimen/_42sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    app:sb_checked_color="#5987FF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_radius_12"
+                android:backgroundTint="#CCFFFFFF"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_14sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_16sdp"
+                app:layout_constraintTop_toBottomOf="@id/ll_sound_controller">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_flash" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_medium"
+                        android:includeFontPadding="false"
+                        android:text="@string/flashlight"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <com.mtg.tool.findmyphone.main.widget.SwitchButton
+                        android:layout_width="@dimen/_42sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        app:sb_checked_color="#5987FF" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="#F5F5F5" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp">
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="@string/txt_default"
+                        app:buttonTint="#F06A33"/>
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="@string/disco_mode"
+                        app:buttonTint="#F06A33"/>
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="@string/sos_mode"
+                        app:buttonTint="#F06A33"/>
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_radius_12"
+                android:backgroundTint="#CCFFFFFF"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/_36sdp"
+                android:paddingTop="@dimen/_14sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_16sdp"
+                app:layout_constraintTop_toBottomOf="@id/ll_sound_controller">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_vibrate" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_medium"
+                        android:includeFontPadding="false"
+                        android:text="@string/vibrate"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <com.mtg.tool.findmyphone.main.widget.SwitchButton
+                        android:layout_width="@dimen/_42sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        app:sb_checked_color="#5987FF" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="#F5F5F5" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp">
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="@string/txt_default"
+                        app:buttonTint="#F06A33"/>
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="@string/strong_vibration"
+                        app:buttonTint="#F06A33"/>
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="@string/heartbeat"
+                        app:buttonTint="#F06A33"/>
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#404040"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="@string/ticktock"
+                        app:buttonTint="#F06A33"/>
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
