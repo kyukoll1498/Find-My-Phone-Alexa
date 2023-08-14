@@ -41,7 +41,7 @@
                 android:ellipsize="end"
                 android:textSize="@dimen/_16sdp"
                 android:singleLine="true"
-                android:textColor="@color/color_274577"
+                android:textColor="#404040"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_rate"
                 app:layout_constraintStart_toEndOf="@id/btn_drawer"
