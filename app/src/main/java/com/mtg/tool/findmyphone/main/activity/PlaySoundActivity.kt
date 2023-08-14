@@ -21,6 +21,8 @@ class PlaySoundActivity :
     BaseActivity<ActivityPlaySoundBinding>(ActivityPlaySoundBinding::inflate), VolumeChangeReceiver.VolumeChangeListener {
     private lateinit var currentSoundItem: SoundItem
     private var currentDuration = 15
+    private var max = 100
+    private var volume = 70
 
     private lateinit var receiver: VolumeChangeReceiver
     private lateinit var audioManager: AudioManager
@@ -65,8 +67,8 @@ class PlaySoundActivity :
 
         binding.seekBar.setSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, newVolume: Int, fromUser: Boolean) {
-
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, newVolume, 0);
+                volume = newVolume
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -77,6 +79,16 @@ class PlaySoundActivity :
             }
         })
 
+        binding.btnVolumeDown.setOnClickListener {
+            if (volume != 0) {
+                binding.seekBar.setProgress(volume-1)
+            }
+        }
+        binding.btnVolumeUp.setOnClickListener {
+            if (volume != max) {
+                binding.seekBar.setProgress(volume+1)
+            }
+        }
         binding.btnBack.setOnClickListener { finish() }
     }
     private fun registerVolumeReceiver() {
@@ -171,9 +183,10 @@ class PlaySoundActivity :
     }
 
     private fun setSeekbarView() {
-        binding.seekBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC))
+        max = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+        binding.seekBar.setMax(max)
 
-        val volume: Int = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * 70 / 100
+        volume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * 70 / 100
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
         Handler().postDelayed(Runnable {
             try {
