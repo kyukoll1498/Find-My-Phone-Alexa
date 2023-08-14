@@ -18,3 +18,14 @@ const val KEY_SOUND_ITEM_DATA = "KEY_SOUND_ITEM_DATA_JDK"
 
 //intent action
 const val ACTION_VOLUME_CHANGED: String = "android.media.VOLUME_CHANGED_ACTION"
+
+//vibrate
+const val MODE_VIBRATE_DEFAULT = 1232
+const val MODE_VIBRATE_STRONG = 1233
+const val MODE_VIBRATE_HEART = 1235
+const val MODE_VIBRATE_TICKTOCK = 1236
+
+//flash
+const val MODE_FLASH_DEFAULT = 12342
+const val MODE_FLASH_DISCO = 12343
+const val MODE_FLASH_SOS = 12344

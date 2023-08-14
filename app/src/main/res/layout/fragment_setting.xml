@@ -95,10 +95,12 @@
                     android:background="#F5F5F5" />
 
                 <RadioGroup
+                    android:id="@+id/rg_flash"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_14sdp">
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_flash_default"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layoutDirection="rtl"
@@ -109,6 +111,7 @@
                         android:text="@string/txt_default"
                         app:buttonTint="#F06A33"/>
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_flash_disco"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layoutDirection="rtl"
@@ -120,6 +123,7 @@
                         android:text="@string/disco_mode"
                         app:buttonTint="#F06A33"/>
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_flash_sos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layoutDirection="rtl"
@@ -182,10 +186,12 @@
                     android:background="#F5F5F5" />
 
                 <RadioGroup
+                    android:id="@+id/rg_vibrate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_14sdp">
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_vibrate_default"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layoutDirection="rtl"
@@ -196,6 +202,7 @@
                         android:text="@string/txt_default"
                         app:buttonTint="#F06A33"/>
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_vibrate_strong"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layoutDirection="rtl"
@@ -207,6 +214,7 @@
                         android:text="@string/strong_vibration"
                         app:buttonTint="#F06A33"/>
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_vibrate_heart"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layoutDirection="rtl"
@@ -218,6 +226,7 @@
                         android:text="@string/heartbeat"
                         app:buttonTint="#F06A33"/>
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_vibrate_ticktock"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layoutDirection="rtl"
