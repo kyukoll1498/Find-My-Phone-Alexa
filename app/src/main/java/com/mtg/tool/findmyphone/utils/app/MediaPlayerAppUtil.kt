@@ -13,4 +13,11 @@ object MediaPlayerAppUtil{
             soundItem.soundPath?.let { MediaPlayerUtil.playAudioPath(it) }
         }
     }
+    fun playAudioWithDuraton(context: Context, soundItem: SoundItem , duration: Int) {
+        if (soundItem.type == DEFAULT_SOUND_TYPE) {
+            soundItem.soundPath?.let { MediaPlayerUtil.playAudioAssets(context, it.substring(it.lastIndexOf("/") + 1), duration) }
+        } else {
+            soundItem.soundPath?.let { MediaPlayerUtil.playAudioPath(it, duration) }
+        }
+    }
 }
