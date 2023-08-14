@@ -1,5 +1,7 @@
 package com.mtg.tool.findmyphone.main.fragment
 
+import android.util.Log
+import android.view.View
 import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
 import com.mtg.tool.findmyphone.MODE_FLASH_DISCO
 import com.mtg.tool.findmyphone.MODE_FLASH_SOS
@@ -51,6 +53,20 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
                 binding.rbVibrateTicktock.isChecked = true
             }
         }
+
+        binding.sbSound.isChecked = appPreferences.hasSound
+        if (appPreferences.hasFlash) {
+            binding.sbFlash.isChecked = true
+        } else {
+            binding.sbFlash.isChecked = false
+            lockFlash()
+        }
+        if (appPreferences.hasVibrate) {
+            binding.sbVibrate.isChecked = true
+        } else {
+            binding.sbVibrate.isChecked = false
+            lockVibrate()
+        }
     }
 
     override fun addEvent() {
@@ -96,10 +112,60 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
                 MODE_VIBRATE_TICKTOCK
             ).start()
         }
+        binding.llFlashController.setOnClickListener {
+            binding.sbFlash.isChecked = !binding.sbFlash.isChecked
+        }
+        binding.sbFlash.setOnCheckedChangeListener { _, isChecked ->
+            if (!isChecked) {
+                lockFlash()
+            } else {
+                unlockFlash()
+            }
+        }
+
+        binding.llVibrateController.setOnClickListener {
+            binding.sbVibrate.isChecked = !binding.sbVibrate.isChecked
+        }
+        binding.sbVibrate.setOnCheckedChangeListener { _, isChecked ->
+            if (!isChecked) {
+                lockVibrate()
+            } else {
+                unlockVibrate()
+            }
+        }
+        binding.llSoundController.setOnClickListener {
+            binding.sbSound.isChecked = !binding.sbVibrate.isChecked
+        }
+        binding.vLockFlash.setOnClickListener { Log.e("android_log_error", "it is disabled") }
+        binding.vLockVibrate.setOnClickListener { Log.e("android_log_error", "it is disabled") }
+    }
+
+    private fun unlockFlash() {
+        binding.rgFlash.alpha = 1F
+        binding.vLockFlash.visibility = View.GONE
+    }
+
+    private fun lockFlash() {
+        binding.rgFlash.alpha = 0.3F
+        binding.vLockFlash.visibility = View.VISIBLE
+    }
+
+    private fun unlockVibrate() {
+        binding.rgVibrate.alpha = 1F
+        binding.vLockVibrate.visibility = View.GONE
+    }
+
+    private fun lockVibrate() {
+        binding.rgVibrate.alpha = 0.3F
+        binding.vLockVibrate.visibility = View.VISIBLE
     }
 
     override fun onPause() {
         super.onPause()
         VibrateFlashThread.stopAll()
+        appPreferences.hasSound = binding.sbSound.isChecked
+        appPreferences.hasFlash = binding.sbFlash.isChecked
+        appPreferences.hasVibrate = binding.sbVibrate.isChecked
+
     }
 }

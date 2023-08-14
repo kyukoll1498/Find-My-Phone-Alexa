@@ -1,6 +1,9 @@
 package com.mtg.tool.findmyphone.utils.app
 
 import android.content.Context
+import com.mtg.tool.findmyphone.KEY_HAS_FLASH
+import com.mtg.tool.findmyphone.KEY_HAS_SOUND
+import com.mtg.tool.findmyphone.KEY_HAS_VIBRATE
 import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
 import com.mtg.tool.findmyphone.MODE_FLASH_DISCO
 import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
@@ -32,6 +35,28 @@ class AppPreferences (val context: Context) :
         }
         set(value) {
             putInt(KEY_FLASH, value)
+        }
+
+    inline var hasSound: Boolean
+        get() {
+            return getBoolean(KEY_HAS_SOUND, true)
+        }
+        set(value) {
+            putBoolean(KEY_HAS_SOUND, value)
+        }
+    inline var hasFlash: Boolean
+        get() {
+            return getBoolean(KEY_HAS_FLASH, true)
+        }
+        set(value) {
+            putBoolean(KEY_HAS_FLASH, value)
+        }
+    inline var hasVibrate: Boolean
+        get() {
+            return getBoolean(KEY_HAS_VIBRATE, true)
+        }
+        set(value) {
+            putBoolean(KEY_HAS_VIBRATE, value)
         }
 
 

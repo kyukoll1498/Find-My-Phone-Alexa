@@ -29,3 +29,8 @@ const val MODE_VIBRATE_TICKTOCK = 1236
 const val MODE_FLASH_DEFAULT = 12342
 const val MODE_FLASH_DISCO = 12343
 const val MODE_FLASH_SOS = 12344
+
+//settings key
+const val KEY_HAS_SOUND = "KEY_HAS_SOUND"
+const val KEY_HAS_FLASH = "KEY_HAS_FLASH"
+const val KEY_HAS_VIBRATE = "KEY_HAS_VIBRATE"
