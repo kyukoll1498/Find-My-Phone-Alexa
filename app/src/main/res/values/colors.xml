@@ -7,4 +7,6 @@
     <color name="color_1D1C21">#1d1c21</color>
     <color name="transparent">#00000000</color>
     <color name="color_404040">#404040</color>
+    <color name="txt_inactive1">#7E7E7E</color>
+    <color name="txt_inactive2">#F06A33</color>
 </resources>
