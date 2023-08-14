@@ -126,7 +126,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_2sdp"
-        app:dsbv_progress="70"
         app:layout_constraintBottom_toBottomOf="@+id/btn_volume_down"
         app:layout_constraintEnd_toStartOf="@id/btn_volume_up"
         app:layout_constraintStart_toEndOf="@id/btn_volume_down"/>

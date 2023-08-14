@@ -10,9 +10,9 @@ object MediaPlayerUtil {
     private var isPlay = false
     private var handler = Handler()
     private var stopRunnable = Runnable { stopAudio() }
-    fun playAudioAssets(context: Context, name: String, duration: Int = 0) {
+    fun playAudioAssets(context: Context, name: String, duration: Int = 0, callback: () -> Unit) {
         restartAudio()
-        setDuration(duration)
+        setDuration(duration, callback)
         val assetFileDescriptor: AssetFileDescriptor = context.assets.openFd(name)
         mediaPlayer.setDataSource(
             assetFileDescriptor.fileDescriptor,
@@ -23,16 +23,21 @@ object MediaPlayerUtil {
         mediaPlayer.start()
     }
 
-    private fun setDuration(duration: Int) {
+    private fun setDuration(duration: Int, callback: () -> Unit) {
         if (duration != 0) {
             handler.postDelayed(stopRunnable, duration.toLong())
             mediaPlayer.setOnCompletionListener { mediaPlayer.start() }
+        } else {
+            mediaPlayer.setOnCompletionListener {
+                callback.invoke()
+                stopAudio()
+            }
         }
     }
 
-    fun playAudioPath(path: String, duration: Int = 0) {
+    fun playAudioPath(path: String, duration: Int = 0, callback: () -> Unit) {
         restartAudio()
-        setDuration(duration)
+        setDuration(duration, callback)
         mediaPlayer.setDataSource(path)
         mediaPlayer.prepare()
         mediaPlayer.start()
@@ -54,5 +59,14 @@ object MediaPlayerUtil {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun pauseAudio() {
+        try {
+            mediaPlayer.pause()
+        } catch (e: Exception) {
+          e.printStackTrace()
+        }
+
     }
 }

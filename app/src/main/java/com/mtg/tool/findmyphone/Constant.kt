@@ -15,3 +15,6 @@ const val KEY_SOUND = "KEY_SOUND_JDK"
 
 //intent key
 const val KEY_SOUND_ITEM_DATA = "KEY_SOUND_ITEM_DATA_JDK"
+
+//intent action
+const val ACTION_VOLUME_CHANGED: String = "android.media.VOLUME_CHANGED_ACTION"
