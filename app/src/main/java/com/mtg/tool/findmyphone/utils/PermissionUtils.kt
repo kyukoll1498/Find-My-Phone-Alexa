@@ -3,8 +3,11 @@ package com.mtg.tool.findmyphone.utils
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import androidx.core.content.ContextCompat
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_PERMISSION_CODE
@@ -69,6 +72,19 @@ object PermissionUtils {
     fun requestMicroPermission(activity: Activity) {
         requestPermission(activity, Manifest.permission.RECORD_AUDIO)
     }
+
+    fun goSettingsForMicroPermission(activity: Activity) {
+        goSettingsForPermission(activity, REQUEST_MICRO_PERMISSION_CODE)
+    }
+
+    private fun goSettingsForPermission(activity: Activity, requestCode: Int) {
+        val intent = Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.parse("package:" + activity.packageName)
+        )
+        activity.startActivityForResult(intent, requestCode)
+    }
+
     fun requestReadAudioPermission(activity: Activity) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
             requestReadPermission(activity)

@@ -35,7 +35,7 @@
             android:paddingVertical="@dimen/_8sdp"
             android:text="@string/there_are_no_files_n_let_s_try_to_create_new_files_now"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/ll_create_sound"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_empty"
@@ -48,10 +48,10 @@
             android:layout_marginEnd="@dimen/_28sdp"
             android:layout_marginBottom="@dimen/_6sdp"
             android:src="@drawable/ic_guide_create_new"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout" />
+            app:layout_constraintBottom_toTopOf="@+id/ll_create_sound"
+            app:layout_constraintEnd_toEndOf="@+id/ll_create_sound" />
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/ll_create_sound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_48sdp"
@@ -59,14 +59,14 @@
             android:background="@drawable/bg_radius_8"
             android:backgroundTint="#FF7A2F"
             android:gravity="center"
+            android:elevation="5dp"
             android:paddingVertical="@dimen/_8sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="62dp">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:src="@drawable/ic_create_new" />
 
             <TextView
