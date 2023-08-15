@@ -3,7 +3,6 @@ package com.mtg.tool.findmyphone.main.clap
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.hardware.camera2.CameraAccessException
@@ -15,8 +14,8 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.Vibrator
 import android.util.Log
+import android.widget.RemoteViews
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.main.fragment.HomeFragment
@@ -109,19 +108,25 @@ class VocalService : Service() {
     }
 
     private fun buildNotification(): Notification {
-        val fullScreenIntent = Intent(this, HomeFragment::class.java)
-        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE else PendingIntent.FLAG_UPDATE_CURRENT
-        val fullScreenPendingIntent = PendingIntent.getActivity(this, 0, fullScreenIntent, flag)
+//        val fullScreenIntent = Intent(this, HomeFragment::class.java)
+//        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE else PendingIntent.FLAG_UPDATE_CURRENT
+//        val fullScreenPendingIntent = PendingIntent.getActivity(this, 0, fullScreenIntent, flag)
+
+        val remoteViews = RemoteViews(packageName, R.layout.custom_notification_small)
+        val remoteViewsExpanded = RemoteViews(packageName, R.layout.custom_notification_expanded)
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val notificationBuilder: Notification.Builder = Notification.Builder(this)
-            .setSmallIcon(R.drawable.flag_vi)
-            .setContentTitle("Battery charging animation")
+            .setSmallIcon(android.R.color.transparent)
+            .setContentTitle(getString(R.string.app_name))
             .setPriority(Notification.PRIORITY_HIGH)
             .setCategory(Notification.CATEGORY_SERVICE)
+            .setCustomBigContentView(remoteViewsExpanded)
+            .setCustomContentView(remoteViews)
+            .setCustomHeadsUpContentView(remoteViewsExpanded)
         //                        .setFullScreenIntent(fullScreenPendingIntent, true);
         notificationBuilder.setAutoCancel(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.createNotificationChannel(NotificationChannel("123", "123", NotificationManager.IMPORTANCE_HIGH))
+            notificationManager.createNotificationChannel(NotificationChannel("123", "123", NotificationManager.IMPORTANCE_MAX))
             notificationBuilder.setChannelId("123")
         }
         return notificationBuilder.build()

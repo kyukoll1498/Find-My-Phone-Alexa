@@ -52,4 +52,6 @@
     <string name="strong_vibration">Strong Vibration</string>
     <string name="heartbeat">Heartbeat</string>
     <string name="ticktock">Ticktock</string>
+    <string name="touch_here_to_deactivate">Touch here to deactivate</string>
+    <string name="clap_to_find_your_phone_is_running">Clap to find your phone is running</string>
 </resources>
