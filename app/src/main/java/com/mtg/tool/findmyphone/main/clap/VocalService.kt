@@ -3,8 +3,12 @@ package com.mtg.tool.findmyphone.main.clap
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.media.MediaPlayer
@@ -17,12 +21,17 @@ import android.util.Log
 import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 
 class VocalService : Service() {
     private var classesApp: ClassesApp? = null
     private var recorderThread: RecorderThread? = null
+    private var notificationChannel: NotificationChannel? = null
+    private var builder: Notification.Builder? = null
+    private val channelId = "i.apps.notifications"
+    private val description = "Test notification"
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
@@ -108,29 +117,49 @@ class VocalService : Service() {
     }
 
     private fun buildNotification(): Notification {
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val intent = Intent(this.applicationContext, HomeFragment::class.java)
+        val pendingIntent = PendingIntent.getActivity(this.applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val contentView = RemoteViews(this.packageName, R.layout.popup_notification)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel?.enableLights(true)
+            notificationChannel?.lightColor = Color.GREEN
+            notificationChannel?.enableVibration(false)
+            notificationManager.createNotificationChannel(notificationChannel!!)
+        }
+
+        val notificationBuilder = NotificationCompat.Builder(this.applicationContext, channelId)
+            .setContent(contentView)
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_launcher_background))
+            .setContentIntent(pendingIntent)
+
+        notificationManager.notify(1234, notificationBuilder.build())
+
+        return notificationBuilder.build()
+    }
+
+
+//    private fun buildNotification(): Notification {
 //        val fullScreenIntent = Intent(this, HomeFragment::class.java)
 //        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE else PendingIntent.FLAG_UPDATE_CURRENT
 //        val fullScreenPendingIntent = PendingIntent.getActivity(this, 0, fullScreenIntent, flag)
-
-        val remoteViews = RemoteViews(packageName, R.layout.custom_notification_small)
-        val remoteViewsExpanded = RemoteViews(packageName, R.layout.custom_notification_expanded)
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        val notificationBuilder: Notification.Builder = Notification.Builder(this)
-            .setSmallIcon(android.R.color.transparent)
-            .setContentTitle(getString(R.string.app_name))
-            .setPriority(Notification.PRIORITY_HIGH)
-            .setCategory(Notification.CATEGORY_SERVICE)
-            .setCustomBigContentView(remoteViewsExpanded)
-            .setCustomContentView(remoteViews)
-            .setCustomHeadsUpContentView(remoteViewsExpanded)
-        //                        .setFullScreenIntent(fullScreenPendingIntent, true);
-        notificationBuilder.setAutoCancel(true)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.createNotificationChannel(NotificationChannel("123", "123", NotificationManager.IMPORTANCE_MAX))
-            notificationBuilder.setChannelId("123")
-        }
-        return notificationBuilder.build()
-    }
+//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+//        val notificationBuilder: Notification.Builder = Notification.Builder(this)
+//            .setSmallIcon(R.drawable.flag_vi)
+//            .setContentTitle("Battery charging animation")
+//            .setPriority(Notification.PRIORITY_HIGH)
+//            .setCategory(Notification.CATEGORY_SERVICE)
+//        //                        .setFullScreenIntent(fullScreenPendingIntent, true);
+//        notificationBuilder.setAutoCancel(true)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            notificationManager.createNotificationChannel(NotificationChannel("123", "123", NotificationManager.IMPORTANCE_HIGH))
+//            notificationBuilder.setChannelId("123")
+//        }
+//        return notificationBuilder.build()
+//    }
 
     companion object {
         const val DETECT_NONE = 0
