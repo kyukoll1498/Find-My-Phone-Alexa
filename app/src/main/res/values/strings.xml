@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Clap to find your phone</string>
 
-    <string name="text_on_boarding_1">Prank Air Horn &amp;siren sounds</string>
-    <string name="text_on_boarding_2">Fart sounds &amp; fart songs</string>
-    <string name="text_on_boarding_3">Hair clipper &amp; funny sounds</string>
+    <string name="text_on_boarding_1">Clap to find the lost phone easily</string>
+    <string name="text_on_boarding_2">Flashlight in the dark</string>
+    <string name="text_on_boarding_3">Funny sounds to choose</string>
     <string name="get_started">Get Started</string>
     <string name="this_action_can_contain_ads">This action can contain ads...</string>
     <string name="do_you_like_our_app">Do you like our App?</string>
@@ -54,4 +54,5 @@
     <string name="ticktock">Ticktock</string>
     <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">There are no files.\n Let’s try to <font color="#F06A33">create new files</font> now.</string>
     <string name="create_sound">Create Sound</string>
+    <string name="import_audio">Import Audio</string>
 </resources>
