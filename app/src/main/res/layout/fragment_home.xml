@@ -8,166 +8,171 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="65"
         android:orientation="vertical">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_click_tab"
+                android:layout_width="@dimen/_144sdp"
+                android:layout_height="@dimen/_144sdp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_tap_active"
+                android:clipToOutline="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout
-                android:id="@+id/layout_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="@dimen/_300sdp"
-                    android:layout_height="@dimen/_200sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="30dp"
-                    android:orientation="vertical">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/cl_click_tab"
-                        android:layout_width="@dimen/_144sdp"
-                        android:layout_height="@dimen/_144sdp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:background="@drawable/icon_tap_active"
-                        android:clipToOutline="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/iv_circle_active"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/circle_active"
-                            android:visibility="invisible"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/avatar_sound_1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <Space
-                        android:id="@+id/space"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="@+id/cl_click_tab"
-                        app:layout_constraintEnd_toEndOf="@+id/cl_click_tab"
-                        app:layout_constraintHorizontal_bias="0.7"
-                        app:layout_constraintStart_toStartOf="@+id/cl_click_tab"
-                        app:layout_constraintTop_toTopOf="@+id/cl_click_tab"
-                        app:layout_constraintVertical_bias="0.35" />
-
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/lav_click"
-                        android:layout_width="@dimen/_107sdp"
-                        android:layout_height="@dimen/_113sdp"
-                        app:layout_constraintStart_toEndOf="@+id/space"
-                        app:layout_constraintTop_toBottomOf="@+id/space"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/animation_click"
-                        tools:ignore="MissingConstraints" />
-
-                    <TextView
-                        android:id="@+id/txt_inactive"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="@string/tap_to_inactive"
-                        android:textColor="#404040"
-                        android:textSize="@dimen/_16sdp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <TextView
-                        android:id="@+id/txt_active"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="@string/tap_to_active"
-                        android:textColor="#404040"
-                        android:textSize="@dimen/_16sdp"
-                        android:visibility="invisible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/tv_inactive"
-                    android:layout_width="@dimen/_235sdp"
+                <ImageView
+                    android:id="@+id/iv_circle_active"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@drawable/frame_guide"
-                    android:fontFamily="@font/inter_medium"
-                    android:gravity="center_horizontal|top"
-                    android:lineSpacingExtra="5sp"
-                    android:text="@string/txt_inactive"
-                    android:textColor="#7E7E7E"
-                    android:textSize="@dimen/_14sdp"
-                    android:paddingHorizontal="@dimen/_5sdp"
-                    android:translationY="-2.52sp"
-                    android:visibility="visible" />
+                    android:background="@drawable/circle_active"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:id="@+id/ll_tv_inactive"
-                    android:layout_width="@dimen/_244sdp"
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@drawable/frame_guide"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="invisible">
+                    android:src="@drawable/avatar_sound_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/lav_clap"
-                        android:layout_width="@dimen/_46sdp"
-                        android:layout_height="@dimen/_46sdp"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/animation_clap"
-                        tools:ignore="MissingConstraints" />
+            <Space
+                android:id="@+id/space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/cl_click_tab"
+                app:layout_constraintEnd_toEndOf="@+id/cl_click_tab"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintStart_toStartOf="@+id/cl_click_tab"
+                app:layout_constraintTop_toTopOf="@+id/cl_click_tab"
+                app:layout_constraintVertical_bias="0.35" />
 
-                    <TextView
-                        android:id="@+id/tv_active"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:foregroundGravity="center"
-                        android:lineSpacingExtra="5sp"
-                        android:text="@string/txt_active"
-                        android:textColor="#F06A33"
-                        android:textSize="@dimen/_15sdp" />
-                </LinearLayout>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lav_click"
+                android:layout_width="@dimen/_107sdp"
+                android:layout_height="@dimen/_113sdp"
+                app:layout_constraintStart_toEndOf="@+id/space"
+                app:layout_constraintTop_toBottomOf="@+id/space"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/animation_click"
+                tools:ignore="MissingConstraints" />
 
-
-            </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/txt_inactive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/tap_to_inactive"
+            android:textColor="#404040"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_inactive"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_center"
+
+            app:layout_constraintVertical_chainStyle="spread"/>
+
+        <TextView
+            android:id="@+id/txt_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/tap_to_active"
+            android:textColor="#404040"
+            android:textSize="@dimen/_16sdp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/tv_inactive"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_center"
+            app:layout_constraintVertical_chainStyle="spread"/>
+
+        <TextView
+            android:id="@+id/tv_inactive"
+            android:layout_width="@dimen/_235sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@drawable/frame_guide"
+            android:fontFamily="@font/inter_medium"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="5sp"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:text="@string/txt_inactive"
+            android:textColor="#7E7E7E"
+            android:textSize="@dimen/_14sdp"
+            android:translationY="-2.52sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_active"
+            app:layout_constraintVertical_chainStyle="spread"/>
+
+        <LinearLayout
+            android:id="@+id/ll_tv_inactive"
+            android:layout_width="@dimen/_244sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@drawable/frame_guide"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_active"
+            app:layout_constraintVertical_chainStyle="spread">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lav_clap"
+                android:layout_width="@dimen/_46sdp"
+                android:layout_height="@dimen/_46sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/animation_clap"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:foregroundGravity="center"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/txt_active"
+                android:textColor="#F06A33"
+                android:textSize="@dimen/_15sdp" />
+        </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <FrameLayout
         android:id="@+id/fr_ad"

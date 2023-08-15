@@ -1,9 +1,11 @@
 package com.mtg.tool.findmyphone.main.fragment
 
+import android.Manifest
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
@@ -30,11 +32,10 @@ import com.mtg.tool.findmyphone.main.clap.DetectClapClap
 import com.mtg.tool.findmyphone.main.clap.VocalService
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), View.OnClickListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate){
     private var classesApp: ClassesApp? = null
     private var intOnTick = 0
     var mPermCAm: Boolean? = null
-    private var txtStart: LinearLayout? = null
     private var MainIsRun = false
     var mySong: MediaPlayer? = null
     private val clapDetector: DetectClapClap? = null
@@ -62,31 +63,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         settingSound()
         checkCamFlash()
+//        check()
     }
 
     override fun addEvent() {
         clickClap()
         binding.clClickTab.setOnClickListener {
-
+            checkPermissionMicro()
             if (isDetectionEnabled) {
-                // Tắt chức năng detection
                 activity?.stopService(Intent(context, VocalService::class.java))
                 binding.tvInactive.visibility = View.INVISIBLE
                 binding.clClickTab.visibility = View.INVISIBLE
-                // Hiển thị clClickTab
                 binding.clClickTab.visibility = View.VISIBLE
                 Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
             } else {
-                // Mở chức năng detection
-                // Thực hiện các hành động cần thiết khi bật detection
-                // Ví dụ: startService, hiển thị view, vv.
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     requireActivity().startForegroundService(Intent(context, VocalService::class.java))
-                }else
+                } else
                     requireActivity().startService(Intent(context, VocalService::class.java))
                 Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
             }
-            // Chuyển đổi trạng thái
             isDetectionEnabled = !isDetectionEnabled
         }
 
@@ -174,59 +170,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 //        finish()
     }
 
-//    private fun checkbox() {
-//            classesApp!!.save("flashbox", "0")
-//        } else if (mPermCAm!!) {
-//            classesApp!!.save("flashbox", "1")
-//        } else {
-//            classesApp!!.save("flashbox", "0")
-//        }
-//            classesApp!!.save("vibratebox", "1")
-//        } else {
-//            classesApp!!.save("vibratebox", "0")
-//        }
-//            classesApp!!.save("soundbox", "1")
-//        } else {
-//            classesApp!!.save("soundbox", "0")
-//        }
-//    }
-
-    private fun setvolume(i: Int) {
-        val audioManager = activity?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        audioManager.setStreamVolume(3, (audioManager.getStreamMaxVolume(3).toFloat() * (i.toFloat() / 100.0f)).toInt(), 0)
-    }
-
-
-    override fun onClick(view: View) {
-        val id = view.id
-        if (id.equals(binding.clClickTab)) {
-            check()
-        }
-    }
-
     private var isDetectionEnabled = false
-
-//    override fun onClick(view: View) {
-//        val id = view.id
-//        if (id.equals(binding.clClickTab)) {
-//            if (isDetectionEnabled) {
-//                // Tắt chức năng detection
-//                activity?.stopService(Intent(context, VocalService::class.java))
-//                binding.tvInactive.visibility = View.INVISIBLE
-//                binding.clClickTab.visibility = View.INVISIBLE
-//                // Hiển thị clClickTab
-//                binding.clClickTab.visibility = View.VISIBLE
-//                Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
-//            } else {
-//                // Mở chức năng detection
-//                // Thực hiện các hành động cần thiết khi bật detection
-//                // Ví dụ: startService, hiển thị view, vv.
-//                Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
-//            }
-//            // Chuyển đổi trạng thái
-//            isDetectionEnabled = !isDetectionEnabled
-//        }
-//    }
 
     private fun checkCamFlash() {
         if (ContextCompat.checkSelfPermission(requireContext(), "android.permission.CAMERA") != 0) {
@@ -236,15 +180,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         mPermCAm = java.lang.Boolean.TRUE
     }
 
-    private fun check() {
-        if (ContextCompat.checkSelfPermission(requireContext(), "android.permission.RECORD_AUDIO") != 0) {
-            ActivityCompat.requestPermissions(requireContext() as Activity, arrayOf("android.permission.RECORD_AUDIO"), 123)
-            return
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            initializePlayerAndStartRecording()
+    private fun checkPermissionMicro() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.RECORD_AUDIO), 123)
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                initializePlayerAndStartRecording()
+            }
         }
     }
+
 
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(i: Int, strArr: Array<String?>, iArr: IntArray) {
@@ -268,18 +213,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         classesApp!!.save("StopService", "0")
         context?.let { startForegroundService(it, Intent(context, VocalService::class.java)) }
         Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
-        if (txtStart!!.visibility == View.INVISIBLE) {
+        if (binding.txtInactive.visibility == View.INVISIBLE) {
             binding.clClickTab.visibility = View.VISIBLE
         }
-        if (binding.clClickTab!!.visibility == View.VISIBLE) {
+        if (binding.clClickTab.visibility == View.VISIBLE) {
             binding.clClickTab.visibility = View.INVISIBLE
             binding.clClickTab.visibility = View.VISIBLE
         }
-//        if (HomeFragment.MainIsRun) {
-//            try {
-//                HomeFragment.activityMain.finish()
-//            } catch (ignored: Exception) {
-//            }
-//        }
     }
 }

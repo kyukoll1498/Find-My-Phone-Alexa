@@ -185,6 +185,6 @@ dependencies {
 
     //Handle Record Sound
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/TarsosDSP-2.4.1.jar')
+    implementation files('libs/TarsosDSP-1.7.jar')
 //    implementation files('libs/musicg-1.4.2.0.jar')
 }

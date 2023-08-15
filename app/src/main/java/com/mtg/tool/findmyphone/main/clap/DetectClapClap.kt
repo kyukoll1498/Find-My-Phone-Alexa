@@ -74,7 +74,7 @@ class DetectClapClap @SuppressLint("MissingPermission") internal constructor(con
         if (clap >= nb_claps) {
             classesApp.save("detectClap", "1")
             mIsRecording = false
-            showNotification()
+//            showNotification()
             callback.onDetected()
         }
     }
@@ -117,35 +117,35 @@ class DetectClapClap @SuppressLint("MissingPermission") internal constructor(con
         }.start()
     }
 
-    private fun showNotification() {
-        val notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val intent = Intent(mContext.applicationContext, HomeFragment::class.java)
-        val pendingIntent = PendingIntent.getActivity(mContext.applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        val contentView = RemoteViews(mContext.packageName, R.layout.popup_notification)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel!!.enableLights(true)
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel!!.lightColor = Color.GREEN
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel!!.enableVibration(false)
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.createNotificationChannel(notificationChannel!!)
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder = Notification.Builder(mContext.applicationContext, channelId)
-                .setContent(contentView)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setLargeIcon(BitmapFactory.decodeResource(mContext.resources, R.drawable.ic_launcher_background))
-                .setContentIntent(pendingIntent)
-        }
-        notificationManager.notify(1234, builder!!.build())
-    }
+//    private fun showNotification() {
+//        val notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//        val intent = Intent(mContext.applicationContext, HomeFragment::class.java)
+//        val pendingIntent = PendingIntent.getActivity(mContext.applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+//        val contentView = RemoteViews(mContext.packageName, R.layout.popup_notification)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            notificationChannel!!.enableLights(true)
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            notificationChannel!!.lightColor = Color.GREEN
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            notificationChannel!!.enableVibration(false)
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            notificationManager.createNotificationChannel(notificationChannel!!)
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            builder = Notification.Builder(mContext.applicationContext, channelId)
+//                .setContent(contentView)
+//                .setSmallIcon(R.drawable.ic_launcher_background)
+//                .setLargeIcon(BitmapFactory.decodeResource(mContext.resources, R.drawable.ic_launcher_background))
+//                .setContentIntent(pendingIntent)
+//        }
+//        notificationManager.notify(1234, builder!!.build())
+//    }
 
     private fun runVibrate(z: Boolean) {
         run = z
