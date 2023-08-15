@@ -2,11 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyApplication"
@@ -19,35 +30,42 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FindMyPhone"
         tools:targetApi="31">
+        <service android:name="com.mtg.tool.findmyphone.main.clap.VocalService" />
         <activity
             android:name=".main.activity.MainActivity"
             android:exported="true">
 
         </activity>
-        <activity android:name=".main.activity.OnBoardActivity"
-            android:screenOrientation="portrait"
-            android:exported="false"/>
-        <activity android:name=".main.activity.SplashActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+        <activity
+            android:name=".main.activity.OnBoardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.activity.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.activity.LanguageActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
-        <activity android:name=".main.activity.PlaySoundActivity"
+        <activity
+            android:name=".main.activity.LanguageActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".main.activity.CreateSoundActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.activity.PlaySoundActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".main.activity.RecordAudioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.activity.CreateSoundActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.activity.RecordAudioActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

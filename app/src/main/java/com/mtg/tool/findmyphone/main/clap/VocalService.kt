@@ -29,7 +29,6 @@ class VocalService : Service() {
     private var classesApp: ClassesApp? = null
     private var recorderThread: RecorderThread? = null
     private var notificationChannel: NotificationChannel? = null
-    private var builder: Notification.Builder? = null
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
     override fun onBind(intent: Intent): IBinder? {
@@ -82,7 +81,7 @@ class VocalService : Service() {
             mediaPlayer!!.isLooping = true
             mediaPlayer!!.prepare()
             mediaPlayer!!.start()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -106,14 +105,6 @@ class VocalService : Service() {
         }
         selectedDetection = 0
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
-    }
-
-    fun onWhistleDetected() {
-        val intent = Intent(this, HomeFragment::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
-        Toast.makeText(this, "Clap detected", Toast.LENGTH_LONG).show()
-        stopSelf()
     }
 
     private fun buildNotification(): Notification {
@@ -140,26 +131,6 @@ class VocalService : Service() {
 
         return notificationBuilder.build()
     }
-
-
-//    private fun buildNotification(): Notification {
-//        val fullScreenIntent = Intent(this, HomeFragment::class.java)
-//        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE else PendingIntent.FLAG_UPDATE_CURRENT
-//        val fullScreenPendingIntent = PendingIntent.getActivity(this, 0, fullScreenIntent, flag)
-//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-//        val notificationBuilder: Notification.Builder = Notification.Builder(this)
-//            .setSmallIcon(R.drawable.flag_vi)
-//            .setContentTitle("Battery charging animation")
-//            .setPriority(Notification.PRIORITY_HIGH)
-//            .setCategory(Notification.CATEGORY_SERVICE)
-//        //                        .setFullScreenIntent(fullScreenPendingIntent, true);
-//        notificationBuilder.setAutoCancel(true)
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            notificationManager.createNotificationChannel(NotificationChannel("123", "123", NotificationManager.IMPORTANCE_HIGH))
-//            notificationBuilder.setChannelId("123")
-//        }
-//        return notificationBuilder.build()
-//    }
 
     companion object {
         const val DETECT_NONE = 0
