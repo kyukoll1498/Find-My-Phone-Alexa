@@ -1,29 +1,95 @@
 package com.mtg.tool.findmyphone.main.fragment
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
+import android.content.Intent
+import android.media.AudioManager
+import android.media.MediaPlayer
+import android.os.Build
+import android.os.CountDownTimer
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startForegroundService
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
+import com.mtg.tool.findmyphone.main.clap.ClassesApp
+import com.mtg.tool.findmyphone.main.clap.DetectClapClap
+import com.mtg.tool.findmyphone.main.clap.VocalService
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), View.OnClickListener {
+    private var classesApp: ClassesApp? = null
+    private var intOnTick = 0
+    var mPermCAm: Boolean? = null
+    private var txtStart: LinearLayout? = null
+    private var MainIsRun = false
+    var mySong: MediaPlayer? = null
+    private val clapDetector: DetectClapClap? = null
 
+
+    fun MainActivity() {}
     private var isCircleActiveVisible = false
 
     override fun initView() {
         changeColorText()
+
+        isMyServiceRunning()
+
+        if (isMyServiceRunning()) {
+            binding.clClickTab.visibility = View.VISIBLE
+            binding.clClickTab.visibility = View.VISIBLE
+        }
+        classesApp = ClassesApp(requireContext())
+
+
+        classesApp!!.save("detectClap", "1")
+        context?.stopService(Intent(activity, VocalService::class.java))
+        setVolume(classesApp!!.read("seekBar", "50")!!.toInt())
+        activity?.getWindow()?.addFlags(128)
+
+        settingSound()
+        checkCamFlash()
     }
 
     override fun addEvent() {
         clickClap()
+        binding.clClickTab.setOnClickListener {
+
+            if (isDetectionEnabled) {
+                // Tắt chức năng detection
+                activity?.stopService(Intent(context, VocalService::class.java))
+                binding.tvInactive.visibility = View.INVISIBLE
+                binding.clClickTab.visibility = View.INVISIBLE
+                // Hiển thị clClickTab
+                binding.clClickTab.visibility = View.VISIBLE
+                Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
+            } else {
+                // Mở chức năng detection
+                // Thực hiện các hành động cần thiết khi bật detection
+                // Ví dụ: startService, hiển thị view, vv.
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    requireActivity().startForegroundService(Intent(context, VocalService::class.java))
+                }else
+                    requireActivity().startService(Intent(context, VocalService::class.java))
+                Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
+            }
+            // Chuyển đổi trạng thái
+            isDetectionEnabled = !isDetectionEnabled
+        }
+
     }
 
     private fun changeColorText() {
@@ -50,7 +116,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 binding.apply {
                     ivCircleActive.visibility = visible
                     txtActive.visibility = visible
-                    txtInactive.visibility =invisible
+                    txtInactive.visibility = invisible
                     llTvInactive.visibility = visible
                     tvInactive.visibility = invisible
                 }
@@ -65,5 +131,155 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
+    }
+
+    private fun initVolume() {
+        val audioManager = activity?.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
+        audioManager!!.getStreamVolume(3)
+        audioManager.setStreamVolume(3, (audioManager.getStreamMaxVolume(3).toFloat() * (classesApp!!.read(NotificationCompat.CATEGORY_PROGRESS, "50")!!.toFloat() / 100.0f)).toInt(), 0)
+    }
+
+    private fun settingSound() {
+        initVolume()
+        object : CountDownTimer(5000, 500) {
+            override fun onTick(j: Long) {
+                this@HomeFragment.intOnTick = this@HomeFragment.intOnTick + 1
+            }
+
+            override fun onFinish() {
+                this@HomeFragment.intOnTick = 0
+            }
+        }.start()
+    }
+
+    private fun setVolume(i: Int) {
+        val audioManager = activity?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audioManager.setStreamVolume(3, (audioManager.getStreamMaxVolume(3).toFloat() * (i.toFloat() / 100.0f)).toInt(), 0)
+    }
+
+    private fun isMyServiceRunning(): Boolean {
+        for (runningServiceInfo in (activity?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).getRunningServices(Int.MAX_VALUE)) {
+            if (VocalService::class.java.name == runningServiceInfo.service.className) {
+                return true
+            }
+        }
+        return false
+    }
+
+
+    fun onBackPressed() {
+        val intent: Intent = Intent(requireContext(), HomeFragment::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+//        finish()
+    }
+
+//    private fun checkbox() {
+//            classesApp!!.save("flashbox", "0")
+//        } else if (mPermCAm!!) {
+//            classesApp!!.save("flashbox", "1")
+//        } else {
+//            classesApp!!.save("flashbox", "0")
+//        }
+//            classesApp!!.save("vibratebox", "1")
+//        } else {
+//            classesApp!!.save("vibratebox", "0")
+//        }
+//            classesApp!!.save("soundbox", "1")
+//        } else {
+//            classesApp!!.save("soundbox", "0")
+//        }
+//    }
+
+    private fun setvolume(i: Int) {
+        val audioManager = activity?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audioManager.setStreamVolume(3, (audioManager.getStreamMaxVolume(3).toFloat() * (i.toFloat() / 100.0f)).toInt(), 0)
+    }
+
+
+    override fun onClick(view: View) {
+        val id = view.id
+        if (id.equals(binding.clClickTab)) {
+            check()
+        }
+    }
+
+    private var isDetectionEnabled = false
+
+//    override fun onClick(view: View) {
+//        val id = view.id
+//        if (id.equals(binding.clClickTab)) {
+//            if (isDetectionEnabled) {
+//                // Tắt chức năng detection
+//                activity?.stopService(Intent(context, VocalService::class.java))
+//                binding.tvInactive.visibility = View.INVISIBLE
+//                binding.clClickTab.visibility = View.INVISIBLE
+//                // Hiển thị clClickTab
+//                binding.clClickTab.visibility = View.VISIBLE
+//                Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
+//            } else {
+//                // Mở chức năng detection
+//                // Thực hiện các hành động cần thiết khi bật detection
+//                // Ví dụ: startService, hiển thị view, vv.
+//                Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
+//            }
+//            // Chuyển đổi trạng thái
+//            isDetectionEnabled = !isDetectionEnabled
+//        }
+//    }
+
+    private fun checkCamFlash() {
+        if (ContextCompat.checkSelfPermission(requireContext(), "android.permission.CAMERA") != 0) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf("android.permission.CAMERA"), 223)
+            return
+        }
+        mPermCAm = java.lang.Boolean.TRUE
+    }
+
+    private fun check() {
+        if (ContextCompat.checkSelfPermission(requireContext(), "android.permission.RECORD_AUDIO") != 0) {
+            ActivityCompat.requestPermissions(requireContext() as Activity, arrayOf("android.permission.RECORD_AUDIO"), 123)
+            return
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            initializePlayerAndStartRecording()
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(i: Int, strArr: Array<String?>, iArr: IntArray) {
+        if (i == 123) {
+            if (iArr.isNotEmpty() && iArr[0] == 0) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    initializePlayerAndStartRecording()
+                }
+            }
+        } else if (i == 223) {
+            mPermCAm = if (iArr.isEmpty() || iArr[0] != 0) {
+                java.lang.Boolean.FALSE
+            } else {
+                java.lang.Boolean.TRUE
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private fun initializePlayerAndStartRecording() {
+        classesApp!!.save("StopService", "0")
+        context?.let { startForegroundService(it, Intent(context, VocalService::class.java)) }
+        Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
+        if (txtStart!!.visibility == View.INVISIBLE) {
+            binding.clClickTab.visibility = View.VISIBLE
+        }
+        if (binding.clClickTab!!.visibility == View.VISIBLE) {
+            binding.clClickTab.visibility = View.INVISIBLE
+            binding.clClickTab.visibility = View.VISIBLE
+        }
+//        if (HomeFragment.MainIsRun) {
+//            try {
+//                HomeFragment.activityMain.finish()
+//            } catch (ignored: Exception) {
+//            }
+//        }
     }
 }
