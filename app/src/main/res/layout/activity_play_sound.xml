@@ -244,7 +244,7 @@
         android:layout_marginBottom="@dimen/_12sdp"
         android:gravity="center"
         android:elevation="5dp"
-        android:paddingVertical="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_8sdp"
         android:layout_marginHorizontal="@dimen/_48sdp"
         android:textColor="@color/white"
         android:textSize="@dimen/_16sdp"

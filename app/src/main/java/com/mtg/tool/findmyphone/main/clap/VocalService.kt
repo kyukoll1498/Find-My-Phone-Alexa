@@ -20,7 +20,6 @@ import android.os.Vibrator
 import android.util.Log
 import android.widget.RemoteViews
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.R
