@@ -52,6 +52,8 @@
     <string name="strong_vibration">Strong Vibration</string>
     <string name="heartbeat">Heartbeat</string>
     <string name="ticktock">Ticktock</string>
+    <string name="touch_here_to_deactivate">Touch here to deactivate</string>
+    <string name="clap_to_find_your_phone_is_running">Clap to find your phone is running</string>
     <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">There are no files.\n Let’s try to <font color="#F06A33">create new files</font> now.</string>
     <string name="create_sound">Create Sound</string>
     <string name="import_audio">Import Audio</string>
