@@ -32,6 +32,7 @@ public class DynamicSeekBarView extends LinearLayout implements SeekBar.OnSeekBa
     private LinearLayout llInfo;
     private String seekBarTextInfo = "";
     private SeekBar.OnSeekBarChangeListener _seekBarChangeListener;
+    private int presetProgress = -1;
 
     public DynamicSeekBarView(Context context) {
         super(context);
@@ -73,7 +74,7 @@ public class DynamicSeekBarView extends LinearLayout implements SeekBar.OnSeekBa
             int infoRadius = a.getInt(R.styleable.DynamicSeekBarView_dsbv_infoRadius, 0);
             int infoBackgroundColor = a.getResourceId(R.styleable.DynamicSeekBarView_dsbv_infoBackgroundColor, 0);
             int maxValueSeekBar = a.getInt(R.styleable.DynamicSeekBarView_dsbv_max, 100);
-            final int progressValueSeekBar = a.getInt(R.styleable.DynamicSeekBarView_dsbv_progress, 0);
+            final int[] progressValueSeekBar = {a.getInt(R.styleable.DynamicSeekBarView_dsbv_progress, 0)};
             boolean isHideInfo = a.getBoolean(R.styleable.DynamicSeekBarView_dsbv_isHideInfo, false);
             String initInfoString = a.getString(R.styleable.DynamicSeekBarView_dsbv_infoInitText);
 
@@ -102,7 +103,7 @@ public class DynamicSeekBarView extends LinearLayout implements SeekBar.OnSeekBa
             }
 
             seekBar.setMax(maxValueSeekBar);
-            seekBar.setProgress(progressValueSeekBar);
+            seekBar.setProgress(progressValueSeekBar[0]);
 
             if (!isHideInfo) {
                 llInfo.setVisibility(View.VISIBLE);
@@ -123,14 +124,17 @@ public class DynamicSeekBarView extends LinearLayout implements SeekBar.OnSeekBa
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        setInfoPosition(progressValueSeekBar);
+                        if (presetProgress != -1) {
+                            progressValueSeekBar[0] = presetProgress;
+                        }
+                        setInfoPosition(progressValueSeekBar[0]);
                     }
-                }, 500);
+                }, 300);
 
                 if (!TextUtils.isEmpty(initInfoString)) {
                     tvInfo.setText(initInfoString);
                 } else {
-                    tvInfo.setText("" + progressValueSeekBar);
+                    tvInfo.setText("" + progressValueSeekBar[0]);
                 }
             } else {
                 llInfo.setVisibility(View.GONE);
@@ -215,5 +219,9 @@ public class DynamicSeekBarView extends LinearLayout implements SeekBar.OnSeekBa
     public void setInfoText(String text, int progress) {
         tvInfo.setText(text);
         setInfoPosition(progress);
+    }
+
+    public void presetProgress(int volume) {
+        presetProgress = volume;
     }
 }
