@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
+import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
+import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
+import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
@@ -26,6 +29,7 @@ class RecordAudioActivity :
         const val MODE_PREPARE_RESUME = 434
     }
 
+    private var isSave = false
     private lateinit var currentSoundItem: SoundItem
     private var mode = MODE_PREPARE_START
     private var currentTime = 0
@@ -124,8 +128,17 @@ class RecordAudioActivity :
         currentSoundItem.name = binding.edtName.text.toString()
         if (currentSoundItem.name!!.isEmpty()) {
             Toast.makeText(this, getString(R.string.name_sound_is_empty), Toast.LENGTH_SHORT).show()
+        } else if (AppRepository.checkHasSound(currentSoundItem.name!!)) {
+            Toast.makeText(this, getString(R.string.name_sound_already_exists), Toast.LENGTH_SHORT).show()
+        } else {
+            AppRepository.insertSound(currentSoundItem)
+            var intent = Intent(ACTION_UPDATE_AUDIO_IMPORT)
+            intent.putExtra(KEY_SOUND, currentSoundItem)
+            sendBroadcast(intent)
+            sendBroadcast(Intent(ACTION_FINISH_CREATE_SOUND_SCREEN))
+            isSave = true
+            finish()
         }
-        AppRepository.insertSound(currentSoundItem)
     }
 
     private fun restartRecord() {
@@ -244,8 +257,19 @@ class RecordAudioActivity :
 
     override fun onPause() {
         super.onPause()
-        restartRecord()
-        MediaPlayerAppUtil.stopAudio()
+        if (binding.ctRecordController.visibility == View.VISIBLE) {
+            restartRecord()
+        }
+        pauseAudio()
+        binding.tvPlayerController.text = getString(R.string.play)
+        binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (!isSave) {
+            CacheUtils.removeLastFileAudio()
+        }
     }
 
 }

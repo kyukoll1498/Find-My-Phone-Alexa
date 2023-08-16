@@ -1,9 +1,14 @@
 package com.mtg.tool.findmyphone.main.fragment
 
+import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.common.control.base.OnActionCallback
+import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.CREATE_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
@@ -17,15 +22,35 @@ import com.mtg.tool.findmyphone.main.activity.PlaySoundActivity
 import com.mtg.tool.findmyphone.main.adapter.SoundAdapter
 
 class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate) {
-    private lateinit var soundList: List<SoundItem>
+    private var soundList = mutableListOf<SoundItem>()
     private lateinit var soundAdapter: SoundAdapter
+
+    private val soundReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        @SuppressLint("NotifyDataSetChanged")
+        override fun onReceive(context: Context, intent: Intent) {
+            var soundItem = intent.getSerializableExtra(KEY_SOUND) as SoundItem
+            if (soundList.isEmpty()) {
+                soundList.add(soundItem)
+                initContent()
+            } else {
+                soundList.add(soundItem)
+                soundAdapter.notifyDataSetChanged()
+            }
+        }
+    }
+
     override fun initView() {
         loadSoundList()
+        registerBroadcast()
+    }
+
+    private fun registerBroadcast() {
+        activity?.registerReceiver(soundReceiver, IntentFilter(ACTION_UPDATE_AUDIO_IMPORT))
     }
 
     private fun loadSoundList() {
         Thread {
-            soundList = AppRepository.getAllSoundImport(requireContext())!!
+            soundList.addAll(AppRepository.getAllSoundImport())
             activity?.runOnUiThread {
                 initContent()
             }
@@ -39,12 +64,12 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
         } else {
             binding.ctEmpty.visibility = View.GONE
             binding.rcvSoundImport.visibility = View.VISIBLE
-            soundList = arrayListOf(
-                SoundItem(
+            soundList.add(
+                0, SoundItem(
                     CREATE_SOUND_TYPE,
                     getString(R.string.create_new), 0, R.drawable.image_sound_create, 0, ""
                 )
-            ) + soundList
+            )
             soundAdapter = SoundAdapter(soundList, context)
             soundAdapter.mCallback = OnActionCallback { key, data ->
                 if (key.equals(KEY_SOUND)) {
@@ -79,5 +104,10 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     override fun onResume() {
         super.onResume()
         setUpResponsive()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.unregisterReceiver(soundReceiver)
     }
 }

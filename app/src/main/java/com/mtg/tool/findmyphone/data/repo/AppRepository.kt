@@ -9,6 +9,7 @@ import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.data.model.SoundItem
 
 object AppRepository {
+    private var listAllSoundImport = mutableListOf<SoundItem>()
     fun getAllSound(context: Context): List<SoundItem> {
         return arrayListOf(
             SoundItem(
@@ -95,13 +96,25 @@ object AppRepository {
         )
     }
 
-    fun getAllSoundImport(context: Context): List<SoundItem>? {
-        return RoomDatabase.getDatabase()?.soundDao()?.getAllSound()
+    fun getAllSoundImport(): MutableList<SoundItem> {
+        if (listAllSoundImport.isEmpty()) {
+            RoomDatabase.getDatabase()?.soundDao()?.getAllSound()
+                ?.let { listAllSoundImport.addAll(it) }
+        }
+        return listAllSoundImport
     }
+
+    fun checkHasSound(name: String): Boolean{
+        for (soundItem in listAllSoundImport) {
+            if (soundItem.name == name) {
+                return true
+            }
+        }
+        return false
+    }
+
     fun insertSound(soundItem: SoundItem) {
+        listAllSoundImport.add(soundItem)
         RoomDatabase.getDatabase()?.soundDao()?.insert(soundItem)
-    }
-    fun deleteSound(soundItem: SoundItem) {
-        soundItem.soundPath?.let { RoomDatabase.getDatabase()?.soundDao()?.delete(it) }
     }
 }

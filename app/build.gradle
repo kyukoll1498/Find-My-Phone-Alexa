@@ -182,6 +182,7 @@ dependencies {
 
     //Audio tool
     implementation ("com.github.lincollincol:AudioTool:1.2.1")
+    implementation 'com.arthenica:mobile-ffmpeg-full:4.3.1.LTS'
 
     //Handle Record Sound
     implementation fileTree(include: ['*.jar'], dir: 'libs')

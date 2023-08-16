@@ -67,4 +67,5 @@
     <string name="save_sound">Save sound</string>
     <string name="name_sound_is_empty">Name Sound is Empty</string>
     <string name="create_new">Create new</string>
+    <string name="name_sound_already_exists">Name Sound already exists</string>
 </resources>
