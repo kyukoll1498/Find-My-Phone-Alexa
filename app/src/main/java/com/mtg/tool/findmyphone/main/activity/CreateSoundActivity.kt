@@ -1,19 +1,36 @@
 package com.mtg.tool.findmyphone.main.activity
 
+import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
+import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
+import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ActivityCreateSoundBinding
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 
 class CreateSoundActivity :
     BaseActivity<ActivityCreateSoundBinding>(ActivityCreateSoundBinding::inflate) {
-    override fun initView() {
 
+    private val finishReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        @SuppressLint("NotifyDataSetChanged")
+        override fun onReceive(context: Context, intent: Intent) {
+            finish()
+        }
+    }
+
+
+    override fun initView() {
+        registerReceiver(finishReceiver, IntentFilter(ACTION_FINISH_CREATE_SOUND_SCREEN))
     }
 
     override fun addEvent() {
+        binding.btnBack.setOnClickListener { onBackPressed() }
         binding.llRecordAudio.setOnClickListener {
             if (!PermissionUtils.checkMicroPermission(this)) {
                 PermissionUtils.requestMicroPermission(this)
@@ -60,5 +77,10 @@ class CreateSoundActivity :
                 startRecordAudio()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(finishReceiver)
     }
 }

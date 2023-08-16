@@ -11,8 +11,8 @@ interface SoundDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(soundItem: SoundItem)
 
-    @Query("SELECT * FROM sound ORDER BY time_import DESC")
-    fun getAllSound(): List<SoundItem>
+    @Query("SELECT * FROM sound ORDER BY time_import ASC")
+    fun getAllSound(): MutableList<SoundItem>
 
     @Query("DELETE FROM sound WHERE sound_path =:path ")
     fun delete(path: String)

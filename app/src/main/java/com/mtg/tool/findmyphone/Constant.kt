@@ -5,6 +5,7 @@ package com.mtg.tool.findmyphone
 const val DEFAULT_SOUND_TYPE = 4928
 const val IMPORT_SOUND_TYPE = 8490
 const val ADS_SOUND_TYPE = 6544
+const val CREATE_SOUND_TYPE = 6549
 
 //adapter item type
 const val ADAPTER_ITEM_TYPE = 4809
@@ -40,3 +41,10 @@ const val REQUEST_PERMISSION_CODE = 14312
 const val REQUEST_READ_PERMISSION_CODE = 14313
 const val REQUEST_MICRO_PERMISSION_CODE = 14314
 const val REQUEST_READ_AUDIO_PERMISSION_CODE = 14316
+
+//file dir
+const val DIRECTION_AUDIO_CACHE_NAME = "find_my_phone_audio"
+
+//broadcast intent action
+const val ACTION_UPDATE_AUDIO_IMPORT =  "ACTION_UPDATE_AUDIO_IMPORT_JDK"
+const val ACTION_FINISH_CREATE_SOUND_SCREEN = "ACTION_FINISH_CREATE_SOUND_SCREEN_JDK"
