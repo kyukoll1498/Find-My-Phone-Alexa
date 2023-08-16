@@ -39,7 +39,7 @@ class RecordAudioActivity :
     }
 
     override fun addEvent() {
-        binding.btnBack.setOnClickListener { finish() }
+        binding.btnBack.setOnClickListener { onBackPressed() }
         binding.ivRecordController.setOnClickListener {
             when (mode) {
                 MODE_PREPARE_START -> {
@@ -244,6 +244,17 @@ class RecordAudioActivity :
                 finish()
             }
         }.setDialogCancellable(false).show()
+    }
+
+    override fun onBackPressed() {
+        if (binding.ctSaveRecord.visibility == View.VISIBLE) {
+            CacheUtils.removeLastFileAudio()
+            binding.ctRecordController.visibility = View.VISIBLE
+            binding.ctSaveRecord.visibility = View.GONE
+            binding.btnSave.visibility = View.GONE
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

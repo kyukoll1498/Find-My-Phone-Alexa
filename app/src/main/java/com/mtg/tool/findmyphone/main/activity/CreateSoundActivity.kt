@@ -30,6 +30,7 @@ class CreateSoundActivity :
     }
 
     override fun addEvent() {
+        binding.btnBack.setOnClickListener { onBackPressed() }
         binding.llRecordAudio.setOnClickListener {
             if (!PermissionUtils.checkMicroPermission(this)) {
                 PermissionUtils.requestMicroPermission(this)
