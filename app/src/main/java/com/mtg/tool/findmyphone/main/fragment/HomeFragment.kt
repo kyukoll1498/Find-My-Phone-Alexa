@@ -9,7 +9,6 @@ import android.os.CountDownTimer
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -22,10 +21,12 @@ import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
 import com.mtg.tool.findmyphone.main.clap.ClassesApp
+import com.mtg.tool.findmyphone.main.clap.FeatureClapManager
 import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 
 
+@Suppress("DEPRECATION")
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private var classesApp: ClassesApp? = null
     private var intOnTick = 0
@@ -109,9 +110,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             checkPermissionMicro()
             if (PermissionUtils.checkMicroPermission(requireContext())) {
                 isCircleActiveVisible = !isCircleActiveVisible
-                Log.e("android_log", isCircleActiveVisible.toString())
                 if (isCircleActiveVisible) {
-
                     binding.apply {
                         ivCircleActive.visibility = visible
                         txtActive.visibility = visible
@@ -122,7 +121,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         context?.let { startForegroundService(it, Intent(context, VocalService::class.java)) }
                         Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
                     }
-
                 } else {
                     binding.apply {
                         ivCircleActive.visibility = invisible
@@ -130,6 +128,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         txtActive.visibility = invisible
                         tvInactive.visibility = visible
                         llTvInactive.visibility = invisible
+                        FeatureClapManager.getInstance(requireContext()).apply {
+                            stopAudio()
+                            turnOffVibration()
+                            turnOnFlash(false)
+                        }
                         activity?.stopService(Intent(context, VocalService::class.java))
                         Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
                     }
