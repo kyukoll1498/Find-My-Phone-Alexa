@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@drawable/image_back_ground" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_top"
         android:layout_width="match_parent"
@@ -42,38 +44,87 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <ImageView
-        android:id="@+id/iv_bg_record"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ct_record_controller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/bg_record"
-        android:scaleType="fitXY"
+        android:elevation="5dp"
         android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_18sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_top" />
+        android:background="@drawable/bg_recorder"
+        app:layout_constraintTop_toBottomOf="@id/layout_top">
+        <ImageView
+            android:id="@+id/iv_bg_record"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:alpha=".7"
+            android:src="@drawable/ic_bg_recorder"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:id="@+id/iv_record_controller"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_micro_start"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_record"
-        app:layout_constraintEnd_toEndOf="@+id/iv_bg_record"
-        app:layout_constraintStart_toStartOf="@+id/iv_bg_record"
-        app:layout_constraintTop_toTopOf="@+id/iv_bg_record" />
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:background="@drawable/bg_radius_100"
+            android:backgroundTint="#5987FF"
+            android:elevation="1dp"
+            android:fontFamily="@font/inter_semibold"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_record_controller"
+            app:layout_constraintStart_toEndOf="@+id/iv_record_controller"
+            app:layout_constraintTop_toTopOf="@+id/iv_record_controller" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00:00"
-        android:layout_marginTop="@dimen/_28sdp"
-        android:textSize="@dimen/_32sdp"
-        app:layout_constraintEnd_toEndOf="@+id/iv_bg_record"
-        app:layout_constraintStart_toStartOf="@+id/iv_bg_record"
-        app:layout_constraintTop_toBottomOf="@+id/iv_record_controller" />
+        <ImageView
+            android:id="@+id/iv_record_controller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_micro_start"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_bg_record"
+            app:layout_constraintEnd_toEndOf="@+id/iv_bg_record"
+            app:layout_constraintStart_toStartOf="@+id/iv_bg_record"
+            app:layout_constraintTop_toTopOf="@+id/iv_bg_record" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_28sdp"
+            android:text="00:00"
+            android:textSize="@dimen/_32sdp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_bg_record"
+            app:layout_constraintStart_toStartOf="@+id/iv_bg_record"
+            app:layout_constraintTop_toBottomOf="@+id/iv_record_controller" />
+
+        <ImageView
+            android:id="@+id/iv_restart_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_32sdp"
+            android:src="@drawable/ic_restart_record"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_record_controller"
+            app:layout_constraintEnd_toStartOf="@+id/iv_record_controller"
+            app:layout_constraintTop_toTopOf="@+id/iv_record_controller" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/fr_ad"
+        app:layout_constraintTop_toBottomOf="@id/layout_top">
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <FrameLayout
         android:id="@+id/fr_ad"
         android:layout_width="match_parent"
