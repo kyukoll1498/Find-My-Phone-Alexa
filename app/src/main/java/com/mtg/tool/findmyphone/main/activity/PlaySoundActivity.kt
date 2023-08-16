@@ -5,7 +5,7 @@ import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.media.AudioManager
-import android.os.Handler
+import android.util.Log
 import android.widget.SeekBar
 import com.bumptech.glide.Glide
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
@@ -16,9 +16,11 @@ import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ActivityPlaySoundBinding
 import com.mtg.tool.findmyphone.receiver.VolumeChangeReceiver
 import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
+import kotlin.math.log
 
 class PlaySoundActivity :
-    BaseActivity<ActivityPlaySoundBinding>(ActivityPlaySoundBinding::inflate), VolumeChangeReceiver.VolumeChangeListener {
+    BaseActivity<ActivityPlaySoundBinding>(ActivityPlaySoundBinding::inflate),
+    VolumeChangeReceiver.VolumeChangeListener {
     private lateinit var currentSoundItem: SoundItem
     private var currentDuration = 15
     private var max = 100
@@ -67,8 +69,9 @@ class PlaySoundActivity :
 
         binding.seekBar.setSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, newVolume: Int, fromUser: Boolean) {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, newVolume, 0);
-                volume = newVolume
+                if (fromUser) {
+                    updateVolume(newVolume)
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -80,17 +83,27 @@ class PlaySoundActivity :
         })
 
         binding.btnVolumeDown.setOnClickListener {
-            if (volume != 0) {
-                binding.seekBar.setProgress(volume-1)
-            }
+            binding.seekBar.invalidate()
+            binding.seekBar.requestLayout()
+//            if (volume != 0) {
+//                updateVolume(--volume)
+//                binding.seekBar.setProgress(volume)
+//            }
         }
         binding.btnVolumeUp.setOnClickListener {
             if (volume != max) {
-                binding.seekBar.setProgress(volume+1)
+                updateVolume(++volume)
+                binding.seekBar.setProgress(volume)
             }
         }
         binding.btnBack.setOnClickListener { finish() }
     }
+
+    private fun updateVolume(newVolume: Int) {
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, newVolume, 0);
+        volume = newVolume
+    }
+
     private fun registerVolumeReceiver() {
         receiver = VolumeChangeReceiver(this, this)
         registerReceiver(receiver, IntentFilter(ACTION_VOLUME_CHANGED))
@@ -183,17 +196,11 @@ class PlaySoundActivity :
     }
 
     private fun setSeekbarView() {
-        max = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-        binding.seekBar.setMax(max)
+        binding.seekBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC))
 
-        volume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * 70 / 100
+        val volume: Int = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * 70 / 100
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
-        Handler().postDelayed(Runnable {
-            try {
-                binding.seekBar.setProgress(volume)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }, 500)
+
+        binding.seekBar.presetProgress(volume)
     }
 }
