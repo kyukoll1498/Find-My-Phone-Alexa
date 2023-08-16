@@ -29,7 +29,7 @@ import com.mtg.tool.findmyphone.utils.PermissionUtils
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private var classesApp: ClassesApp? = null
     private var intOnTick = 0
-    var mPermCAm: Boolean? = null
+    private var mPermCAm: Boolean? = null
     private var isCircleActiveVisible = false
 
     override fun initView() {
@@ -38,14 +38,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         classesApp = ClassesApp(requireContext())
         classesApp!!.save("detectClap", "1")
         context?.stopService(Intent(activity, VocalService::class.java))
-        activity?.getWindow()?.addFlags(128)
+        activity?.window?.addFlags(128)
 
         settingSound()
     }
 
     override fun addEvent() {
         initializePlayerAndStartRecording()
-        checkPermissionMicro()
         checkCamFlash()
     }
 
@@ -94,10 +93,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun checkCamFlash() {
-//        if (ContextCompat.checkSelfPermission(requireContext(), "android.permission.CAMERA") != 0) {
-//            ActivityCompat.requestPermissions(requireActivity(), arrayOf("android.permission.CAMERA"), 223)
-//            return
-//        }
         mPermCAm = java.lang.Boolean.TRUE
     }
 
@@ -107,25 +102,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    //    @Deprecated("Deprecated in Java")
-//    override fun onRequestPermissionsResult(i: Int, strArr: Array<String?>, iArr: IntArray) {
-//        if (i == 123) {
-//            if (iArr.isNotEmpty() && iArr[0] == 0) {
-//                initializePlayerAndStartRecording()
-//            }
-//        } else if (i == 223) {
-//            mPermCAm = if (iArr.isEmpty() || iArr[0] != 0) {
-//                java.lang.Boolean.FALSE
-//            } else {
-//                java.lang.Boolean.TRUE
-//            }
-//        }
-//    }
-
     private fun initializePlayerAndStartRecording() {
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
         binding.clClickTab.setOnClickListener {
+            checkPermissionMicro()
             if (PermissionUtils.checkMicroPermission(requireContext())) {
                 isCircleActiveVisible = !isCircleActiveVisible
                 Log.e("android_log", isCircleActiveVisible.toString())
@@ -157,5 +138,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         }
     }
-
 }
