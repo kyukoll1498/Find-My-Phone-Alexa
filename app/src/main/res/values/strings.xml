@@ -63,4 +63,8 @@
     <string name="deny">Deny</string>
     <string name="allow">Allow</string>
     <string name="record_sound">Record Sound</string>
+    <string name="enter_name_sound">Enter Name Sound</string>
+    <string name="save_sound">Save sound</string>
+    <string name="name_sound_is_empty">Name Sound is Empty</string>
+    <string name="create_new">Create new</string>
 </resources>

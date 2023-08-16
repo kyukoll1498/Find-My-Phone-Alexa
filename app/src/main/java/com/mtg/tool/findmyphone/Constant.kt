@@ -5,6 +5,7 @@ package com.mtg.tool.findmyphone
 const val DEFAULT_SOUND_TYPE = 4928
 const val IMPORT_SOUND_TYPE = 8490
 const val ADS_SOUND_TYPE = 6544
+const val CREATE_SOUND_TYPE = 6549
 
 //adapter item type
 const val ADAPTER_ITEM_TYPE = 4809

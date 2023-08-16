@@ -3,6 +3,7 @@ package com.mtg.tool.findmyphone.main.activity
 import android.content.Intent
 import android.os.CountDownTimer
 import android.view.View
+import android.widget.Toast
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
@@ -15,6 +16,7 @@ import com.mtg.tool.findmyphone.utils.AudioUtil
 import com.mtg.tool.findmyphone.utils.CacheUtils
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.RecordUtil
+import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
 
 class RecordAudioActivity :
     BaseActivity<ActivityRecordSoundBinding>(ActivityRecordSoundBinding::inflate) {
@@ -24,6 +26,7 @@ class RecordAudioActivity :
         const val MODE_PREPARE_RESUME = 434
     }
 
+    private lateinit var currentSoundItem: SoundItem
     private var mode = MODE_PREPARE_START
     private var currentTime = 0
     private var timer: CountDownTimer? = null
@@ -52,6 +55,35 @@ class RecordAudioActivity :
             restartRecord()
         }
         binding.tvNext.setOnClickListener { stopRecord() }
+        binding.btnSave.setOnClickListener { saveSoundItem() }
+        binding.llAudioController.setOnClickListener {
+            if (binding.tvPlayerController.text == getString(R.string.play)) {
+                startAudio()
+                binding.tvPlayerController.text = getString(R.string.pause)
+                binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
+            } else if (binding.tvPlayerController.text == getString(R.string.pause)) {
+                pauseAudio()
+                binding.tvPlayerController.text = getString(R.string.play)
+                binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+            }
+        }
+    }
+
+    private fun startAudio() {
+        MediaPlayerAppUtil.playAudio(this, currentSoundItem) {
+//            onComplete
+            try {
+                binding.tvPlayerController.text = getString(R.string.play)
+                binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
+    }
+
+    private fun pauseAudio() {
+        MediaPlayerAppUtil.stopAudio()
     }
 
     private fun stopRecord() {
@@ -61,12 +93,39 @@ class RecordAudioActivity :
         hideToolsMoreRecord()
         restartTimer()
         binding.ivRecordController.setImageDrawable(getDrawable(R.drawable.ic_micro_start))
+        updateCurrentSound()
+        gotoSave()
+    }
+
+    private fun updateCurrentSound() {
+        currentSoundItem = SoundItem(
+            IMPORT_SOUND_TYPE,
+            "",
+            System.currentTimeMillis(),
+            R.drawable.avatar_audio_default,
+            R.drawable.avatar_audio_default,
+            CacheUtils.getLastFilePathAudio()
+        )
+    }
+
+    private fun gotoSave() {
+        binding.ctRecordController.visibility = View.GONE
+        binding.ctSaveRecord.visibility = View.VISIBLE
+        binding.btnSave.visibility = View.VISIBLE
     }
 
     private fun cutAudio15s() {
         if (currentTime >= 15) {
             AudioUtil.cutAudio(this, 0, 15, CacheUtils.getLastFilePathAudio()) { }
         }
+    }
+
+    private fun saveSoundItem() {
+        currentSoundItem.name = binding.edtName.text.toString()
+        if (currentSoundItem.name!!.isEmpty()) {
+            Toast.makeText(this, getString(R.string.name_sound_is_empty), Toast.LENGTH_SHORT).show()
+        }
+        AppRepository.insertSound(currentSoundItem)
     }
 
     private fun restartRecord() {
@@ -186,6 +245,7 @@ class RecordAudioActivity :
     override fun onPause() {
         super.onPause()
         restartRecord()
+        MediaPlayerAppUtil.stopAudio()
     }
 
 }

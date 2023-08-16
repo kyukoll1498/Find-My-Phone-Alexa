@@ -95,6 +95,9 @@ object AppRepository {
         )
     }
 
+    fun getAllSoundImport(context: Context): List<SoundItem>? {
+        return RoomDatabase.getDatabase()?.soundDao()?.getAllSound()
+    }
     fun insertSound(soundItem: SoundItem) {
         RoomDatabase.getDatabase()?.soundDao()?.insert(soundItem)
     }
