@@ -149,4 +149,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             }
         })
     }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val viewPagerPosition = intent?.getIntExtra("VIEWPAGER_POSITION", 0)
+        if (viewPagerPosition != null) {
+            changeUITools(binding.viewpagerMain.currentItem, 0)
+            binding.viewpagerMain.setCurrentItem(viewPagerPosition, false)
+        }
+        binding.ivHome.isSelected = viewPagerPosition == 0
+
+    }
 }
