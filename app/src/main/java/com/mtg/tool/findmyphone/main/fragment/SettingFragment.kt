@@ -57,12 +57,14 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         binding.sbSound.isChecked = appPreferences.hasSound
         if (appPreferences.hasFlash) {
             binding.sbFlash.isChecked = true
+            unlockFlash()
         } else {
             binding.sbFlash.isChecked = false
             lockFlash()
         }
         if (appPreferences.hasVibrate) {
             binding.sbVibrate.isChecked = true
+            unlockVibrate()
         } else {
             binding.sbVibrate.isChecked = false
             lockVibrate()
