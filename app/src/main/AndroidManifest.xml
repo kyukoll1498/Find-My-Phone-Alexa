@@ -69,6 +69,10 @@
             android:name=".main.activity.RecordAudioActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.activity.HowToUseActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

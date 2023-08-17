@@ -69,4 +69,15 @@
     <string name="create_new">Create new</string>
     <string name="name_sound_already_exists">Name Sound already exists</string>
     <string name="allow_clap_to_find_your_phone_to_access_audio_files">Allow <b>Clap To Find Your Phone</b> to access audio files</string>
+    <string name="how_to_use">How to use</string>
+    <string name="activate">ACTIVATE</string>
+    <string name="click_the_activate_button">Click the activate button</string>
+    <string name="clap">CLAP</string>
+    <string name="double_clap_to_find_your_phone">Double clap to find your phone</string>
+    <string name="detect">DETECT</string>
+    <string name="app_detect_the_clap_and_start_ringing">App detect the clap and start ringing</string>
+    <string name="permission">PERMISSION</string>
+    <string name="allow_permission_to_access_microphone_audio_files">Allow permission to access microphone. audio files</string>
+    <string name="txt_settings">SETTINGS</string>
+    <string name="before_activating_set_flashlight_adjust_volume">Before activating, set flashlight, adjust volume..</string>
 </resources>
