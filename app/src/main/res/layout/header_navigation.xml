@@ -3,17 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_back_ground"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_top"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="29:10"
+        app:layout_constraintDimensionRatio="290:106"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitXY"
             android:src="@drawable/banner_top" />
 
         <ImageView
@@ -33,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:fontFamily="@font/grand_medium"
+            android:fontFamily="@font/inter_medium"
             android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
@@ -60,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/grand_medium"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/settings"
                 android:textSize="@dimen/_14sdp" />
 
@@ -84,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/inter"
                     android:text="@string/language"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />
@@ -117,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/inter"
                     android:text="@string/rate_us"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />
@@ -150,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/inter"
                     android:text="@string/share"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />
@@ -183,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/inter"
                     android:text="@string/feedback_us"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />
@@ -216,7 +221,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/inter"
                     android:text="@string/privacy"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />

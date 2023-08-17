@@ -106,7 +106,7 @@
                             android:id="@+id/ad_body"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/grand_regular"
+                            android:fontFamily="@font/inter"
                             android:maxLines="2"
                             android:text="@string/text_on_boarding_1"
                             android:textColor="@color/black"
