@@ -129,9 +129,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         tvInactive.visibility = visible
                         llTvInactive.visibility = invisible
                         FeatureClapManager.getInstance(requireContext()).apply {
-                            stopAudio()
+                            stopSound()
                             turnOffVibration()
-                            turnOnFlash(false)
+                            turnOffFlash()
                         }
                         activity?.stopService(Intent(context, VocalService::class.java))
                         Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()

@@ -53,12 +53,12 @@ class VocalService : Service() {
         return super.onStartCommand(intent, flags, startId)
     }
 
-    fun performNotificationAction() {
+    private fun performNotificationAction() {
         val featureClapManager = FeatureClapManager.getInstance(this)
-        featureClapManager.stopAudio()
+        featureClapManager.stopSound()
         featureClapManager.turnOffVibration()
-        featureClapManager.turnOnFlash(false)
-        stopSelf() // Tắt dịch vụ khi thực hiện xong các hành động
+        featureClapManager.turnOffFlash()
+        stopSelf()
     }
 
     private fun startDetection() {
@@ -66,9 +66,9 @@ class VocalService : Service() {
             DetectClapClap(applicationContext, object : IDetect {
                 override fun onDetected() {
                     Log.d("ClapCount", "1")
-                    FeatureClapManager.getInstance(applicationContext).vibrate(30000)
-                    FeatureClapManager.getInstance(applicationContext).turnOnFlash(true)
-                    FeatureClapManager.getInstance(applicationContext).playAudio()
+                    FeatureClapManager.getInstance(applicationContext).turnOnVibration(30000)
+                    FeatureClapManager.getInstance(applicationContext).turnOnFlash(30000)
+                    FeatureClapManager.getInstance(applicationContext).playAudio(30000)
                 }
             }).listen()
             classesApp = ClassesApp(this)
@@ -100,9 +100,9 @@ class VocalService : Service() {
         }
         selectedDetection = 0
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
-        FeatureClapManager.getInstance(this).turnOnFlash(false)
+        FeatureClapManager.getInstance(this).turnOffFlash()
         FeatureClapManager.getInstance(this).turnOffVibration()
-        FeatureClapManager.getInstance(this).stopAudio()
+        FeatureClapManager.getInstance(this).stopSound()
 
     }
 

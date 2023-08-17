@@ -7,14 +7,20 @@ import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.media.MediaPlayer
 import android.os.Build
-import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.appcompat.app.AppCompatActivity
+import com.mtg.tool.findmyphone.utils.MediaPlayerUtil
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
+import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
+import kotlinx.coroutines.delay
 
 class FeatureClapManager(private val context: Context) {
     private var mediaPlayer: MediaPlayer? = null
     private var isVibrating = false
-    fun playAudio() {
+    fun playAudio(duration: Long) {
         if (mediaPlayer == null) mediaPlayer = MediaPlayer()
         try {
             val assetFileDescriptor = context.assets.openFd("cat_meowing.mp3")
@@ -26,50 +32,63 @@ class FeatureClapManager(private val context: Context) {
             mediaPlayer!!.isLooping = true
             mediaPlayer!!.prepare()
             mediaPlayer!!.start()
+
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(duration)
+                stopSound()
+            }
         } catch (_: Exception) {
+            // Handle exception here
         }
     }
-
-    fun stopAudio() {
-        if (mediaPlayer != null) {
+    fun stopSound() {
+        if (mediaPlayer != null && mediaPlayer!!.isPlaying) {
             mediaPlayer!!.stop()
             mediaPlayer!!.release()
             mediaPlayer = null
         }
     }
-
-    fun turnOnFlash(isOn: Boolean) {
+    fun turnOnFlash(duration: Long) {
         val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
         val cameraId: String?
         try {
             cameraId = manager.cameraIdList[0]
-            manager.setTorchMode(cameraId, isOn)
+            manager.setTorchMode(cameraId, true)
+            VibrateFlashThread(context, AppPreferences(context).currentFlash).start()
+            CoroutineScope(Dispatchers.Main).launch {
+                kotlinx.coroutines.delay(duration)
+                manager.setTorchMode(cameraId, false)
+            }
         } catch (e: CameraAccessException) {
             throw RuntimeException(e)
         }
     }
 
-    fun vibrate(duration: Long) {
+    fun turnOffFlash(){
+        val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
+        val cameraId: String?
+        try {
+            cameraId = manager.cameraIdList[0]
+            manager.setTorchMode(cameraId,false)
+        } catch (e:CameraAccessException){
+            throw RuntimeException(e)
+        }
+    }
+
+    fun turnOnVibration(duration: Long) {
         val vibrator = context.getSystemService(VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val vibrationEffect = VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE)
-            vibrator.vibrate(vibrationEffect)
+            VibrateFlashThread(context, AppPreferences(context).currentVibrate).start()
         } else {
             vibrator.vibrate(duration)
         }
     }
 
     fun turnOffVibration() {
+        VibrateFlashThread.stopAll()
         val vibrator = context.getSystemService(VIBRATOR_SERVICE) as Vibrator
         vibrator.cancel()
         isVibrating = false
-    }
-
-    fun handleOff() {
-        if (mediaPlayer != null) {
-            mediaPlayer!!.release()
-        }
-        turnOnFlash(false)
     }
 
     companion object {

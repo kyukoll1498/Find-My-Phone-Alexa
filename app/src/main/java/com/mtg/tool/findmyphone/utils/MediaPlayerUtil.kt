@@ -8,10 +8,10 @@ import android.net.Uri
 import android.os.Handler
 
 object MediaPlayerUtil {
-    private lateinit var mediaPlayer: MediaPlayer
-    private var isPlay = false
-    private var handler = Handler()
-    private var stopRunnable = Runnable { stopAudio() }
+    lateinit var mediaPlayer: MediaPlayer
+    var isPlay = false
+    var handler = Handler()
+    var stopRunnable = Runnable { stopAudio() }
     fun playAudioAssets(context: Context, name: String, duration: Int = 0, callback: () -> Unit) {
         restartAudio()
         setDuration(duration, callback)
