@@ -12,6 +12,7 @@ import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
 import com.mtg.tool.findmyphone.MODE_VIBRATE_HEART
 import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 import com.mtg.tool.findmyphone.MODE_VIBRATE_TICKTOCK
+import java.time.Duration
 
 class VibrateFlashThread :
     Thread {
@@ -20,15 +21,49 @@ class VibrateFlashThread :
     private var duration: Int = 0
     private var delay: Int = 0
 
+    companion object {
+        private lateinit var vibrator: Vibrator
+        private lateinit var manager: CameraManager
+
+        fun stopAll() {
+            stopVibrate()
+            stopFlash()
+        }
+
+        fun stopVibrate() {
+            if (isRunningVibrate) {
+                vibrator.cancel()
+                isRunningVibrate = false
+            }
+
+        }
+
+        fun stopFlash() {
+            if (isRunningFlash) {
+                val cameraId = manager.cameraIdList[0]
+                cameraId?.let { manager.setTorchMode(it, false) }
+                isRunningFlash = false
+            }
+
+        }
+
+        const val VIBRATE_MODE = 124
+        const val FLASH_MODE = 126
+        var isRunningFlash = false
+        var isRunningVibrate = false
+        var durationSum = 6000
+    }
+
     constructor(
         context: Context,
-        modeCode: Int
+        modeCode: Int, durationSum: Int = 6000
     ) {
         this.context = context
+        VibrateFlashThread.durationSum = durationSum
         when (modeCode) {
             MODE_FLASH_DEFAULT -> {
                 this.mode = FLASH_MODE
-                this.duration = 6000
+                this.duration = durationSum
                 this.delay = 0
             }
 
@@ -81,38 +116,7 @@ class VibrateFlashThread :
 
     }
 
-    companion object {
-        private lateinit var vibrator: Vibrator
-        private lateinit var manager: CameraManager
 
-        fun stopAll() {
-            stopVibrate()
-            stopFlash()
-        }
-
-        fun stopVibrate() {
-            if (isRunningVibrate) {
-                vibrator.cancel()
-                isRunningVibrate = false
-            }
-
-        }
-
-        fun stopFlash() {
-            if (isRunningFlash) {
-                val cameraId = manager.cameraIdList[0]
-                cameraId?.let { manager.setTorchMode(it, false) }
-                isRunningFlash = false
-            }
-
-        }
-
-        const val VIBRATE_MODE = 124
-        const val FLASH_MODE = 126
-        var isRunningFlash = false
-        var isRunningVibrate = false
-        var durationSum = 6000
-    }
 
     override fun run() {
         if (mode == FLASH_MODE) {
