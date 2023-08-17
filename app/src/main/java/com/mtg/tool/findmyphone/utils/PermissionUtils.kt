@@ -76,6 +76,9 @@ object PermissionUtils {
     fun goSettingsForMicroPermission(activity: Activity) {
         goSettingsForPermission(activity, REQUEST_MICRO_PERMISSION_CODE)
     }
+    fun goSettingsForReadAudioPermission(activity: Activity) {
+        goSettingsForPermission(activity, REQUEST_READ_AUDIO_PERMISSION_CODE)
+    }
 
     private fun goSettingsForPermission(activity: Activity, requestCode: Int) {
         val intent = Intent(

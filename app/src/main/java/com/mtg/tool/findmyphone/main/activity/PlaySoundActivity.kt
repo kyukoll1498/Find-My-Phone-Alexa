@@ -5,7 +5,6 @@ import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.media.AudioManager
-import android.util.Log
 import android.widget.SeekBar
 import com.bumptech.glide.Glide
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
@@ -16,7 +15,6 @@ import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ActivityPlaySoundBinding
 import com.mtg.tool.findmyphone.receiver.VolumeChangeReceiver
 import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
-import kotlin.math.log
 
 class PlaySoundActivity :
     BaseActivity<ActivityPlaySoundBinding>(ActivityPlaySoundBinding::inflate),
@@ -197,7 +195,6 @@ class PlaySoundActivity :
 
     private fun setSeekbarView() {
         binding.seekBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC))
-
         val volume: Int = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * 70 / 100
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
 

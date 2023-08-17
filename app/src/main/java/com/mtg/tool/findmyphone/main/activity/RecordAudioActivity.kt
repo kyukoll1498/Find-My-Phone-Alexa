@@ -248,6 +248,9 @@ class RecordAudioActivity :
 
     override fun onBackPressed() {
         if (binding.ctSaveRecord.visibility == View.VISIBLE) {
+            pauseAudio()
+            binding.tvPlayerController.text = getString(R.string.play)
+            binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
             CacheUtils.removeLastFileAudio()
             binding.ctRecordController.visibility = View.VISIBLE
             binding.ctSaveRecord.visibility = View.GONE

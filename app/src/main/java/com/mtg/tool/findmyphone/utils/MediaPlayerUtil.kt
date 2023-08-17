@@ -2,7 +2,9 @@ package com.mtg.tool.findmyphone.utils
 
 import android.content.Context
 import android.content.res.AssetFileDescriptor
+import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Handler
 
 object MediaPlayerUtil {
@@ -69,4 +71,15 @@ object MediaPlayerUtil {
         }
 
     }
+
+    fun getDurationFromFile(path: String?): Int {
+        if (path == null) {
+            return 0
+        }
+        val mediaPlayer = MediaPlayer()
+        mediaPlayer.setDataSource(path)
+        return mediaPlayer.duration
+    }
+
+
 }
