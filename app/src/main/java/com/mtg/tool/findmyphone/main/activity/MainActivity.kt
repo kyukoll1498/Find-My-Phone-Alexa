@@ -1,5 +1,6 @@
 package com.mtg.tool.findmyphone.main.activity
 
+import android.app.DownloadManager.ACTION_NOTIFICATION_CLICKED
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -9,6 +10,7 @@ import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
 import com.mtg.tool.findmyphone.databinding.ActivityMainBinding
+import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.main.fragment.AddFragment
 import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 import com.mtg.tool.findmyphone.main.fragment.SettingFragment
@@ -150,14 +152,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         })
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        val viewPagerPosition = intent?.getIntExtra("VIEWPAGER_POSITION", 0)
-        if (viewPagerPosition != null) {
-            changeUITools(binding.viewpagerMain.currentItem, 0)
-            binding.viewpagerMain.setCurrentItem(viewPagerPosition, false)
+        if (intent.action==ACTION_NOTIFICATION_CLICKED){
+            stopService(Intent(this, VocalService::class.java))
+        }else{
+            val viewPagerPosition = intent?.getIntExtra("VIEWPAGER_POSITION", 0)
+            if (viewPagerPosition != null) {
+                changeUITools(binding.viewpagerMain.currentItem, 0)
+                binding.viewpagerMain.setCurrentItem(viewPagerPosition, false)
+            }
+            binding.ivHome.isSelected = viewPagerPosition == 0
         }
-        binding.ivHome.isSelected = viewPagerPosition == 0
-
     }
 }

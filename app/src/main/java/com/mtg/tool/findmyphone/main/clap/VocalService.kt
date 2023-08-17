@@ -1,5 +1,6 @@
 package com.mtg.tool.findmyphone.main.clap
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -34,6 +35,14 @@ class VocalService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+        if (intent.action == "ACTION_NOTIFICATION_CLICKED") {
+            performNotificationAction()
+            // Bạn có thể tắt foreground service tại đây nếu cần
+            stopForeground(true)
+            stopSelf()
+            return START_NOT_STICKY
+        }
+
         startDetection()
         //Cancel Notification
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -44,11 +53,19 @@ class VocalService : Service() {
         return super.onStartCommand(intent, flags, startId)
     }
 
+    fun performNotificationAction() {
+        val featureClapManager = FeatureClapManager.getInstance(this)
+        featureClapManager.stopAudio()
+        featureClapManager.turnOffVibration()
+        featureClapManager.turnOnFlash(false)
+        stopSelf() // Tắt dịch vụ khi thực hiện xong các hành động
+    }
+
     private fun startDetection() {
         try {
             DetectClapClap(applicationContext, object : IDetect {
                 override fun onDetected() {
-                    Log.d("ClapCount","1")
+                    Log.d("ClapCount", "1")
                     FeatureClapManager.getInstance(applicationContext).vibrate(30000)
                     FeatureClapManager.getInstance(applicationContext).turnOnFlash(true)
                     FeatureClapManager.getInstance(applicationContext).playAudio()
@@ -83,20 +100,20 @@ class VocalService : Service() {
         }
         selectedDetection = 0
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
+        FeatureClapManager.getInstance(this).turnOnFlash(false)
+        FeatureClapManager.getInstance(this).turnOffVibration()
+        FeatureClapManager.getInstance(this).stopAudio()
+
     }
 
+    @SuppressLint("LaunchActivityFromNotification")
     private fun buildNotification(): Notification {
         try {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-            val intentClickNotification = Intent(this, MainActivity::class.java)
-            intentClickNotification.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            val pendingClickNo = PendingIntent.getActivity(this, 0, intentClickNotification, PendingIntent.FLAG_IMMUTABLE)
-
-            val intentDisplayHome = Intent(this, MainActivity::class.java)
-            intentDisplayHome.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            intentDisplayHome.putExtra("VIEWPAGER_POSITION", 0)
-            val pendingIntentDisplayHome = PendingIntent.getActivity(this, 0, intentDisplayHome, PendingIntent.FLAG_IMMUTABLE)
+            val intentNotificationAction = Intent(this, MainActivity::class.java)
+            intentNotificationAction.action = "ACTION_NOTIFICATION_CLICKED"
+            val pendingIntentNotificationAction = PendingIntent.getActivity(this, 0, intentNotificationAction, PendingIntent.FLAG_UPDATE_CURRENT)
 
             val contentView = RemoteViews(this.packageName, R.layout.popup_notification)
 
@@ -111,12 +128,13 @@ class VocalService : Service() {
             } else {
                 notificationBuilder = NotificationCompat.Builder(this.applicationContext)
             }
-            contentView.setOnClickPendingIntent(R.id.notification_layout, pendingClickNo)
-            contentView.setOnClickPendingIntent(R.id.notification_layout, pendingIntentDisplayHome)
+
+            contentView.setOnClickPendingIntent(R.id.notification_layout, pendingIntentNotificationAction)
+
             notificationBuilder.setContent(contentView)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_launcher_background))
-                .setContentIntent(pendingClickNo)
+                .setContentIntent(pendingIntentNotificationAction)
                 .setAutoCancel(true)
 
             val notification = notificationBuilder.build()
