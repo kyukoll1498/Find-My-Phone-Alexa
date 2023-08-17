@@ -10,6 +10,6 @@ class HowToUseActivity: BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseBi
     }
 
     override fun addEvent() {
-
+        binding.btnBack.setOnClickListener { onBackPressed() }
     }
 }
