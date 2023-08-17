@@ -3,8 +3,10 @@ package com.mtg.tool.findmyphone.base
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
@@ -19,7 +21,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
-
 
 
 abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
@@ -42,7 +43,10 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
 
     open fun binding() {
         if (isFullScreen)
-            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
         changeStatusBar(ContextCompat.getColor(this, R.color.white))
         setContentView(binding.root)
     }
@@ -50,7 +54,8 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
     override fun onResume() {
         val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
         // Configure the behavior of the hidden system bars.
-        windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        windowInsetsController.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars())
         super.onResume()
     }
@@ -110,6 +115,27 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
             firebaseAnalytics!!.logEvent(value, bundle)
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+        Handler().postDelayed({
+            try {
+                window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }, 600)
+    }
+
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
         }
     }
 
