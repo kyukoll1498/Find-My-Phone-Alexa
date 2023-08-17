@@ -5,14 +5,28 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.view.View
+import android.widget.Toast
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
+import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
+import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND
+import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.REQUEST_FILE_AUDIO_CODE
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
+import com.mtg.tool.findmyphone.REQUEST_READ_AUDIO_PERMISSION_CODE
+import com.mtg.tool.findmyphone.REQUEST_READ_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.model.SoundItem
+import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.ActivityCreateSoundBinding
+import com.mtg.tool.findmyphone.main.dialog.ReadAudioPermissionDialog
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
+import com.mtg.tool.findmyphone.utils.AudioUtil
+import com.mtg.tool.findmyphone.utils.CacheUtils
+import com.mtg.tool.findmyphone.utils.FileUtils
 import com.mtg.tool.findmyphone.utils.PermissionUtils
+import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
 
 class CreateSoundActivity :
     BaseActivity<ActivityCreateSoundBinding>(ActivityCreateSoundBinding::inflate) {
@@ -23,6 +37,7 @@ class CreateSoundActivity :
             finish()
         }
     }
+    private lateinit var currentSoundItem: SoundItem
 
 
     override fun initView() {
@@ -39,6 +54,74 @@ class CreateSoundActivity :
             }
 
         }
+        binding.llImportAudio.setOnClickListener {
+            if (!PermissionUtils.checkReadAudioPermission(this)) {
+                PermissionUtils.requestReadAudioPermission(this)
+            } else {
+                startImportAudio()
+            }
+        }
+        binding.btnSave.setOnClickListener { saveSoundItem() }
+        binding.llAudioController.setOnClickListener {
+            if (binding.tvPlayerController.text == getString(R.string.play)) {
+                startAudio()
+                binding.tvPlayerController.text = getString(R.string.pause)
+                binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
+            } else if (binding.tvPlayerController.text == getString(R.string.pause)) {
+                pauseAudio()
+                binding.tvPlayerController.text = getString(R.string.play)
+                binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+            }
+        }
+    }
+
+    private fun saveSoundItem() {
+        currentSoundItem.name = binding.edtName.text.toString()
+        if (currentSoundItem.name!!.isEmpty()) {
+            Toast.makeText(this, getString(R.string.name_sound_is_empty), Toast.LENGTH_SHORT).show()
+        } else if (AppRepository.checkHasSound(currentSoundItem.name!!)) {
+            Toast.makeText(this, getString(R.string.name_sound_already_exists), Toast.LENGTH_SHORT).show()
+        } else {
+            AppRepository.insertSound(currentSoundItem)
+            var intent = Intent(ACTION_UPDATE_AUDIO_IMPORT)
+            intent.putExtra(KEY_SOUND, currentSoundItem)
+            sendBroadcast(intent)
+            finish()
+        }
+    }
+
+    private fun updateCurrentSound() {
+        currentSoundItem = SoundItem(
+            IMPORT_SOUND_TYPE,
+            "",
+            System.currentTimeMillis(),
+            R.drawable.avatar_audio_default,
+            R.drawable.avatar_audio_default,
+            CacheUtils.getLastFilePathAudio()
+        )
+    }
+
+    private fun startAudio() {
+        MediaPlayerAppUtil.playAudio(this, currentSoundItem) {
+//            onComplete
+            try {
+                binding.tvPlayerController.text = getString(R.string.play)
+                binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
+    }
+
+    private fun pauseAudio() {
+        MediaPlayerAppUtil.stopAudio()
+    }
+
+    private fun startImportAudio() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "audio/*"
+        startActivityForResult(intent, REQUEST_FILE_AUDIO_CODE)
     }
 
     private fun startRecordAudio() {
@@ -58,6 +141,15 @@ class CreateSoundActivity :
                 startRecordAudio()
             }
         }
+
+        if (requestCode == REQUEST_READ_AUDIO_PERMISSION_CODE || requestCode == REQUEST_READ_PERMISSION_CODE) {
+            if (!PermissionUtils.checkReadAudioPermission(this)) {
+                showReadAudioPermissionDialog()
+            } else {
+                startImportAudio()
+            }
+        }
+
     }
 
     private fun showRecordPermissionDialog() {
@@ -77,10 +169,69 @@ class CreateSoundActivity :
                 startRecordAudio()
             }
         }
+
+        if (requestCode == REQUEST_READ_AUDIO_PERMISSION_CODE) {
+            if (!PermissionUtils.checkReadAudioPermission(this)) {
+                showReadAudioPermissionDialog()
+            } else {
+                startImportAudio()
+            }
+        }
+
+        if (requestCode == REQUEST_FILE_AUDIO_CODE) {
+            var uri = data?.data
+            if (uri != null) {
+                var file = FileUtils.saveFileFromUri(uri, CacheUtils.getNewNameFileAudio(this), this)
+                binding.tvPath.text = FileUtils.getFileNameAudioFromUri(uri, this, 12)
+                var duration = file?.let { FileUtils.getDurationFromAudioFile(it.path) }
+                if (duration != null && duration > 15000) {
+                    file?.path?.let { AudioUtil.cutAudio(this, 0, 15, it){} }
+                }
+                updateCurrentSound()
+                gotoSave()
+            }
+
+        }
+    }
+
+    private fun gotoSave() {
+        binding.ctOptions.visibility = View.GONE
+        binding.ctSaveRecord.visibility = View.VISIBLE
+        binding.btnSave.visibility = View.VISIBLE
+    }
+
+
+    private fun showReadAudioPermissionDialog() {
+        ReadAudioPermissionDialog(this) {
+            if (it) {
+                PermissionUtils.goSettingsForReadAudioPermission(this)
+            }
+        }.show()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(finishReceiver)
+    }
+
+    override fun onBackPressed() {
+        if (binding.ctSaveRecord.visibility == View.VISIBLE) {
+            pauseAudio()
+            binding.tvPlayerController.text = getString(R.string.play)
+            binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+            CacheUtils.removeLastFileAudio()
+            binding.ctOptions.visibility = View.VISIBLE
+            binding.ctSaveRecord.visibility = View.GONE
+            binding.btnSave.visibility = View.GONE
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        pauseAudio()
+        binding.tvPlayerController.text = getString(R.string.play)
+        binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
     }
 }

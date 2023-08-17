@@ -68,4 +68,5 @@
     <string name="name_sound_is_empty">Name Sound is Empty</string>
     <string name="create_new">Create new</string>
     <string name="name_sound_already_exists">Name Sound already exists</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Allow <b>Clap To Find Your Phone</b> to access audio files</string>
 </resources>
