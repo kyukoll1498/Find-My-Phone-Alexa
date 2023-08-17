@@ -17,11 +17,14 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.main.activity.MainActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class VocalService : Service() {
     private var classesApp: ClassesApp? = null
-    private var recorderThread: RecorderThread? = null
+    private var recorderCoroutine: RecorderCoroutine? = null
     private var notificationChannel: NotificationChannel? = null
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
@@ -58,12 +61,25 @@ class VocalService : Service() {
         }
     }
 
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        val recorderThread = recorderThread
+//        if (recorderThread != null) {
+//            recorderThread.stopRecording()
+//            this.recorderThread = null
+//        }
+//        selectedDetection = 0
+//        Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
+//    }
+
     override fun onDestroy() {
         super.onDestroy()
-        val recorderThread = recorderThread
+        val recorderThread = recorderCoroutine
         if (recorderThread != null) {
-            recorderThread.stopRecording()
-            this.recorderThread = null
+            CoroutineScope(Dispatchers.IO).launch {
+                recorderThread.stopRecording()
+            }
+            this.recorderCoroutine = null
         }
         selectedDetection = 0
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()

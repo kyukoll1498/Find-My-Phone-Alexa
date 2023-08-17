@@ -3,11 +3,14 @@ package com.mtg.tool.findmyphone.main.clap
 import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioRecord
-import android.media.MediaPlayer
+import kotlinx.coroutines.withContext
 import be.hogent.tarsos.dsp.AudioEvent
 import be.hogent.tarsos.dsp.AudioFormat
 import be.hogent.tarsos.dsp.onsets.OnsetHandler
 import be.hogent.tarsos.dsp.onsets.PercussionOnsetDetector
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @SuppressLint("MissingPermission")
@@ -58,10 +61,27 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
         }
     }
 
+//    fun listen() {
+//        recorder.startRecording()
+//        torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
+//        Thread {
+//            while (mIsRecording) {
+//                val audioEvent = AudioEvent(
+//                    torsosFormat,
+//                    recorder.read(buffer, 0, buffer.size).toLong()
+//                )
+//                audioEvent.setFloatBufferWithByteBuffer(buffer)
+//                mPercussionOnsetDetector.process(audioEvent)
+//            }
+//            recorder.stop()
+//        }.start()
+//    }
+
     fun listen() {
         recorder.startRecording()
-        torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
-        Thread {
+        val torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
+
+        CoroutineScope(Dispatchers.IO).launch {
             while (mIsRecording) {
                 val audioEvent = AudioEvent(
                     torsosFormat,
@@ -70,8 +90,10 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
                 audioEvent.setFloatBufferWithByteBuffer(buffer)
                 mPercussionOnsetDetector.process(audioEvent)
             }
-            recorder.stop()
-        }.start()
+            withContext(Dispatchers.Main) {
+                recorder.stop()
+            }
+        }
     }
 
     companion object {
