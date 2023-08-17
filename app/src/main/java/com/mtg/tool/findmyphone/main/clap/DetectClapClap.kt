@@ -1,21 +1,20 @@
 package com.mtg.tool.findmyphone.main.clap
 
 import android.annotation.SuppressLint
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.media.AudioRecord
-import android.media.MediaPlayer
-import android.os.Vibrator
+import kotlinx.coroutines.withContext
 import be.hogent.tarsos.dsp.AudioEvent
 import be.hogent.tarsos.dsp.AudioFormat
 import be.hogent.tarsos.dsp.onsets.OnsetHandler
 import be.hogent.tarsos.dsp.onsets.PercussionOnsetDetector
-import com.mtg.tool.findmyphone.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class DetectClapClap @SuppressLint("MissingPermission") internal constructor(context: Context, mCallback: IDetect) : OnsetHandler {
-    private var run = false
+
+@SuppressLint("MissingPermission")
+class DetectClapClap internal constructor(context: Context, mCallback: IDetect) : OnsetHandler {
     private val buffer: ByteArray
     private var clap: Int
     private val classesApp: ClassesApp
@@ -26,7 +25,6 @@ class DetectClapClap @SuppressLint("MissingPermission") internal constructor(con
     private var rateSend = false
     private val recorder: AudioRecord
     private var torsosFormat: AudioFormat? = null
-    private var v: Vibrator? = null
     private val callback: IDetect
 
     init {
@@ -55,23 +53,35 @@ class DetectClapClap @SuppressLint("MissingPermission") internal constructor(con
 
     override fun handleOnset(d: Double, d2: Double) {
         clap++
-        val nb_claps = 2
-        if (clap >= nb_claps) {
+        val nbClaps = 2
+        if (clap >= nbClaps) {
             classesApp.save("detectClap", "1")
             mIsRecording = false
             callback.onDetected()
         }
     }
 
-    private fun clearNotification() {
-        val notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.cancel(1234)
-    }
+//    fun listen() {
+//        recorder.startRecording()
+//        torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
+//        Thread {
+//            while (mIsRecording) {
+//                val audioEvent = AudioEvent(
+//                    torsosFormat,
+//                    recorder.read(buffer, 0, buffer.size).toLong()
+//                )
+//                audioEvent.setFloatBufferWithByteBuffer(buffer)
+//                mPercussionOnsetDetector.process(audioEvent)
+//            }
+//            recorder.stop()
+//        }.start()
+//    }
 
     fun listen() {
         recorder.startRecording()
-        torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
-        Thread {
+        val torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
+
+        CoroutineScope(Dispatchers.IO).launch {
             while (mIsRecording) {
                 val audioEvent = AudioEvent(
                     torsosFormat,
@@ -80,85 +90,13 @@ class DetectClapClap @SuppressLint("MissingPermission") internal constructor(con
                 audioEvent.setFloatBufferWithByteBuffer(buffer)
                 mPercussionOnsetDetector.process(audioEvent)
             }
-            recorder.stop()
-        }.start()
-    }
-
-    private fun runVibrate() {
-        val v = mContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        Thread {
-            while (true) {
-                try {
-                    Thread.sleep(1000)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-                try {
-                    v.vibrate(1000)
-                } catch (ignored: Exception) {
-                }
+            withContext(Dispatchers.Main) {
+                recorder.stop()
             }
-        }.start()
+        }
     }
-
-    private fun runVibrate(z: Boolean) {
-        run = z
-        v = mContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        Thread {
-            while (true) {
-                try {
-                    Thread.sleep(1000)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-                try {
-                    v!!.vibrate(1000)
-                } catch (ignored: Exception) {
-                }
-            }
-        }.start()
-    }
-
-    private fun runSong() {
-        mySong = MediaPlayer.create(mContext, R.raw.cat_meowing)
-        mySong!!.setOnCompletionListener { mediaPlayer: MediaPlayer? -> runSong() }
-        mySong!!.start()
-    }
-
-//    private fun turnOnFlash() {
-//        if (!isFlashOn) {
-//            val camera = camera
-//            if (camera != null && params != null) {
-//                isFlashOn = true
-//                try {
-//                    params = camera.parameters
-//                    params.setFlashMode("torch")
-//                    camera.parameters = params
-//                    camera.startPreview()
-//                } catch (ignored: Exception) {
-//                }
-//            }
-//        }
-//    }
-
-//    fun turnOffFlash() {
-//        if (isFlashOn) {
-//            val camera = camera
-//            if (camera != null && params != null) {
-//                isFlashOn = false
-//                try {
-//                    params = camera.parameters
-//                    params.setFlashMode("off")
-//                    camera.parameters = params
-//                    camera.stopPreview()
-//                } catch (ignored: Exception) {
-//                }
-//            }
-//        }
-//    }
 
     companion object {
-        var mySong: MediaPlayer? = null
         var SAMPLE_RATE = 8000
     }
 }

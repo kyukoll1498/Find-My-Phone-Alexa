@@ -9,29 +9,26 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.hardware.camera2.CameraAccessException
-import android.hardware.camera2.CameraManager
-import android.media.MediaPlayer
 import android.os.Build
-import android.os.Handler
 import android.os.IBinder
-import android.os.Looper
-import android.os.Vibrator
 import android.util.Log
 import android.widget.RemoteViews
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.main.activity.MainActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class VocalService : Service() {
     private var classesApp: ClassesApp? = null
-    private var recorderThread: RecorderThread? = null
+    private var recorderCoroutine: RecorderCoroutine? = null
     private var notificationChannel: NotificationChannel? = null
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
+
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
@@ -51,12 +48,10 @@ class VocalService : Service() {
         try {
             DetectClapClap(applicationContext, object : IDetect {
                 override fun onDetected() {
-                    val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
-                    vibrator.vibrate(4000)
-                    turnOnFlash(true)
-                    Handler(Looper.getMainLooper()).postDelayed({ handleOff() }, (1000 * 10).toLong())
-                    playAudioAssets()
-                    Log.e("~~~", "onDetected: ")
+                    Log.d("ClapCount","1")
+                    FeatureClapManager.getInstance(applicationContext).vibrate(30000)
+                    FeatureClapManager.getInstance(applicationContext).turnOnFlash(true)
+                    FeatureClapManager.getInstance(applicationContext).playAudio()
                 }
             }).listen()
             classesApp = ClassesApp(this)
@@ -66,47 +61,25 @@ class VocalService : Service() {
         }
     }
 
-    private var mediaPlayer: MediaPlayer? = null
-    fun handleOff() {
-        if (mediaPlayer != null) {
-            mediaPlayer!!.release()
-        }
-        turnOnFlash(false)
-    }
-
-    fun playAudioAssets() {
-        if (mediaPlayer == null) mediaPlayer = MediaPlayer()
-        try {
-            val assetFileDescriptor = assets.openFd("cat_meowing.mp3")
-            mediaPlayer!!.setDataSource(
-                assetFileDescriptor.fileDescriptor,
-                assetFileDescriptor.startOffset,
-                assetFileDescriptor.length
-            )
-            mediaPlayer!!.isLooping = true
-            mediaPlayer!!.prepare()
-            mediaPlayer!!.start()
-        } catch (_: Exception) {
-        }
-    }
-
-    private fun turnOnFlash(isOn: Boolean) {
-        val manager = this.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
-        val cameraId: String?
-        try {
-            cameraId = manager.cameraIdList[0]
-            manager.setTorchMode(cameraId, isOn)
-        } catch (e: CameraAccessException) {
-            throw RuntimeException(e)
-        }
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        val recorderThread = recorderThread
+//        if (recorderThread != null) {
+//            recorderThread.stopRecording()
+//            this.recorderThread = null
+//        }
+//        selectedDetection = 0
+//        Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
+//    }
 
     override fun onDestroy() {
         super.onDestroy()
-        val recorderThread = recorderThread
+        val recorderThread = recorderCoroutine
         if (recorderThread != null) {
-            recorderThread.stopRecording()
-            this.recorderThread = null
+            CoroutineScope(Dispatchers.IO).launch {
+                recorderThread.stopRecording()
+            }
+            this.recorderCoroutine = null
         }
         selectedDetection = 0
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
@@ -167,9 +140,6 @@ class VocalService : Service() {
     }
 
     companion object {
-        const val DETECT_NONE = 0
-        const val DETECT_WHISTLE = 1
-        private const val NOTIFICATION_Id = 1
         var selectedDetection = 0
     }
 }
