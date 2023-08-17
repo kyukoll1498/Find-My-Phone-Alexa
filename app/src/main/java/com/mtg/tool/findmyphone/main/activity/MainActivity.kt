@@ -47,6 +47,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             binding.drawerLayout.openDrawer(GravityCompat.START)
             EventLogger.getInstance()?.logEvent("click_main_setting")
         }
+        binding.btnHowToUse.setOnClickListener {
+            startActivity(Intent(this, HowToUseActivity::class.java))
+        }
 
     }
 
@@ -124,7 +127,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private fun hideRate() {
-        binding.btnRate.hide()
         binding.navContent.btnRateNavigation.hide()
     }
 
