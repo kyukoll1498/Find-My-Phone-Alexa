@@ -34,7 +34,7 @@
             android:fontFamily="@font/inter_semibold"
             android:singleLine="true"
             android:text="@string/create_sound"
-            android:textColor="@color/color_274577"
+            android:textColor="@color/color_404040"
             android:textSize="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
