@@ -66,9 +66,9 @@ class VocalService : Service() {
             DetectClapClap(applicationContext, object : IDetect {
                 override fun onDetected() {
                     Log.d("ClapCount", "1")
-                    FeatureClapManager.getInstance(applicationContext).turnOnVibration(30000)
-                    FeatureClapManager.getInstance(applicationContext).turnOnFlash(30000)
-                    FeatureClapManager.getInstance(applicationContext).playAudio(30000)
+                    FeatureClapManager.getInstance(applicationContext).vibrationSaveGson()
+                    FeatureClapManager.getInstance(applicationContext).flashSaveGson()
+                    FeatureClapManager.getInstance(applicationContext).playSoundSaveGson()
                 }
             }).listen()
             classesApp = ClassesApp(this)

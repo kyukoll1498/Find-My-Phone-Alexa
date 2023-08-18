@@ -6,6 +6,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.media.AudioManager
 import android.widget.SeekBar
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
 import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
@@ -14,6 +15,7 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ActivityPlaySoundBinding
 import com.mtg.tool.findmyphone.receiver.VolumeChangeReceiver
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
 
 class PlaySoundActivity :
@@ -23,6 +25,7 @@ class PlaySoundActivity :
     private var currentDuration = 15
     private var max = 100
     private var volume = 70
+    private var appPreferences = AppPreferences.instance
 
     private lateinit var receiver: VolumeChangeReceiver
     private lateinit var audioManager: AudioManager
@@ -36,13 +39,10 @@ class PlaySoundActivity :
         setSeekbarView()
         setDetailCommandView()
     }
+
     private fun setDetailCommandView() {
         val soundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as? SoundItem
-
-        if (soundItem != null) {
-            binding.tvAppName.text = soundItem.name
-        }
-
+        binding.tvAppName.text = soundItem?.name
     }
 
     private fun setUpWithFileSound() {
@@ -103,11 +103,23 @@ class PlaySoundActivity :
                 binding.seekBar.setProgress(volume)
             }
         }
+        binding.tvApply.setOnClickListener {
+            saveSoundAndDuration()
+            Toast.makeText(this, "Save successfully!", Toast.LENGTH_SHORT).show()
+
+        }
         binding.btnBack.setOnClickListener { finish() }
     }
 
+    private fun saveSoundAndDuration() {
+        appPreferences.currentDuration = currentDuration * 1000
+        appPreferences.currentSound = currentSoundItem
+        appPreferences.currentVolume = volume
+        finish()
+    }
+
     private fun updateVolume(newVolume: Int) {
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, newVolume, 0);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, newVolume, 0)
         volume = newVolume
     }
 

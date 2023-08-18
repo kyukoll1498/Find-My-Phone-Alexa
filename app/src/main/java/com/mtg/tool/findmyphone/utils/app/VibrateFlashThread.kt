@@ -51,12 +51,12 @@ class VibrateFlashThread :
         const val FLASH_MODE = 126
         var isRunningFlash = false
         var isRunningVibrate = false
-        var durationSum = 6000
+        var durationSum = 3000
     }
 
     constructor(
         context: Context,
-        modeCode: Int, durationSum: Int = 6000
+        modeCode: Int, durationSum: Int = 3000
     ) {
         this.context = context
         VibrateFlashThread.durationSum = durationSum
@@ -81,7 +81,7 @@ class VibrateFlashThread :
 
             MODE_VIBRATE_DEFAULT -> {
                 this.mode = VIBRATE_MODE
-                this.duration = 6000
+                this.duration = 3000
                 this.delay = 0
             }
 

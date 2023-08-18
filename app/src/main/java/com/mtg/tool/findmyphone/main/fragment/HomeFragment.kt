@@ -14,21 +14,26 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startForegroundService
+import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
+import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
 import com.mtg.tool.findmyphone.main.clap.ClassesApp
 import com.mtg.tool.findmyphone.main.clap.FeatureClapManager
 import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.utils.PermissionUtils
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
 
 
 @Suppress("DEPRECATION")
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private var classesApp: ClassesApp? = null
+    private lateinit var currentSoundItem: SoundItem
     private var intOnTick = 0
     private var mPermCAm: Boolean? = null
     private var isCircleActiveVisible = false
@@ -40,8 +45,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         classesApp!!.save("detectClap", "1")
         context?.stopService(Intent(activity, VocalService::class.java))
         activity?.window?.addFlags(128)
-
         settingSound()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setUpWidthData()
+    }
+
+    private fun setUpWidthData() {
+        currentSoundItem = AppPreferences.instance.currentSound
+        currentSoundItem.let {
+            Glide.with(this).load(it.avatar).into(binding.ivAvatar)
+        }
     }
 
     override fun addEvent() {

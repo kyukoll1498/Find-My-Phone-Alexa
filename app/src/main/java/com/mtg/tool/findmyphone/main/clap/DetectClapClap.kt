@@ -56,7 +56,7 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
         val nbClaps = 2
         if (clap >= nbClaps) {
             classesApp.save("detectClap", "1")
-            mIsRecording = false
+//            mIsRecording = false
             callback.onDetected()
         }
     }

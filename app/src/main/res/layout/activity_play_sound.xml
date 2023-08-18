@@ -235,6 +235,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/tv_apply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_radius_8"

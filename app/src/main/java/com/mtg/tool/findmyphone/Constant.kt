@@ -54,3 +54,8 @@ const val REQUEST_FILE_AUDIO_CODE = 4328
 
 //sound apply
 const val KEY_SOUND_APPLY = "KEY_SOUND_APPLY_JDK"
+
+
+//key appPreferences
+const val KEY_CURRENT_DURATION = "KEY_CURRENT_DURATION_JDK"
+const val KEY_CURRENT_VOLUME = "KEY_CURRENT_VOLUME_JDK"
