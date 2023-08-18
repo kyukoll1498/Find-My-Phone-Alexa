@@ -51,3 +51,6 @@ const val ACTION_FINISH_CREATE_SOUND_SCREEN = "ACTION_FINISH_CREATE_SOUND_SCREEN
 
 //request intent data
 const val REQUEST_FILE_AUDIO_CODE = 4328
+
+//sound apply
+const val KEY_SOUND_APPLY = "KEY_SOUND_APPLY_JDK"

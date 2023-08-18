@@ -3,6 +3,8 @@ package com.mtg.tool.findmyphone.utils.app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 open class BasePreferences
 @SuppressLint("CommitPrefEdits")
@@ -126,6 +128,25 @@ constructor(context: Context, shareName: String) {
     /**
      * Object Type
      */
+
+    inline fun <reified T : Any> putObject(key: String, ob: T): BasePreferences {
+        try {
+            val json: String = Gson().toJson(ob)
+            prefsEditor?.run {
+                putString(key, json)
+                commit()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return this
+    }
+
+    inline fun <reified T : Any> getObject(key: String): T {
+        val string = getString(key)
+        val type = object : TypeToken<T>() {}.type
+        return Gson().fromJson(string, type)
+    }
 
     /**
      * Remove a SharedPreference

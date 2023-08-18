@@ -1,15 +1,18 @@
 package com.mtg.tool.findmyphone.utils.app
 
 import android.content.Context
+import com.google.gson.Gson
 import com.mtg.tool.findmyphone.KEY_HAS_FLASH
 import com.mtg.tool.findmyphone.KEY_HAS_SOUND
 import com.mtg.tool.findmyphone.KEY_HAS_VIBRATE
+import com.mtg.tool.findmyphone.KEY_SOUND_APPLY
 import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
 import com.mtg.tool.findmyphone.MODE_FLASH_DISCO
 import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
 import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
+import com.mtg.tool.findmyphone.data.model.SoundItem
 
-class AppPreferences (val context: Context) :
+class AppPreferences (val context: Context, val mGson: Gson = Gson()) :
     BasePreferences(context, context.packageName){
     init {
         instance = this
@@ -59,5 +62,12 @@ class AppPreferences (val context: Context) :
             putBoolean(KEY_HAS_VIBRATE, value)
         }
 
-
+    inline var currentSound: SoundItem
+        get() {
+            val currentSound = getString(KEY_SOUND_APPLY)
+            return mGson.fromJson(currentSound, SoundItem::class.java)
+        }
+        set(value) {
+            putString(KEY_SOUND_APPLY, mGson.toJson(value))
+        }
 }
