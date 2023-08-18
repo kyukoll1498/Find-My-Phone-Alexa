@@ -68,7 +68,7 @@ class AppPreferences (val context: Context, val mGson: Gson = Gson()) :
     inline var currentSound: SoundItem
         get() {
             var currentSound = getString(KEY_SOUND_APPLY)
-            if (currentSound == null) {
+            if (currentSound == "") {
                 currentSound = mGson.toJson(AppRepository.getAllSound(context)[0])
             }
             return mGson.fromJson(currentSound, SoundItem::class.java)
