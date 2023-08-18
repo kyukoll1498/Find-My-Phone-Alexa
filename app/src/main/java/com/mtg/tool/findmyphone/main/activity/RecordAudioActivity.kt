@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
+import com.common.control.manager.AdmobManager
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
+import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.R
@@ -35,7 +37,12 @@ class RecordAudioActivity :
     private var currentTime = 0
     private var timer: CountDownTimer? = null
     override fun initView() {
-
+        AdmobManager.getInstance().loadNative(
+            this,
+            BuildConfig.native_language,
+            binding.frAd,
+            R.layout.custom_native_ads
+        )
     }
 
     override fun addEvent() {
