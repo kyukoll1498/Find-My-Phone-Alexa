@@ -1,11 +1,11 @@
 package com.mtg.tool.findmyphone.main.activity
 
-import android.app.DownloadManager.ACTION_NOTIFICATION_CLICKED
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
@@ -27,6 +27,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         setupViewpager()
         setupDrawerNavigation()
     }
+
+    private var homeFragment = HomeFragment()
 
     private fun setUpRate() {
         if (SharedPrefs.isRated(this)) {
@@ -60,6 +62,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
 
     }
+
 
     private fun changeUITools(currentItem: Int, nextItem: Int) {
         if (currentItem != nextItem) {
@@ -141,7 +144,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     private fun setupViewpager() {
         binding.viewpagerMain.apply {
             adapter = ViewPagerAddFragmentsAdapter(supportFragmentManager, lifecycle).apply {
-                addFrag(HomeFragment())
+                addFrag(homeFragment)
                 addFrag(SoundFragment())
                 addFrag(AddFragment())
                 addFrag(SettingFragment())
@@ -164,9 +167,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        if (intent.action==ACTION_NOTIFICATION_CLICKED){
+        if (intent.action == ACTION_NOTIFICATION_CLICKED_SERVICE) {
             stopService(Intent(this, VocalService::class.java))
-        }else{
+            try {
+                homeFragment.turnOffDetective()
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        } else {
             val viewPagerPosition = intent?.getIntExtra("VIEWPAGER_POSITION", 0)
             if (viewPagerPosition != null) {
                 changeUITools(binding.viewpagerMain.currentItem, 0)

@@ -90,12 +90,10 @@ class PlaySoundActivity :
         })
 
         binding.btnVolumeDown.setOnClickListener {
-            binding.seekBar.invalidate()
-            binding.seekBar.requestLayout()
-//            if (volume != 0) {
-//                updateVolume(--volume)
-//                binding.seekBar.setProgress(volume)
-//            }
+            if (volume != 0) {
+                updateVolume(--volume)
+                binding.seekBar.setProgress(volume)
+            }
         }
         binding.btnVolumeUp.setOnClickListener {
             if (volume != max) {

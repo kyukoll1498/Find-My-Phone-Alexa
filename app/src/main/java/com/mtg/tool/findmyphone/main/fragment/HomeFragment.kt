@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.BuildConfig
-import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.data.model.SoundItem
@@ -138,22 +137,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
                     }
                 } else {
-                    binding.apply {
-                        ivCircleActive.visibility = invisible
-                        txtInactive.visibility = visible
-                        txtActive.visibility = invisible
-                        tvInactive.visibility = visible
-                        llTvInactive.visibility = invisible
-                        FeatureClapManager.getInstance(requireContext()).apply {
-                            stopSound()
-                            turnOffVibration()
-                            turnOffFlash()
-                        }
-                        activity?.stopService(Intent(context, VocalService::class.java))
-                        Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
-                    }
+                    turnOffDetective()
+
                 }
             }
+        }
+    }
+
+    open fun turnOffDetective() {
+        val visible = View.VISIBLE
+        val invisible = View.INVISIBLE
+        binding.apply {
+            ivCircleActive.visibility = invisible
+            txtInactive.visibility = visible
+            txtActive.visibility = invisible
+            tvInactive.visibility = visible
+            llTvInactive.visibility = invisible
+            FeatureClapManager.getInstance(requireContext()).apply {
+                stopSound()
+                turnOffVibration()
+                turnOffFlash()
+            }
+            activity?.stopService(Intent(context, VocalService::class.java))
+            Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
         }
     }
 }

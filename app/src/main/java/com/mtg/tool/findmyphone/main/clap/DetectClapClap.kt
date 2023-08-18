@@ -56,26 +56,15 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
         val nbClaps = 2
         if (clap >= nbClaps) {
             classesApp.save("detectClap", "1")
-//            mIsRecording = false
+            mIsRecording = false
             callback.onDetected()
         }
     }
 
-//    fun listen() {
-//        recorder.startRecording()
-//        torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
-//        Thread {
-//            while (mIsRecording) {
-//                val audioEvent = AudioEvent(
-//                    torsosFormat,
-//                    recorder.read(buffer, 0, buffer.size).toLong()
-//                )
-//                audioEvent.setFloatBufferWithByteBuffer(buffer)
-//                mPercussionOnsetDetector.process(audioEvent)
-//            }
-//            recorder.stop()
-//        }.start()
-//    }
+    open fun continueRecord() {
+        mIsRecording = true
+        listen()
+    }
 
     fun listen() {
         recorder.startRecording()

@@ -81,7 +81,7 @@ class VibrateFlashThread :
 
             MODE_VIBRATE_DEFAULT -> {
                 this.mode = VIBRATE_MODE
-                this.duration = 3000
+                this.duration = durationSum
                 this.delay = 0
             }
 
