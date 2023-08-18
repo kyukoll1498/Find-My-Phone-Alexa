@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
+import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityMainBinding
 import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.main.fragment.AddFragment
@@ -22,8 +23,15 @@ import com.mtg.tool.findmyphone.utils.hide
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun initView() {
+        setUpRate()
         setupViewpager()
         setupDrawerNavigation()
+    }
+
+    private fun setUpRate() {
+        if (SharedPrefs.isRated(this)) {
+            hideRate()
+        }
     }
 
     override fun addEvent() {
@@ -165,6 +173,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 binding.viewpagerMain.setCurrentItem(viewPagerPosition, false)
             }
             binding.ivHome.isSelected = viewPagerPosition == 0
+        }
+    }
+
+    override fun onBackPressed() {
+        if (!SharedPrefs.isRated(this)) {
+            ActionUtils.showRateDialog(this, true, callback = {
+                if (it) {
+                    hideRate()
+                }
+            })
+        } else {
+            super.onBackPressed()
         }
     }
 }
