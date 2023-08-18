@@ -78,7 +78,9 @@ object ActionUtils {
             }
 
             override fun starRate(v: Float) {
-
+                if (isFinish) {
+                    context.finishAffinity()
+                }
             }
 
             override fun onDismiss() {
