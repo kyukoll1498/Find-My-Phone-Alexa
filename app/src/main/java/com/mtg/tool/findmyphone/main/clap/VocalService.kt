@@ -102,7 +102,7 @@ class VocalService : Service() {
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
         FeatureClapManager.getInstance(this).turnOffFlash()
         FeatureClapManager.getInstance(this).turnOffVibration()
-        FeatureClapManager.getInstance(this).stopSound()
+        FeatureClapManager.getInstance(this). stopSound()
 
     }
 

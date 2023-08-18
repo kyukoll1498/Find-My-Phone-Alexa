@@ -34,6 +34,15 @@ class PlaySoundActivity :
         currentSoundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as SoundItem
         setUpWithFileSound()
         setSeekbarView()
+        setDetailCommandView()
+    }
+    private fun setDetailCommandView() {
+        val soundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as? SoundItem
+
+        if (soundItem != null) {
+            binding.tvAppName.text = soundItem.name
+        }
+
     }
 
     private fun setUpWithFileSound() {

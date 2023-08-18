@@ -54,9 +54,8 @@ class FeatureClapManager(private val context: Context) {
         try {
             cameraId = manager.cameraIdList[0]
             manager.setTorchMode(cameraId, true)
-            VibrateFlashThread(context, AppPreferences(context).currentFlash).start()
+            VibrateFlashThread(context, AppPreferences(context).currentFlash,  duration.toInt() ).start()
             CoroutineScope(Dispatchers.Main).launch {
-                kotlinx.coroutines.delay(duration)
                 manager.setTorchMode(cameraId, false)
             }
         } catch (e: CameraAccessException) {
@@ -76,11 +75,18 @@ class FeatureClapManager(private val context: Context) {
     }
 
     fun turnOnVibration(duration: Long) {
-        val vibrator = context.getSystemService(VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            VibrateFlashThread(context, AppPreferences(context).currentVibrate).start()
-        } else {
-            vibrator.vibrate(duration)
+            val vibrateMode = AppPreferences(context).currentVibrate
+            val coroutineScope = CoroutineScope(Dispatchers.Default)
+            coroutineScope.launch {
+                try {
+                    val vibrateFlashThread = VibrateFlashThread(context, vibrateMode, duration.toInt())
+                    vibrateFlashThread.start()
+                } catch (e: Exception) {
+                    // Xử lý ngoại lệ ở đây nếu cần
+                    e.printStackTrace()
+                }
+            }
         }
     }
 

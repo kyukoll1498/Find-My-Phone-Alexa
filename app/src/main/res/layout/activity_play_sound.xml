@@ -49,7 +49,7 @@
         android:id="@+id/iv_sound_avatar"
         android:layout_width="@dimen/_144sdp"
         android:layout_height="@dimen/_144sdp"
-        android:src="@drawable/avatar_sound_1"
+        android:src="@drawable/avatar_cat_meowing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_top" />

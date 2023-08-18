@@ -10,7 +10,7 @@
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/image_sound_1"
+        android:src="@drawable/image_cat_meowing"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent" />
 
