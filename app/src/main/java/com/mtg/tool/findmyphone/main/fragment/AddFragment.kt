@@ -23,22 +23,24 @@ import com.mtg.tool.findmyphone.main.adapter.SoundAdapter
 
 class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate) {
     private var soundList = mutableListOf<SoundItem>()
-    private lateinit var soundAdapter: SoundAdapter
+    private var soundAdapter: SoundAdapter? = null
 
     private val soundReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @SuppressLint("NotifyDataSetChanged")
         override fun onReceive(context: Context, intent: Intent) {
             val data = intent.getSerializableExtra(KEY_SOUND)
             if (data == null) {
-                soundAdapter.notifyDataSetChanged()
+                if (soundList.size == 1) {
+                    soundList.removeAt(0)
+                    binding.ctEmpty.visibility = View.VISIBLE
+                    binding.rcvSoundImport.visibility = View.GONE
+                }
+                soundAdapter?.notifyDataSetChanged()
             } else {
-                val soundItem = data as SoundItem
-                if (soundList.isEmpty()) {
-                    soundList.add(soundItem)
+                if (soundList.size == 1) {
                     initContent()
                 } else {
-                    soundList.add(soundItem)
-                    soundAdapter.notifyDataSetChanged()
+                    soundAdapter?.notifyDataSetChanged()
                 }
             }
 
@@ -56,7 +58,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
 
     private fun loadSoundList() {
         Thread {
-            soundList.addAll(AppRepository.getAllSoundImport())
+            soundList = AppRepository.getAllSoundImport()
             activity?.runOnUiThread {
                 initContent()
             }
@@ -77,7 +79,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                 )
             )
             soundAdapter = SoundAdapter(soundList, context)
-            soundAdapter.mCallback = OnActionCallback { key, data ->
+            soundAdapter?.mCallback = OnActionCallback { key, data ->
                 if (key.equals(KEY_SOUND)) {
                     var soundItem = data[0] as SoundItem
                     if (soundItem.type == CREATE_SOUND_TYPE) {

@@ -19,6 +19,7 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.ActivityPlaySoundBinding
+import com.mtg.tool.findmyphone.main.dialog.DeleteDialog
 import com.mtg.tool.findmyphone.main.dialog.RenameDialog
 import com.mtg.tool.findmyphone.receiver.VolumeChangeReceiver
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
@@ -129,6 +130,16 @@ class PlaySoundActivity :
                         currentSoundItem.soundPath?.let { it1 -> AppRepository.updateName(it1, name) }
                         sendBroadcast(Intent(ACTION_UPDATE_AUDIO_IMPORT))
                     }
+                }
+            }.show()
+        }
+
+        binding.ivDelete.setOnClickListener {
+            DeleteDialog(this@PlaySoundActivity, binding.tvName.text.toString()){
+                if (it) {
+                    currentSoundItem.soundPath?.let { it1 -> AppRepository.deleteSound(it1) }
+                    sendBroadcast(Intent(ACTION_UPDATE_AUDIO_IMPORT))
+                    finish()
                 }
             }.show()
         }

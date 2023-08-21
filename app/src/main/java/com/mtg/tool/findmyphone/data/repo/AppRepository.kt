@@ -122,4 +122,9 @@ object AppRepository {
         soundItem?.name = newName
         RoomDatabase.getDatabase()?.soundDao()?.updateName(path, newName)
     }
+    fun deleteSound(path: String) {
+        val soundItem = listAllSoundImport.find { soundItem -> soundItem.soundPath == path }
+        listAllSoundImport.remove(soundItem)
+        RoomDatabase.getDatabase()?.soundDao()?.delete(path)
+    }
 }
