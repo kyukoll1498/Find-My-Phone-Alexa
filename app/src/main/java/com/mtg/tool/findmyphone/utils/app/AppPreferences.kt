@@ -3,20 +3,19 @@ package com.mtg.tool.findmyphone.utils.app
 import android.content.Context
 import com.google.gson.Gson
 import com.mtg.tool.findmyphone.KEY_CURRENT_DURATION
+import com.mtg.tool.findmyphone.KEY_CURRENT_LANGUAGE
 import com.mtg.tool.findmyphone.KEY_CURRENT_VOLUME
 import com.mtg.tool.findmyphone.KEY_HAS_FLASH
 import com.mtg.tool.findmyphone.KEY_HAS_SOUND
 import com.mtg.tool.findmyphone.KEY_HAS_VIBRATE
 import com.mtg.tool.findmyphone.KEY_SOUND_APPLY
 import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
-import com.mtg.tool.findmyphone.MODE_FLASH_DISCO
 import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
-import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 
-class AppPreferences (val context: Context, val mGson: Gson = Gson()) :
-    BasePreferences(context, context.packageName){
+class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
+    BasePreferences(context, context.packageName) {
     init {
         instance = this
     }
@@ -89,5 +88,12 @@ class AppPreferences (val context: Context, val mGson: Gson = Gson()) :
         }
         set(value) {
             putInt(KEY_CURRENT_VOLUME, value)
+        }
+    inline var currentLanguage: String
+        get() {
+            return getString(KEY_CURRENT_LANGUAGE, "en")
+        }
+        set(value) {
+            putString(KEY_CURRENT_LANGUAGE, value)
         }
 }

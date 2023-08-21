@@ -121,8 +121,11 @@ constructor(context: Context, shareName: String) {
     }
 
     @JvmOverloads
-    fun getString(key: String, defaultValue: String = ""): String? {
-        return appSharedPrefs?.getString(key, defaultValue)
+    fun getString(key: String, defaultValue: String = ""): String {
+        if (appSharedPrefs != null) {
+            return appSharedPrefs!!.getString(key, defaultValue).toString()
+        }
+        return defaultValue
     }
 
     /**
