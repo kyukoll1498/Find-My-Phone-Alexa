@@ -11,15 +11,20 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
+import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.main.activity.MainActivity
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
+import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
@@ -29,6 +34,9 @@ class VocalService : Service() {
     private var notificationChannel: NotificationChannel? = null
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
+
+    private lateinit var detectClapClap:DetectClapClap
+
 
     override fun onBind(intent: Intent): IBinder? {
         return null
@@ -63,19 +71,24 @@ class VocalService : Service() {
 
     private fun startDetection() {
         try {
-            DetectClapClap(applicationContext, object : IDetect {
+            detectClapClap = DetectClapClap(applicationContext, object : IDetect {
                 override fun onDetected() {
                     Log.d("ClapCount", "1")
                     FeatureClapManager.getInstance(applicationContext).vibrationSaveGson()
                     FeatureClapManager.getInstance(applicationContext).flashSaveGson()
                     FeatureClapManager.getInstance(applicationContext).playSoundSaveGson()
+                    FeatureClapManager.getInstance(applicationContext).setCallback{restartDetection()}
                 }
-            }).listen()
+            })
+            detectClapClap.listen()
             classesApp = ClassesApp(this)
             classesApp!!.save("detectClap", "0")
         } catch (unused: Exception) {
             Toast.makeText(this, "Recorder not supported by this device", Toast.LENGTH_LONG).show()
         }
+    }
+    private fun restartDetection() {
+        detectClapClap.continueRecord()
     }
 
 //    override fun onDestroy() {
@@ -91,6 +104,7 @@ class VocalService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+
         val recorderThread = recorderCoroutine
         if (recorderThread != null) {
             CoroutineScope(Dispatchers.IO).launch {
@@ -112,8 +126,8 @@ class VocalService : Service() {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             val intentNotificationAction = Intent(this, MainActivity::class.java)
-            intentNotificationAction.action = "ACTION_NOTIFICATION_CLICKED"
-            val pendingIntentNotificationAction = PendingIntent.getActivity(this, 0, intentNotificationAction, PendingIntent.FLAG_UPDATE_CURRENT)
+            intentNotificationAction.action = ACTION_NOTIFICATION_CLICKED_SERVICE
+            val pendingIntentNotificationAction = PendingIntent.getActivity(this, 0, intentNotificationAction, PendingIntent.FLAG_IMMUTABLE)
 
             val contentView = RemoteViews(this.packageName, R.layout.popup_notification)
 
