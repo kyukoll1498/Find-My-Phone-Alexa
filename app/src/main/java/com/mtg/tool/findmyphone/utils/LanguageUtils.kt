@@ -10,32 +10,63 @@ object LanguageUtils {
     val listCountry: List<ItemLanguage>
         get() {
             val mList: MutableList<ItemLanguage> = ArrayList()
-            mList.add(ItemLanguage(R.drawable.flag_zh, "Chinese", R.drawable.ic_disable, "zh"))
-            mList.add(ItemLanguage(R.drawable.flag_en, "English (UK)", R.drawable.ic_disable, "en"))
-            mList.add(ItemLanguage(R.drawable.flag_us, "English (US)", R.drawable.ic_disable, "en"))
-//            mList.add(ItemLanguage(R.drawable.flag_ar, "Arabic", R.drawable.ic_disable, "ar"))
-            mList.add(ItemLanguage(R.drawable.flag_canada, "French (Canada)", R.drawable.ic_disable, "fr"))
-            mList.add(ItemLanguage(R.drawable.flag_fr, "French (France)", R.drawable.ic_disable, "fr"))
-            mList.add(ItemLanguage(R.drawable.flag_de, "German", R.drawable.ic_disable, "de"))
-            mList.add(ItemLanguage(R.drawable.flag_ja, "Japanese", R.drawable.ic_disable, "ja"))
-            mList.add(ItemLanguage(R.drawable.flag_pt, "Portugal", R.drawable.ic_disable, "pt"))
-            mList.add(ItemLanguage(R.drawable.flag_brazil, "Portugal (Brazil)", R.drawable.ic_disable, "pt"))
-            mList.add(ItemLanguage(R.drawable.flag_spanish_normal, "Spanish (Spain)", R.drawable.ic_disable, "es"))
-            mList.add(ItemLanguage(R.drawable.flag_es, "Spanish (Latinh)", R.drawable.ic_disable, "es"))
-            mList.add(ItemLanguage(R.drawable.flag_vi, "Vietnamese", R.drawable.ic_disable, "vi"))
+            mList.add(ItemLanguage(R.drawable.flag_en, "English", R.drawable.ic_disable, "en"))
+            mList.add(ItemLanguage(R.drawable.flag_ar, "Arabic", R.drawable.ic_disable, "ar"))
             mList.add(ItemLanguage(R.drawable.flag_bg, "Bulgarian", R.drawable.ic_disable, "bg"))
+            mList.add(
+                ItemLanguage(
+                    R.drawable.flag_zh,
+                    "Chinese (Simplified)",
+                    R.drawable.ic_disable,
+                    "zh"
+                )
+            )
+            mList.add(
+                ItemLanguage(
+                    R.drawable.flag_zh,
+                    "Chinese (Traditional)",
+                    R.drawable.ic_disable,
+                    "zh"
+                )
+            )
             mList.add(ItemLanguage(R.drawable.flag_cs, "Czech", R.drawable.ic_disable, "cs"))
+            mList.add(ItemLanguage(R.drawable.flag_pl, "Polish", R.drawable.ic_disable, "pl"))
+            mList.add(ItemLanguage(R.drawable.flag_nl, "Dutch", R.drawable.ic_disable, "ru"))
+            mList.add(
+                ItemLanguage(
+                    R.drawable.flag_fr,
+                    "French (France)",
+                    R.drawable.ic_disable,
+                    "fr"
+                )
+            )
+            mList.add(ItemLanguage(R.drawable.flag_de, "German", R.drawable.ic_disable, "de"))
             mList.add(ItemLanguage(R.drawable.flag_el, "Greek", R.drawable.ic_disable, "el"))
             mList.add(ItemLanguage(R.drawable.flag_hi, "Hindi", R.drawable.ic_disable, "hi"))
-            mList.add(ItemLanguage(R.drawable.flag_in, "Indonesian", R.drawable.ic_disable, "in"))
             mList.add(ItemLanguage(R.drawable.flag_it, "Italian", R.drawable.ic_disable, "it"))
+            mList.add(ItemLanguage(R.drawable.flag_in, "Indonesian", R.drawable.ic_disable, "in"))
             mList.add(ItemLanguage(R.drawable.flag_ko, "Korean", R.drawable.ic_disable, "ko"))
-            mList.add(ItemLanguage(R.drawable.flag_nl, "Dutch", R.drawable.ic_disable, "nl"))
-            mList.add(ItemLanguage(R.drawable.flag_pl, "Polish", R.drawable.ic_disable, "pl"))
             mList.add(ItemLanguage(R.drawable.flag_ru, "Russian", R.drawable.ic_disable, "ru"))
             mList.add(ItemLanguage(R.drawable.flag_ro, "Romanian", R.drawable.ic_disable, "ro"))
             mList.add(ItemLanguage(R.drawable.flag_sv, "Swedish", R.drawable.ic_disable, "sv"))
+            mList.add(
+                ItemLanguage(
+                    R.drawable.flag_es,
+                    "Spanish (Spain)",
+                    R.drawable.ic_disable,
+                    "es"
+                )
+            )
             mList.add(ItemLanguage(R.drawable.flag_th, "Thai", R.drawable.ic_disable, "th"))
+            mList.add(
+                ItemLanguage(
+                    R.drawable.flag_pt,
+                    "Portuguese (Portugal)",
+                    R.drawable.ic_disable,
+                    "pt"
+                )
+            )
+            mList.add(ItemLanguage(R.drawable.flag_vi, "Vietnamese", R.drawable.ic_disable, "vi"))
 
             return mList
         }

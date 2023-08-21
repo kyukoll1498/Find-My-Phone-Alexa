@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Clap to find your phone</string>
+    <string name="app_name" translatable="false">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">Clap to find the lost phone easily</string>
     <string name="text_on_boarding_2">Flashlight in the dark</string>
@@ -80,4 +80,6 @@
     <string name="allow_permission_to_access_microphone_audio_files">Allow permission to access microphone. audio files</string>
     <string name="txt_settings">SETTINGS</string>
     <string name="before_activating_set_flashlight_adjust_volume">Before activating, set flashlight, adjust volume..</string>
+    <string name="clap_to_find">Clap to Find</string>
+    <string name="my_phone">My Phone</string>
 </resources>
