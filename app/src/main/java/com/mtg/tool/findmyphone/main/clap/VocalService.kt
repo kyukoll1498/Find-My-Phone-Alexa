@@ -69,9 +69,7 @@ class VocalService : Service() {
             detectClapClap = DetectClapClap(applicationContext, object : IDetect {
                 override fun onDetected() {
                     Log.d("ClapCount", "1")
-                    FeatureClapManager.getInstance(applicationContext).vibrationSaveGson()
-                    FeatureClapManager.getInstance(applicationContext).flashSaveGson()
-                    FeatureClapManager.getInstance(applicationContext).playSoundSaveGson()
+                    FeatureClapManager.getInstance(applicationContext).playAll()
                     FeatureClapManager.getInstance(applicationContext).setCallback{restartDetection()}
                 }
             })
@@ -115,9 +113,7 @@ class VocalService : Service() {
         }
         selectedDetection = 0
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
-        FeatureClapManager.getInstance(this).turnOffFlash()
-        FeatureClapManager.getInstance(this).turnOffVibration()
-        FeatureClapManager.getInstance(this). stopSound()
+        FeatureClapManager.getInstance(this).stopAll()
 
     }
 

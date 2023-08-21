@@ -71,7 +71,6 @@ class FeatureClapManager(private val context: Context) {
             mediaPlayer!!.prepare()
             mediaPlayer!!.start()
 
-            handler.postDelayed(runnable, duration)
         } catch (e: IOException) {
             Log.d("error in opening audio file", e.toString())
             e.printStackTrace()
@@ -85,7 +84,6 @@ class FeatureClapManager(private val context: Context) {
     }
 
     fun stopSound() {
-        handler.removeCallbacks(runnable)
         if (mediaPlayer != null && mediaPlayer!!.isPlaying) {
             mediaPlayer!!.stop()
             mediaPlayer!!.release()
@@ -192,6 +190,7 @@ class FeatureClapManager(private val context: Context) {
     }
 
     fun playAll() {
+        handler.postDelayed(runnable, appPreferences.currentDuration.toLong())
         vibrationSaveGson()
         flashSaveGson()
         playSoundSaveGson()
@@ -199,6 +198,13 @@ class FeatureClapManager(private val context: Context) {
 
     fun setCallback(callback: () -> Unit) {
         this.callback = callback
+    }
+
+    fun stopAll() {
+        handler.removeCallbacks(runnable)
+        turnOffFlash()
+        turnOffVibration()
+        stopSound()
     }
 
     companion object {
