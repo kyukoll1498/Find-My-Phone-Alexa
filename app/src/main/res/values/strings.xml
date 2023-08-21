@@ -80,4 +80,6 @@
     <string name="allow_permission_to_access_microphone_audio_files">Allow permission to access microphone. audio files</string>
     <string name="txt_settings">SETTINGS</string>
     <string name="before_activating_set_flashlight_adjust_volume">Before activating, set flashlight, adjust volume..</string>
+    <string name="activation_text2">Click to <font color="#F06A33">activate button</font> and <font color="#F06A33">clap</font> to find your phone</string>
+
 </resources>
