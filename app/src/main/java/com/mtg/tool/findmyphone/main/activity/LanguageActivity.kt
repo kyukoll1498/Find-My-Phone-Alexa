@@ -99,8 +99,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             appPreferences.currentLanguage = itemLanguage!!.languageToLoad
             setLanguage(itemLanguage!!.languageToLoad)
             //todo go to next
-            startActivity(Intent(this, OnBoardActivity::class.java))
-            finish()
+            if (SharedPrefs.getBoolean(this, "is_skip_onboard")) {
+                finish()
+            } else {
+                startActivity(Intent(this, OnBoardActivity::class.java))
+                finish()
+            }
         }
     }
 
