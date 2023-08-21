@@ -53,7 +53,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     }
 
     private fun handleButtonBack() {
-        if (!SharedPrefs.getBoolean(this, Constants.CONFIG_BT_BACK)) {
+        if (!appPreferences.isChooseLanguage) {
             binding.btBack.visibility = View.GONE
         } else {
             binding.btBack.visibility = View.VISIBLE
@@ -97,6 +97,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 itemLanguage = ItemLanguage(R.drawable.flag_en, "English (US)", R.drawable.ic_checked, "en")
             }
             appPreferences.currentLanguage = itemLanguage!!.languageToLoad
+            appPreferences.isChooseLanguage = true
             setLanguage(itemLanguage!!.languageToLoad)
             //todo go to next
             if (SharedPrefs.getBoolean(this, "is_skip_onboard")) {

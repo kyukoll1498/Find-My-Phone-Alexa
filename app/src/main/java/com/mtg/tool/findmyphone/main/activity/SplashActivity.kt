@@ -73,8 +73,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun startMain() {
-        val languageToLoad = SharedPrefs.getString(this, Constants.SHARE_PREF_LANGUAGE, "default")
-        if (languageToLoad == "default") {
+        if (!appPreferences.isChooseLanguage) {
             startActivity(Intent(this, LanguageActivity::class.java))
         } else {
             //todo

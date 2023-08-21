@@ -2,6 +2,7 @@ package com.mtg.tool.findmyphone.utils.app
 
 import android.content.Context
 import com.google.gson.Gson
+import com.mtg.tool.findmyphone.KEY_CHOOSE_LANGUAGE
 import com.mtg.tool.findmyphone.KEY_CURRENT_DURATION
 import com.mtg.tool.findmyphone.KEY_CURRENT_LANGUAGE
 import com.mtg.tool.findmyphone.KEY_CURRENT_VOLUME
@@ -95,5 +96,12 @@ class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
         }
         set(value) {
             putString(KEY_CURRENT_LANGUAGE, value)
+        }
+    inline var isChooseLanguage: Boolean
+        get() {
+            return getBoolean(KEY_CHOOSE_LANGUAGE, false)
+        }
+        set(value) {
+            putBoolean(KEY_CHOOSE_LANGUAGE, true)
         }
 }
