@@ -4,9 +4,11 @@ import android.content.Context
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
 
 object LanguageUtils {
+    private var appPreferences = AppPreferences.instance
     val listCountry: List<ItemLanguage>
         get() {
             val mList: MutableList<ItemLanguage> = ArrayList()
@@ -72,8 +74,7 @@ object LanguageUtils {
         }
 
     fun getFlagResourceID(context: Context): Int {
-        val languageName = SharedPrefs.getString(context, Constants.SHARE_PREF_LANGUAGE, "English (US)")
-        val itemLanguage = listCountry.findLast { it.name.equals(languageName, true) } ?: return R.drawable.flag_en
+        val itemLanguage = listCountry.findLast { it.languageToLoad.equals(appPreferences.currentLanguage, true) } ?: return R.drawable.flag_en
         return itemLanguage.imageFlag
     }
 

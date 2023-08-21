@@ -20,12 +20,14 @@ import com.mtg.tool.findmyphone.main.adapter.LanguageAdapter
 import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountry
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
 
 class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBinding::inflate) {
     private var mList: List<ItemLanguage> = ArrayList()
     private var languageAdapter: LanguageAdapter? = null
     private var itemLanguage: ItemLanguage? = null
+    private var appPreferences = AppPreferences.instance
 
     override fun initView() {
         setStatusBarColor()
@@ -78,9 +80,8 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
 
     private fun initListLanguage() {
         mList = listCountry
-        val currentCode = SharedPrefs.getString(this, Constants.SHARE_PREF_LANGUAGE, "English (US)")
         for (i in mList.indices) {
-            if (mList[i].name.equals(currentCode,true)) {
+            if (mList[i].languageToLoad == appPreferences.currentLanguage) {
                 mList[i].imgSelect = (R.drawable.ic_checked)
                 return
             }
@@ -95,8 +96,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             if (itemLanguage == null) {
                 itemLanguage = ItemLanguage(R.drawable.flag_en, "English (US)", R.drawable.ic_checked, "en")
             }
-            SharedPrefs.put(this, Constants.SHARE_PREF_LANGUAGE, itemLanguage!!.name)
-            SharedPrefs.setLanguageConfig(this)
+            appPreferences.currentLanguage = itemLanguage!!.languageToLoad
             setLanguage(itemLanguage!!.languageToLoad)
             //todo go to next
             startActivity(Intent(this, OnBoardActivity::class.java))

@@ -18,10 +18,11 @@ import com.mtg.tool.findmyphone.databinding.ActivitySplashBinding
 import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.LanguageUtils
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
-
+    private var appPreferences = AppPreferences.instance
     override fun binding() {
         isFullScreen = true
         super.binding()
@@ -29,7 +30,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     override fun initView() {
         setImageBackground()
-        setLanguage(LanguageUtils.getCurrentLanguageCode(this))
+        setLanguage(appPreferences.currentLanguage)
         Handler(Looper.getMainLooper()).postDelayed({ handleAds() }, 2000)
         EventLogger.getInstance()?.logEvent("open_splash")
 
