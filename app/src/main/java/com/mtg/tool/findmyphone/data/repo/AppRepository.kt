@@ -116,4 +116,10 @@ object AppRepository {
         listAllSoundImport.add(soundItem)
         RoomDatabase.getDatabase()?.soundDao()?.insert(soundItem)
     }
+
+    fun updateName(path: String, newName: String) {
+        val soundItem = listAllSoundImport.find { soundItem -> soundItem.soundPath == path }
+        soundItem?.name = newName
+        RoomDatabase.getDatabase()?.soundDao()?.updateName(path, newName)
+    }
 }

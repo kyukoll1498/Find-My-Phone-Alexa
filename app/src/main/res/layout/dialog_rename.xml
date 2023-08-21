@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_radius_12"
+        android:orientation="vertical"
+        android:padding="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/rename"
+            android:textColor="#3C3C3C"
+            android:textSize="@dimen/_16sdp" />
+
+        <com.mtg.tool.findmyphone.main.widget.CustomRenameEditText
+            android:id="@+id/edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/shape_rename"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/inter_medium"
+            android:hint="@string/enter_name"
+            android:paddingVertical="@dimen/_8sdp"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:singleLine="true"
+            android:textColor="#3C3C3C"
+            android:textColorHint="#A5A5A5"
+            android:textSize="@dimen/_14sdp">
+
+            <requestFocus />
+        </com.mtg.tool.findmyphone.main.widget.CustomRenameEditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_weight="2">
+
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_radius_8"
+                android:backgroundTint="#EBEBEB"
+                android:fontFamily="@font/inter"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="#605D5D"
+                android:textFontWeight="700"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <TextView
+                android:id="@+id/tv_done"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_radius_8"
+                android:backgroundTint="#F06A33"
+                android:fontFamily="@font/inter"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textFontWeight="700"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -28,14 +28,20 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     private val soundReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @SuppressLint("NotifyDataSetChanged")
         override fun onReceive(context: Context, intent: Intent) {
-            var soundItem = intent.getSerializableExtra(KEY_SOUND) as SoundItem
-            if (soundList.isEmpty()) {
-                soundList.add(soundItem)
-                initContent()
-            } else {
-                soundList.add(soundItem)
+            val data = intent.getSerializableExtra(KEY_SOUND)
+            if (data == null) {
                 soundAdapter.notifyDataSetChanged()
+            } else {
+                val soundItem = data as SoundItem
+                if (soundList.isEmpty()) {
+                    soundList.add(soundItem)
+                    initContent()
+                } else {
+                    soundList.add(soundItem)
+                    soundAdapter.notifyDataSetChanged()
+                }
             }
+
         }
     }
 

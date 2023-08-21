@@ -16,4 +16,7 @@ interface SoundDao {
 
     @Query("DELETE FROM sound WHERE sound_path =:path ")
     fun delete(path: String)
+
+    @Query("UPDATE sound SET name =:newName WHERE sound_path =:path")
+    fun updateName(path: String, newName: String)
 }

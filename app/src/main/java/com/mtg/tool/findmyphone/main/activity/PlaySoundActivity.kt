@@ -1,19 +1,25 @@
 package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.media.AudioManager
+import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
+import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.model.SoundItem
+import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.ActivityPlaySoundBinding
+import com.mtg.tool.findmyphone.main.dialog.RenameDialog
 import com.mtg.tool.findmyphone.receiver.VolumeChangeReceiver
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
@@ -35,14 +41,22 @@ class PlaySoundActivity :
         registerVolumeReceiver()
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
         currentSoundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as SoundItem
+        setUpUI()
         setUpWithFileSound()
         setSeekbarView()
         setDetailCommandView()
     }
 
+    private fun setUpUI() {
+        if (currentSoundItem.type == IMPORT_SOUND_TYPE) {
+            binding.ivDelete.visibility = View.VISIBLE
+            binding.ivEdit.visibility = View.VISIBLE
+        }
+    }
+
     private fun setDetailCommandView() {
         val soundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as? SoundItem
-        binding.tvAppName.text = soundItem?.name
+        binding.tvName.text = soundItem?.name
     }
 
     private fun setUpWithFileSound() {
@@ -105,6 +119,18 @@ class PlaySoundActivity :
             saveSoundAndDuration()
             Toast.makeText(this, "Save successfully!", Toast.LENGTH_SHORT).show()
 
+        }
+
+        binding.ivEdit.setOnClickListener {
+            RenameDialog(this@PlaySoundActivity){state, name ->
+                run {
+                    if (state) {
+                        binding.tvName.text = name
+                        currentSoundItem.soundPath?.let { it1 -> AppRepository.updateName(it1, name) }
+                        sendBroadcast(Intent(ACTION_UPDATE_AUDIO_IMPORT))
+                    }
+                }
+            }.show()
         }
         binding.btnBack.setOnClickListener { finish() }
     }
