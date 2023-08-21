@@ -115,6 +115,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layoutDirection="rtl"
+                            android:paddingStart="@dimen/_8sdp"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:fontFamily="@font/inter_medium"
                             android:textColor="#404040"
@@ -127,6 +128,8 @@
                             android:layout_height="wrap_content"
                             android:layoutDirection="rtl"
                             android:layout_marginEnd="@dimen/_12sdp"
+                            android:paddingStart="@dimen/_8sdp"
+
                             android:layout_marginTop="@dimen/_6sdp"
                             android:fontFamily="@font/inter_medium"
                             android:textColor="#404040"
@@ -140,6 +143,8 @@
                             android:layoutDirection="rtl"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:layout_marginTop="@dimen/_6sdp"
+                            android:paddingStart="@dimen/_8sdp"
+
                             android:fontFamily="@font/inter_medium"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
@@ -222,6 +227,8 @@
                             android:fontFamily="@font/inter_medium"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
+                            android:paddingStart="@dimen/_8sdp"
+
                             android:text="@string/txt_default"
                             app:buttonTint="#F06A33"/>
                         <androidx.appcompat.widget.AppCompatRadioButton
@@ -234,6 +241,8 @@
                             android:fontFamily="@font/inter_medium"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
+                            android:paddingStart="@dimen/_8sdp"
+
                             android:text="@string/strong_vibration"
                             app:buttonTint="#F06A33"/>
                         <androidx.appcompat.widget.AppCompatRadioButton
@@ -246,6 +255,8 @@
                             android:fontFamily="@font/inter_medium"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
+                            android:paddingStart="@dimen/_8sdp"
+
                             android:text="@string/heartbeat"
                             app:buttonTint="#F06A33"/>
                         <androidx.appcompat.widget.AppCompatRadioButton
@@ -257,6 +268,8 @@
                             android:layout_marginTop="@dimen/_6sdp"
                             android:fontFamily="@font/inter_medium"
                             android:textColor="#404040"
+                            android:paddingStart="@dimen/_8sdp"
+
                             android:textSize="@dimen/_14sdp"
                             android:text="@string/ticktock"
                             app:buttonTint="#F06A33"/>

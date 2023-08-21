@@ -6,6 +6,7 @@ import com.mtg.tool.findmyphone.DEFAULT_SOUND_TYPE
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.data.model.SoundItem
+import java.io.File
 
 object AppRepository {
     private var listAllSoundImport = mutableListOf<SoundItem>()
@@ -115,5 +116,17 @@ object AppRepository {
     fun insertSound(soundItem: SoundItem) {
         listAllSoundImport.add(soundItem)
         RoomDatabase.getDatabase()?.soundDao()?.insert(soundItem)
+    }
+
+    fun updateName(path: String, newName: String) {
+        val soundItem = listAllSoundImport.find { soundItem -> soundItem.soundPath == path }
+        soundItem?.name = newName
+        RoomDatabase.getDatabase()?.soundDao()?.updateName(path, newName)
+    }
+    fun deleteSound(path: String) {
+        val soundItem = listAllSoundImport.find { soundItem -> soundItem.soundPath == path }
+        File(path).delete()
+        listAllSoundImport.remove(soundItem)
+        RoomDatabase.getDatabase()?.soundDao()?.delete(path)
     }
 }

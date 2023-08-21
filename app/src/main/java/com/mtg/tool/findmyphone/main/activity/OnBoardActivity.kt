@@ -17,15 +17,11 @@ import com.mtg.tool.findmyphone.main.fragment.OnBoardFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.setSize
 
-class OnBoardActivity : BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
+class OnBoardActivity :
+    BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
     override fun binding() {
         isFullScreen = true
-        if (SharedPrefs.getBoolean(this, "is_skip_onboard")) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        } else {
-            SharedPrefs.put(this, "is_skip_onboard", true)
-        }
+        SharedPrefs.put(this, "is_skip_onboard", true)
         super.binding()
     }
 
@@ -34,18 +30,25 @@ class OnBoardActivity : BaseActivity<ActivityOnboardingBinding>(ActivityOnboardi
         binding.tvNext.setSize(18)
         binding.tvNext.paintFlags = Paint.UNDERLINE_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG
 
-        AdmobManager.getInstance().loadNative(this, BuildConfig.native_guide, binding.frAd, R.layout.custom_native_onboarding)
+        AdmobManager.getInstance().loadNative(
+            this,
+            BuildConfig.native_guide,
+            binding.frAd,
+            R.layout.custom_native_onboarding
+        )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
 
     }
 
     private fun initViewPager() {
-        binding.viewpagerOnboard.adapter = ViewPagerAddFragmentsAdapter(supportFragmentManager, lifecycle).apply {
-            addFrag(OnBoardFragment(R.drawable.img_inside_1, R.string.text_on_boarding_1))
-            addFrag(OnBoardFragment(R.drawable.img_inside_2, R.string.text_on_boarding_2))
-            addFrag(OnBoardFragment(R.drawable.img_inside_3, R.string.text_on_boarding_3))
-        }
-        binding.viewpagerOnboard.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.viewpagerOnboard.adapter =
+            ViewPagerAddFragmentsAdapter(supportFragmentManager, lifecycle).apply {
+                addFrag(OnBoardFragment(R.drawable.img_inside_1, R.string.text_on_boarding_1))
+                addFrag(OnBoardFragment(R.drawable.img_inside_2, R.string.text_on_boarding_2))
+                addFrag(OnBoardFragment(R.drawable.img_inside_3, R.string.text_on_boarding_3))
+            }
+        binding.viewpagerOnboard.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.indicatorView.selection = position

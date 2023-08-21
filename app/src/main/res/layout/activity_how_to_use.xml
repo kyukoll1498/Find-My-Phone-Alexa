@@ -13,6 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_top"
+
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_toolbar"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
             android:ellipsize="end"
+            android:textAlignment="viewStart"
             android:fontFamily="@font/inter_semibold"
             android:singleLine="true"
             android:text="@string/app_name"
@@ -47,6 +49,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layoutDirection="ltr"
+
         app:layout_constraintBottom_toTopOf="@id/fr_ad"
         app:layout_constraintTop_toBottomOf="@id/layout_top">
 

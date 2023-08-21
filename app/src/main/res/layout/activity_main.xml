@@ -39,6 +39,7 @@
                 android:fontFamily="@font/inter_semibold"
                 android:text="@string/app_name"
                 android:ellipsize="end"
+                android:textAlignment="viewStart"
                 android:textSize="@dimen/_16sdp"
                 android:singleLine="true"
                 android:textColor="#404040"
