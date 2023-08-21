@@ -171,10 +171,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             stopService(Intent(this, VocalService::class.java))
             try {
                 homeFragment.turnOffDetective()
-
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+            changeUITools(binding.viewpagerMain.currentItem, 0)
+            binding.viewpagerMain.setCurrentItem(0, false)
+            binding.ivHome.isSelected = false
         } else {
             val viewPagerPosition = intent?.getIntExtra("VIEWPAGER_POSITION", 0)
             if (viewPagerPosition != null) {
@@ -184,6 +186,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             binding.ivHome.isSelected = viewPagerPosition == 0
         }
     }
+
 
     override fun onBackPressed() {
         if (!SharedPrefs.isRated(this)) {
