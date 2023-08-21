@@ -11,6 +11,7 @@ import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 import com.mtg.tool.findmyphone.MODE_VIBRATE_TICKTOCK
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.databinding.FragmentSettingBinding
+import com.mtg.tool.findmyphone.main.clap.FeatureClapManager
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
 
@@ -135,6 +136,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
                 unlockVibrate()
             }
         }
+        binding.sbSound.setOnCheckedChangeListener { _, isChecked ->
+            if (!isChecked) {
+                FeatureClapManager.getInstance(requireContext()).stopSound()
+            }
+        }
+
         binding.llSoundController.setOnClickListener {
             binding.sbSound.isChecked = !binding.sbVibrate.isChecked
         }

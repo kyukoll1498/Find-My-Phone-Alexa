@@ -9,6 +9,7 @@ import android.os.CountDownTimer
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -23,22 +24,24 @@ import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
 import com.mtg.tool.findmyphone.main.clap.ClassesApp
+import com.mtg.tool.findmyphone.main.clap.DetectClapClap
 import com.mtg.tool.findmyphone.main.clap.FeatureClapManager
 import com.mtg.tool.findmyphone.main.clap.VocalService
+import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 
 
 @Suppress("DEPRECATION")
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private var classesApp: ClassesApp? = null
     private lateinit var currentSoundItem: SoundItem
     private var intOnTick = 0
     private var mPermCAm: Boolean? = null
+    private lateinit var detectClapClap: DetectClapClap
     private var isCircleActiveVisible = false
 
     override fun initView() {
-        changeColorText()
         isMyServiceRunning()
         classesApp = ClassesApp(requireContext())
         classesApp!!.save("detectClap", "1")
@@ -62,15 +65,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun addEvent() {
         initializePlayerAndStartRecording()
         checkCamFlash()
-    }
-
-    private fun changeColorText() {
-        val activationText = getString(R.string.activation_text)
-        val spannableString = SpannableString(activationText)
-        val colorGreen = ContextCompat.getColor(requireContext(), R.color.txt_inactive2)
-        spannableString.setSpan(ForegroundColorSpan(colorGreen), 29, 34, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannableString.setSpan(ForegroundColorSpan(colorGreen), 9, 25, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        binding.tvInactive.text = spannableString
     }
 
     override fun loadAds() {
@@ -115,7 +109,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun checkPermissionMicro() {
         if (!PermissionUtils.checkMicroPermission(requireContext())) {
             PermissionUtils.requestMicroPermission(requireActivity())
+            showRecordPermissionDialog()
+        } else{
+            Log.d("Error Permission Micro", "Check Permission")
         }
+    }
+
+    private fun showRecordPermissionDialog() {
+        RecordPermissionDialog(requireContext()) {
+            if (it) {
+                PermissionUtils.goSettingsForMicroPermission(requireActivity())
+            }
+        }.show()
     }
 
     private fun initializePlayerAndStartRecording() {
