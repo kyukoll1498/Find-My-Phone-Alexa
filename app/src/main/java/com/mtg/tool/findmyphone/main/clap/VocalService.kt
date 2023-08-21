@@ -20,12 +20,7 @@ import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.main.activity.MainActivity
-import com.mtg.tool.findmyphone.utils.app.AppPreferences
-import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 
 @Suppress("DEPRECATION")
 class VocalService : Service() {
@@ -105,11 +100,17 @@ class VocalService : Service() {
     override fun onDestroy() {
         super.onDestroy()
 
+//        val recorderThread = recorderCoroutine
+//        if (recorderThread != null) {
+//            CoroutineScope(Dispatchers.IO).launch {
+//                recorderThread.stopRecording()
+//            }
+//            this.recorderCoroutine = null
+//        }
+
         val recorderThread = recorderCoroutine
         if (recorderThread != null) {
-            CoroutineScope(Dispatchers.IO).launch {
-                recorderThread.stopRecording()
-            }
+            recorderThread.stopRecording()
             this.recorderCoroutine = null
         }
         selectedDetection = 0

@@ -3,13 +3,14 @@ package com.mtg.tool.findmyphone.main.clap
 import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioRecord
-import kotlinx.coroutines.withContext
+import android.util.Log
 import be.hogent.tarsos.dsp.AudioEvent
 import be.hogent.tarsos.dsp.AudioFormat
 import be.hogent.tarsos.dsp.onsets.OnsetHandler
 import be.hogent.tarsos.dsp.onsets.PercussionOnsetDetector
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
@@ -26,6 +27,7 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
     private val recorder: AudioRecord
     private var torsosFormat: AudioFormat? = null
     private val callback: IDetect
+    private var listenThread: Thread? = null
 
     init {
         classesApp = ClassesApp(context)
@@ -66,11 +68,19 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
         listen()
     }
 
-    fun listen() {
-        recorder.startRecording()
-        val torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
+    val TAG = "~~~"
+    private var listenJob: Job? = null
 
-        CoroutineScope(Dispatchers.IO).launch {
+    fun listen() {
+        if (listenJob != null && listenJob!!.isActive) {
+            listenJob!!.cancel()
+            return // Return if the job is already running
+        }
+
+        listenJob = CoroutineScope(Dispatchers.IO).launch {
+            recorder.startRecording()
+            val torsosFormat = AudioFormat(SAMPLE_RATE.toFloat(), 16, 1, true, false)
+
             while (mIsRecording) {
                 val audioEvent = AudioEvent(
                     torsosFormat,
@@ -78,10 +88,11 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
                 )
                 audioEvent.setFloatBufferWithByteBuffer(buffer)
                 mPercussionOnsetDetector.process(audioEvent)
+                Log.e(TAG, "listen: inside while loop")
             }
-            withContext(Dispatchers.Main) {
-                recorder.stop()
-            }
+
+            recorder.stop()
+            Log.e(TAG, "listen: stop recorder")
         }
     }
 

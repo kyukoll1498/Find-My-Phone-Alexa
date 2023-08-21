@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -30,6 +32,7 @@ import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
+import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
 
 
 @Suppress("DEPRECATION")
@@ -148,6 +151,25 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             }
         }
     }
+
+//    open fun turnOffDetective() {
+//        val visible = View.VISIBLE
+//        val invisible = View.INVISIBLE
+//        binding.apply {
+//            ivCircleActive.visibility = invisible
+//            txtInactive.visibility = visible
+//            txtActive.visibility = invisible
+//            tvInactive.visibility = visible
+//            llTvInactive.visibility = invisible
+//            FeatureClapManager.getInstance(requireContext()).apply {
+//                stopSound()
+//                turnOffVibration()
+//                turnOffFlash()
+//            }
+//            activity?.stopService(Intent(context, VocalService::class.java))
+//            Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
+//        }
+//    }
 
     open fun turnOffDetective() {
         val visible = View.VISIBLE

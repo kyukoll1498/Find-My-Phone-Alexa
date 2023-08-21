@@ -9,6 +9,8 @@ import android.hardware.camera2.CameraManager
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.os.Vibrator
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -16,16 +18,19 @@ import com.mtg.tool.findmyphone.DEFAULT_SOUND_TYPE
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 import java.io.IOException
 
 class FeatureClapManager(private val context: Context) {
     private var mediaPlayer: MediaPlayer? = null
     private var isVibrating = false
     private var appPreferences = AppPreferences.instance
+    private val handler = Handler(Looper.getMainLooper())
+    private var runnable = Runnable {
+        stopSound()
+        VibrateFlashThread.stopAll()
+        callback.invoke()
+    }
     private val audioManager: AudioManager by lazy {
         context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     }
@@ -66,13 +71,7 @@ class FeatureClapManager(private val context: Context) {
             mediaPlayer!!.prepare()
             mediaPlayer!!.start()
 
-            CoroutineScope(Dispatchers.Main).launch {
-                delay(duration)
-                stopSound()
-                VibrateFlashThread.stopAll()
-                callback.invoke()
-
-            }
+            handler.postDelayed(runnable, duration)
         } catch (e: IOException) {
             Log.d("error in opening audio file", e.toString())
             e.printStackTrace()
@@ -86,6 +85,7 @@ class FeatureClapManager(private val context: Context) {
     }
 
     fun stopSound() {
+        handler.removeCallbacks(runnable)
         if (mediaPlayer != null && mediaPlayer!!.isPlaying) {
             mediaPlayer!!.stop()
             mediaPlayer!!.release()
@@ -109,13 +109,33 @@ class FeatureClapManager(private val context: Context) {
             cameraId = manager.cameraIdList[0]
             manager.setTorchMode(cameraId, true)
             VibrateFlashThread(context, AppPreferences(context).currentFlash, duration.toInt()).start()
-            CoroutineScope(Dispatchers.Main).launch {
+
+            handler.postDelayed({
                 manager.setTorchMode(cameraId, false)
-            }
+            }, duration)
         } catch (e: CameraAccessException) {
             throw RuntimeException(e)
         }
     }
+
+//    private fun turnOnFlash(duration: Long, statusFlash: Boolean) {
+//        if (!statusFlash) {
+//            turnOffFlash()
+//            return
+//        }
+//        val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
+//        val cameraId: String?
+//        try {
+//            cameraId = manager.cameraIdList[0]
+//            manager.setTorchMode(cameraId, true)
+//            VibrateFlashThread(context, AppPreferences(context).currentFlash, duration.toInt()).start()
+//            CoroutineScope(Dispatchers.Main).launch {
+//                manager.setTorchMode(cameraId, false)
+//            }
+//        } catch (e: CameraAccessException) {
+//            throw RuntimeException(e)
+//        }
+//    }
 
     fun turnOffFlash() {
         val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
@@ -133,6 +153,25 @@ class FeatureClapManager(private val context: Context) {
         turnOnVibration(appPreferences.currentDuration.toLong(), statusFlash)
     }
 
+//    private fun turnOnVibration(duration: Long, statusVibration: Boolean) {
+//        if (!statusVibration) {
+//            turnOffVibration()
+//            return
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val vibrateMode = AppPreferences(context).currentVibrate
+//            val coroutineScope = CoroutineScope(Dispatchers.Default)
+//            coroutineScope.launch {
+//                try {
+//                    val vibrateFlashThread = VibrateFlashThread(context, vibrateMode, duration.toInt())
+//                    vibrateFlashThread.start()
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//            }
+//        }
+//    }
+
     private fun turnOnVibration(duration: Long, statusVibration: Boolean) {
         if (!statusVibration) {
             turnOffVibration()
@@ -140,15 +179,8 @@ class FeatureClapManager(private val context: Context) {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val vibrateMode = AppPreferences(context).currentVibrate
-            val coroutineScope = CoroutineScope(Dispatchers.Default)
-            coroutineScope.launch {
-                try {
-                    val vibrateFlashThread = VibrateFlashThread(context, vibrateMode, duration.toInt())
-                    vibrateFlashThread.start()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
+            val vibrateFlashThread = VibrateFlashThread(context, vibrateMode, duration.toInt())
+            vibrateFlashThread.start()
         }
     }
 

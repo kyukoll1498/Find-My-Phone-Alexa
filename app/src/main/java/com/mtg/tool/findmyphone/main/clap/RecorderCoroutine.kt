@@ -1,8 +1,5 @@
 package com.mtg.tool.findmyphone.main.clap
 
-import android.annotation.SuppressLint
-import android.media.AudioRecord
-
 //class RecorderThread : Thread() {
 //    private val audioEncoding = 2
 //    private var rateSupported = 0
@@ -47,10 +44,8 @@ import android.media.AudioRecord
 //    }
 //}
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import android.annotation.SuppressLint
+import android.media.AudioRecord
 
 class RecorderCoroutine {
     private val audioEncoding = 2
@@ -75,23 +70,19 @@ class RecorderCoroutine {
     private val audioRecord = AudioRecord(1, sampleRate, channelConfiguration, audioEncoding, AudioRecord.getMinBufferSize(sampleRate, channelConfiguration, audioEncoding))
 
     fun startRecording() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                audioRecord.startRecording()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        try {
+            audioRecord.startRecording()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
-    suspend fun stopRecording() {
-        withContext(Dispatchers.IO) {
-            try {
-                audioRecord.stop()
-                audioRecord.release()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+    fun stopRecording() {
+        try {
+            audioRecord.stop()
+            audioRecord.release()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
         }
     }
 }
