@@ -6,22 +6,18 @@ import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startForegroundService
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
@@ -32,7 +28,6 @@ import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
-import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
 
 
 @Suppress("DEPRECATION")
@@ -72,15 +67,27 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
 
     override fun loadAds() {
         super.loadAds()
-        AdmobManager.getInstance().loadNative(context, BuildConfig.native_language, binding.frAd, R.layout.custom_native_language)
-        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(context as Activity?, binding.frAd)
+        AdmobManager.getInstance().loadNative(
+            context,
+            BuildConfig.native_language,
+            binding.frAd,
+            R.layout.custom_native_language
+        )
+        AppOpenManager.getInstance()
+            .hideNativeOrBannerWhenShowOpenApp(context as Activity?, binding.frAd)
     }
 
 
     private fun initVolume() {
         val audioManager = activity?.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
         audioManager!!.getStreamVolume(3)
-        audioManager.setStreamVolume(3, (audioManager.getStreamMaxVolume(3).toFloat() * (classesApp!!.read(NotificationCompat.CATEGORY_PROGRESS, "50")!!.toFloat() / 100.0f)).toInt(), 0)
+        audioManager.setStreamVolume(
+            3,
+            (audioManager.getStreamMaxVolume(3)
+                .toFloat() * (classesApp!!.read(NotificationCompat.CATEGORY_PROGRESS, "50")!!
+                .toFloat() / 100.0f)).toInt(),
+            0
+        )
     }
 
     private fun settingSound() {
@@ -97,7 +104,9 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     private fun isMyServiceRunning(): Boolean {
-        for (runningServiceInfo in (activity?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).getRunningServices(Int.MAX_VALUE)) {
+        for (runningServiceInfo in (activity?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).getRunningServices(
+            Int.MAX_VALUE
+        )) {
             if (VocalService::class.java.name == runningServiceInfo.service.className) {
                 return true
             }
@@ -111,9 +120,8 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
 
     private fun checkPermissionMicro() {
         if (!PermissionUtils.checkMicroPermission(requireContext())) {
-            PermissionUtils.requestMicroPermission(requireActivity())
-            showRecordPermissionDialog()
-        } else{
+            PermissionUtils.requestMicroPermission(this)
+        } else {
             Log.d("Error Permission Micro", "Check Permission")
         }
     }
@@ -124,6 +132,19 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 PermissionUtils.goSettingsForMicroPermission(requireActivity())
             }
         }.show()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_MICRO_PERMISSION_CODE) {
+            if (!PermissionUtils.checkMicroPermission(requireActivity())) {
+                showRecordPermissionDialog()
+            }
+        }
     }
 
     private fun initializePlayerAndStartRecording() {
@@ -141,8 +162,14 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                         llTvInactive.visibility = visible
                         tvInactive.visibility = invisible
                         classesApp!!.save("StopService", "0")
-                        context?.let { startForegroundService(it, Intent(context, VocalService::class.java)) }
-                        Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
+                        context?.let {
+                            startForegroundService(
+                                it,
+                                Intent(context, VocalService::class.java)
+                            )
+                        }
+                        Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG)
+                            .show()
                     }
                 } else {
                     turnOffDetective()
