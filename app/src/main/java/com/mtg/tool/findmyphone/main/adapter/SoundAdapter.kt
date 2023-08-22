@@ -65,7 +65,7 @@ class SoundAdapter(mList: List<SoundItem?>?, context: Context?) :
         init {
             AdmobManager.getInstance().loadNative(
                 context,
-                BuildConfig.native_sound_play,
+                BuildConfig.native_sound,
                 binding.frAds,
                 R.layout.custom_native_ads_item
             )
