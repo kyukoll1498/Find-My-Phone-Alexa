@@ -3,6 +3,7 @@ package com.mtg.tool.findmyphone.main.activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.manager.AdmobManager
@@ -172,6 +173,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        changeUITools(0, binding.viewpagerMain.currentItem)
     }
 
     override fun onNewIntent(intent: Intent) {
