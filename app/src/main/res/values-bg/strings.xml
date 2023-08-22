@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Преди да активирате, задайте фенерче, регулирайте силата на звука..</string>
     <string name="clap_to_find">Пляскайте, за да намерите</string>
     <string name="my_phone">Моя телефон</string>
+
+    <string name="activation_text2">Щракнете, за да <font color="#F06A33">активирате бутона</font> и <font color="#F06A33">ръкопляскайте</font>, за да намерите телефона си</string>
+    <string name="save">Запазване</string>
+    <string name="rename">Преименуване</string>
+    <string name="enter_name">Въведи име</string>
+    <string name="cancel">Отказ</string>
+    <string name="are_you_sure_you_want_to_delete">Сигурен ли си, че искаш да изтриеш</string>
+    <string name="delete">Изтрий</string>
+    <string name="maybe_later">Може би по-късно</string>
+    <string name="submit">Изпращане</string>
 </resources>

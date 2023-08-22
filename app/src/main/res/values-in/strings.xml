@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Sebelum mengaktifkan, atur senter, sesuaikan volume..</string>
     <string name="clap_to_find">Tepuk Tangan untuk Menemukan</string>
     <string name="my_phone">Telepon saya</string>
+
+    <string name="activation_text2">Klik untuk <font color="#F06A33">mengaktifkan tombol</font> dan <font color="#F06A33">tepuk</font> untuk menemukan ponsel Anda</string>
+    <string name="save">Menyimpan</string>
+    <string name="rename">Ganti nama</string>
+    <string name="enter_name">Masukkan nama</string>
+    <string name="cancel">Membatalkan</string>
+    <string name="are_you_sure_you_want_to_delete">Anda yakin ingin menghapus</string>
+    <string name="delete">Menghapus</string>
+    <string name="maybe_later">mungkin nanti</string>
+    <string name="submit">Kirim</string>
 </resources>

@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">起動する前に、懐中電灯を設定し、音量を調整してください。</string>
     <string name="clap_to_find">拍手して見つけてください</string>
     <string name="my_phone">私の電話</string>
+
+    <string name="activation_text2">クリックして<font color="#F06A33">ボタンをアクティブ</font>にし、<font color="#F06A33">拍手</font>して携帯電話を見つけます</string>
+    <string name="save">保存</string>
+    <string name="rename">名前の変更</string>
+    <string name="enter_name">名前を入力</string>
+    <string name="cancel">キャンセル</string>
+    <string name="are_you_sure_you_want_to_delete">消去してもよろしいですか</string>
+    <string name="delete">消去</string>
+    <string name="maybe_later">たぶん後で</string>
+    <string name="submit">提出する</string>
 </resources>

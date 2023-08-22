@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Πριν την ενεργοποίηση, ρυθμίστε τον φακό, ρυθμίστε την ένταση..</string>
     <string name="clap_to_find">Χτυπήστε για να βρείτε</string>
     <string name="my_phone">Το τηλέφωνο μου</string>
+
+    <string name="activation_text2">Κάντε κλικ για <font color="#F06A33">κουμπί ενεργοποίησης</font> και <font color="#F06A33">χειροκρότημα</font> για να βρείτε το τηλέφωνό σας</string>
+    <string name="save">Αποθηκεύσετε</string>
+    <string name="rename">Μετονομάζω</string>
+    <string name="enter_name">Εισαγάγετε όνομα</string>
+    <string name="cancel">Ματαίωση</string>
+    <string name="are_you_sure_you_want_to_delete">Είστε βέβαιοι ότι θέλετε να διαγράψετε</string>
+    <string name="delete">Διαγράφω</string>
+    <string name="maybe_later">Ισως αργότερα</string>
+    <string name="submit">υποβάλλουν</string>
 </resources>

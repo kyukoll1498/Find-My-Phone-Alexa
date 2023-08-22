@@ -81,4 +81,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Trước khi kích hoạt, hãy đặt đèn pin, điều chỉnh âm lượng..</string>
     <string name="clap_to_find">Vỗ tay để tìm</string>
     <string name="my_phone">Điện thoại của tôi</string>
+
+    <string name="activation_text2">Nhấp vào <font color="#F06A33">nút kích hoạt</font> và <font color="#F06A33">vỗ tay</font> để tìm điện thoại của bạn</string>
+    <string name="save">Cứu</string>
+    <string name="rename">Đổi tên</string>
+    <string name="enter_name">Nhập tên</string>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="are_you_sure_you_want_to_delete">Bạn có chắc chắn muốn xóa</string>
+    <string name="delete">Xóa bỏ</string>
+    <string name="maybe_later">Có lẽ sau này</string>
+    <string name="submit">Nộp</string>
 </resources>

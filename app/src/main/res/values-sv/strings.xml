@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Innan du aktiverar, ställ in ficklampan, justera volymen..</string>
     <string name="clap_to_find">Klappa för att hitta</string>
     <string name="my_phone">Min telefon</string>
+
+    <string name="activation_text2">Klicka för att <font color="#F06A33">aktivera knappen</font> och <font color="#F06A33">klappa</font> för att hitta din telefon</string>
+    <string name="save">Spara</string>
+    <string name="rename">Döp om</string>
+    <string name="enter_name">Skriv namn</string>
+    <string name="cancel">Annullera</string>
+    <string name="are_you_sure_you_want_to_delete">Är du säker att du vill radera</string>
+    <string name="delete">Radera</string>
+    <string name="maybe_later">Kanske senare</string>
+    <string name="submit">Skicka in</string>
 </resources>

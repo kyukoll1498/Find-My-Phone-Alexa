@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Prima dell\'attivazione, impostare la torcia, regolare il volume...</string>
     <string name="clap_to_find">Batti le mani per trovare</string>
     <string name="my_phone">Il mio telefono</string>
+
+    <string name="activation_text2">Fai clic per <font color="#F06A33">attivare il pulsante</font> e <font color="#F06A33">batti le mani</font> per trovare il tuo telefono</string>
+    <string name="save">Salva</string>
+    <string name="rename">Rinominare</string>
+    <string name="enter_name">Inserisci il nome</string>
+    <string name="cancel">Annulla</string>
+    <string name="are_you_sure_you_want_to_delete">Sei sicuro di voler eliminare</string>
+    <string name="delete">Eliminare</string>
+    <string name="maybe_later">Forse più tardi</string>
+    <string name="submit">Invia</string>
 </resources>

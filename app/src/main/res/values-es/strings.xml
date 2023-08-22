@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Antes de activar, configure la linterna, ajuste el volumen..</string>
     <string name="clap_to_find">Aplaude para encontrar</string>
     <string name="my_phone">Mi teléfono</string>
+
+    <string name="activation_text2">Haz clic para <font color="#F06A33">activar botón</font> y <font color="#F06A33">aplaudir</font> para encontrar tu teléfono</string>
+    <string name="save">Ahorrar</string>
+    <string name="rename">Rebautizar</string>
+    <string name="enter_name">Ingrese su nombre</string>
+    <string name="cancel">Cancelar</string>
+    <string name="are_you_sure_you_want_to_delete">estas seguro que quieres borrarlo</string>
+    <string name="delete">Borrar</string>
+    <string name="maybe_later">Quizas mas tarde</string>
+    <string name="submit">Entregar</string>
 </resources>

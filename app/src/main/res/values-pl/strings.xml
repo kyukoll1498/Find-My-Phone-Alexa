@@ -82,4 +82,15 @@
     <string name="before_activating_set_flashlight_adjust_volume">Przed aktywacją ustaw latarkę, dostosuj głośność.</string>
     <string name="clap_to_find">Klaśnij, aby znaleźć</string>
     <string name="my_phone">Mój telefon</string>
+
+
+    <string name="activation_text2">Kliknij, aby <font color="#F06A33">aktywować przycisk</font> i <font color="#F06A33">klaszcz</font>, aby znaleźć swój telefon</string>
+    <string name="save">Ratować</string>
+    <string name="rename">Przemianować</string>
+    <string name="enter_name">Wprowadź imię</string>
+    <string name="cancel">Anulować</string>
+    <string name="are_you_sure_you_want_to_delete">Czy na pewno chcesz usunąć</string>
+    <string name="delete">Usuwać</string>
+    <string name="maybe_later">Może później</string>
+    <string name="submit">Składać</string>
 </resources>

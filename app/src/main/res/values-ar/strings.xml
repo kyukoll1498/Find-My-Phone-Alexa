@@ -82,4 +82,13 @@
     <string name="before_activating_set_flashlight_adjust_volume">قبل التنشيط ، اضبط مصباح يدوي ، واضبط مستوى الصوت ..</string>
     <string name="clap_to_find">التصفيق للبحث</string>
     <string name="my_phone">هاتفي</string>
+    <string name="activation_text2">انقر <font color = "# F06A33"> زر التنشيط </font> و <font color = "# F06A33"> التصفيق </font> للعثور على هاتفك</string>
+    <string name="save">يحفظ</string>
+    <string name="rename">إعادة تسمية</string>
+    <string name="enter_name">أدخل الاسم</string>
+    <string name="cancel">يلغي</string>
+    <string name="are_you_sure_you_want_to_delete">هل أنت متأكد أنك تريد حذف</string>
+    <string name="delete">يمسح</string>
+    <string name="maybe_later">ربما في وقت لاحق</string>
+    <string name="submit">يُقدِّم</string>
 </resources>

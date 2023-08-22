@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">激活前，設置手電筒，調節音量..</string>
     <string name="clap_to_find">拍手尋找</string>
     <string name="my_phone">我的手機</string>
+
+    <string name="activation_text2">點擊<font color="#F06A33">激活按鈕</font>並<font color="#F06A33">拍手</font>找到您的手機</string>
+    <string name="save">節省</string>
+    <string name="rename">改名</string>
+    <string name="enter_name">輸入名字</string>
+    <string name="cancel">取消</string>
+    <string name="are_you_sure_you_want_to_delete">你確定你要刪除</string>
+    <string name="delete">刪除</string>
+    <string name="maybe_later">也許稍後</string>
+    <string name="submit">提交</string>
 </resources>

@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Перед активацией установите фонарик, отрегулируйте громкость..</string>
     <string name="clap_to_find">Хлопайте, чтобы найти</string>
     <string name="my_phone">Мой телефон</string>
+
+    <string name="activation_text2">Нажмите, чтобы <font color="#F06A33">активировать кнопку</font> и <font color="#F06A33">хлопните</font>, чтобы найти свой телефон</string>
+    <string name="save">Сохранять</string>
+    <string name="rename">Переименовать</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="cancel">Отмена</string>
+    <string name="are_you_sure_you_want_to_delete">Вы уверены, что хотите удалить</string>
+    <string name="delete">Удалить</string>
+    <string name="maybe_later">Может быть позже</string>
+    <string name="submit">Представлять на рассмотрение</string>
 </resources>

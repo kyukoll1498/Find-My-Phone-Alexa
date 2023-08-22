@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Innan du aktiverar, ställ in ficklampan, justera volymen..</string>
     <string name="clap_to_find">Klappa för att hitta</string>
     <string name="my_phone">Min telefon</string>
+
+    <string name="activation_text2">คลิกเพื่อ <font color="#F06A33">ปุ่มเปิดใช้งาน</font> และ <font color="#F06A33">ตบมือ</font> เพื่อค้นหาโทรศัพท์ของคุณ</string>
+    <string name="save">บันทึก</string>
+    <string name="rename">เปลี่ยนชื่อ</string>
+    <string name="enter_name">ใส่ชื่อ</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="are_you_sure_you_want_to_delete">คุณแน่ใจหรือว่าต้องการลบ</string>
+    <string name="delete">ลบ</string>
+    <string name="maybe_later">ไว้ก่อน</string>
+    <string name="submit">ส่ง</string>
 </resources>

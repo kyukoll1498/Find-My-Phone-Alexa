@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">활성화하기 전에 손전등을 설정하고 볼륨을 조정하십시오..</string>
     <string name="clap_to_find">찾아 박수</string>
     <string name="my_phone">내 휴대 전화</string>
+
+    <string name="activation_text2"><font color="#F06A33">활성화 버튼</font>을 클릭하고 <font color="#F06A33">박수</font>를 눌러 휴대전화를 찾으세요.</string>
+    <string name="save">구하다</string>
+    <string name="rename">이름 바꾸기</string>
+    <string name="enter_name">이름을 입력하시오</string>
+    <string name="cancel">취소</string>
+    <string name="are_you_sure_you_want_to_delete">삭제 하시겠습니까</string>
+    <string name="delete">삭제</string>
+    <string name="maybe_later">나중에</string>
+    <string name="submit">제출하다</string>
 </resources>

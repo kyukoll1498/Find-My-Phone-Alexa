@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Înainte de activare, setați lanterna, reglați volumul...</string>
     <string name="clap_to_find">Bate din palme pentru a găsi</string>
     <string name="my_phone">Telefonul meu</string>
+
+    <string name="activation_text2">Clique para <font color="#F06A33">ativar o botão</font> e <font color="#F06A33">bater palmas</font> para encontrar seu telefone</string>
+    <string name="save">Salvar</string>
+    <string name="rename">Renomear</string>
+    <string name="enter_name">Insira o nome</string>
+    <string name="cancel">Cancelar</string>
+    <string name="are_you_sure_you_want_to_delete">Tem certeza de que deseja excluir</string>
+    <string name="delete">Excluir</string>
+    <string name="maybe_later">Talvez mais tarde</string>
+    <string name="submit">Enviar</string>
 </resources>

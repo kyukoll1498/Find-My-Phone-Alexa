@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Avant d\'activer, réglez la lampe de poche, réglez le volume.</string>
     <string name="clap_to_find">Tapez pour trouver</string>
     <string name="my_phone">Mon téléphone</string>
+
+    <string name="activation_text2">Cliquez pour <font color="#F06A33">activer le bouton</font> et <font color="#F06A33">applaudir</font> pour trouver votre téléphone</string>
+    <string name="save">Sauvegarder</string>
+    <string name="rename">Renommer</string>
+    <string name="enter_name">Entrez le nom</string>
+    <string name="cancel">Annuler</string>
+    <string name="are_you_sure_you_want_to_delete">Etes-vous sûr que vous voulez supprimer</string>
+    <string name="delete">Supprimer</string>
+    <string name="maybe_later">Peut-être plus tard</string>
+    <string name="submit">Soumettre</string>
 </resources>

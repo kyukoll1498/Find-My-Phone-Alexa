@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Voordat u activeert, stelt u de zaklamp in, past u het volume aan..</string>
     <string name="clap_to_find">Klap om te zoeken</string>
     <string name="my_phone">Mijn telefoon</string>
+
+    <string name="activation_text2">Klik om <font color="#F06A33">knop te activeren</font> en <font color="#F06A33">klap</font> om je telefoon te vinden</string>
+    <string name="save">Redden</string>
+    <string name="rename">Hernoemen</string>
+    <string name="enter_name">Voer naam in</string>
+    <string name="cancel">Annuleren</string>
+    <string name="are_you_sure_you_want_to_delete">Weet je zeker dat je wilt verwijderen</string>
+    <string name="delete">Verwijderen</string>
+    <string name="maybe_later">Misschien later</string>
+    <string name="submit">Indienen</string>
 </resources>

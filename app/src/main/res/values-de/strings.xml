@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">Stellen Sie vor dem Aktivieren die Taschenlampe ein und passen Sie die Lautstärke an.</string>
     <string name="clap_to_find">Zum Suchen klatschen</string>
     <string name="my_phone">Mein Telefon</string>
+
+    <string name="activation_text2">Klicken Sie auf die <font color="#F06A33">Aktivierungsschaltfläche</font> und <font color="#F06A33">klatschen</font>, um Ihr Telefon zu finden</string>
+    <string name="save">Speichern</string>
+    <string name="rename">Umbenennen</string>
+    <string name="enter_name">Name eingeben</string>
+    <string name="cancel">Stornieren</string>
+    <string name="are_you_sure_you_want_to_delete">Sind Sie sicher, dass Sie löschen möchten</string>
+    <string name="delete">Löschen</string>
+    <string name="maybe_later">Vielleicht später</string>
+    <string name="submit">Einreichen</string>
 </resources>

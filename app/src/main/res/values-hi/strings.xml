@@ -82,4 +82,14 @@
     <string name="before_activating_set_flashlight_adjust_volume">सक्रिय करने से पहले, फ़्लैशलाइट सेट करें, वॉल्यूम समायोजित करें..</string>
     <string name="clap_to_find">ढूंढने के लिए ताली बजाएं</string>
     <string name="my_phone">मेरा फोन</string>
+
+    <string name="activation_text2">अपना फ़ोन ढूंढने के लिए <font color="#F06A33">सक्रिय बटन</font> पर क्लिक करें और <font color="#F06A33">क्लैप</font> करें।</string>
+    <string name="save">बचाना</string>
+    <string name="rename">नाम बदलें</string>
+    <string name="enter_name">नाम दर्ज करें</string>
+    <string name="cancel">रद्द करना</string>
+    <string name="are_you_sure_you_want_to_delete">क्या आप आश्वस्त है कि आपको डिलीट करना है</string>
+    <string name="delete">मिटाना</string>
+    <string name="maybe_later">शायद बाद में</string>
+    <string name="submit">जमा करना</string>
 </resources>
