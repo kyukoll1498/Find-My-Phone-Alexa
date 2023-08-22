@@ -19,6 +19,7 @@ import com.mtg.tool.findmyphone.databinding.ActivityLanguageBinding
 import com.mtg.tool.findmyphone.main.adapter.LanguageAdapter
 import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
+import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountry
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
@@ -94,7 +95,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             EventLogger.getInstance()?.logEvent("click_language_tick")
             //Intent intent = new Intent(this, MainActivity.class);
             if (itemLanguage == null) {
-                itemLanguage = ItemLanguage(R.drawable.flag_en, "English (US)", R.drawable.ic_checked, "en")
+                itemLanguage = LanguageUtils.getDefaultItemLanguage()
             }
             appPreferences.currentLanguage = itemLanguage!!.languageToLoad
             appPreferences.isChooseLanguage = true

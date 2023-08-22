@@ -1,11 +1,14 @@
 package com.mtg.tool.findmyphone.utils
 
 import android.content.Context
+import android.content.res.Resources
+import android.text.TextUtils
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
+import java.util.Locale
 
 object LanguageUtils {
     private var appPreferences = AppPreferences.instance
@@ -83,5 +86,27 @@ object LanguageUtils {
         val languageName = SharedPrefs.getString(context, Constants.SHARE_PREF_LANGUAGE, "default")
         val itemLanguage = listCountry.findLast { it.languageToLoad.equals(languageName, true) } ?: return "en"
         return itemLanguage.languageToLoad
+    }
+
+    open fun getDefaultLanguage(): String{
+        val userLang = Resources.getSystem().configuration.locales.get(0).language
+        if (!TextUtils.isEmpty(userLang) && checkLanguageAvailable(userLang)) {
+            return userLang
+        } else {
+            return Locale.ENGLISH.language
+        }
+    }
+
+    private fun checkLanguageAvailable(userLang: String): Boolean {
+        for (language in listCountry) {
+            if (language.languageToLoad == userLang) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun getDefaultItemLanguage(): ItemLanguage? {
+        return listCountry.find { itemLanguage -> itemLanguage.languageToLoad == getDefaultLanguage() }
     }
 }

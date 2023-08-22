@@ -1,6 +1,7 @@
 package com.mtg.tool.findmyphone.base
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -17,9 +18,12 @@ import androidx.viewbinding.ViewBinding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.utils.LanguageUtils
+import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import java.util.Locale
 import kotlin.coroutines.CoroutineContext
 
 
@@ -51,6 +55,22 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
         setContentView(binding.root)
     }
 
+    protected open fun initLanguage() {
+        if (AppPreferences.instance.isChooseLanguage) {
+            val locale = Locale(AppPreferences.instance.currentLanguage)
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.locale = locale
+            resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+        } else {
+            val locale = Locale(LanguageUtils.getDefaultLanguage())
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.locale = locale
+            resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+        }
+    }
+
     override fun onResume() {
         val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
         // Configure the behavior of the hidden system bars.
@@ -71,6 +91,7 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initLanguage()
         job = Job()
         mContext = this
         binding()

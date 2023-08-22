@@ -30,7 +30,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     override fun initView() {
         setImageBackground()
-        setLanguage(appPreferences.currentLanguage)
         Handler(Looper.getMainLooper()).postDelayed({ handleAds() }, 2000)
         EventLogger.getInstance()?.logEvent("open_splash")
 
@@ -45,21 +44,26 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun handleAds() {
-        AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
-        AdmobManager.getInstance()
-            .loadInterAds(this, BuildConfig.inter_splash, object : AdCallback() {
-                override fun onResultInterstitialAd(interstitialAd: InterstitialAd) {
-                    super.onResultInterstitialAd(interstitialAd)
-                    EventLogger.getInstance()?.logEvent("open_splash_with_ad")
-                    showInter(interstitialAd)
-                }
+        try {
+            AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
+            AdmobManager.getInstance()
+                .loadInterAds(this, BuildConfig.inter_splash, object : AdCallback() {
+                    override fun onResultInterstitialAd(interstitialAd: InterstitialAd) {
+                        super.onResultInterstitialAd(interstitialAd)
+                        EventLogger.getInstance()?.logEvent("open_splash_with_ad")
+                        showInter(interstitialAd)
+                    }
 
-                override fun onAdFailedToLoad(i: LoadAdError) {
-                    super.onAdFailedToLoad(i)
-                    EventLogger.getInstance()?.logEvent("open_splash_without_ad")
-                    startMain()
-                }
-            })
+                    override fun onAdFailedToLoad(i: LoadAdError) {
+                        super.onAdFailedToLoad(i)
+                        EventLogger.getInstance()?.logEvent("open_splash_without_ad")
+                        startMain()
+                    }
+                })
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 
     private fun showInter(interstitialAd: InterstitialAd) {

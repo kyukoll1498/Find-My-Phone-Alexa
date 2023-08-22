@@ -15,6 +15,7 @@ import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.utils.AudioMangerUtils
+import com.mtg.tool.findmyphone.utils.LanguageUtils
 
 class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
     BasePreferences(context, context.packageName) {
@@ -93,7 +94,7 @@ class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
         }
     inline var currentLanguage: String
         get() {
-            return getString(KEY_CURRENT_LANGUAGE, "en")
+            return getString(KEY_CURRENT_LANGUAGE, LanguageUtils.getDefaultLanguage())
         }
         set(value) {
             putString(KEY_CURRENT_LANGUAGE, value)
