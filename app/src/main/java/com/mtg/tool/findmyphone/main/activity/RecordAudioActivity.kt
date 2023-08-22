@@ -69,6 +69,7 @@ class RecordAudioActivity :
         binding.btnSave.setOnClickListener { saveSoundItem() }
         binding.llAudioController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
+                logEvent("click_add_record_play_sound")
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
@@ -94,6 +95,7 @@ class RecordAudioActivity :
     }
 
     private fun pauseAudio() {
+        logEvent("click_add_record_stop")
         MediaPlayerAppUtil.stopAudio()
     }
 
@@ -132,6 +134,7 @@ class RecordAudioActivity :
     }
 
     private fun saveSoundItem() {
+        logEvent("click_add_record_save_sound")
         currentSoundItem.name = binding.edtName.text.toString()
         if (currentSoundItem.name!!.isEmpty()) {
             Toast.makeText(this, getString(R.string.name_sound_is_empty), Toast.LENGTH_SHORT).show()

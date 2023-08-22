@@ -47,6 +47,7 @@ class CreateSoundActivity :
     override fun addEvent() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.llRecordAudio.setOnClickListener {
+            logEvent("click_add_import_pms")
             if (!PermissionUtils.checkMicroPermission(this)) {
                 PermissionUtils.requestMicroPermission(this)
             } else {
@@ -55,6 +56,7 @@ class CreateSoundActivity :
 
         }
         binding.llImportAudio.setOnClickListener {
+            logEvent("click_add_record_pms")
             if (!PermissionUtils.checkReadAudioPermission(this)) {
                 PermissionUtils.requestReadAudioPermission(this)
             } else {
@@ -64,6 +66,7 @@ class CreateSoundActivity :
         binding.btnSave.setOnClickListener { saveSoundItem() }
         binding.llAudioController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
+                logEvent("click_add_play")
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
@@ -76,6 +79,7 @@ class CreateSoundActivity :
     }
 
     private fun saveSoundItem() {
+        logEvent("click_add_save_sound")
         currentSoundItem.name = binding.edtName.text.toString()
         if (currentSoundItem.name!!.isEmpty()) {
             Toast.makeText(this, getString(R.string.name_sound_is_empty), Toast.LENGTH_SHORT).show()

@@ -83,8 +83,10 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                 if (key.equals(KEY_SOUND)) {
                     var soundItem = data[0] as SoundItem
                     if (soundItem.type == CREATE_SOUND_TYPE) {
+                        logEvent("click_add_create_new")
                         startActivity(Intent(activity, CreateSoundActivity::class.java))
                     } else {
+                        logEvent("click_add_open_audio")
                         var intent = Intent(activity, PlaySoundActivity::class.java)
                         intent.putExtra(KEY_SOUND_ITEM_DATA, soundItem)
                         startActivity(intent)
@@ -105,6 +107,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
 
     override fun addEvent() {
         binding.llCreateSound.setOnClickListener {
+            logEvent("click_add_create_sound")
             startActivity(Intent(activity, CreateSoundActivity::class.java))
         }
     }

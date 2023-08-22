@@ -2,6 +2,8 @@ package com.mtg.tool.findmyphone.main.dialog
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.mtg.tool.findmyphone.base.BaseDialog
 import com.mtg.tool.findmyphone.databinding.DialogRecordPermissionBinding
 
@@ -18,12 +20,15 @@ open class RecordPermissionDialog(context: Context, val callback: (Boolean) -> U
     }
     private fun addEvent() {
         binding.btnDeny.setOnClickListener {
+            logEvent("click_add_record_pms_deny")
             callback.invoke(false)
             dismiss()
         }
         binding.btnAllow.setOnClickListener {
+            logEvent("click_add_record_pms_allow")
             callback.invoke(true)
             dismiss()
         }
     }
+
 }

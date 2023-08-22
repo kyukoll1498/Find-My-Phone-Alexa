@@ -19,10 +19,12 @@ open class ReadAudioPermissionDialog(context: Context, val callback: (Boolean) -
     }
     private fun addEvent() {
         binding.btnDeny.setOnClickListener {
+            logEvent("click_add_import_pms_deny")
             callback.invoke(false)
             dismiss()
         }
         binding.btnAllow.setOnClickListener {
+            logEvent("click_add_import_pms_allow")
             callback.invoke(true)
             dismiss()
         }

@@ -70,6 +70,9 @@ class PlaySoundActivity :
     override fun addEvent() {
         binding.llController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
+                if (currentSoundItem.type == IMPORT_SOUND_TYPE) {
+                    logEvent("click_add_audio_play")
+                }
                 logEvent("click_detail_play")
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
@@ -128,6 +131,10 @@ class PlaySoundActivity :
             }
         }
         binding.tvApply.setOnClickListener {
+            if (currentSoundItem.type == IMPORT_SOUND_TYPE) {
+                logEvent("click_add_audio_apply")
+            }
+            logEvent("click_detail_apply")
             saveSoundAndDuration()
             Toast.makeText(this, "Save successfully!", Toast.LENGTH_SHORT).show()
 
@@ -148,6 +155,7 @@ class PlaySoundActivity :
         binding.ivDelete.setOnClickListener {
             DeleteDialog(this@PlaySoundActivity, binding.tvName.text.toString()){
                 if (it) {
+                    logEvent("click_add_audio_delete")
                     currentSoundItem.soundPath?.let { it1 -> AppRepository.deleteSound(it1) }
                     sendBroadcast(Intent(ACTION_UPDATE_AUDIO_IMPORT))
                     finish()
