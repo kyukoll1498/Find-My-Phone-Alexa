@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">拍手して紛失した携帯電話を簡単に見つけます</string>
     <string name="text_on_boarding_2">暗闇の中で懐中電灯</string>
     <string name="text_on_boarding_3">選べる面白いサウンド</string>
     <string name="get_started">始めましょう</string>
-    <string name="this_action_can_contain_ads">このアクションには広告が含まれる場合があります...</string>
+    <string name="this_action_can_contain_ads">このアクションには広告が含まれる場合があります…</string>
     <string name="do_you_like_our_app">私たちのアプリは気に入っていますか?</string>
-    <string name="write_your_feedback">フィードバックを書いてください...</string>
+    <string name="write_your_feedback">フィードバックを書いてください…</string>
     <string name="first_content_rate">私たちはより良いユーザーエクスペリエンスを目指して取り組んでいます。</string>
     <string name="second_content_rate">評価していただければ幸いです。</string>
     <string name="thank_you">ありがとう</string>

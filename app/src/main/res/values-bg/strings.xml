@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">Пляскайте, за да намерите лесно изгубения телефон</string>
     <string name="text_on_boarding_2">Фенерче в тъмното</string>
     <string name="text_on_boarding_3">Смешни звуци за избор</string>
     <string name="get_started">Първи стъпки</string>
-    <string name="this_action_can_contain_ads">Това действие може да съдържа реклами...</string>
+    <string name="this_action_can_contain_ads">Това действие може да съдържа реклами…</string>
     <string name="do_you_like_our_app">Харесвате ли нашето приложение?</string>
-    <string name="write_your_feedback">Напишете вашето мнение...</string>
+    <string name="write_your_feedback">Напишете вашето мнение…</string>
     <string name="first_content_rate">Работим усилено за по-добро потребителско изживяване.</string>
     <string name="second_content_rate">Ще сме много благодарни, ако можете да ни оцените.</string>
     <string name="thank_you">Благодаря ти</string>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">Bate din palme pentru a găsi cu ușurință telefonul pierdut</string>
     <string name="text_on_boarding_2">Lanterna în întuneric</string>
     <string name="text_on_boarding_3">Sunete amuzante de ales</string>
     <string name="get_started">Incepe</string>
-    <string name="this_action_can_contain_ads">Această acțiune poate conține reclame...</string>
+    <string name="this_action_can_contain_ads">Această acțiune poate conține reclame…</string>
     <string name="do_you_like_our_app">Îți place aplicația noastră?</string>
     <string name="write_your_feedback">Scrieți feedbackul dvs....</string>
     <string name="first_content_rate">Lucrăm din greu pentru o experiență mai bună pentru utilizator.</string>
@@ -79,7 +78,7 @@
     <string name="permission">PERMISIUNE</string>
     <string name="allow_permission_to_access_microphone_audio_files">Permiteți permisiunea de a accesa microfonul. fișiere audio</string>
     <string name="txt_settings">SETĂRI</string>
-    <string name="before_activating_set_flashlight_adjust_volume">Înainte de activare, setați lanterna, reglați volumul...</string>
+    <string name="before_activating_set_flashlight_adjust_volume">Înainte de activare, setați lanterna, reglați volumul…</string>
     <string name="clap_to_find">Bate din palme pentru a găsi</string>
     <string name="my_phone">Telefonul meu</string>
 

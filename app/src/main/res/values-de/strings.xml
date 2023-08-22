@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">Klatschen Sie, um das verlorene Telefon leicht zu finden</string>
     <string name="text_on_boarding_2">Taschenlampe im Dunkeln</string>
     <string name="text_on_boarding_3">Lustige Sounds zur Auswahl</string>
     <string name="get_started">Loslegen</string>
-    <string name="this_action_can_contain_ads">Diese Aktion kann Werbung enthalten...</string>
+    <string name="this_action_can_contain_ads">Diese Aktion kann Werbung enthalten…</string>
     <string name="do_you_like_our_app">Gefällt Ihnen unsere App?</string>
-    <string name="write_your_feedback">Schreiben Sie Ihr Feedback...</string>
+    <string name="write_your_feedback">Schreiben Sie Ihr Feedback…</string>
     <string name="first_content_rate">Wir arbeiten hart an einer besseren Benutzererfahrung.</string>
     <string name="second_content_rate">Wir würden uns sehr freuen, wenn Sie uns bewerten könnten.</string>
     <string name="thank_you">Danke</string>

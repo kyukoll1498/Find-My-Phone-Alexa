@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">拍拍即可轻松找到丢失的手机</string>
     <string name="text_on_boarding_2">黑暗中的手电筒</string>
