@@ -1,6 +1,5 @@
 package com.mtg.tool.findmyphone.main.fragment
 
-import android.animation.Animator
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
