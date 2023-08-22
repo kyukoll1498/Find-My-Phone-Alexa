@@ -162,7 +162,8 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                         txtInactive.visibility = invisible
                         llTvInactive.visibility = visible
                         tvInactive.visibility = invisible
-                        lavClick.pauseAnimation()
+                        lavClickInactive.visibility = invisible
+                        lavClickActive.visibility = visible
                         classesApp!!.save("StopService", "0")
                         context?.let {
                             startForegroundService(
@@ -191,7 +192,9 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             txtActive.visibility = invisible
             tvInactive.visibility = visible
             llTvInactive.visibility = invisible
-            lavClick.resumeAnimation()
+            lavClickInactive.visibility = visible
+            lavClickInactive.resumeAnimation()
+            lavClickActive.visibility = invisible
             FeatureClapManager.getInstance(requireContext()).apply {
                 stopAll()
             }
