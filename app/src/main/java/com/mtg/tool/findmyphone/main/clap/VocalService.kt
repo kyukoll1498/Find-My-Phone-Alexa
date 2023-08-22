@@ -11,7 +11,6 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
-import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.widget.RemoteViews
@@ -30,7 +29,7 @@ class VocalService : Service() {
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
 
-    private lateinit var detectClapClap:DetectClapClap
+    private lateinit var detectClapClap: DetectClapClap
 
 
     override fun onBind(intent: Intent): IBinder? {
@@ -66,11 +65,18 @@ class VocalService : Service() {
 
     private fun startDetection() {
         try {
+            FeatureClapManager.getInstance(applicationContext).setCallback {
+                if (it) {
+                    restartDetection()
+                } else {
+                    stopDetection()
+                }
+            }
             detectClapClap = DetectClapClap(applicationContext, object : IDetect {
                 override fun onDetected() {
                     Log.d("ClapCount", "1")
                     FeatureClapManager.getInstance(applicationContext).playAll()
-                    FeatureClapManager.getInstance(applicationContext).setCallback{restartDetection()}
+
                 }
             })
             detectClapClap.listen()
@@ -80,6 +86,11 @@ class VocalService : Service() {
             Toast.makeText(this, "Recorder not supported by this device", Toast.LENGTH_LONG).show()
         }
     }
+
+    private fun stopDetection() {
+        detectClapClap.stopRecord()
+    }
+
     private fun restartDetection() {
         detectClapClap.continueRecord()
     }

@@ -1,5 +1,6 @@
 package com.mtg.tool.findmyphone.main.fragment
 
+import android.animation.Animator
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
@@ -11,7 +12,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.startForegroundService
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
@@ -38,7 +38,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     private var mPermCAm: Boolean? = null
     private lateinit var detectClapClap: DetectClapClap
     private var isCircleActiveVisible = false
-
+    var isAnimationPaused = false
     override fun initView() {
         isMyServiceRunning()
         classesApp = ClassesApp(requireContext())
@@ -162,6 +162,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                         txtInactive.visibility = invisible
                         llTvInactive.visibility = visible
                         tvInactive.visibility = invisible
+                        lavClick.pauseAnimation()
                         classesApp!!.save("StopService", "0")
                         context?.let {
                             startForegroundService(
@@ -181,25 +182,6 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         }
     }
 
-//    open fun turnOffDetective() {
-//        val visible = View.VISIBLE
-//        val invisible = View.INVISIBLE
-//        binding.apply {
-//            ivCircleActive.visibility = invisible
-//            txtInactive.visibility = visible
-//            txtActive.visibility = invisible
-//            tvInactive.visibility = visible
-//            llTvInactive.visibility = invisible
-//            FeatureClapManager.getInstance(requireContext()).apply {
-//                stopSound()
-//                turnOffVibration()
-//                turnOffFlash()
-//            }
-//            activity?.stopService(Intent(context, VocalService::class.java))
-//            Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
-//        }
-//    }
-
     open fun turnOffDetective() {
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
@@ -209,10 +191,9 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             txtActive.visibility = invisible
             tvInactive.visibility = visible
             llTvInactive.visibility = invisible
+            lavClick.resumeAnimation()
             FeatureClapManager.getInstance(requireContext()).apply {
-                stopSound()
-                turnOffVibration()
-                turnOffFlash()
+                stopAll()
             }
             activity?.stopService(Intent(context, VocalService::class.java))
             Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
