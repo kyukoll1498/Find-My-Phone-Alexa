@@ -3,10 +3,8 @@ package com.mtg.tool.findmyphone.main.activity
 import android.content.Intent
 import android.graphics.Paint
 import androidx.viewpager2.widget.ViewPager2
-import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
-import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
@@ -61,19 +59,8 @@ class OnBoardActivity :
 
         binding.tvNext.setOnClickListener {
             if (binding.viewpagerOnboard.currentItem == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
-
                 startActivity(Intent(this@OnBoardActivity, MainActivity::class.java))
-                AdmobManager.getInstance().showInterstitial(
-                    this,
-                    AdCache.getInstance().interGuide,
-                    object : AdCallback() {
-                        override fun onAdClosed() {
-                            super.onAdClosed()
-                            AdCache.getInstance().interGuide = null
-                            finish()
-                        }
-                    })
-
+                finish()
             } else {
                 binding.viewpagerOnboard.currentItem++
             }
