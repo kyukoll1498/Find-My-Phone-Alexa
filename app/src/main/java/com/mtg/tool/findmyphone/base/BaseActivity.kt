@@ -105,16 +105,15 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
      * Log event to firebase
      */
     open fun logEvent(value: String) {
-        if (firebaseAnalytics == null) {
-            return
-        }
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         try {
             Log.d("android_log", "logEvent: $value")
             val bundle = Bundle()
             bundle.putString("EVENT", value)
-            firebaseAnalytics!!.logEvent(value, bundle)
+            firebaseAnalytics.logEvent(value, bundle)
         } catch (e: Exception) {
             e.printStackTrace()
+
         }
     }
 

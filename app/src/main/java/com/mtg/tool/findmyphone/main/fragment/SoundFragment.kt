@@ -16,6 +16,7 @@ import com.mtg.tool.findmyphone.databinding.FragmentSoundBinding
 import com.mtg.tool.findmyphone.main.activity.MainActivity
 import com.mtg.tool.findmyphone.main.activity.PlaySoundActivity
 import com.mtg.tool.findmyphone.main.adapter.SoundAdapter
+import kotlin.math.log
 
 class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::inflate) {
     private lateinit var soundAdapter: SoundAdapter
@@ -39,8 +40,10 @@ class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::i
         }
         soundAdapter.mCallback = OnActionCallback { key, data ->
             if (key.equals(KEY_SOUND)) {
-                var soundItem = data[0] as SoundItem
-                var intent = Intent(activity, PlaySoundActivity::class.java)
+                logEvent("click_sound_play")
+                val soundItem = data[0] as SoundItem
+                logEvent("click_sound_"+soundItem.name?.replace(" ", "_"))
+                val intent = Intent(activity, PlaySoundActivity::class.java)
                 intent.putExtra(KEY_SOUND_ITEM_DATA, soundItem)
                 startActivity(intent)
             }

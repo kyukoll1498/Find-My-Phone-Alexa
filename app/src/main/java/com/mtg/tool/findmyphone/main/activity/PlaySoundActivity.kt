@@ -67,25 +67,31 @@ class PlaySoundActivity :
     override fun addEvent() {
         binding.llController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
+                logEvent("click_detail_play")
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
             } else if (binding.tvPlayerController.text == getString(R.string.pause)) {
+                logEvent("click_detail_pause")
                 pauseAudio()
                 binding.tvPlayerController.text = getString(R.string.play)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
             }
         }
         binding.tvDuration15s.setOnClickListener {
+            logEvent("click_detail_15s")
             updateDuration(15)
         }
         binding.tvDuration30s.setOnClickListener {
+            logEvent("click_detail_30s")
             updateDuration(30)
         }
         binding.tvDuration1m.setOnClickListener {
+            logEvent("click_detail_1m")
             updateDuration(60)
         }
         binding.tvDuration2m.setOnClickListener {
+            logEvent("click_detail_2m")
             updateDuration(120)
         }
 
@@ -105,12 +111,14 @@ class PlaySoundActivity :
         })
 
         binding.btnVolumeDown.setOnClickListener {
+            logEvent("click_detail_volume_down")
             if (volume != 0) {
                 updateVolume(--volume)
                 binding.seekBar.setProgress(volume)
             }
         }
         binding.btnVolumeUp.setOnClickListener {
+            logEvent("click_detail_volume_up")
             if (volume != max) {
                 updateVolume(++volume)
                 binding.seekBar.setProgress(volume)

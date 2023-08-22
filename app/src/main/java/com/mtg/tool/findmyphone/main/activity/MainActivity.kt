@@ -38,26 +38,32 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun addEvent() {
         binding.btnHome.setOnClickListener {
+            logEvent("click_home")
             changeUITools(binding.viewpagerMain.currentItem, 0)
             binding.viewpagerMain.setCurrentItem(0, false)
         }
         binding.btnSound.setOnClickListener {
+            logEvent("click_sound")
             changeUITools(binding.viewpagerMain.currentItem, 1)
             binding.viewpagerMain.setCurrentItem(1, false)
         }
         binding.btnAdd.setOnClickListener {
+            logEvent("click_add")
             changeUITools(binding.viewpagerMain.currentItem, 2)
             binding.viewpagerMain.setCurrentItem(2, false)
         }
         binding.btnSetting.setOnClickListener {
+            logEvent("click_setting")
             changeUITools(binding.viewpagerMain.currentItem, 3)
             binding.viewpagerMain.setCurrentItem(3, false)
         }
         binding.btnDrawer.setOnClickListener {
+            logEvent("click_menu")
             binding.drawerLayout.openDrawer(GravityCompat.START)
             EventLogger.getInstance()?.logEvent("click_main_setting")
         }
         binding.btnHowToUse.setOnClickListener {
+            logEvent("click_guide")
             startActivity(Intent(this, HowToUseActivity::class.java))
         }
 
@@ -168,6 +174,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         if (intent.action == ACTION_NOTIFICATION_CLICKED_SERVICE) {
+            logEvent("click_noti_deactivate")
             stopService(Intent(this, VocalService::class.java))
             try {
                 homeFragment.turnOffDetective()

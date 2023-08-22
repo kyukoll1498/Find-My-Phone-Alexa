@@ -155,6 +155,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             if (PermissionUtils.checkMicroPermission(requireContext())) {
                 isCircleActiveVisible = !isCircleActiveVisible
                 if (isCircleActiveVisible) {
+                    logEvent("click_home_activate")
                     binding.apply {
                         ivCircleActive.visibility = visible
                         txtActive.visibility = visible
@@ -172,6 +173,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                             .show()
                     }
                 } else {
+                    logEvent("click_home_deactivate")
                     turnOffDetective()
 
                 }

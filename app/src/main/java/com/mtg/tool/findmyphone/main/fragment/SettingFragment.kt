@@ -74,42 +74,49 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
 
     override fun addEvent() {
         binding.rbFlashDefault.setOnClickListener {
+            logEvent("click_set_flash_default")
             VibrateFlashThread(
                 requireContext(),
                 MODE_FLASH_DEFAULT
             ).start()
         }
         binding.rbFlashDisco.setOnClickListener {
+            logEvent("click_set_flash_disco")
             VibrateFlashThread(
                 requireContext(),
                 MODE_FLASH_DISCO
             ).start()
         }
         binding.rbFlashSos.setOnClickListener {
+            logEvent("click_set_flash_SOS")
             VibrateFlashThread(
                 requireContext(),
                 MODE_FLASH_SOS
             ).start()
         }
         binding.rbVibrateDefault.setOnClickListener {
+            logEvent("click_set_vibrate_default")
             VibrateFlashThread(
                 requireContext(),
                 MODE_VIBRATE_DEFAULT
             ).start()
         }
         binding.rbVibrateStrong.setOnClickListener {
+            logEvent("click_set_vibrate_strong")
             VibrateFlashThread(
                 requireContext(),
                 MODE_VIBRATE_STRONG
             ).start()
         }
         binding.rbVibrateHeart.setOnClickListener {
+            logEvent("click_set_vibrate_heartbeat")
             VibrateFlashThread(
                 requireContext(),
                 MODE_VIBRATE_HEART
             ).start()
         }
         binding.rbVibrateTicktock.setOnClickListener {
+            logEvent("click_set_vibrate_ticktock")
             VibrateFlashThread(
                 requireContext(),
                 MODE_VIBRATE_TICKTOCK
@@ -120,8 +127,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         }
         binding.sbFlash.setOnCheckedChangeListener { _, isChecked ->
             if (!isChecked) {
+                logEvent("click_set_flash_off")
                 lockFlash()
             } else {
+                logEvent("click_set_flash_on")
                 unlockFlash()
             }
         }
@@ -131,14 +140,19 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         }
         binding.sbVibrate.setOnCheckedChangeListener { _, isChecked ->
             if (!isChecked) {
+                logEvent("click_set_vibrate_off")
                 lockVibrate()
             } else {
+                logEvent("click_set_vibrate_on")
                 unlockVibrate()
             }
         }
         binding.sbSound.setOnCheckedChangeListener { _, isChecked ->
             if (!isChecked) {
+                logEvent("click_set_sound_off")
                 FeatureClapManager.getInstance(requireContext()).stopSound()
+            } else {
+                logEvent("click_set_sound_on")
             }
         }
 

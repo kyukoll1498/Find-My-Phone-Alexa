@@ -1,14 +1,17 @@
 package com.mtg.tool.findmyphone.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 
 
-abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : Fragment() {
+abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
+    Fragment() {
     val binding: B by lazy { bindingFactory(layoutInflater) }
 
     open fun loadAds() {}
@@ -30,5 +33,18 @@ abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater
         initView()
         addEvent()
         loadAds()
+    }
+
+    open fun logEvent(value: String) {
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(requireContext())
+        try {
+            Log.d("android_log", "logEvent: $value")
+            val bundle = Bundle()
+            bundle.putString("EVENT", value)
+            firebaseAnalytics.logEvent(value, bundle)
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+        }
     }
 }
