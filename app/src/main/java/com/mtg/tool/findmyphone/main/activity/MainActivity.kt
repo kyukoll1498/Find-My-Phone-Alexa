@@ -5,7 +5,9 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.common.control.manager.AdmobManager
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
+import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
@@ -26,6 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         setUpRate()
         setupViewpager()
         setupDrawerNavigation()
+        AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_home, binding.frAd)
     }
 
     private var homeFragment = HomeFragment()

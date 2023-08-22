@@ -10,8 +10,10 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.common.control.manager.AdmobManager
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
+import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
 import com.mtg.tool.findmyphone.R
@@ -46,6 +48,7 @@ class PlaySoundActivity :
         setUpWithFileSound()
         setSeekbarView()
         setDetailCommandView()
+        AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
     }
 
     private fun setUpUI() {

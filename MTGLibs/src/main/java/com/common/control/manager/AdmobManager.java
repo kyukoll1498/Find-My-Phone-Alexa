@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -26,6 +27,7 @@ import com.adjust.sdk.AdjustConfig;
 import com.common.control.R;
 import com.common.control.dialog.PrepareLoadingAdsDialog;
 import com.common.control.interfaces.AdCallback;
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
@@ -146,6 +148,19 @@ public class AdmobManager {
         }
         AdRequest.Builder builder = new AdRequest.Builder();
         return builder.build();
+    }
+
+    public AdRequest getAdCollapsibleBannerRequest() {
+        if (!hasAds || PurchaseManager.getInstance().isPurchased()) {
+            return null;
+        }
+//        AdRequest.Builder builder = new AdRequest.Builder();
+//        return builder.build();
+        Bundle extras = new Bundle();
+        extras.putString("collapsible", "bottom");
+        AdRequest.Builder adRequest = new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras);
+
+        return adRequest.build();
     }
 
     public void loadInterAds(Activity context, String id, AdCallback callback) {
@@ -359,6 +374,47 @@ public class AdmobManager {
         }
     }
 
+    public void loadCollapsibleBanner(final Activity mActivity, String id, final FrameLayout adContainer) {
+        log("Request Banner :" + id);
+
+        AdRequest request = getAdCollapsibleBannerRequest();
+        if (request == null) {
+            adContainer.removeAllViews();
+            adContainer.setVisibility(View.GONE);
+            return;
+        }
+        try {
+            AdView adView = new AdView(mActivity);
+            adView.setAdUnitId(id);
+            AdSize adSize = getCollapsibleBannerAdSize(mActivity);
+            adView.setAdSize(adSize);
+            adView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            adView.loadAd(request);
+            adView.setAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                    super.onAdFailedToLoad(loadAdError);
+                    adContainer.removeAllViews();
+                    adContainer.setVisibility(View.GONE);
+                }
+
+
+                @Override
+                public void onAdLoaded() {
+                    adContainer.removeAllViews();
+                    adContainer.setVisibility(View.VISIBLE);
+                    adContainer.addView(adView);
+                    adView.setOnPaidEventListener(adValue -> {
+                        trackRevenue(adValue);
+                    });
+                }
+
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private AdSize getAdSize(Activity mActivity) {
         Display display = mActivity.getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -370,6 +426,20 @@ public class AdmobManager {
         int adWidth = (int) (widthPixels / density);
 
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(mActivity, adWidth);
+
+    }
+
+    private AdSize getCollapsibleBannerAdSize(Activity mActivity) {
+        Display display = mActivity.getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float widthPixels = outMetrics.widthPixels;
+        float density = outMetrics.density;
+
+        int adWidth = (int) (widthPixels / density);
+
+        return AdSize.getLandscapeAnchoredAdaptiveBannerAdSize(mActivity, adWidth);
 
     }
 
