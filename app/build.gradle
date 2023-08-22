@@ -77,8 +77,7 @@ android {
             addConstantTo(owner, "native_language", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_sound", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "inter_sound", "ca-app-pub-3940256099942544/1033173712")
-            
-            addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3940256099942544/2014213617")
+
 //            addConstantTo(owner, "native_sounds_dog", "ca-app-pub-3940256099942544/2247696110")
 //            addConstantTo(owner, "banner_training_dog", "ca-app-pub-3940256099942544/6300978111")
 //            addConstantTo(owner, "native_setting_fakecall", "ca-app-pub-3940256099942544/2247696110")
@@ -197,5 +196,4 @@ dependencies {
     //Handle Record Sound
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/TarsosDSP-1.7.jar')
-//    implementation files('libs/musicg-1.4.2.0.jar')
 }
