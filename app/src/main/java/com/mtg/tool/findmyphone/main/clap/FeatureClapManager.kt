@@ -29,12 +29,12 @@ class FeatureClapManager(private val context: Context) {
     private var runnable = Runnable {
         stopSound()
         VibrateFlashThread.stopAll()
-        callback.invoke()
+        callback.invoke(true)
     }
     private val audioManager: AudioManager by lazy {
         context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     }
-    private lateinit var callback: () -> Unit
+    private lateinit var callback: (Boolean) -> Unit
 
     fun playSoundSaveGson() {
         val statusPlay = AppPreferences.instance.hasSound
@@ -84,6 +84,8 @@ class FeatureClapManager(private val context: Context) {
     }
 
     fun stopSound() {
+        callback.invoke(false)
+        handler.removeCallbacks(runnable)
         if (mediaPlayer != null && mediaPlayer!!.isPlaying) {
             mediaPlayer!!.stop()
             mediaPlayer!!.release()
@@ -196,12 +198,13 @@ class FeatureClapManager(private val context: Context) {
         playSoundSaveGson()
     }
 
-    fun setCallback(callback: () -> Unit) {
+    fun setCallback(callback: (Boolean) -> Unit) {
         this.callback = callback
     }
 
     fun stopAll() {
         handler.removeCallbacks(runnable)
+        callback.invoke(false)
         turnOffFlash()
         turnOffVibration()
         stopSound()

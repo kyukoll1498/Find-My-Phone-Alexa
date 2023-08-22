@@ -67,6 +67,9 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
         mIsRecording = true
         listen()
     }
+    open fun stopRecord() {
+        mIsRecording = false
+    }
 
     val TAG = "~~~"
     private var listenJob: Job? = null
