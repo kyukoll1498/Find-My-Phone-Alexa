@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">صفق للعثور على الهاتف المفقود بسهولة</string>
     <string name="text_on_boarding_2">مصباح يدوي في الظلام</string>
     <string name="text_on_boarding_3">أصوات مضحكة للاختيار</string>
     <string name="get_started">البدء</string>
-    <string name="this_action_can_contain_ads">يمكن أن يحتوي هذا الإجراء على إعلانات ...</string>
+    <string name="this_action_can_contain_ads">يمكن أن يحتوي هذا الإجراء على إعلانات …</string>
     <string name="do_you_like_our_app">هل يعجبك تطبيقنا؟</string>
-    <string name="write_your_feedback">اكتب ملاحظاتك ...</string>
+    <string name="write_your_feedback">اكتب ملاحظاتك …</string>
     <string name="first_content_rate">نحن نعمل بجد من أجل تجربة مستخدم أفضل.</string>
     <string name="second_content_rate">سنكون ممتنين للغاية إذا كان بإمكانك تقييمنا.</string>
     <string name="thank_you">شكرًا لك</string>
@@ -56,7 +55,7 @@
     <string name="txt_touch_here_notify">المس هنا لإلغاء التنشيط</string>
     <string name="touch_here_to_deactivate">المس هنا لإلغاء التنشيط</string>
     <string name="clap_to_find_your_phone_is_running">صفق لتجد أن هاتفك يعمل</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">لا توجد ملفات. \ n دعنا نحاول <font color = "#F06A33"> إنشاء ملفات جديدة </font> الآن.</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">لا توجد ملفات. \ n دعنا نحاول <font color="#F06A33"> إنشاء ملفات جديدة </font> الآن.</string>
     <string name="create_sound">خلق الصوت</string>
     <string name="import_audio">استيراد الصوت</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone">اسمح لـ <b> Clap To Find Your Phone </b> بالوصول إلى الميكروفون</string>
@@ -82,7 +81,7 @@
     <string name="before_activating_set_flashlight_adjust_volume">قبل التنشيط ، اضبط مصباح يدوي ، واضبط مستوى الصوت ..</string>
     <string name="clap_to_find">التصفيق للبحث</string>
     <string name="my_phone">هاتفي</string>
-    <string name="activation_text2">انقر <font color = "# F06A33"> زر التنشيط </font> و <font color = "# F06A33"> التصفيق </font> للعثور على هاتفك</string>
+    <string name="activation_text2">انقر <font color="#F06A33"> زر التنشيط </font> و <font color="#F06A33"> التصفيق </font> للعثور على هاتفك</string>
     <string name="save">يحفظ</string>
     <string name="rename">إعادة تسمية</string>
     <string name="enter_name">أدخل الاسم</string>

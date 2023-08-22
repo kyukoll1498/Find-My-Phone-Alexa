@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
+
     <string name="text_on_boarding_1">Vỗ tay để tìm điện thoại bị mất một cách dễ dàng</string>
     <string name="text_on_boarding_2">Đèn pin trong bóng tối</string>
     <string name="text_on_boarding_3">Âm thanh vui nhộn để lựa chọn</string>
     <string name="get_started">Bắt đầu</string>
-    <string name="this_action_can_contain_ads">Hành động này có thể chứa quảng cáo...</string>
+    <string name="this_action_can_contain_ads">Hành động này có thể chứa quảng cáo…</string>
     <string name="do_you_like_our_app">Bạn có thích ứng dụng của chúng tôi?</string>
-    <string name="write_your_feedback">Viết phản hồi của bạn...</string>
+    <string name="write_your_feedback">Viết phản hồi của bạn…</string>
     <string name="first_content_rate">Chúng tôi đang làm việc chăm chỉ để mang lại trải nghiệm người dùng tốt hơn.</string>
     <string name="second_content_rate">Chúng tôi đánh giá rất cao nếu bạn có thể đánh giá chúng tôi.</string>
     <string name="thank_you">Cảm ơn</string>
@@ -16,17 +16,17 @@
     <string name="learn_more">Tìm hiểu thêm</string>
     <string name="rate_us">Đánh giá chúng tôi</string>
     <string name="privacy">Sự riêng tư</string>
-    <string name="feedback_us">phản hồi chúng tôi</string>
+    <string name="feedback_us">Phản hồi chúng tôi</string>
     <string name="share">Chia sẻ</string>
     <string name="settings">Cài đặt</string>
     <string name="home">Trang chủ</string>
     <string name="add">Thêm vào</string>
     <string name="sound">Âm thanh</string>
     <string name="next">Kế tiếp</string>
-    <string name="trumpet">kèn</string>
+    <string name="trumpet">Kèn</string>
     <string name="police_whistle">Còi cảnh sát</string>
     <string name="party_horn">Đảng Sừng</string>
-    <string name="door_bell">chuông cửa</string>
+    <string name="door_bell">Chuông cửa</string>
     <string name="car_horn">Còi xe</string>
     <string name="hello">Xin chào</string>
     <string name="whistle">Còi</string>
@@ -43,7 +43,7 @@
     <string name="volume">Âm lượng</string>
     <string name="duration">Khoảng thời gian</string>
     <string name="apply">Áp dụng</string>
-    <string name="flashlight">đèn pin</string>
+    <string name="flashlight">Đèn pin</string>
     <string name="txt_default">Mặc định</string>
     <string name="disco_mode">Chế độ vũ trường</string>
     <string name="sos_mode">Chế độ SOS</string>

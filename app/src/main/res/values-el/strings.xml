@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">Χτυπήστε παλαμάκια για να βρείτε εύκολα το χαμένο τηλέφωνο</string>
     <string name="text_on_boarding_2">Φακός στο σκοτάδι</string>
     <string name="text_on_boarding_3">Αστείοι ήχοι για να διαλέξετε</string>
     <string name="get_started">Ξεκίνα</string>
-    <string name="this_action_can_contain_ads">Αυτή η ενέργεια μπορεί να περιέχει διαφημίσεις...</string>
+    <string name="this_action_can_contain_ads">Αυτή η ενέργεια μπορεί να περιέχει διαφημίσεις…</string>
     <string name="do_you_like_our_app">Σας αρέσει η εφαρμογή μας;</string>
-    <string name="write_your_feedback">Γράψτε τα σχόλιά σας...</string>
+    <string name="write_your_feedback">Γράψτε τα σχόλιά σας…</string>
     <string name="first_content_rate">Εργαζόμαστε σκληρά για μια καλύτερη εμπειρία χρήστη.</string>
     <string name="second_content_rate">Θα εκτιμούσαμε πολύ αν μπορείτε να μας αξιολογήσετε.</string>
     <string name="thank_you">Ευχαριστώ</string>

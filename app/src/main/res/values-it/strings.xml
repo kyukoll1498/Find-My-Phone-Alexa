@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">Batti le mani per trovare facilmente il telefono smarrito</string>
     <string name="text_on_boarding_2">Torcia elettrica nel buio</string>
     <string name="text_on_boarding_3">Suoni divertenti da scegliere</string>
     <string name="get_started">Iniziare</string>
-    <string name="this_action_can_contain_ads">Questa azione può contenere annunci...</string>
+    <string name="this_action_can_contain_ads">Questa azione può contenere annunci…</string>
     <string name="do_you_like_our_app">Ti piace la nostra App?</string>
-    <string name="write_your_feedback">Scrivi il tuo feedback...</string>
+    <string name="write_your_feedback">Scrivi il tuo feedback…</string>
     <string name="first_content_rate">Stiamo lavorando sodo per una migliore esperienza utente.</string>
     <string name="second_content_rate">Ti saremmo molto grati se potessi valutarci.</string>
     <string name="thank_you">Grazie</string>
@@ -79,7 +78,7 @@
     <string name="permission">AUTORIZZAZIONE</string>
     <string name="allow_permission_to_access_microphone_audio_files">Consenti l\'autorizzazione ad accedere al microfono. file audio</string>
     <string name="txt_settings">IMPOSTAZIONI</string>
-    <string name="before_activating_set_flashlight_adjust_volume">Prima dell\'attivazione, impostare la torcia, regolare il volume...</string>
+    <string name="before_activating_set_flashlight_adjust_volume">Prima dell\'attivazione, impostare la torcia, regolare il volume…</string>
     <string name="clap_to_find">Batti le mani per trovare</string>
     <string name="my_phone">Il mio telefono</string>
 

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">Bata palmas para encontrar o telefone perdido facilmente</string>
     <string name="text_on_boarding_2">Lanterna no escuro</string>
     <string name="text_on_boarding_3">Sons engraçados para escolher</string>
     <string name="get_started">Iniciar</string>
-    <string name="this_action_can_contain_ads">Esta ação pode conter anúncios...</string>
+    <string name="this_action_can_contain_ads">Esta ação pode conter anúncios…</string>
     <string name="do_you_like_our_app">Você gosta do nosso aplicativo?</string>
-    <string name="write_your_feedback">Escreva seu comentário...</string>
+    <string name="write_your_feedback">Escreva seu comentário…</string>
     <string name="first_content_rate">Estamos trabalhando duro para uma melhor experiência do usuário.</string>
     <string name="second_content_rate">Agradeceríamos muito se você pudesse nos avaliar.</string>
     <string name="thank_you">Obrigado</string>

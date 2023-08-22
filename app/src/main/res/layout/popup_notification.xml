@@ -21,7 +21,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_9sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:src="@drawable/ic_clap_notify" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:textColor="#404040"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
             android:marqueeRepeatLimit="marquee_forever" />
     </LinearLayout>
