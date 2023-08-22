@@ -2,9 +2,8 @@
 
 <com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:background="@drawable/bg_radius_top_12"
+    android:background="@drawable/bg_radius_12"
     android:backgroundTint="#EFEFEF"
     android:layout_height="wrap_content">
 
@@ -26,16 +25,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_large_native"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="#EFEFEF"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
 
 
+            <TextView
+                android:id="@+id/ad_call_to_action"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/bg_radius_8"
+                android:backgroundTint="#5987FF"
+                android:elevation="5dp"
+                android:fontFamily="@font/roboto"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="MUA NGAY"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -106,47 +122,12 @@
                 android:layout_marginTop="@dimen/_4sdp"
                 android:fontFamily="@font/roboto"
                 android:singleLine="true"
+                android:layout_marginBottom="@dimen/_12sdp"
                 android:paddingEnd="@dimen/_16sdp"
                 android:text="interdum. Lorem ipsum dolor sit amet, conse adipiscing elit."
                 android:textColor="#303030"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_10sdp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp">
-
-                <com.google.android.gms.ads.nativead.MediaView
-                    android:id="@+id/ad_media"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:background="@drawable/mdl_bg_ad_loading"
-                    android:orientation="vertical"
-                    android:backgroundTint="@color/white"
-                    app:layout_constraintDimensionRatio="16:6"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:visibility="visible" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/ad_call_to_action"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginVertical="@dimen/_4sdp"
-                android:background="@drawable/bg_radius_8"
-                android:backgroundTint="#5987FF"
-                android:elevation="5dp"
-                android:fontFamily="@font/roboto"
-                android:foreground="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:text="MUA NGAY"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_13sdp"
-                android:textStyle="bold" />
-
         </LinearLayout>
 
         <ImageView

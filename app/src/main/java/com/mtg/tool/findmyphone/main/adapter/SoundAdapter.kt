@@ -67,7 +67,7 @@ class SoundAdapter(mList: List<SoundItem?>?, context: Context?) :
                 context,
                 BuildConfig.native_sound_play,
                 binding.frAds,
-                R.layout.custom_native_language
+                R.layout.custom_native_ads_item
             )
         }
 
