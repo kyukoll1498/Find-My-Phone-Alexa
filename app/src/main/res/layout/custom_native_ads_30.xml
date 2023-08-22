@@ -6,11 +6,11 @@
     android:layout_width="fill_parent"
     android:background="@drawable/bg_radius_top_12"
     android:backgroundTint="#EFEFEF"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:layout_width="@dimen/_20sdp"
@@ -24,9 +24,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/bg_large_native"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="#EFEFEF "
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -66,10 +66,9 @@
                         android:id="@+id/ad_headline"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:paddingEnd="@dimen/_16sdp"
-                        android:gravity="center_vertical"
-                        android:layout_weight="1"
                         android:fontFamily="@font/roboto"
                         android:singleLine="true"
                         android:text="My tilte"
@@ -103,10 +102,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:fontFamily="@font/roboto"
                 android:singleLine="true"
-                android:paddingEnd="@dimen/_16sdp"
                 android:text="interdum. Lorem ipsum dolor sit amet, conse adipiscing elit."
                 android:textColor="#303030"
                 android:textFontWeight="400"
@@ -114,16 +113,16 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginTop="@dimen/_4sdp">
 
                 <com.google.android.gms.ads.nativead.MediaView
                     android:id="@+id/ad_media"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="match_parent"
                     android:background="@drawable/mdl_bg_ad_loading"
                     android:orientation="vertical"
-                    android:backgroundTint="@color/white"
                     app:layout_constraintDimensionRatio="16:6"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:visibility="visible" />
@@ -132,18 +131,20 @@
             <TextView
                 android:id="@+id/ad_call_to_action"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_32sdp"
                 android:layout_gravity="center"
+                android:elevation="5dp"
+                android:layout_marginBottom="@dimen/_8sdp"
                 android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginVertical="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:background="@drawable/bg_radius_8"
                 android:backgroundTint="#5987FF"
-                android:elevation="5dp"
                 android:fontFamily="@font/roboto"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:text="MUA NGAY"
+                android:text="@string/learn_more"
                 android:textColor="@color/colorWhite"
+                android:textFontWeight="700"
                 android:textSize="@dimen/_13sdp"
                 android:textStyle="bold" />
 

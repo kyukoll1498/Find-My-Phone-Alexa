@@ -71,7 +71,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             context,
             BuildConfig.native_language,
             binding.frAd,
-            R.layout.custom_native_language
+            R.layout.custom_native_ads_30
         )
         AppOpenManager.getInstance()
             .hideNativeOrBannerWhenShowOpenApp(context as Activity?, binding.frAd)

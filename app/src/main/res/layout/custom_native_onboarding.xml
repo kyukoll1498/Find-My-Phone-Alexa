@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:background="@drawable/bg_native_blue"
@@ -141,7 +141,7 @@
         <ImageView
             android:layout_width="@dimen/_10sdp"
             android:layout_height="@dimen/_10sdp"
-            android:src="@drawable/ic_ads_blue" />
+            android:src="@drawable/ic_ads_orange" />
     </androidx.cardview.widget.CardView>
 
 </com.google.android.gms.ads.nativead.NativeAdView>
