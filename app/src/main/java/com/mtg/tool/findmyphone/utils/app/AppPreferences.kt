@@ -14,6 +14,7 @@ import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
 import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
+import com.mtg.tool.findmyphone.utils.AudioMangerUtils
 
 class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
     BasePreferences(context, context.packageName) {
@@ -85,7 +86,7 @@ class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
         }
     inline var currentVolume: Int
         get() {
-            return getInt(KEY_CURRENT_VOLUME, 17)
+            return getInt(KEY_CURRENT_VOLUME, AudioMangerUtils.getDefaultVolume(context))
         }
         set(value) {
             putInt(KEY_CURRENT_VOLUME, value)

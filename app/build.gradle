@@ -84,6 +84,10 @@ android {
 //            addConstantTo(owner, "native_setting_fakecall", "ca-app-pub-3940256099942544/2247696110")
 //            addConstantTo(owner, "reward_inter_dog_translator", "ca-app-pub-3940256099942544/5224354917")
 //            addConstantTo(owner, "inter_sound", "ca-app-pub-3940256099942544/1033173712")
+
+            addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3940256099942544/2014213617")
+            addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3940256099942544/2014213617")
+            addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3940256099942544/2014213617")
         }
         vOfficial_ {
             applicationId "com.mtg.tool.findmyphone"

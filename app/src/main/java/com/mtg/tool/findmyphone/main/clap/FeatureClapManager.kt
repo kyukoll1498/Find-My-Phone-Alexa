@@ -42,7 +42,7 @@ class FeatureClapManager(private val context: Context) {
     }
 
     fun setVolume(){
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 5, 0);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, appPreferences.currentVolume, 0);
     }
 
     private fun playSound(duration: Long, statusPlay: Boolean) {

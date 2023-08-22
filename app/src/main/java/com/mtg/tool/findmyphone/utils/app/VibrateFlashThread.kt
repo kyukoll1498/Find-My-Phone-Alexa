@@ -188,7 +188,12 @@ class VibrateFlashThread :
         vibrator = (context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?)!!
         try {
             if (delay == 0) {
-                vibrator?.vibrate(duration.toLong())
+                for (i in 0..durationSum / 1000) {
+                    vibrator?.vibrate(1000)
+                    if (!startSleep(1000)) {
+                        return
+                    }
+                }
             } else {
                 for (i in 0..durationSum / (duration + delay)) {
                     vibrator?.vibrate(duration.toLong())

@@ -187,10 +187,8 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
 
     override fun onPause() {
         super.onPause()
-        VibrateFlashThread.stopAll()
         appPreferences.hasSound = binding.sbSound.isChecked
         appPreferences.hasFlash = binding.sbFlash.isChecked
         appPreferences.hasVibrate = binding.sbVibrate.isChecked
-
     }
 }
