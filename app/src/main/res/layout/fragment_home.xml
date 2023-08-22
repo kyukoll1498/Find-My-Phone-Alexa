@@ -71,7 +71,7 @@
                 app:layout_constraintVertical_bias="0.35" />
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lav_click"
+                android:id="@+id/lav_click_inactive"
                 android:layout_width="@dimen/_107sdp"
                 android:layout_height="@dimen/_113sdp"
                 app:layout_constraintStart_toEndOf="@+id/space"
@@ -79,6 +79,17 @@
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/animation_click"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/lav_click_active"
+                android:layout_width="@dimen/_107sdp"
+                android:layout_height="@dimen/_113sdp"
+                app:layout_constraintStart_toEndOf="@+id/space"
+                app:layout_constraintTop_toBottomOf="@+id/space"
+                android:src="@drawable/ic_click"
+                android:padding="@dimen/_20sdp"
+                android:visibility="invisible"
                 tools:ignore="MissingConstraints" />
 
 
@@ -123,7 +134,7 @@
             android:fontFamily="@font/inter_medium"
             android:gravity="center_horizontal|top"
             android:lineSpacingExtra="5sp"
-            android:paddingHorizontal="@dimen/_5sdp"
+            android:padding="@dimen/_8sdp"
             android:text="@string/activation_text2"
             android:textColor="#7E7E7E"
             android:textSize="@dimen/_14sdp"

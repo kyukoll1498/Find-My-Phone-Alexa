@@ -1,6 +1,5 @@
 package com.mtg.tool.findmyphone.main.fragment
 
-import android.animation.Animator
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
@@ -162,7 +161,8 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                         txtInactive.visibility = invisible
                         llTvInactive.visibility = visible
                         tvInactive.visibility = invisible
-                        lavClick.pauseAnimation()
+                        lavClickInactive.visibility = invisible
+                        lavClickActive.visibility = visible
                         classesApp!!.save("StopService", "0")
                         context?.let {
                             startForegroundService(
@@ -191,7 +191,9 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             txtActive.visibility = invisible
             tvInactive.visibility = visible
             llTvInactive.visibility = invisible
-            lavClick.resumeAnimation()
+            lavClickInactive.visibility = visible
+            lavClickInactive.resumeAnimation()
+            lavClickActive.visibility = invisible
             FeatureClapManager.getInstance(requireContext()).apply {
                 stopAll()
             }

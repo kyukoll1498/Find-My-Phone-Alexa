@@ -24,7 +24,7 @@ import com.mtg.tool.findmyphone.main.activity.MainActivity
 @Suppress("DEPRECATION")
 class VocalService : Service() {
     private var classesApp: ClassesApp? = null
-    private var recorderCoroutine: RecorderCoroutine? = null
+    private var recorder: Recorder? = null
     private var notificationChannel: NotificationChannel? = null
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
@@ -39,7 +39,6 @@ class VocalService : Service() {
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         if (intent.action == "ACTION_NOTIFICATION_CLICKED") {
             performNotificationAction()
-            // Bạn có thể tắt foreground service tại đây nếu cần
             stopForeground(true)
             stopSelf()
             return START_NOT_STICKY
@@ -95,32 +94,12 @@ class VocalService : Service() {
         detectClapClap.continueRecord()
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        val recorderThread = recorderThread
-//        if (recorderThread != null) {
-//            recorderThread.stopRecording()
-//            this.recorderThread = null
-//        }
-//        selectedDetection = 0
-//        Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
-//    }
-
     override fun onDestroy() {
         super.onDestroy()
-
-//        val recorderThread = recorderCoroutine
-//        if (recorderThread != null) {
-//            CoroutineScope(Dispatchers.IO).launch {
-//                recorderThread.stopRecording()
-//            }
-//            this.recorderCoroutine = null
-//        }
-
-        val recorderThread = recorderCoroutine
+        val recorderThread = recorder
         if (recorderThread != null) {
             recorderThread.stopRecording()
-            this.recorderCoroutine = null
+            this.recorder = null
         }
         selectedDetection = 0
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()

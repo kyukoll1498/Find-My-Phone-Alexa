@@ -29,10 +29,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_semibold"
+            android:singleLine="true"
+            android:ellipsize="marquee"
             android:text="@string/txt_clap_running_notify"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:textColor="#404040"
             android:textSize="@dimen/_13sdp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:marqueeRepeatLimit="marquee_forever" />
     </LinearLayout>
 
     <RelativeLayout
@@ -51,7 +56,8 @@
             android:padding="@dimen/_7sdp"
             android:text="@string/txt_touch_here_notify"
             android:textColor="@color/white"
-            android:textSize="@dimen/_11sdp" />
+            android:textSize="@dimen/_11sdp"
+            android:singleLine="true"/>
 
         <ImageView
             android:layout_width="wrap_content"

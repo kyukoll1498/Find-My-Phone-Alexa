@@ -118,25 +118,6 @@ class FeatureClapManager(private val context: Context) {
         }
     }
 
-//    private fun turnOnFlash(duration: Long, statusFlash: Boolean) {
-//        if (!statusFlash) {
-//            turnOffFlash()
-//            return
-//        }
-//        val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
-//        val cameraId: String?
-//        try {
-//            cameraId = manager.cameraIdList[0]
-//            manager.setTorchMode(cameraId, true)
-//            VibrateFlashThread(context, AppPreferences(context).currentFlash, duration.toInt()).start()
-//            CoroutineScope(Dispatchers.Main).launch {
-//                manager.setTorchMode(cameraId, false)
-//            }
-//        } catch (e: CameraAccessException) {
-//            throw RuntimeException(e)
-//        }
-//    }
-
     fun turnOffFlash() {
         val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
         val cameraId: String?
@@ -152,25 +133,6 @@ class FeatureClapManager(private val context: Context) {
         val statusFlash = AppPreferences.instance.hasVibrate
         turnOnVibration(appPreferences.currentDuration.toLong(), statusFlash)
     }
-
-//    private fun turnOnVibration(duration: Long, statusVibration: Boolean) {
-//        if (!statusVibration) {
-//            turnOffVibration()
-//            return
-//        }
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            val vibrateMode = AppPreferences(context).currentVibrate
-//            val coroutineScope = CoroutineScope(Dispatchers.Default)
-//            coroutineScope.launch {
-//                try {
-//                    val vibrateFlashThread = VibrateFlashThread(context, vibrateMode, duration.toInt())
-//                    vibrateFlashThread.start()
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//        }
-//    }
 
     private fun turnOnVibration(duration: Long, statusVibration: Boolean) {
         if (!statusVibration) {
