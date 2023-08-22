@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.os.CountDownTimer
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -37,6 +38,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     private var mPermCAm: Boolean? = null
     private lateinit var detectClapClap: DetectClapClap
     private var isCircleActiveVisible = false
+    private var showTxtContent = true
     var isAnimationPaused = false
     override fun initView() {
         isMyServiceRunning()
@@ -50,6 +52,23 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     override fun onResume() {
         super.onResume()
         setUpWidthData()
+        Handler().postDelayed(Runnable {
+            try {
+                setUpResponsive()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }, 500)
+    }
+
+    private fun setUpResponsive() {
+        if (binding.tvInactive.y + binding.tvInactive.height > binding.txtActive.y) {
+            binding.tvInactive.visibility = View.GONE
+//            binding.txtInactive.visibility = View.GONE
+//            binding.txtActive.visibility = View.GONE
+            binding.llTvInactive.visibility = View.GONE
+            showTxtContent = false
+        }
     }
 
     private fun setUpWidthData() {
@@ -159,8 +178,10 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                         ivCircleActive.visibility = visible
                         txtActive.visibility = visible
                         txtInactive.visibility = invisible
-                        llTvInactive.visibility = visible
-                        tvInactive.visibility = invisible
+                        if (showTxtContent) {
+                            llTvInactive.visibility = visible
+                            tvInactive.visibility = invisible
+                        }
                         lavClickInactive.visibility = invisible
                         lavClickActive.visibility = visible
                         classesApp!!.save("StopService", "0")
@@ -187,10 +208,13 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         val invisible = View.INVISIBLE
         binding.apply {
             ivCircleActive.visibility = invisible
-            txtInactive.visibility = visible
-            txtActive.visibility = invisible
             tvInactive.visibility = visible
+            if (showTxtContent) {
+                txtActive.visibility = invisible
+                txtInactive.visibility = visible
+            }
             llTvInactive.visibility = invisible
+
             lavClickInactive.visibility = visible
             lavClickInactive.resumeAnimation()
             lavClickActive.visibility = invisible
