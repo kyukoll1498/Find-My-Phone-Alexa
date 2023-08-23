@@ -3,6 +3,7 @@ package com.mtg.tool.findmyphone.main.activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.Bundle
 import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -73,6 +74,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding.tvAppName.setSelected(true)
+    }
 
     private fun changeUITools(currentItem: Int, nextItem: Int) {
         if (currentItem != nextItem) {
