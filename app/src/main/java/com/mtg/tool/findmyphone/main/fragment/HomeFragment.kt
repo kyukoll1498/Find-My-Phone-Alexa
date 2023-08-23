@@ -149,8 +149,8 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             if (PermissionUtils.checkMicroPermission(requireContext()) &&
                 PermissionUtils.checkNotificationPermission(requireContext())
             ) {
-                isCircleActiveVisible = !isCircleActiveVisible
                 if (isCircleActiveVisible) {
+                    isCircleActiveVisible = !isCircleActiveVisible
                     logEvent("click_home_activate")
                     binding.apply {
                         ivCircleActive.visibility = visible
@@ -181,6 +181,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     open fun turnOffDetective() {
+        isCircleActiveVisible = !isCircleActiveVisible
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
         binding.apply {

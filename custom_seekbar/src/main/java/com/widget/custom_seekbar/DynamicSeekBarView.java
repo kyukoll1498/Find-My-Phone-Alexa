@@ -33,6 +33,7 @@ public class DynamicSeekBarView extends LinearLayout implements SeekBar.OnSeekBa
     private String seekBarTextInfo = "";
     private SeekBar.OnSeekBarChangeListener _seekBarChangeListener;
     private int presetProgress = -1;
+    private boolean isRtL = false;
 
     public DynamicSeekBarView(Context context) {
         super(context);
@@ -194,8 +195,18 @@ public class DynamicSeekBarView extends LinearLayout implements SeekBar.OnSeekBa
 
     private int getSeekBarThumbPosX(SeekBar seekBar) {
         int width = seekBar.getWidth() - seekBar.getPaddingLeft() - seekBar.getPaddingRight();
-        int thumbPosX = seekBar.getPaddingLeft() + width * seekBar.getProgress() / seekBar.getMax();
+        int thumbPosX = 0;
+        if (isRtL) {
+            thumbPosX = seekBar.getPaddingLeft() + width * (seekBar.getMax() - seekBar.getProgress()) / seekBar.getMax();
+        } else {
+            thumbPosX = seekBar.getPaddingLeft() + width * seekBar.getProgress() / seekBar.getMax();
+        }
+
         return thumbPosX;
+    }
+
+    public void setRtL(boolean rtL) {
+        isRtL = rtL;
     }
 
     @Override

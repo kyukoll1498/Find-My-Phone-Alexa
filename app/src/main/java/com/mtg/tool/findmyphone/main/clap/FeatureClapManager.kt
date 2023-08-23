@@ -165,11 +165,16 @@ class FeatureClapManager(private val context: Context) {
     }
 
     fun stopAll() {
-        handler.removeCallbacks(runnable)
-        callback.invoke(false)
-        turnOffFlash()
-        turnOffVibration()
-        stopSound()
+        try {
+            handler.removeCallbacks(runnable)
+            callback.invoke(false)
+            turnOffFlash()
+            turnOffVibration()
+            stopSound()
+        } catch (e: Exception) {
+             e.printStackTrace()
+        }
+
     }
 
     companion object {

@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
+import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
 import com.mtg.tool.findmyphone.BuildConfig
@@ -51,6 +52,7 @@ class PlaySoundActivity :
         setSeekbarView()
         setDetailCommandView()
         AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
+        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +65,9 @@ class PlaySoundActivity :
         if (currentSoundItem.type == IMPORT_SOUND_TYPE) {
             binding.ivDelete.visibility = View.VISIBLE
             binding.ivEdit.visibility = View.VISIBLE
+        }
+        if (appPreferences.currentLanguage == "ar") {
+            binding.seekBar.setRtL(true)
         }
     }
 

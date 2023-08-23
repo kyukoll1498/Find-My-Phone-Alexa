@@ -34,7 +34,7 @@ class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::i
     }
 
     private fun setupList() {
-        soundAdapter = SoundAdapter(AppRepository.getAllSound(requireContext()), context)
+        soundAdapter = SoundAdapter(AppRepository.getAllSound(requireContext()), requireActivity())
         var gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
