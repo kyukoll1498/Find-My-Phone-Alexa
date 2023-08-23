@@ -11,11 +11,15 @@ import com.common.control.manager.AdmobManager
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
+import com.mtg.tool.findmyphone.REQUEST_NOTIFICATION_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityMainBinding
 import com.mtg.tool.findmyphone.main.clap.VocalService
+import com.mtg.tool.findmyphone.main.dialog.NotificationPermissionDialog
+import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.main.fragment.AddFragment
 import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 import com.mtg.tool.findmyphone.main.fragment.SettingFragment
@@ -23,6 +27,7 @@ import com.mtg.tool.findmyphone.main.fragment.SoundFragment
 import com.mtg.tool.findmyphone.utils.ActionUtils
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.LanguageUtils
+import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.hide
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -128,6 +133,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
 
     private fun setupDrawerNavigation() {
+        binding.navContent.tvVersion.text = "Ver ${BuildConfig.VERSION_NAME}"
+
         binding.navContent.imgFlag.setImageResource(LanguageUtils.getFlagResourceID(this))
 
         binding.navContent.btnLanguage.setOnClickListener {
@@ -180,6 +187,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         })
     }
 
+
+
     override fun onResume() {
         super.onResume()
         changeUITools(0, binding.viewpagerMain.currentItem)
@@ -206,6 +215,41 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             }
             binding.ivHome.isSelected = viewPagerPosition == 0
         }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_MICRO_PERMISSION_CODE) {
+            if (!PermissionUtils.checkMicroPermission(this)) {
+                showRecordPermissionDialog()
+                return
+            }
+        }
+        if (requestCode == REQUEST_NOTIFICATION_PERMISSION_CODE) {
+            if (!PermissionUtils.checkNotificationPermission(this)) {
+                showNotificationPermissionDialog()
+                return
+            }
+        }
+    }
+
+    private fun showRecordPermissionDialog() {
+        RecordPermissionDialog(this) {
+            if (it) {
+                PermissionUtils.goSettingsForMicroPermission(this)
+            }
+        }.show()
+    }
+    private fun showNotificationPermissionDialog() {
+        NotificationPermissionDialog(this) {
+            if (it) {
+                PermissionUtils.goSettingsForNotificationPermission(this)
+            }
+        }.show()
     }
 
 
