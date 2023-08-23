@@ -120,13 +120,17 @@
         app:layout_constraintTop_toBottomOf="@+id/ll_controller"/>
     <TextView
         android:id="@+id/tv_volume"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
         android:fontFamily="@font/inter"
         android:text="@string/volume"
         android:textColor="#404040"
         android:textSize="@dimen/_12sdp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
         app:layout_constraintBottom_toBottomOf="@id/bg_controller"
         app:layout_constraintStart_toStartOf="@id/bg_controller"
         app:layout_constraintTop_toTopOf="@id/bg_controller" />
@@ -164,23 +168,28 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ct_duration_controller"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_54sdp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_16sdp"
         android:background="@drawable/bg_radius_12"
         android:backgroundTint="#CCFFFFFF"
+        android:paddingVertical="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@+id/bg_controller"
         tools:layout_editor_absoluteX="21dp">
 
         <TextView
             android:id="@+id/tv_duration"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:fontFamily="@font/inter"
             android:text="@string/duration"
             android:textColor="#404040"
             android:textSize="@dimen/_12sdp"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

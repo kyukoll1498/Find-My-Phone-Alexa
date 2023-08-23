@@ -6,6 +6,7 @@ import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.media.AudioManager
+import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
@@ -49,6 +50,12 @@ class PlaySoundActivity :
         setSeekbarView()
         setDetailCommandView()
         AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding.tvVolume.setSelected(true)
+        binding.tvDuration.setSelected(true)
     }
 
     private fun setUpUI() {
