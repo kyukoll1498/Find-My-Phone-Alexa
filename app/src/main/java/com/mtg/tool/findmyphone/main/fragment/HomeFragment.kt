@@ -1,8 +1,11 @@
 package com.mtg.tool.findmyphone.main.fragment
 
+import android.annotation.SuppressLint
 import android.app.ActivityManager
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.media.AudioManager
 import android.os.CountDownTimer
 import android.os.Handler
@@ -12,6 +15,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.startForegroundService
 import com.bumptech.glide.Glide
+import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
@@ -32,7 +36,15 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     private var showTxtContent = true
     private var isClapActive = false
 
+    private val finishDetectReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        @SuppressLint("NotifyDataSetChanged")
+        override fun onReceive(context: Context, intent: Intent) {
+            turnOffDetective()
+        }
+    }
+
     override fun initView() {
+        requireActivity().registerReceiver(finishDetectReceiver, IntentFilter(ACTION_FINISH_DETECT))
         isMyServiceRunning()
         classesApp = ClassesApp(requireContext())
         classesApp!!.save("detectClap", "1")
@@ -202,5 +214,10 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             activity?.stopService(Intent(context, VocalService::class.java))
             Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireActivity().unregisterReceiver(finishDetectReceiver)
     }
 }

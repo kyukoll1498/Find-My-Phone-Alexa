@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
 import com.mtg.tool.findmyphone.BuildConfig
@@ -86,6 +87,7 @@ class PlaySoundActivity :
                     logEvent("click_add_audio_play")
                 }
                 logEvent("click_detail_play")
+                sendBroadcast(Intent(ACTION_FINISH_DETECT))
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
