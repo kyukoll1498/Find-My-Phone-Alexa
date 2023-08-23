@@ -91,4 +91,5 @@
     <string name="delete">Xóa bỏ</string>
     <string name="maybe_later">Có lẽ sau này</string>
     <string name="submit">Nộp</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Cho phép <b>Vỗ tay để tìm điện thoại của bạn</b> truy cập Thông báo</string>
 </resources>

@@ -91,4 +91,5 @@
     <string name="delete">Eliminare</string>
     <string name="maybe_later">Forse più tardi</string>
     <string name="submit">Invia</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Consenti a <b>Batti le mani per trovare il tuo telefono</b> di accedere alla notifica</string>
 </resources>

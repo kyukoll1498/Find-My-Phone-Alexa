@@ -91,4 +91,5 @@
     <string name="delete">Изтрий</string>
     <string name="maybe_later">Може би по-късно</string>
     <string name="submit">Изпращане</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Разрешете на <b>Пляскайте, за да намерите телефона си</b> достъп до известието</string>
 </resources>

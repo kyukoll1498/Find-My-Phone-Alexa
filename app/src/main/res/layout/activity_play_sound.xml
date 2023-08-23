@@ -66,7 +66,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="false"
+        android:visibility="invisible"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:lottie_loop="true"
 
+        app:lottie_rawRes="@raw/sound_animation"
+        app:layout_constraintTop_toTopOf="@+id/iv_sound_avatar"
+        app:layout_constraintStart_toStartOf="@+id/iv_sound_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/iv_sound_avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_sound_avatar"
+        />
     <ImageView
         android:id="@+id/iv_sound_avatar"
         android:layout_width="@dimen/_144sdp"

@@ -91,4 +91,5 @@
     <string name="delete">ลบ</string>
     <string name="maybe_later">ไว้ก่อน</string>
     <string name="submit">ส่ง</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >อนุญาตให้ <b>ปรบมือเพื่อค้นหาโทรศัพท์ของคุณ</b> เพื่อเข้าถึงการแจ้งเตือน</string>
 </resources>

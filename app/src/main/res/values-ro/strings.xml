@@ -91,4 +91,5 @@
     <string name="delete">Excluir</string>
     <string name="maybe_later">Talvez mais tarde</string>
     <string name="submit">Enviar</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Permiteți <b>Bate din palme pentru a-ți găsi telefonul</b> să acceseze notificarea</string>
 </resources>
