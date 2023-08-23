@@ -91,4 +91,5 @@
     <string name="delete">Radera</string>
     <string name="maybe_later">Kanske senare</string>
     <string name="submit">Skicka in</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Tillåt <b>Klappa för att hitta din telefon</b> att komma åt aviseringen</string>
 </resources>

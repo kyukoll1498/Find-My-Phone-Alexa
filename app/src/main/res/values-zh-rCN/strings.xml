@@ -91,4 +91,5 @@
     <string name="delete">删除</string>
     <string name="maybe_later">也许稍后</string>
     <string name="submit">提交</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >允许<b>拍手找到您的手机</b>访问通知</string>
 </resources>

@@ -91,4 +91,5 @@
     <string name="delete">消去</string>
     <string name="maybe_later">たぶん後で</string>
     <string name="submit">提出する</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" ><b>拍手して携帯電話を探す</b> による通知へのアクセスを許可します。</string>
 </resources>

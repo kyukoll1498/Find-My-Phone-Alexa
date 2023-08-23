@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
@@ -84,11 +85,16 @@ class PlaySoundActivity :
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
+                binding.animationView.visibility = View.VISIBLE
+                binding.animationView.playAnimation()
+                binding.animationView.speed = 2f
             } else if (binding.tvPlayerController.text == getString(R.string.pause)) {
                 logEvent("click_detail_pause")
                 pauseAudio()
                 binding.tvPlayerController.text = getString(R.string.play)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+                binding.animationView.pauseAnimation()
+                binding.animationView.visibility = View.GONE
             }
         }
         binding.tvDuration15s.setOnClickListener {
@@ -263,16 +269,30 @@ class PlaySoundActivity :
         }
     }
 
+//    private fun startAudio() {
+//        MediaPlayerAppUtil.playAudio(this, currentSoundItem) {
+////            onComplete
+//            try {
+//                binding.tvPlayerController.text = getString(R.string.play)
+//                binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
+//
+//        }
+//    }
+
     private fun startAudio() {
         MediaPlayerAppUtil.playAudio(this, currentSoundItem) {
-//            onComplete
+            // onComplete
             try {
                 binding.tvPlayerController.text = getString(R.string.play)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
+                binding.animationView.pauseAnimation()
+                binding.animationView.visibility = View.GONE
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }
     }
 

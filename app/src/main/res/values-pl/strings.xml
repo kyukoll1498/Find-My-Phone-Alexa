@@ -92,4 +92,5 @@
     <string name="delete">Usuwać</string>
     <string name="maybe_later">Może później</string>
     <string name="submit">Składać</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Zezwól aplikacji <b>Klaskaj, aby znaleźć swój telefon</b> na dostęp do powiadomienia</string>
 </resources>

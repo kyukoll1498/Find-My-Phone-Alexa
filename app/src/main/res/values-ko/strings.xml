@@ -91,4 +91,5 @@
     <string name="delete">삭제</string>
     <string name="maybe_later">나중에</string>
     <string name="submit">제출하다</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >알림에 액세스하려면 <b>휴대폰을 찾으려면 박수를 쳐보세요</b>을 허용하세요.</string>
 </resources>

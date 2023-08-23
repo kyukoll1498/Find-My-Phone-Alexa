@@ -90,4 +90,5 @@
     <string name="delete">يمسح</string>
     <string name="maybe_later">ربما في وقت لاحق</string>
     <string name="submit">يُقدِّم</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >اسمح لـ <b>التصفيق للعثور على هاتفك</b> بالوصول إلى الإشعار</string>
 </resources>

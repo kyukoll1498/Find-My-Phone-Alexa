@@ -91,4 +91,5 @@
     <string name="delete">Vymazat</string>
     <string name="maybe_later">Možná později</string>
     <string name="submit">Předložit</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Povolte <b>Clap To Find Your Phone</b> pro přístup k oznámení</string>
 </resources>
