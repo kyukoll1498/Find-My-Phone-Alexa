@@ -116,20 +116,37 @@ class PlaySoundActivity :
             }
         })
 
+//        binding.btnVolumeDown.setOnClickListener {
+//            logEvent("click_detail_volume_down")
+//            if (volume != 0) {
+//                updateVolume(--volume)
+//                binding.seekBar.setProgress(volume)
+//            }
+//        }
+//        binding.btnVolumeUp.setOnClickListener {
+//            logEvent("click_detail_volume_up")
+//            if (volume != max) {
+//                updateVolume(++volume)
+//                binding.seekBar.setProgress(volume)
+//            }
+//        }
         binding.btnVolumeDown.setOnClickListener {
             logEvent("click_detail_volume_down")
-            if (volume != 0) {
-                updateVolume(--volume)
-                binding.seekBar.setProgress(volume)
-            }
+            val am = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            var currentVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC)
+            currentVolume--
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
+            binding.seekBar.setProgress(currentVolume)
         }
         binding.btnVolumeUp.setOnClickListener {
             logEvent("click_detail_volume_up")
-            if (volume != max) {
-                updateVolume(++volume)
-                binding.seekBar.setProgress(volume)
-            }
+            val am = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            var currentVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC)
+            currentVolume++
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
+            binding.seekBar.setProgress(currentVolume)
         }
+
         binding.tvApply.setOnClickListener {
             if (currentSoundItem.type == IMPORT_SOUND_TYPE) {
                 logEvent("click_add_audio_apply")
