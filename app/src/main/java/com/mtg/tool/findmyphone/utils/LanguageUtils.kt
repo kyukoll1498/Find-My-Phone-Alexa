@@ -28,7 +28,7 @@ object LanguageUtils {
             )
             mList.add(ItemLanguage(R.drawable.flag_cs, "Czech", R.drawable.ic_disable, "cs"))
             mList.add(ItemLanguage(R.drawable.flag_pl, "Polish", R.drawable.ic_disable, "pl"))
-            mList.add(ItemLanguage(R.drawable.flag_nl, "Dutch", R.drawable.ic_disable, "ru"))
+            mList.add(ItemLanguage(R.drawable.flag_nl, "Dutch", R.drawable.ic_disable, "nl"))
             mList.add(
                 ItemLanguage(
                     R.drawable.flag_fr,
