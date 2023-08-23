@@ -65,7 +65,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
     }
 
     override fun hasAds(): Boolean {
-        return true
+        return false
     }
 
     override fun isShowDialogLoadingAd(): Boolean {
