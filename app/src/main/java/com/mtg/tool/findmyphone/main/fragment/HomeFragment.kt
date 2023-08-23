@@ -62,7 +62,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     private fun setUpResponsive() {
-        if (binding.tvInactive.y + binding.tvInactive.height > binding.txtActive.y) {
+        if (binding.txtActive.y + binding.txtActive.height > binding.tvInactive.y) {
             binding.tvInactive.visibility = View.GONE
 //            binding.txtInactive.visibility = View.GONE
 //            binding.txtActive.visibility = View.GONE
@@ -208,12 +208,12 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         val invisible = View.INVISIBLE
         binding.apply {
             ivCircleActive.visibility = invisible
-            tvInactive.visibility = visible
+            txtActive.visibility = invisible
+            txtInactive.visibility = visible
             if (showTxtContent) {
-                txtActive.visibility = invisible
-                txtInactive.visibility = visible
+                tvInactive.visibility = visible
+                llTvInactive.visibility = invisible
             }
-            llTvInactive.visibility = invisible
 
             lavClickInactive.visibility = visible
             lavClickInactive.resumeAnimation()
