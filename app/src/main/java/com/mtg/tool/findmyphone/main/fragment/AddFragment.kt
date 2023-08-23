@@ -5,10 +5,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Handler
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.common.control.base.OnActionCallback
+import com.common.control.manager.AdmobManager
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
+import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.CREATE_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
@@ -47,6 +50,16 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
         }
     }
 
+    override fun loadAds() {
+        super.loadAds()
+        AdmobManager.getInstance().loadNative(
+            context,
+            BuildConfig.native_add,
+            binding.frAd,
+            R.layout.custom_native_ads
+        )
+    }
+
     override fun initView() {
         loadSoundList()
         registerBroadcast()
@@ -75,7 +88,11 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
             soundList.add(
                 0, SoundItem(
                     CREATE_SOUND_TYPE,
-                    getString(R.string.create_new), 0, R.drawable.image_sound_create, 0, ""
+                    requireActivity().getString(R.string.create_new),
+                    0,
+                    R.drawable.image_sound_create,
+                    0,
+                    ""
                 )
             )
             soundAdapter = SoundAdapter(soundList, context)
@@ -115,10 +132,18 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     override fun onResume() {
         super.onResume()
         setUpResponsive()
+        Handler().postDelayed(Runnable {
+            try {
+                setUpResponsive()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }, 500)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         activity?.unregisterReceiver(soundReceiver)
     }
+
 }

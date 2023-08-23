@@ -45,6 +45,16 @@ class RecordAudioActivity :
         )
     }
 
+    override fun loadAds() {
+        super.loadAds()
+        AdmobManager.getInstance().loadNative(
+            this,
+            BuildConfig.native_record,
+            binding.frAd,
+            R.layout.custom_native_ads
+        )
+    }
+
     override fun addEvent() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.ivRecordController.setOnClickListener {

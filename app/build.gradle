@@ -87,6 +87,10 @@ android {
             addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3940256099942544/2014213617")
             addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3940256099942544/2014213617")
             addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3940256099942544/2014213617")
+
+            addConstantTo(owner, "native_add", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_create", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
         }
         vOfficial_ {
             applicationId "com.mtg.tool.findmyphone"
@@ -112,6 +116,11 @@ android {
             addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3940256099942544/2014213617")
             addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3940256099942544/2014213617")
             addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3940256099942544/2014213617")
+
+            addConstantTo(owner, "native_add", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_create", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
+
         }
     }
 
