@@ -12,6 +12,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
+import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
 import com.mtg.tool.findmyphone.BuildConfig
@@ -50,6 +51,7 @@ class PlaySoundActivity :
         setSeekbarView()
         setDetailCommandView()
         AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
+        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -10,6 +10,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.common.control.base.OnActionCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.CREATE_SOUND_TYPE
@@ -58,6 +59,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
             binding.frAd,
             R.layout.custom_native_ads
         )
+        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(requireActivity(), binding.frAd)
     }
 
     override fun initView() {
@@ -95,7 +97,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                     ""
                 )
             )
-            soundAdapter = SoundAdapter(soundList, context)
+            soundAdapter = SoundAdapter(soundList, requireActivity())
             soundAdapter?.mCallback = OnActionCallback { key, data ->
                 if (key.equals(KEY_SOUND)) {
                     var soundItem = data[0] as SoundItem

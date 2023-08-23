@@ -1,13 +1,13 @@
 package com.mtg.tool.findmyphone.main.adapter
 
-import android.content.Context
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
+import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ADAPTER_ADS_TYPE
 import com.mtg.tool.findmyphone.ADAPTER_ITEM_TYPE
 import com.mtg.tool.findmyphone.ADS_SOUND_TYPE
@@ -19,14 +19,18 @@ import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ItemNativeHolderBinding
 import com.mtg.tool.findmyphone.databinding.ItemSoundBinding
 
-class SoundAdapter(mList: List<SoundItem?>?, context: Context?) :
-    BaseAdapter<SoundItem?>(mList!!, context) {
+class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
+    BaseAdapter<SoundItem?>(mList!!, activity) {
 
 
     override fun viewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ADAPTER_ADS_TYPE) {
             val binding =
-                ItemNativeHolderBinding.inflate(LayoutInflater.from(parent!!.context), parent, false)
+                ItemNativeHolderBinding.inflate(
+                    LayoutInflater.from(parent!!.context),
+                    parent,
+                    false
+                )
             NativeViewHolder(binding)
         } else {
             val binding =
@@ -69,6 +73,9 @@ class SoundAdapter(mList: List<SoundItem?>?, context: Context?) :
                 binding.frAds,
                 R.layout.custom_native_ads_item
             )
+            AppOpenManager.getInstance()
+                .hideNativeOrBannerWhenShowOpenApp(context as Activity, binding.frAds)
+
         }
 
         override fun onClick(v: View?) {

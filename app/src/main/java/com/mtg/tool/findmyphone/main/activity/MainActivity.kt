@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.manager.AdmobManager
+import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
@@ -36,6 +37,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         setupViewpager()
         setupDrawerNavigation()
         AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_home, binding.frAd)
+        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     private var homeFragment = HomeFragment()
