@@ -63,6 +63,9 @@ class PlaySoundActivity :
             binding.ivDelete.visibility = View.VISIBLE
             binding.ivEdit.visibility = View.VISIBLE
         }
+        if (appPreferences.currentLanguage == "ar") {
+            binding.seekBar.setRtL(true)
+        }
     }
 
     private fun setDetailCommandView() {
