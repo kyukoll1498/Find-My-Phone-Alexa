@@ -234,6 +234,15 @@
                     android:src="@drawable/ic_next" />
             </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
+    </androidx.core.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:textColor="#868686"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

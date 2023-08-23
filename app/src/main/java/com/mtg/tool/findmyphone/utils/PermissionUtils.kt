@@ -11,6 +11,7 @@ import android.provider.Settings
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
+import com.mtg.tool.findmyphone.REQUEST_NOTIFICATION_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_READ_AUDIO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_READ_PERMISSION_CODE
@@ -33,6 +34,10 @@ object PermissionUtils {
         return checkPermission(context, Manifest.permission.RECORD_AUDIO)
     }
 
+    fun checkNotificationPermission(context: Context): Boolean {
+        return checkPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+    }
+
 
     private fun checkPermission(context: Context, permission: String): Boolean {
         return ContextCompat.checkSelfPermission(
@@ -46,6 +51,9 @@ object PermissionUtils {
         var requestCode = when (permission) {
             Manifest.permission.RECORD_AUDIO -> {
                 REQUEST_MICRO_PERMISSION_CODE
+            }
+            Manifest.permission.POST_NOTIFICATIONS -> {
+                REQUEST_NOTIFICATION_PERMISSION_CODE
             }
 
             Manifest.permission.READ_EXTERNAL_STORAGE -> {
@@ -74,12 +82,16 @@ object PermissionUtils {
         requestPermission(activity, Manifest.permission.RECORD_AUDIO)
     }
 
-    fun requestMicroPermission(fragment: Fragment) {
-        fragment.requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), REQUEST_MICRO_PERMISSION_CODE)
-    }
-
     fun goSettingsForMicroPermission(activity: Activity) {
         goSettingsForPermission(activity, REQUEST_MICRO_PERMISSION_CODE)
+    }
+
+    fun requestNotificationPermission(activity: Activity) {
+        requestPermission(activity, Manifest.permission.POST_NOTIFICATIONS)
+    }
+
+    fun goSettingsForNotificationPermission(activity: Activity) {
+        goSettingsForPermission(activity, REQUEST_NOTIFICATION_PERMISSION_CODE)
     }
     fun goSettingsForReadAudioPermission(activity: Activity) {
         goSettingsForPermission(activity, REQUEST_READ_AUDIO_PERMISSION_CODE)

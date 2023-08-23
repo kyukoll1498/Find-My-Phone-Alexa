@@ -1,6 +1,5 @@
 package com.mtg.tool.findmyphone.main.fragment
 
-import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
@@ -13,19 +12,12 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.startForegroundService
 import com.bumptech.glide.Glide
-import com.common.control.manager.AdmobManager
-import com.common.control.manager.AppOpenManager
-import com.mtg.tool.findmyphone.BuildConfig
-import com.mtg.tool.findmyphone.R
-import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
 import com.mtg.tool.findmyphone.main.clap.ClassesApp
-import com.mtg.tool.findmyphone.main.clap.DetectClapClap
 import com.mtg.tool.findmyphone.main.clap.FeatureClapManager
 import com.mtg.tool.findmyphone.main.clap.VocalService
-import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 
@@ -36,10 +28,10 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     private lateinit var currentSoundItem: SoundItem
     private var intOnTick = 0
     private var mPermCAm: Boolean? = null
-    private lateinit var detectClapClap: DetectClapClap
     private var isCircleActiveVisible = false
     private var showTxtContent = true
-    var isAnimationPaused = false
+    private var isClapActive = false
+
     override fun initView() {
         isMyServiceRunning()
         classesApp = ClassesApp(requireContext())
@@ -83,11 +75,11 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         checkCamFlash()
     }
 
-    override fun loadAds() {
-        super.loadAds()
-        AppOpenManager.getInstance()
-            .hideNativeOrBannerWhenShowOpenApp(context as Activity?, binding.frAd)
-    }
+//    override fun loadAds() {
+//        super.loadAds()
+//        AppOpenManager.getInstance()
+//            .hideNativeOrBannerWhenShowOpenApp(context as Activity?, binding.frAd)
+//    }
 
 
     private fun initVolume() {
@@ -132,30 +124,17 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
 
     private fun checkPermissionMicro() {
         if (!PermissionUtils.checkMicroPermission(requireContext())) {
-            PermissionUtils.requestMicroPermission(this)
+            PermissionUtils.requestMicroPermission(requireActivity())
         } else {
             Log.d("Error Permission Micro", "Check Permission")
         }
     }
 
-    private fun showRecordPermissionDialog() {
-        RecordPermissionDialog(requireContext()) {
-            if (it) {
-                PermissionUtils.goSettingsForMicroPermission(requireActivity())
-            }
-        }.show()
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_MICRO_PERMISSION_CODE) {
-            if (!PermissionUtils.checkMicroPermission(requireActivity())) {
-                showRecordPermissionDialog()
-            }
+    private fun checkPermissionNotification() {
+        if (!PermissionUtils.checkNotificationPermission(requireContext())) {
+            PermissionUtils.requestNotificationPermission(requireActivity())
+        } else {
+            Log.d("Error Permission Notification", "Check Permission")
         }
     }
 
@@ -165,6 +144,11 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         binding.clClickTab.setOnClickListener {
             checkPermissionMicro()
             if (PermissionUtils.checkMicroPermission(requireContext())) {
+                checkPermissionNotification()
+            }
+            if (PermissionUtils.checkMicroPermission(requireContext()) &&
+                PermissionUtils.checkNotificationPermission(requireContext())
+            ) {
                 isCircleActiveVisible = !isCircleActiveVisible
                 if (isCircleActiveVisible) {
                     logEvent("click_home_activate")
@@ -191,7 +175,6 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 } else {
                     logEvent("click_home_deactivate")
                     turnOffDetective()
-
                 }
             }
         }
