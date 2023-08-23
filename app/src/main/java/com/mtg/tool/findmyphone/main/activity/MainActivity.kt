@@ -200,7 +200,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         super.onNewIntent(intent)
         if (intent.action == ACTION_NOTIFICATION_CLICKED_SERVICE) {
             logEvent("click_noti_deactivate")
-            stopService(Intent(this, VocalService::class.java))
             try {
                 homeFragment.turnOffDetective()
             } catch (e: Exception) {

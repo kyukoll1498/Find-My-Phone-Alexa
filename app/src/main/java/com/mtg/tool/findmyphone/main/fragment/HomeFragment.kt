@@ -181,6 +181,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     open fun turnOffDetective() {
+        isCircleActiveVisible = !isCircleActiveVisible
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
         binding.apply {
