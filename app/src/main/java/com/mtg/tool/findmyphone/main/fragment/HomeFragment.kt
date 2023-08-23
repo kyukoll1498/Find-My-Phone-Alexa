@@ -85,12 +85,6 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
 
     override fun loadAds() {
         super.loadAds()
-        AdmobManager.getInstance().loadNative(
-            context,
-            BuildConfig.native_language,
-            binding.frAd,
-            R.layout.custom_native_ads_30
-        )
         AppOpenManager.getInstance()
             .hideNativeOrBannerWhenShowOpenApp(context as Activity?, binding.frAd)
     }

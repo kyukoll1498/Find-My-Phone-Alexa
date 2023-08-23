@@ -103,12 +103,10 @@
             android:text="@string/tap_to_inactive"
             android:textColor="#404040"
             android:textSize="@dimen/_16sdp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_inactive"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_center"
-
-            app:layout_constraintVertical_chainStyle="spread"/>
+            app:layout_constraintTop_toBottomOf="@+id/cl_center"/>
 
         <TextView
             android:id="@+id/txt_active"
@@ -119,11 +117,10 @@
             android:textColor="#404040"
             android:textSize="@dimen/_16sdp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/tv_inactive"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_center"
-            app:layout_constraintVertical_chainStyle="spread"/>
+            app:layout_constraintStart_toStartOf="@id/txt_inactive"
+            app:layout_constraintEnd_toEndOf="@id/txt_inactive"
+            app:layout_constraintTop_toTopOf="@id/txt_inactive"
+            app:layout_constraintBottom_toBottomOf="@id/txt_inactive"/>
 
         <TextView
             android:id="@+id/tv_inactive"
@@ -134,17 +131,16 @@
             android:fontFamily="@font/inter_medium"
             android:gravity="center_horizontal|top"
             android:lineSpacingExtra="5sp"
+            android:layout_marginTop="@dimen/_24sdp"
             android:padding="@dimen/_8sdp"
             android:text="@string/activation_text2"
             android:textColor="#7E7E7E"
             android:textSize="@dimen/_14sdp"
             android:translationY="-2.52sp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_active"
-            app:layout_constraintVertical_chainStyle="spread"/>
+            app:layout_constraintTop_toBottomOf="@+id/txt_active"/>
 
         <LinearLayout
             android:id="@+id/ll_tv_inactive"
@@ -155,11 +151,10 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_active"
-            app:layout_constraintVertical_chainStyle="spread">
+            app:layout_constraintStart_toStartOf="@id/tv_inactive"
+            app:layout_constraintBottom_toBottomOf="@id/tv_inactive"
+            app:layout_constraintTop_toTopOf="@id/tv_inactive"
+            app:layout_constraintEnd_toEndOf="@id/tv_inactive">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lav_clap"
@@ -191,6 +186,7 @@
         android:id="@+id/fr_ad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         android:layout_weight="35"
         app:layout_constraintBottom_toBottomOf="parent">
 
