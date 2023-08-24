@@ -16,6 +16,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.startForegroundService
 import com.bumptech.glide.Glide
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
+import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
@@ -60,6 +61,9 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 lavClickInactive.visibility = invisible
                 lavClickActive.visibility = visible
             }
+        }
+        if (activity?.intent?.action == ACTION_NOTIFICATION_CLICKED_SERVICE) {
+            turnOffDetective()
         }
 
         classesApp = ClassesApp(requireContext())

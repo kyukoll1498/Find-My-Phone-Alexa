@@ -72,17 +72,11 @@ android {
             addConstantTo(owner, "APP_ID", "ca-app-pub-3940256099942544~3347511713")
             addConstantTo(owner, "open_app", "ca-app-pub-3940256099942544/3419835294")
             addConstantTo(owner, "inter_splash", "ca-app-pub-3940256099942544/1033173712")
-//
+
             addConstantTo(owner, "native_guide", "ca-app-pub-3940256099942544/1044960115")
             addConstantTo(owner, "native_language", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_sound", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "inter_sound", "ca-app-pub-3940256099942544/1033173712")
-
-//            addConstantTo(owner, "native_sounds_dog", "ca-app-pub-3940256099942544/2247696110")
-//            addConstantTo(owner, "banner_training_dog", "ca-app-pub-3940256099942544/6300978111")
-//            addConstantTo(owner, "native_setting_fakecall", "ca-app-pub-3940256099942544/2247696110")
-//            addConstantTo(owner, "reward_inter_dog_translator", "ca-app-pub-3940256099942544/5224354917")
-//            addConstantTo(owner, "inter_sound", "ca-app-pub-3940256099942544/1033173712")
 
             addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3940256099942544/2014213617")
             addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3940256099942544/2014213617")
@@ -93,7 +87,7 @@ android {
             addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
         }
         vOfficial_ {
-            applicationId "com.mtg.tool.findmyphone"
+            applicationId "com.mtg.find.phone.clap.phonefinder.findmyphone"
 
             buildConfigField "boolean", "TEST_AD", "false"
             buildConfigField "boolean", "PURCHASED", "false"
@@ -104,18 +98,18 @@ android {
                 target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
             }
 
-            addConstantTo(owner, "APP_ID", "ca-app-pub-3940256099942544~3347511713")
-            addConstantTo(owner, "open_app", "ca-app-pub-3940256099942544/3419835294")
-            addConstantTo(owner, "inter_splash", "ca-app-pub-3940256099942544/1033173712")
-//
-            addConstantTo(owner, "native_guide", "ca-app-pub-3940256099942544/1044960115")
-            addConstantTo(owner, "native_language", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "native_sound", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "inter_sound", "ca-app-pub-3940256099942544/1033173712")
+            addConstantTo(owner, "APP_ID", "ca-app-pub-3270179691816977~5599069474")
+            addConstantTo(owner, "open_app", "ca-app-pub-3270179691816977/1967312155")
+            addConstantTo(owner, "inter_splash", "ca-app-pub-3270179691816977/9654230488")
 
-            addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3940256099942544/2014213617")
-            addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3940256099942544/2014213617")
-            addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3940256099942544/2014213617")
+            addConstantTo(owner, "native_guide", "ca-app-pub-3270179691816977/6035098413")
+            addConstantTo(owner, "native_language", "ca-app-pub-3270179691816977/5585587994")
+            addConstantTo(owner, "native_sound", "ca-app-pub-3270179691816977/5966266918")
+            addConstantTo(owner, "inter_sound", "ca-app-pub-3270179691816977/9830873194")
+
+            addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3270179691816977/7279348586")
+            addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3270179691816977/8904804339")
+            addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3270179691816977/1904281713")
 
             addConstantTo(owner, "native_add", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_create", "ca-app-pub-3940256099942544/2247696110")

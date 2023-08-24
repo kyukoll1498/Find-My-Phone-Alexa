@@ -200,11 +200,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         super.onNewIntent(intent)
         if (intent.action == ACTION_NOTIFICATION_CLICKED_SERVICE) {
             logEvent("click_noti_deactivate")
-            try {
-                homeFragment.turnOffDetective()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
             changeUITools(binding.viewpagerMain.currentItem, 0)
             binding.viewpagerMain.setCurrentItem(0, false)
             binding.ivHome.isSelected = false
