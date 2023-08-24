@@ -47,7 +47,6 @@ class FeatureClapManager(private val context: Context) {
 
     private fun playSound(duration: Long, statusPlay: Boolean) {
         if (!statusPlay) {
-            stopSound()
             return
         }
         if (mediaPlayer == null) mediaPlayer = MediaPlayer()
@@ -84,8 +83,6 @@ class FeatureClapManager(private val context: Context) {
     }
 
     fun stopSound() {
-        callback.invoke(false)
-        handler.removeCallbacks(runnable)
         if (mediaPlayer != null && mediaPlayer!!.isPlaying) {
             mediaPlayer!!.stop()
             mediaPlayer!!.release()

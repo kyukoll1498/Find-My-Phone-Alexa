@@ -56,9 +56,7 @@ class VocalService : Service() {
 
     private fun performNotificationAction() {
         val featureClapManager = FeatureClapManager.getInstance(this)
-        featureClapManager.stopSound()
-        featureClapManager.turnOffVibration()
-        featureClapManager.turnOffFlash()
+        featureClapManager.stopAll()
         stopSelf()
     }
 

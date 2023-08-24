@@ -150,7 +150,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         binding.sbSound.setOnCheckedChangeListener { _, isChecked ->
             if (!isChecked) {
                 logEvent("click_set_sound_off")
-                FeatureClapManager.getInstance(requireContext()).stopSound()
             } else {
                 logEvent("click_set_sound_on")
             }
