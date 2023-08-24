@@ -149,6 +149,16 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
                 requireContext(),
                 mode
             ).start()
+        } else {
+            when (mode) {
+                MODE_FLASH_DEFAULT, MODE_FLASH_DISCO, MODE_FLASH_SOS -> {
+                    appPreferences.currentFlash = mode
+                }
+
+                MODE_VIBRATE_DEFAULT, MODE_VIBRATE_STRONG, MODE_VIBRATE_HEART, MODE_VIBRATE_TICKTOCK -> {
+                    appPreferences.currentVibrate = mode
+                }
+            }
         }
     }
 
