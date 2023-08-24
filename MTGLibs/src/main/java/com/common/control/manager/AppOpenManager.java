@@ -270,7 +270,12 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            currentActivity.sendBroadcast(new Intent(ACTION_SHOW_NATIVE));
+                            try {
+                                myApplication.sendBroadcast(new Intent(ACTION_SHOW_NATIVE));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
                         }
                     }, 100);
                 }
@@ -281,7 +286,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     AppOpenManager.this.appResumeAd = null;
                     fetchAd();
                     if (adError.getCode() != 0)
-                        currentActivity.sendBroadcast(new Intent(ACTION_SHOW_NATIVE));
+                        myApplication.sendBroadcast(new Intent(ACTION_SHOW_NATIVE));
                 }
 
                 @Override
@@ -321,7 +326,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             }
             appResumeAd.setOnPaidEventListener(adValue -> AdmobManager.getInstance().trackRevenue(adValue));
             appResumeAd.show(currentActivity);
-            currentActivity.sendBroadcast(new Intent(ACTION_DISMISS_NATIVE));
+            myApplication.sendBroadcast(new Intent(ACTION_DISMISS_NATIVE));
 
 //            new Handler().postDelayed(() -> {
 //                if (dialog != null && dialog.isShowing()) {
