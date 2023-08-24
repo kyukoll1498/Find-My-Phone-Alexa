@@ -75,52 +75,34 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     override fun addEvent() {
         binding.rbFlashDefault.setOnClickListener {
             logEvent("click_set_flash_default")
-            VibrateFlashThread(
-                requireContext(),
-                MODE_FLASH_DEFAULT
-            ).start()
+            runVibrateFlashThread(MODE_FLASH_DEFAULT)
         }
         binding.rbFlashDisco.setOnClickListener {
             logEvent("click_set_flash_disco")
-            VibrateFlashThread(
-                requireContext(),
-                MODE_FLASH_DISCO
-            ).start()
+            runVibrateFlashThread(MODE_FLASH_DISCO)
         }
         binding.rbFlashSos.setOnClickListener {
             logEvent("click_set_flash_SOS")
-            VibrateFlashThread(
-                requireContext(),
-                MODE_FLASH_SOS
-            ).start()
+            runVibrateFlashThread(MODE_FLASH_SOS)
+
         }
         binding.rbVibrateDefault.setOnClickListener {
             logEvent("click_set_vibrate_default")
-            VibrateFlashThread(
-                requireContext(),
-                MODE_VIBRATE_DEFAULT
-            ).start()
+            runVibrateFlashThread(MODE_VIBRATE_DEFAULT)
+
         }
         binding.rbVibrateStrong.setOnClickListener {
             logEvent("click_set_vibrate_strong")
-            VibrateFlashThread(
-                requireContext(),
-                MODE_VIBRATE_STRONG
-            ).start()
+            runVibrateFlashThread(MODE_VIBRATE_STRONG)
         }
         binding.rbVibrateHeart.setOnClickListener {
             logEvent("click_set_vibrate_heartbeat")
-            VibrateFlashThread(
-                requireContext(),
-                MODE_VIBRATE_HEART
-            ).start()
+            runVibrateFlashThread(MODE_VIBRATE_HEART)
         }
         binding.rbVibrateTicktock.setOnClickListener {
             logEvent("click_set_vibrate_ticktock")
-            VibrateFlashThread(
-                requireContext(),
-                MODE_VIBRATE_TICKTOCK
-            ).start()
+            runVibrateFlashThread(MODE_VIBRATE_TICKTOCK)
+
         }
         binding.llFlashController.setOnClickListener {
             binding.sbFlash.isChecked = !binding.sbFlash.isChecked
@@ -162,13 +144,24 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         binding.vLockVibrate.setOnClickListener { Log.e("android_log_error", "it is disabled") }
     }
 
+    private fun runVibrateFlashThread(mode: Int) {
+        if (VibrateFlashThread.isCancellable) {
+            VibrateFlashThread(
+                requireContext(),
+                mode
+            ).start()
+        }
+    }
+
     private fun unlockFlash() {
         binding.rgFlash.alpha = 1F
         binding.vLockFlash.visibility = View.GONE
     }
 
     private fun lockFlash() {
-        VibrateFlashThread.stopFlash()
+        if (VibrateFlashThread.isCancellable) {
+            VibrateFlashThread.stopFlash()
+        }
         binding.rgFlash.alpha = 0.3F
         binding.vLockFlash.visibility = View.VISIBLE
     }
@@ -179,7 +172,9 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     }
 
     private fun lockVibrate() {
-        VibrateFlashThread.stopVibrate()
+        if (VibrateFlashThread.isCancellable) {
+            VibrateFlashThread.stopVibrate()
+        }
         binding.rgVibrate.alpha = 0.3F
         binding.vLockVibrate.visibility = View.VISIBLE
     }

@@ -27,6 +27,7 @@ class FeatureClapManager(private val context: Context) {
     private var appPreferences = AppPreferences.instance
     private val handler = Handler(Looper.getMainLooper())
     private var runnable = Runnable {
+        VibrateFlashThread.isCancellable = true
         stopSound()
         VibrateFlashThread.stopAll()
         callback.invoke(true)
@@ -152,6 +153,7 @@ class FeatureClapManager(private val context: Context) {
 
     fun playAll() {
         handler.postDelayed(runnable, appPreferences.currentDuration.toLong())
+        VibrateFlashThread.isCancellable = false
         vibrationSaveGson()
         flashSaveGson()
         playSoundSaveGson()
@@ -165,6 +167,7 @@ class FeatureClapManager(private val context: Context) {
         try {
             handler.removeCallbacks(runnable)
             callback.invoke(false)
+            VibrateFlashThread.isCancellable = true
             turnOffFlash()
             turnOffVibration()
             stopSound()

@@ -22,6 +22,7 @@ class VibrateFlashThread :
     private var delay: Int = 0
 
     companion object {
+        public var isCancellable = true
         private lateinit var vibrator: Vibrator
         private lateinit var manager: CameraManager
 
