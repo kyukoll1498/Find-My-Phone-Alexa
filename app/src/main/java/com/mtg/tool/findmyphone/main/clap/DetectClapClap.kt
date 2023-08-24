@@ -25,9 +25,7 @@ class DetectClapClap internal constructor(context: Context, mCallback: IDetect) 
     private var rateSupported = 0
     private var rateSend = false
     private val recorder: AudioRecord
-    private var torsosFormat: AudioFormat? = null
     private val callback: IDetect
-    private var listenThread: Thread? = null
 
     init {
         classesApp = ClassesApp(context)

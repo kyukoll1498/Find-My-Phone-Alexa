@@ -37,12 +37,12 @@ class FeatureClapManager(private val context: Context) {
     }
     private lateinit var callback: (Boolean) -> Unit
 
-    fun playSoundSaveGson() {
+    private fun playSoundSaveGson() {
         val statusPlay = AppPreferences.instance.hasSound
         playSound(appPreferences.currentDuration.toLong(), statusPlay)
     }
 
-    fun setVolume(){
+    private fun setVolume(){
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, appPreferences.currentVolume, 0);
     }
 
@@ -116,7 +116,7 @@ class FeatureClapManager(private val context: Context) {
         }
     }
 
-    fun turnOffFlash() {
+    private fun turnOffFlash() {
         val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
         val cameraId: String?
         try {
@@ -127,7 +127,7 @@ class FeatureClapManager(private val context: Context) {
         }
     }
 
-    fun vibrationSaveGson() {
+    private fun vibrationSaveGson() {
         val statusFlash = AppPreferences.instance.hasVibrate
         turnOnVibration(appPreferences.currentDuration.toLong(), statusFlash)
     }
@@ -144,7 +144,7 @@ class FeatureClapManager(private val context: Context) {
         }
     }
 
-    fun turnOffVibration() {
+    private fun turnOffVibration() {
         VibrateFlashThread.stopAll()
         val vibrator = context.getSystemService(VIBRATOR_SERVICE) as Vibrator
         vibrator.cancel()

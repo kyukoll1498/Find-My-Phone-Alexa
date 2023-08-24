@@ -44,11 +44,26 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     override fun initView() {
+        val visible = View.VISIBLE
+        val invisible = View.INVISIBLE
         requireActivity().registerReceiver(finishDetectReceiver, IntentFilter(ACTION_FINISH_DETECT))
-        isMyServiceRunning()
+        if (isMyServiceRunning()) {
+            isCircleActiveVisible = !isCircleActiveVisible
+            binding.apply {
+                ivCircleActive.visibility = visible
+                txtActive.visibility = visible
+                txtInactive.visibility = invisible
+                if (showTxtContent) {
+                    llTvInactive.visibility = visible
+                    tvInactive.visibility = invisible
+                }
+                lavClickInactive.visibility = invisible
+                lavClickActive.visibility = visible
+            }
+        }
+
         classesApp = ClassesApp(requireContext())
-        classesApp!!.save("detectClap", "1")
-        context?.stopService(Intent(activity, VocalService::class.java))
+//        context?.stopService(Intent(activity, VocalService::class.java))
         activity?.window?.addFlags(128)
         settingSound()
     }
@@ -162,8 +177,8 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 PermissionUtils.checkNotificationPermission(requireContext())
             ) {
                 if (!isCircleActiveVisible) {
-                    isCircleActiveVisible = !isCircleActiveVisible
                     logEvent("click_home_activate")
+                    isCircleActiveVisible = !isCircleActiveVisible
                     binding.apply {
                         ivCircleActive.visibility = visible
                         txtActive.visibility = visible
