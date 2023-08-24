@@ -270,12 +270,9 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if(frAd!=null){
-                                frAd.setVisibility(View.VISIBLE);
-                            }
+                            currentActivity.sendBroadcast(new Intent(ACTION_SHOW_NATIVE));
                         }
                     }, 100);
-                    currentActivity.sendBroadcast(new Intent(ACTION_SHOW_NATIVE));
                 }
 
                 @Override
