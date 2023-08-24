@@ -54,6 +54,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:theme="@style/AdsAppTheme"
+            tools:replace="android:theme"/>
+
         <activity
             android:name=".main.activity.LanguageActivity"
             android:exported="true"
