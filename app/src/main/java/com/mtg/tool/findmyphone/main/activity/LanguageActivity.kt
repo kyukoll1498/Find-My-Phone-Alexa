@@ -83,6 +83,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         mList = listCountry
         for (i in mList.indices) {
             if (mList[i].languageToLoad == appPreferences.currentLanguage) {
+                itemLanguage = mList[i]
                 mList[i].imgSelect = (R.drawable.ic_checked)
                 return
             }
