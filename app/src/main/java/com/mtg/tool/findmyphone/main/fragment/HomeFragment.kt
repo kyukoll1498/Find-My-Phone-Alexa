@@ -161,7 +161,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             if (PermissionUtils.checkMicroPermission(requireContext()) &&
                 PermissionUtils.checkNotificationPermission(requireContext())
             ) {
-                if (isCircleActiveVisible) {
+                if (!isCircleActiveVisible) {
                     isCircleActiveVisible = !isCircleActiveVisible
                     logEvent("click_home_activate")
                     binding.apply {
