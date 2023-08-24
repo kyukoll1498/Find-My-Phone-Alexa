@@ -54,14 +54,27 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     private WelcomeBackDialog dialog;
     private long timeShowLoading = 100;
     private FrameLayout frAd;
+    private List<FrameLayout> frAds = new ArrayList<>();
 
     private BroadcastReceiver receiverShowAd = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_DISMISS_NATIVE)) {
-                frAd.setVisibility(View.GONE);
+                for (FrameLayout frAd : frAds) {
+                    try {
+                        frAd.setVisibility(View.GONE);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             } else if (intent.getAction().equals(ACTION_SHOW_NATIVE)) {
-                frAd.setVisibility(View.VISIBLE);
+                for (FrameLayout frAd : frAds) {
+                    try {
+                        frAd.setVisibility(View.VISIBLE);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     };
@@ -352,6 +365,9 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     public void hideNativeOrBannerWhenShowOpenApp(Activity activity, FrameLayout frAd) {
         this.frAd = frAd;
+        if (!frAds.contains(frAd)) {
+            frAds.add(frAd);
+        }
         IntentFilter filterShowAd = new IntentFilter();
         filterShowAd.addAction(ACTION_DISMISS_NATIVE);
         filterShowAd.addAction(ACTION_SHOW_NATIVE);
