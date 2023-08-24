@@ -131,8 +131,8 @@ class VocalService : Service() {
             contentView.setOnClickPendingIntent(R.id.notification_layout, pendingIntentNotificationAction)
 
             notificationBuilder.setContent(contentView)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_launcher_background))
+                .setSmallIcon(R.drawable.ic_icon_app)
+                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_icon_app))
                 .setContentIntent(pendingIntentNotificationAction)
                 .setAutoCancel(true)
 

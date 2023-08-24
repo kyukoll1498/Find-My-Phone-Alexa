@@ -11,7 +11,6 @@ import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 import com.mtg.tool.findmyphone.MODE_VIBRATE_TICKTOCK
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.databinding.FragmentSettingBinding
-import com.mtg.tool.findmyphone.main.clap.FeatureClapManager
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
 
