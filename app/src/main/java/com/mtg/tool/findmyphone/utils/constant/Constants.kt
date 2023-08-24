@@ -3,7 +3,7 @@ package com.mtg.tool.findmyphone.utils.constant
 object Constants {
     val TAG: String = javaClass.name
     const val EMAIL = "verifiedapps.help@gmail.com"
-    const val SUBJECT = "Feedback for Dog Translator"
+    const val SUBJECT = "Find my phone by Clap, Whistle"
     const val TIP_URL = "https://sites.google.com/view/readfaster/home"
     const val ISSUES_URL = " https://sites.google.com/view/all-doc-common-issues"
     const val POLICY_URL = "https://firebasestorage.googleapis.com/v0/b/all-documents-55e23.appspot.com/o/policy%20Find%20my%20phone%20by%20Clap%2C%20Whistle.html?alt=media&token=404b903f-81fc-4ca8-8e83-bf6e3d47f869"
