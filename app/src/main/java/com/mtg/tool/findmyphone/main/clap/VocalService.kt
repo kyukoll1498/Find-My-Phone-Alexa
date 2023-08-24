@@ -8,9 +8,11 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
+import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.widget.RemoteViews
@@ -19,6 +21,7 @@ import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.main.activity.MainActivity
+import com.mtg.tool.findmyphone.utils.MediaPlayerUtil.handler
 
 
 @Suppress("DEPRECATION")
@@ -28,6 +31,8 @@ class VocalService : Service() {
     private var notificationChannel: NotificationChannel? = null
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
+    private val handler = Handler()
+    private val serviceDurationMillis = 60 * 60 * 1000 // 1 hour in milliseconds
 
     private lateinit var detectClapClap: DetectClapClap
 
@@ -43,15 +48,20 @@ class VocalService : Service() {
             stopSelf()
             return START_NOT_STICKY
         }
+        //set limit service run in 1 hour
+        handler.postDelayed({
+            stopForeground(true)
+            stopSelf()
+        }, serviceDurationMillis.toLong())
 
         startDetection()
-        //Cancel Notification
+        // Cancel notification
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.cancel(1234)
 
         val notification = buildNotification()
         startForeground(1234, notification)
-        return super.onStartCommand(intent, flags, startId)
+        return START_STICKY
     }
 
     private fun performNotificationAction() {
@@ -102,7 +112,7 @@ class VocalService : Service() {
         selectedDetection = 0
         Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
         FeatureClapManager.getInstance(this).stopAll()
-
+        handler.removeCallbacksAndMessages(null)
     }
 
     @SuppressLint("LaunchActivityFromNotification")
