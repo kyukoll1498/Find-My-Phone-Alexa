@@ -294,7 +294,17 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     isShowingAd = true;
                 }
             };
-            showAdsWithLoading(fullScreenContentCallback);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        showAdsWithLoading(fullScreenContentCallback);
+                    } catch (Exception e) {
+                         e.printStackTrace();
+                    }
+                }
+            }, 100);
+
         }
     }
 
