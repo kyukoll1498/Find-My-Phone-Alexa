@@ -93,4 +93,6 @@
     <string name="maybe_later">Maybe later</string>
     <string name="submit">Submit</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Allow <b>Clap To Find Your Phone</b> to access the Notification</string>
+    <string name="app_name_setting" translatable="false">Find my phone</string>
+
 </resources>
