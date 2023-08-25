@@ -26,9 +26,9 @@ android {
     signingConfigs {
         release {
             storeFile file('key/release.jks')
-            storePassword 'com.mtg.tool.findmyphone'
+            storePassword 'com.mtg.find.phone.clap.phonefinder.findmyphone'
             keyAlias 'release'
-            keyPassword 'com.mtg.tool.findmyphone'
+            keyPassword 'com.mtg.find.phone.clap.phonefinder.findmyphone'
         }
     }
 
@@ -36,6 +36,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
