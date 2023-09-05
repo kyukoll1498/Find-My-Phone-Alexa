@@ -20,6 +20,7 @@ import com.mtg.tool.findmyphone.databinding.ActivityRecordSoundBinding
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.utils.AudioUtil
 import com.mtg.tool.findmyphone.utils.CacheUtils
+import com.mtg.tool.findmyphone.utils.FileUtils
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.RecordUtil
 import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
@@ -130,7 +131,7 @@ class RecordAudioActivity :
             System.currentTimeMillis(),
             R.drawable.avatar_audio_default,
             R.drawable.avatar_audio_default,
-            CacheUtils.getLastFilePathAudio()
+            CacheUtils.getLastFilePathAudio(), 0, 15000, FileUtils.getDurationFromAudioFile( CacheUtils.getLastFilePathAudio())!! <= 15000.toLong()
         )
     }
 
