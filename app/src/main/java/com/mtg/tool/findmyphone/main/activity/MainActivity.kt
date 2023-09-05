@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.manager.AdmobManager
@@ -18,10 +17,8 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityMainBinding
-import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.main.dialog.NotificationPermissionDialog
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
-import com.mtg.tool.findmyphone.main.fragment.AddFragment
 import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 import com.mtg.tool.findmyphone.main.fragment.SettingFragment
 import com.mtg.tool.findmyphone.main.fragment.SoundFragment
@@ -59,15 +56,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             changeUITools(binding.viewpagerMain.currentItem, 1)
             binding.viewpagerMain.setCurrentItem(1, false)
         }
-        binding.btnAdd.setOnClickListener {
-            logEvent("click_add")
-            changeUITools(binding.viewpagerMain.currentItem, 2)
-            binding.viewpagerMain.setCurrentItem(2, false)
-        }
+//        binding.btnAdd.setOnClickListener {
+//            logEvent("click_add")
+//            changeUITools(binding.viewpagerMain.currentItem, 2)
+//            binding.viewpagerMain.setCurrentItem(2, false)
+//        }
         binding.btnSetting.setOnClickListener {
             logEvent("click_setting")
-            changeUITools(binding.viewpagerMain.currentItem, 3)
-            binding.viewpagerMain.setCurrentItem(3, false)
+            changeUITools(binding.viewpagerMain.currentItem, 2)
+            binding.viewpagerMain.setCurrentItem(2, false)
         }
         binding.btnDrawer.setOnClickListener {
             logEvent("click_menu")
@@ -99,12 +96,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     binding.tvSound.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
                 }
 
-                2 -> {
-                    binding.ivAdd.setImageDrawable(getDrawable(R.drawable.ic_import))
-                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
-                }
+//                2 -> {
+//                    binding.ivAdd.setImageDrawable(getDrawable(R.drawable.ic_import))
+//                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+//                }
 
-                3 -> {
+                2 -> {
                     binding.ivSetting.setImageDrawable(getDrawable(R.drawable.ic_settings))
                     binding.tvSetting.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
                 }
@@ -120,12 +117,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     binding.tvSound.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
                 }
 
-                2 -> {
-                    binding.ivAdd.setImageDrawable(getDrawable(R.drawable.ic_import_selected))
-                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
-                }
+//                2 -> {
+//                    binding.ivAdd.setImageDrawable(getDrawable(R.drawable.ic_import_selected))
+//                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+//                }
 
-                3 -> {
+                2 -> {
                     binding.ivSetting.setImageDrawable(getDrawable(R.drawable.ic_settings_selected))
                     binding.tvSetting.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
                 }
@@ -170,7 +167,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             adapter = ViewPagerAddFragmentsAdapter(supportFragmentManager, lifecycle).apply {
                 addFrag(homeFragment)
                 addFrag(SoundFragment())
-                addFrag(AddFragment())
+//                addFrag(AddFragment())
                 addFrag(SettingFragment())
             }
         }
@@ -182,8 +179,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 super.onPageSelected(position)
                 binding.ivHome.isSelected = position == 0
                 binding.ivSound.isSelected = position == 1
-                binding.ivAdd.isSelected = position == 2
-                binding.ivSetting.isSelected = position == 3
+                binding.ivSetting.isSelected = position == 2
+//                binding.ivAdd.isSelected = position == 2
 
             }
         })
