@@ -40,9 +40,13 @@ object MediaPlayerUtil {
     fun playAudioPath(path: String, duration: Int = 0, callback: () -> Unit) {
         restartAudio()
         setDuration(duration, callback)
-        mediaPlayer.setDataSource(path)
-        mediaPlayer.prepare()
-        mediaPlayer.start()
+        try {
+            mediaPlayer.setDataSource(path)
+            mediaPlayer.prepare()
+            mediaPlayer.start()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private fun restartAudio() {

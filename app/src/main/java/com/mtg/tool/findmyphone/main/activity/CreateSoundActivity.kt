@@ -204,7 +204,7 @@ class CreateSoundActivity :
                 binding.tvPath.text = FileUtils.getFileNameAudioFromUri(uri, this, 12)
                 var duration = file?.let { FileUtils.getDurationFromAudioFile(it.path) }
                 if (duration != null && duration > 15000) {
-                    file?.path?.let { AudioUtil.cutAudio(this, 0, 15, it){} }
+                    file?.path?.let { AudioUtil.cutAudio(this, 0, 15*1000, duration, it, true){} }
                 }
                 updateCurrentSound()
                 gotoSave()
