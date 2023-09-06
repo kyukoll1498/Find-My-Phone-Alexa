@@ -57,7 +57,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
             context,
             BuildConfig.native_add,
             binding.frAd,
-            R.layout.custom_native_ads
+            R.layout.custom_native_ads_30
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(requireActivity(), binding.frAd)
     }

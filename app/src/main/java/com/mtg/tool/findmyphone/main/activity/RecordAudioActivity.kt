@@ -39,13 +39,6 @@ class RecordAudioActivity :
     private var currentTime = 0
     private var timer: CountDownTimer? = null
     override fun initView() {
-        AdmobManager.getInstance().loadNative(
-            this,
-            BuildConfig.native_language,
-            binding.frAd,
-            R.layout.custom_native_ads
-        )
-        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     override fun loadAds() {
@@ -54,7 +47,7 @@ class RecordAudioActivity :
             this,
             BuildConfig.native_record,
             binding.frAd,
-            R.layout.custom_native_ads
+            R.layout.custom_native_ads_30
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
