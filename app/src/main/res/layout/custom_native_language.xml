@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/white"
-    android:background="@drawable/bg_radius_8">
+    android:background="@drawable/bg_radius_8"
+    android:backgroundTint="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,11 +14,46 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/_4sdp">
 
+        <TextView
+            android:id="@+id/ad_call_to_action"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:background="@drawable/bg_native_language"
+            android:gravity="center"
+            android:text="@string/learn_more"
+            android:fontFamily="@font/grand_medium"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_weight="1">
+
+            <com.google.android.gms.ads.nativead.MediaView
+                android:id="@+id/ad_media"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/mdl_bg_ad_loading"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="16:6"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_4sdp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -96,51 +131,16 @@
 
             </LinearLayout>
         </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:layout_weight="1">
-
-            <com.google.android.gms.ads.nativead.MediaView
-                android:id="@+id/ad_media"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@drawable/mdl_bg_ad_loading"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="16:6"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/ad_call_to_action"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_4sdp"
-            android:background="@drawable/bg_native_blue"
-            android:gravity="center"
-            android:text="@string/learn_more"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_10sdp"
-            android:textStyle="bold" />
-
     </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:src="@drawable/ic_ads_info" />
+        android:src="@drawable/ic_new_ads_info" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_ads_orange" />
+        android:src="@drawable/ic_new_ads" />
 </com.google.android.gms.ads.nativead.NativeAdView>
