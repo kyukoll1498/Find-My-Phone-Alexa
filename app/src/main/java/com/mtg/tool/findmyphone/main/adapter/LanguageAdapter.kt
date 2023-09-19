@@ -1,11 +1,12 @@
 package com.mtg.tool.findmyphone.main.adapter
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.common.control.dialog.PermissionStorageDialog.callback
 import com.mtg.tool.findmyphone.base.BaseAdapter
 import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.databinding.ItemLanguageBinding
@@ -43,6 +44,13 @@ class LanguageAdapter(mList: List<ItemLanguage?>?, context: Context?) :
             binding.tvLanguage.text = itemLanguage.name
             binding.rbCheck.setImageResource(itemLanguage.imgSelect)
             binding.tvLanguage.setSize(16)
+            if (itemLanguage.colorBackground?.isNotEmpty() == true) {
+                itemView.backgroundTintList = ColorStateList.valueOf(Color.parseColor(itemLanguage.colorBackground))
+                binding.tvLanguage.setTextColor(Color.parseColor("#FFFFFF"))
+            } else {
+                itemView.backgroundTintList = null
+                binding.tvLanguage.setTextColor(Color.parseColor("#221F29"))
+            }
         }
 
         override fun onClick(v: View) {

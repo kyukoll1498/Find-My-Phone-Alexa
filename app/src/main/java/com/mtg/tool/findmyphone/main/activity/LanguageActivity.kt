@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
 import com.common.control.base.OnActionCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
@@ -67,10 +65,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             mCallback = OnActionCallback { key, data ->
                 for (item in mList) {
                     item?.let { it.imgSelect = (R.drawable.ic_disable) }
+                    itemLanguage?.colorBackground = null
                 }
                 if (key == Constants.KEY_LANGUAGE) {
                     itemLanguage = data[0] as ItemLanguage?
                     itemLanguage?.let { it.imgSelect = (R.drawable.ic_checked) }
+                    itemLanguage?.colorBackground = "#ED6A40"
                     this.notifyDataSetChanged()
                 }
             }
@@ -84,6 +84,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         for (i in mList.indices) {
             if (mList[i].languageToLoad == appPreferences.currentLanguage) {
                 itemLanguage = mList[i]
+                itemLanguage?.colorBackground = "#ED6A40"
                 mList[i].imgSelect = (R.drawable.ic_checked)
                 return
             }
