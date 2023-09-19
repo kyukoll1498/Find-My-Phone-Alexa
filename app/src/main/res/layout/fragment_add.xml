@@ -9,7 +9,7 @@
         android:id="@+id/ct_empty"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/fr_ad"
         app:layout_constraintTop_toTopOf="parent" >
 
