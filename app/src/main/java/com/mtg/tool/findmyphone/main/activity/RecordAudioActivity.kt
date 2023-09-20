@@ -123,7 +123,7 @@ class RecordAudioActivity :
             "",
             System.currentTimeMillis(),
             R.drawable.avatar_audio_default,
-            R.drawable.avatar_audio_default,
+            R.drawable.ic_default_audio_avatar,
             CacheUtils.getLastFilePathAudio(), 0, 15000, FileUtils.getDurationFromAudioFile( CacheUtils.getLastFilePathAudio())!! <= 15000.toLong()
         )
     }
