@@ -116,9 +116,9 @@ android {
             addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3270179691816977/8904804339")
             addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3270179691816977/1904281713")
 
-            addConstantTo(owner, "native_add", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "native_create", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_add", "ca-app-pub-3270179691816977/9886726828")
+            addConstantTo(owner, "native_create", "ca-app-pub-3270179691816977/5186447374")
+            addConstantTo(owner, "native_record", "ca-app-pub-3270179691816977/1273739635")
 
             addConstantTo(owner, "native_permission", "ca-app-pub-3270179691816977/1328174982")
 
