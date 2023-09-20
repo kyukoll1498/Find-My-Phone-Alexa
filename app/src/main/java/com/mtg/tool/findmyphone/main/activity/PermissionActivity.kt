@@ -30,9 +30,9 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>(ActivityPermi
 
         AdmobManager.getInstance().loadNative(
             this,
-            BuildConfig.native_guide,
+            BuildConfig.native_permission,
             binding.frAd,
-            R.layout.custom_native_onboarding
+            R.layout.custom_native_language
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
 

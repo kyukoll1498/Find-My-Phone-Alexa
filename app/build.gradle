@@ -120,6 +120,8 @@ android {
             addConstantTo(owner, "native_create", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
 
+            addConstantTo(owner, "native_permission", "ca-app-pub-3270179691816977/1328174982")
+
         }
     }
 
