@@ -92,4 +92,10 @@
     <string name="maybe_later">Talvez mais tarde</string>
     <string name="submit">Enviar</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Permiteți <b>Bate din palme pentru a-ți găsi telefonul</b> să acceseze notificarea</string>
+
+    <string name="grant_permission">Permisie garantata</string>
+    <string name="please_grant">Vă rugăm să acordați următoarea permisiune de a oferi găsitor de telefon prin aplauze</string>
+    <string name="record_permission">Permisiune de înregistrare</string>
+    <string name="continue_permission">Continua</string>
+    <string name="toast_permission_continue">Permiteți permisiunea de a continua!</string>
 </resources>

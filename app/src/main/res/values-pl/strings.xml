@@ -93,4 +93,10 @@
     <string name="maybe_later">Może później</string>
     <string name="submit">Składać</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Zezwól aplikacji <b>Klaskaj, aby znaleźć swój telefon</b> na dostęp do powiadomienia</string>
+
+    <string name="grant_permission">Dać pozwolenie</string>
+    <string name="please_grant">Proszę o wyrażenie zgody na wyszukiwanie telefonu poprzez klaskanie</string>
+    <string name="record_permission">Zezwolenie na nagrywanie</string>
+    <string name="continue_permission">Kontynuować</string>
+    <string name="toast_permission_continue">Zezwól na kontynuację!</string>
 </resources>

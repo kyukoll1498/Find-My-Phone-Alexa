@@ -92,4 +92,10 @@
     <string name="maybe_later">mungkin nanti</string>
     <string name="submit">Kirim</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Izinkan <b>Tepuk Untuk Menemukan Ponsel Anda</b> untuk mengakses Notifikasi</string>
+
+    <string name="grant_permission">Memberikan ijin</string>
+    <string name="please_grant">Harap berikan izin berikut untuk menyediakan pencari telepon dengan bertepuk tangan</string>
+    <string name="record_permission">Izin Rekam</string>
+    <string name="continue_permission">Melanjutkan</string>
+    <string name="toast_permission_continue">Izinkan izin untuk melanjutkan!</string>
 </resources>

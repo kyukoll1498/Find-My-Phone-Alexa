@@ -92,4 +92,10 @@
     <string name="maybe_later">也许稍后</string>
     <string name="submit">提交</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >允许<b>拍手找到您的手机</b>访问通知</string>
+
+    <string name="grant_permission">授予权限</string>
+    <string name="please_grant">请通过拍手授予以下权限以提供手机查找器</string>
+    <string name="record_permission">记录权限</string>
+    <string name="continue_permission">继续</string>
+    <string name="toast_permission_continue">允许继续！</string>
 </resources>

@@ -92,4 +92,10 @@
     <string name="maybe_later">Quizas mas tarde</string>
     <string name="submit">Entregar</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Permita que <b>Aplauda para encontrar su teléfono</b> acceda a la notificación</string>
+
+    <string name="grant_permission">Conceder permiso</string>
+    <string name="please_grant">Otorgue el siguiente permiso para proporcionar el buscador de teléfonos aplaudiendo</string>
+    <string name="record_permission">Permiso de registro</string>
+    <string name="continue_permission">Continuar</string>
+    <string name="toast_permission_continue">¡Permita permiso para continuar!</string>
 </resources>

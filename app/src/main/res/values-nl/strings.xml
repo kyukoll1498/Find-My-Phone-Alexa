@@ -92,4 +92,10 @@
     <string name="maybe_later">Misschien later</string>
     <string name="submit">Indienen</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Geef <b>Klap om je telefoon te vinden</b> toegang tot de melding</string>
+
+    <string name="grant_permission">Toestemming geven</string>
+    <string name="please_grant">Verleen alstublieft de volgende toestemming om de telefoonzoeker aan te bieden door te klappen</string>
+    <string name="record_permission">Toestemming opnemen</string>
+    <string name="continue_permission">Doorgaan</string>
+    <string name="toast_permission_continue">Geef toestemming om door te gaan!</string>
 </resources>

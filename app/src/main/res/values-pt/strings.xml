@@ -92,4 +92,10 @@
     <string name="maybe_later">Talvez mais tarde</string>
     <string name="submit">Enviar</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Permitir que <b>Bata palmas para encontrar seu telefone</b> acesse a notificação</string>
+
+    <string name="grant_permission">Conceder permissão</string>
+    <string name="please_grant">Por favor, conceda a seguinte permissão para fornecer localizador de telefone batendo palmas</string>
+    <string name="record_permission">Permissão de registro</string>
+    <string name="continue_permission">Continuar</string>
+    <string name="toast_permission_continue">Permita permissão para continuar!</string>
 </resources>

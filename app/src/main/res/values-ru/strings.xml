@@ -92,4 +92,10 @@
     <string name="maybe_later">Может быть позже</string>
     <string name="submit">Представлять на рассмотрение</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Разрешите <b>Хлопните, чтобы найти свой телефон</b> доступ к уведомлению</string>
+
+    <string name="grant_permission">Предоставить разрешение</string>
+    <string name="please_grant">Пожалуйста, дайте следующее разрешение, чтобы обеспечить поиск телефона, хлопая в ладоши</string>
+    <string name="record_permission">Разрешение на запись</string>
+    <string name="continue_permission">Продолжать</string>
+    <string name="toast_permission_continue">Разрешите продолжить!</string>
 </resources>

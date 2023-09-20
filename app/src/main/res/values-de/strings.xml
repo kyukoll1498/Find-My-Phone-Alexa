@@ -92,4 +92,10 @@
     <string name="maybe_later">Vielleicht später</string>
     <string name="submit">Einreichen</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Erlauben Sie <b>Klicken Sie, um Ihr Telefon zu finden</b>, um auf die Benachrichtigung zuzugreifen</string>
+
+    <string name="grant_permission">Erlaubnis erteilen</string>
+    <string name="please_grant">Bitte erteilen Sie durch Klatschen die folgende Erlaubnis, den Telefonfinder bereitzustellen</string>
+    <string name="record_permission">Aufnahmeberechtigung</string>
+    <string name="continue_permission">Weitermachen</string>
+    <string name="toast_permission_continue">Erlauben Sie die Erlaubnis, fortzufahren!</string>
 </resources>

@@ -92,4 +92,10 @@
     <string name="maybe_later">ไว้ก่อน</string>
     <string name="submit">ส่ง</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >อนุญาตให้ <b>ปรบมือเพื่อค้นหาโทรศัพท์ของคุณ</b> เพื่อเข้าถึงการแจ้งเตือน</string>
+
+    <string name="grant_permission">ให้สิทธิ์</string>
+    <string name="please_grant">โปรดให้สิทธิ์ต่อไปนี้เพื่อให้ค้นหาโทรศัพท์ด้วยการตบมือ</string>
+    <string name="record_permission">บันทึกการอนุญาต</string>
+    <string name="continue_permission">ดำเนินการต่อ</string>
+    <string name="toast_permission_continue">ขออนุญาติดำเนินการต่อ!</string>
 </resources>

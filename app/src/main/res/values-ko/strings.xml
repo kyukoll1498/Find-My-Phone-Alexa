@@ -92,4 +92,10 @@
     <string name="maybe_later">나중에</string>
     <string name="submit">제출하다</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >알림에 액세스하려면 <b>휴대폰을 찾으려면 박수를 쳐보세요</b>을 허용하세요.</string>
+
+    <string name="grant_permission">권한 부여</string>
+    <string name="please_grant">박수를 치시면 휴대폰 찾기 기능을 제공하기 위해 다음 권한을 허용해주세요</string>
+    <string name="record_permission">녹음 허가</string>
+    <string name="continue_permission">계속하다</string>
+    <string name="toast_permission_continue">계속하려면 권한을 허용하세요!</string>
 </resources>

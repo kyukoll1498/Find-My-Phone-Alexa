@@ -92,4 +92,10 @@
     <string name="maybe_later">Forse più tardi</string>
     <string name="submit">Invia</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Consenti a <b>Batti le mani per trovare il tuo telefono</b> di accedere alla notifica</string>
+
+    <string name="grant_permission">Concedere l\'autorizzazione</string>
+    <string name="please_grant">Si prega di concedere la seguente autorizzazione per fornire la ricerca del telefono battendo le mani</string>
+    <string name="record_permission">Autorizzazione alla registrazione</string>
+    <string name="continue_permission">Continua</string>
+    <string name="toast_permission_continue">Consenti il permesso di continuare!</string>
 </resources>

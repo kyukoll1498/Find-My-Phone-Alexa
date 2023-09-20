@@ -92,4 +92,10 @@
     <string name="maybe_later">Có lẽ sau này</string>
     <string name="submit">Nộp</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Cho phép <b>Vỗ tay để tìm điện thoại của bạn</b> truy cập Thông báo</string>
+
+    <string name="grant_permission">Cấp quyền</string>
+    <string name="please_grant">Vui lòng cấp quyền sau đây để cung cấp công cụ tìm điện thoại bằng cách vỗ tay</string>
+    <string name="record_permission">Quyền ghi</string>
+    <string name="continue_permission">Tiếp tục</string>
+    <string name="toast_permission_continue">Cho phép quyền tiếp tục!</string>
 </resources>

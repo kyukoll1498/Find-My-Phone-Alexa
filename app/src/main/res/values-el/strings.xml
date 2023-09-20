@@ -92,4 +92,10 @@
     <string name="maybe_later">Ισως αργότερα</string>
     <string name="submit">υποβάλλουν</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_notification" >Επιτρέψτε στο <b>Χτυπήστε για να βρείτε το τηλέφωνό σας</b> να έχει πρόσβαση στην Ειδοποίηση</string>
+
+    <string name="grant_permission">Χορήγηση άδειας</string>
+    <string name="please_grant">Παρακαλούμε χορηγήστε την ακόλουθη άδεια για την παροχή συσκευής εύρεσης τηλεφώνου χτυπώντας παλαμάκια</string>
+    <string name="record_permission">Άδεια εγγραφής</string>
+    <string name="continue_permission">Να συνεχίσει</string>
+    <string name="toast_permission_continue">Επιτρέψτε την άδεια να συνεχίσετε!</string>
 </resources>
