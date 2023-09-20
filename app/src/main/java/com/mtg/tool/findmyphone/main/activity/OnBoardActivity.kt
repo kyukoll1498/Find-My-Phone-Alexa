@@ -1,7 +1,9 @@
 package com.mtg.tool.findmyphone.main.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Paint
+import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
@@ -59,7 +61,7 @@ class OnBoardActivity :
 
         binding.tvNext.setOnClickListener {
             if (binding.viewpagerOnboard.currentItem == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
-                startActivity(Intent(this@OnBoardActivity, MainActivity::class.java))
+                startActivity(Intent(this@OnBoardActivity, PermissionActivity::class.java))
                 finish()
             } else {
                 binding.viewpagerOnboard.currentItem++
