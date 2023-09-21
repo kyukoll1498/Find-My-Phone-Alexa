@@ -48,8 +48,15 @@ object FileUtils {
                 }
             }
         }
+//        if (fileName.length > maxChar) {
+//            fileName = fileName.substring(0, maxChar - 5) +"."+ fileName.substring(fileName.lastIndexOf("."), fileName.length)
+//        }
         if (fileName.length > maxChar) {
-            fileName = fileName.substring(0, maxChar - 5) +"."+ fileName.substring(fileName.lastIndexOf("."), fileName.length)
+            fileName = if (fileName.lastIndexOf(".") != -1) {
+                fileName.substring(0, maxChar - 5) + "." + fileName.substring(fileName.lastIndexOf("."), fileName.length)
+            } else {
+                fileName.substring(0, maxChar)
+            }
         }
         return fileName
     }
