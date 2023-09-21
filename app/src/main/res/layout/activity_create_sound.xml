@@ -120,17 +120,18 @@
             android:id="@+id/iv_sound_avatar"
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
-            android:layout_marginTop="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:src="@drawable/avatar_audio_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <EditText
             android:id="@+id/edt_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:backgroundTint="#ACACAC"
             android:fontFamily="@font/inter_semibold"
             android:hint="@string/enter_name_sound"
@@ -155,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/tv_path"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:background="@drawable/bg_radius_100"
             android:backgroundTint="#5987FF"
             android:gravity="center"
@@ -217,7 +218,9 @@
         android:layout_marginHorizontal="@dimen/_48sdp"
         android:textColor="@color/white"
         android:textSize="@dimen/_16sdp"
-        app:layout_constraintBottom_toTopOf="@+id/fr_ad" />
+        app:layout_constraintBottom_toTopOf="@+id/fr_ad"
+        app:layout_constraintTop_toBottomOf="@+id/ct_save_record"
+        app:layout_constraintVertical_bias="1"/>
 
 
     <FrameLayout
