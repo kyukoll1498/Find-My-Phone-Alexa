@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
+import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
@@ -211,6 +212,7 @@ class RecordAudioActivity :
     }
 
     private fun startRecord() {
+        sendBroadcast(Intent(ACTION_FINISH_DETECT))
         RecordUtil.startRecord(CacheUtils.getNewNameFileAudio(this))
         mode = MODE_PREPARE_PAUSE
         hideToolsMoreRecord()
