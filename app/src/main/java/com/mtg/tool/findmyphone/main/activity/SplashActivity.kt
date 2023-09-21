@@ -67,10 +67,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun showInter(interstitialAd: InterstitialAd) {
+        startMain()
         AdmobManager.getInstance().showInterstitial(this, interstitialAd, object : AdCallback() {
             override fun onAdClosed() {
                 super.onAdClosed()
-                startMain()
+//                startMain()
             }
         })
 
