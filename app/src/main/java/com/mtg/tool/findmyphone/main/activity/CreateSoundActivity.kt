@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
+import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
@@ -82,6 +83,7 @@ class CreateSoundActivity :
         binding.llAudioController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
                 logEvent("click_add_play")
+                sendBroadcast(Intent(ACTION_FINISH_DETECT))
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
