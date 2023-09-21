@@ -58,6 +58,7 @@ class PlaySoundActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.tvName.setSelected(true)
         binding.tvVolume.setSelected(true)
         binding.tvDuration.setSelected(true)
     }
