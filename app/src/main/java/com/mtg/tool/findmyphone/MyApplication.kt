@@ -8,8 +8,10 @@ import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
+import com.facebook.FacebookSdk
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.main.activity.SplashActivity
+import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import java.util.*
@@ -35,8 +37,8 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         registerActivityLifecycleCallbacks(this)
         EventLogger.init(applicationContext)
         //todo facebook sdk
-//        AudienceNetworkInitializeHelper.initialize(this)
-//        FacebookSdk.sdkInitialize(this);
+        AudienceNetworkInitializeHelper.initialize(this)
+        FacebookSdk.sdkInitialize(this)
 
 //        Common.printHashKey(this)
     }
