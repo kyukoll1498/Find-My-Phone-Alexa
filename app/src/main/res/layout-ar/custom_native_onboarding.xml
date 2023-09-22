@@ -132,6 +132,10 @@
             </LinearLayout>
 
         </LinearLayout>
+        <ImageView
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:src="@drawable/ic_ads_info" />
 
         <ImageView
             android:layout_width="@dimen/_10sdp"
