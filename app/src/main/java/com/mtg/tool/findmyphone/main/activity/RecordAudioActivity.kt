@@ -109,7 +109,7 @@ class RecordAudioActivity :
 
     private fun stopRecord() {
         RecordUtil.stopRecording()
-        cutAudio15s()
+//        cutAudio15s()
         mode = MODE_PREPARE_START
         hideToolsMoreRecord()
         restartTimer()
@@ -222,7 +222,7 @@ class RecordAudioActivity :
 
     private fun startTimer() {
         currentTime = 0
-        timer = object : CountDownTimer(1000000000, 1000) {
+        timer = object : CountDownTimer(15000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 currentTime++
                 binding.tvTime.text = String.format(
@@ -233,6 +233,7 @@ class RecordAudioActivity :
             }
 
             override fun onFinish() {
+                stopRecord()
             }
         }
         timer?.run { start() }

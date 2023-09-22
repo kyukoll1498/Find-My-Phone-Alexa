@@ -31,6 +31,7 @@ object MediaPlayerUtil {
 
     fun playAudioPath(path: String, callback: () -> Unit) {
         restartAudio()
+        this.callback = callback
         try {
             mediaPlayer.setDataSource(path)
             mediaPlayer.setOnCompletionListener {

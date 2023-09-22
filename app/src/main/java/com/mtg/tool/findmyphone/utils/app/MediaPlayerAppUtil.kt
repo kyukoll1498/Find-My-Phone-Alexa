@@ -8,30 +8,15 @@ import com.mtg.tool.findmyphone.utils.MediaPlayerUtil
 object MediaPlayerAppUtil {
     fun playAudio(context: Context, soundItem: SoundItem, callback: () -> Unit) {
         if (soundItem.type == DEFAULT_SOUND_TYPE) {
-            if (soundItem.isPlayFull) {
-                soundItem.soundPath?.let {
-                    MediaPlayerUtil.playAudioAssets(
-                        context,
-                        it.substring(it.lastIndexOf("/") + 1),
-                        callback
-                    )
-                }
-            } else {
-                soundItem.soundPath?.let {
-                    MediaPlayerUtil.playAudioAssets(
-                        context, it.substring(it.lastIndexOf("/") + 1),
-                        0, 15000,
-                        callback
-                    )
-                }
+            soundItem.soundPath?.let {
+                MediaPlayerUtil.playAudioAssets(
+                    context,
+                    it.substring(it.lastIndexOf("/") + 1),
+                    callback
+                )
             }
         } else {
-            if (soundItem.isPlayFull) {
-                soundItem.soundPath?.let { MediaPlayerUtil.playAudioPath(it, callback) }
-            } else {
-                soundItem.soundPath?.let { MediaPlayerUtil.playAudioPath(it, 0, 15000, callback) }
-            }
-
+            soundItem.soundPath?.let { MediaPlayerUtil.playAudioPath(it, callback) }
         }
     }
 
