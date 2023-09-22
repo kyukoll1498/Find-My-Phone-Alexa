@@ -204,8 +204,10 @@ class CreateSoundActivity :
 
         if (requestCode == REQUEST_FILE_AUDIO_CODE) {
             var uri = data?.data
+            try {
             if (uri != null) {
                 var file = FileUtils.saveFileFromUri(uri, CacheUtils.getNewNameFileAudio(this), this)
+
                 binding.tvPath.text = FileUtils.getFileNameAudioFromUri(uri, this, 12)
                 var duration = file?.let { FileUtils.getDurationFromAudioFile(it.path) }
 //                if (duration != null && duration > 15000) {
@@ -214,7 +216,10 @@ class CreateSoundActivity :
                 updateCurrentSound()
                 gotoSave()
             }
-
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(this, "The audio file is error!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
