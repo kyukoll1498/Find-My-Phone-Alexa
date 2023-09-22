@@ -101,4 +101,8 @@
     <string name="continue_permission">Continue</string>
     <string name="toast_permission_continue">Allow permission to continue!</string>
 
+
+    <string name="facebook_app_id" translatable="false">637304811853627</string>
+    <string name="facebook_client_token" translatable="false">a19c6384059194c82a1e5c201c09f2e6edb23407abdc3b0ed0ef62799a543105</string>
+
 </resources>
