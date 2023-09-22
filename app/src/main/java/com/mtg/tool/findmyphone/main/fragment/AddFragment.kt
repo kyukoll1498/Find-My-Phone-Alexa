@@ -51,16 +51,16 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
         }
     }
 
-    override fun loadAds() {
-        super.loadAds()
-        AdmobManager.getInstance().loadNative(
-            context,
-            BuildConfig.native_add,
-            binding.frAd,
-            R.layout.custom_native_ads_30
-        )
-        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(requireActivity(), binding.frAd)
-    }
+//    override fun loadAds() {
+//        super.loadAds()
+//        AdmobManager.getInstance().loadNative(
+//            context,
+//            BuildConfig.native_add,
+//            binding.frAd,
+//            R.layout.custom_native_ads_30
+//        )
+//        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(requireActivity(), binding.frAd)
+//    }
 
     override fun initView() {
         loadSoundList()
