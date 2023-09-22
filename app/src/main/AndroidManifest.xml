@@ -68,11 +68,13 @@
         <activity
             android:name=".main.activity.CreateSoundActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".main.activity.RecordAudioActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".main.activity.HowToUseActivity"
             android:exported="true"

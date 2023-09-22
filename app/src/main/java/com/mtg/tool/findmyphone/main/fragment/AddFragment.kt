@@ -29,6 +29,17 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     private var soundList = mutableListOf<SoundItem>()
     private var soundAdapter: SoundAdapter? = null
 
+    companion object{
+        private var createSoundItem = SoundItem(
+            CREATE_SOUND_TYPE,
+            "",
+            0,
+            R.drawable.image_sound_create,
+            0,
+            ""
+        )
+    }
+
     private val soundReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @SuppressLint("NotifyDataSetChanged")
         override fun onReceive(context: Context, intent: Intent) {
@@ -63,6 +74,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
 //    }
 
     override fun initView() {
+        createSoundItem.name = requireActivity().getString(R.string.create_new)
         loadSoundList()
         registerBroadcast()
     }
@@ -87,16 +99,11 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
         } else {
             binding.ctEmpty.visibility = View.GONE
             binding.rcvSoundImport.visibility = View.VISIBLE
-            soundList.add(
-                0, SoundItem(
-                    CREATE_SOUND_TYPE,
-                    requireActivity().getString(R.string.create_new),
-                    0,
-                    R.drawable.image_sound_create,
-                    0,
-                    ""
+            if (!soundList.contains(createSoundItem)) {
+                soundList.add(
+                    0, createSoundItem
                 )
-            )
+            }
             soundAdapter = SoundAdapter(soundList, requireActivity())
             soundAdapter?.mCallback = OnActionCallback { key, data ->
                 if (key.equals(KEY_SOUND)) {

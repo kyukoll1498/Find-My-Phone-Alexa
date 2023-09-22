@@ -63,6 +63,7 @@ class CreateSoundActivity :
     override fun addEvent() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.llRecordAudio.setOnClickListener {
+            sendBroadcast(Intent(ACTION_FINISH_DETECT))
             logEvent("click_add_import_pms")
             if (!PermissionUtils.checkMicroPermission(this)) {
                 PermissionUtils.requestMicroPermission(this)
@@ -72,6 +73,7 @@ class CreateSoundActivity :
 
         }
         binding.llImportAudio.setOnClickListener {
+            sendBroadcast(Intent(ACTION_FINISH_DETECT))
             logEvent("click_add_record_pms")
             if (!PermissionUtils.checkReadAudioPermission(this)) {
                 PermissionUtils.requestReadAudioPermission(this)
