@@ -12,7 +12,6 @@ import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
 import com.mtg.tool.findmyphone.MODE_VIBRATE_HEART
 import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 import com.mtg.tool.findmyphone.MODE_VIBRATE_TICKTOCK
-import java.time.Duration
 
 class VibrateFlashThread :
     Thread {
@@ -22,7 +21,7 @@ class VibrateFlashThread :
     private var delay: Int = 0
 
     companion object {
-        public var isCancellable = true
+        var isCancellable = true
         private lateinit var vibrator: Vibrator
         private lateinit var manager: CameraManager
 
@@ -152,7 +151,7 @@ class VibrateFlashThread :
 
     private fun switchFlash() {
         manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
-        var cameraId = manager!!.cameraIdList[0]
+        val cameraId = manager.cameraIdList[0]
         try {
             if (durationSum != duration) {
                 for (i in 0 until durationSum / 2 / duration) {
@@ -181,8 +180,9 @@ class VibrateFlashThread :
         } catch (e: InterruptedException) {
             cameraId?.let { manager.setTorchMode(it, false) }
             throw RuntimeException(e)
+        } finally {
+            cameraId?.let { manager.setTorchMode(it, false) }
         }
-        cameraId?.let { manager.setTorchMode(it, false) }
     }
 
     private fun vibrate() {
@@ -190,14 +190,14 @@ class VibrateFlashThread :
         try {
             if (delay == 0) {
                 for (i in 0..durationSum / 1000) {
-                    vibrator?.vibrate(1000)
+                    vibrator.vibrate(1000)
                     if (!startSleep(1000)) {
                         return
                     }
                 }
             } else {
                 for (i in 0..durationSum / (duration + delay)) {
-                    vibrator?.vibrate(duration.toLong())
+                    vibrator.vibrate(duration.toLong())
                     if (!startSleep(duration + delay)) {
                         return
                     }
