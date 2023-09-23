@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.viewbinding.ViewBinding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
@@ -44,6 +45,11 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
     val binding: B by lazy { bindingFactory(layoutInflater) }
 
     lateinit var mContext: Context
+
+    protected open fun logActivityViewed(activityName: String) {
+        FirebaseCrashlytics.getInstance().log("User viewed $activityName")
+    }
+
 
     open fun binding() {
         if (isFullScreen)
@@ -107,11 +113,16 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
                 finish()
             }
         })
+        val activityName = this.javaClass.simpleName
+        logActivityViewed(activityName)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
+
+        val activityName = this.javaClass.simpleName
+        logActivityViewed("$activityName destroyed")
     }
 
     protected open fun changeStatusBar(color: String?) {
