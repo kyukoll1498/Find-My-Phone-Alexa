@@ -1,10 +1,12 @@
 package com.mtg.tool.findmyphone.main.clap
 
+import android.R.attr.data
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
 import android.content.res.AssetFileDescriptor
 import android.hardware.camera2.CameraAccessException
+import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import android.media.AudioManager
 import android.media.MediaPlayer
@@ -13,13 +15,14 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Vibrator
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mtg.tool.findmyphone.DEFAULT_SOUND_TYPE
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
-
 import java.io.IOException
+
 
 class FeatureClapManager(private val context: Context) {
     private var mediaPlayer: MediaPlayer? = null
@@ -105,6 +108,14 @@ class FeatureClapManager(private val context: Context) {
         val cameraId: String?
         try {
             cameraId = manager.cameraIdList[0]
+
+            // Check flash of camera
+            val cameraCharacteristics = manager.getCameraCharacteristics(cameraId)
+            if (!cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)!!) {
+                Toast.makeText(context, "Your Flash is error",Toast.LENGTH_SHORT).show()
+                return
+            }
+
             manager.setTorchMode(cameraId, true)
             VibrateFlashThread(context, AppPreferences(context).currentFlash, duration.toInt()).start()
 
