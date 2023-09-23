@@ -32,7 +32,8 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <service android:name=".main.clap.VocalService" />
+        <service android:name=".main.clap.VocalService"
+            android:exported="true"/>
 
         <activity
             android:name=".main.activity.MainActivity"
