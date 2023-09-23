@@ -5,6 +5,7 @@ import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.os.Vibrator
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
 import com.mtg.tool.findmyphone.MODE_FLASH_DISCO
 import com.mtg.tool.findmyphone.MODE_FLASH_SOS
@@ -116,8 +117,6 @@ class VibrateFlashThread :
 
     }
 
-
-
     override fun run() {
         if (mode == FLASH_MODE) {
             if (isRunningFlash) {
@@ -180,7 +179,7 @@ class VibrateFlashThread :
         } catch (e: InterruptedException) {
             cameraId?.let { manager.setTorchMode(it, false) }
             throw RuntimeException(e)
-        } finally {
+        } catch (e: Exception) {
             cameraId?.let { manager.setTorchMode(it, false) }
         }
     }
