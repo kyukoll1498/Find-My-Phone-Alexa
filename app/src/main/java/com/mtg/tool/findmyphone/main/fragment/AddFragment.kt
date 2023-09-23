@@ -104,7 +104,9 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                     0, createSoundItem
                 )
             }
-            soundAdapter = SoundAdapter(soundList, requireActivity())
+            if (isAdded) {
+                soundAdapter = SoundAdapter(soundList, requireActivity())
+            }
             soundAdapter?.mCallback = OnActionCallback { key, data ->
                 if (key.equals(KEY_SOUND)) {
                     var soundItem = data[0] as SoundItem
