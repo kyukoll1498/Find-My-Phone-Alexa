@@ -120,6 +120,11 @@ class FeatureClapManager(private val context: Context) {
             VibrateFlashThread(context, AppPreferences(context).currentFlash, duration.toInt()).start()
 
             handler.postDelayed({
+                try {
+                   manager.setTorchMode(cameraId, false)
+                } catch (e:CameraAccessException){
+                    e.printStackTrace()
+                }
                 manager.setTorchMode(cameraId, false)
             }, duration)
         } catch (e: CameraAccessException) {
