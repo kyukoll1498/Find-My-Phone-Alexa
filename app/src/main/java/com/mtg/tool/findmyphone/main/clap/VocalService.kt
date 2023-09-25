@@ -113,7 +113,7 @@ class VocalService : Service() {
             this.recorder = null
         }
         selectedDetection = 0
-        Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
+//        Toast.makeText(this, "Detection stopped", Toast.LENGTH_LONG).show()
         FeatureClapManager.getInstance(this).stopAll()
         handler.removeCallbacksAndMessages(null)
     }

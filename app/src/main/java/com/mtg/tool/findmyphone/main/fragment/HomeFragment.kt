@@ -200,8 +200,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                                 Intent(context, VocalService::class.java)
                             )
                         }
-                        Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG)
-                            .show()
+//                        Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
                     }
                 } else {
                     logEvent("click_home_deactivate")
@@ -231,7 +230,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 stopAll()
             }
             activity?.stopService(Intent(context, VocalService::class.java))
-            Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
+//            Toast.makeText(requireContext(), "Detection stopped", Toast.LENGTH_LONG).show()
         }
     }
 
