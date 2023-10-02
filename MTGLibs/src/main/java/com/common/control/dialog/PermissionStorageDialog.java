@@ -38,7 +38,7 @@ public class PermissionStorageDialog extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_permission_storage);
         if (PermissionUtils.isStoragePermissionGranted(this)) {
             if (callback != null) {
-                callback.onPermissionGranted(this);
+                callback.onPermissionGranted();
             }
             finish();
             return;
@@ -95,7 +95,7 @@ public class PermissionStorageDialog extends AppCompatActivity implements View.O
         }
         if (requestCode == RQC_REQUEST_PERMISSION_ANDROID_11) {
             if (PermissionUtils.isStoragePermissionGranted(this)) {
-                callback.onPermissionGranted(this);
+                callback.onPermissionGranted();
             } else {
                 callback.onPermissionDenied();
             }
@@ -111,8 +111,9 @@ public class PermissionStorageDialog extends AppCompatActivity implements View.O
             finish();
             return;
         }
+
         if (PermissionUtils.isStoragePermissionGranted(this)) {
-            callback.onPermissionGranted(this);
+            callback.onPermissionGranted();
         } else {
             callback.onPermissionDenied();
         }

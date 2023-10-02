@@ -28,13 +28,34 @@ import java.util.List;
 
 public class PurchaseManager {
     private static PurchaseManager instance;
+
+
+    public static PurchaseManager getInstance() {
+        if (instance == null) {
+            instance = new PurchaseManager();
+        }
+        return instance;
+    }
+
+    private PurchaseManager() {
+
+    }
+
     private final List<Purchase> purchaseList = new ArrayList<>();
     private List<ProductDetails> productDetailsList;
+
     private PurchaseCallback callback;
-    private BillingClient billingClient;
+
+    public void setCallback(PurchaseCallback callback) {
+        this.callback = callback;
+    }
+
     private final AcknowledgePurchaseResponseListener acknowledgePurchaseResponseListener = billingResult -> {
         queryPurchase();
     };
+    private BillingClient billingClient;
+    private List<PurchaseModel> purchaseModelList;
+
     private final PurchasesUpdatedListener purchasesUpdatedListener = (billingResult, list) -> {
         if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
                 && list != null) {
@@ -47,21 +68,6 @@ public class PurchaseManager {
             callback.purchaseFail();
         }
     };
-    private List<PurchaseModel> purchaseModelList;
-    private PurchaseManager() {
-
-    }
-
-    public static PurchaseManager getInstance() {
-        if (instance == null) {
-            instance = new PurchaseManager();
-        }
-        return instance;
-    }
-
-    public void setCallback(PurchaseCallback callback) {
-        this.callback = callback;
-    }
 
     private void handlePurchase(Purchase purchase) {
         if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {

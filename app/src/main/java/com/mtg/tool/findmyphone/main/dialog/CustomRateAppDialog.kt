@@ -39,7 +39,7 @@ class CustomRateAppDialog(context: Context?) : Dialog(context!!) {
         setCanceledOnTouchOutside(false)
         val rating = findViewById<RatingBar>(R.id.rating)
         edtContent = findViewById(R.id.edt_content)
-        setOnDismissListener { dialogInterface: DialogInterface? -> callback!!.onDismiss() }
+        setOnDismissListener { dialogInterface: DialogInterface? -> }
         findViewById<View>(R.id.tv_submit).setOnClickListener {
             dismiss()
             callback!!.onSubmit(edtContent?.getText().toString())

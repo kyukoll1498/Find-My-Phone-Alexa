@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 public class CustomViewPager extends ViewPager {
-    private boolean isPagingEnabled;
-
     public CustomViewPager(@NonNull Context context) {
         super(context);
     }
@@ -18,6 +16,8 @@ public class CustomViewPager extends ViewPager {
     public CustomViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
+
+    private boolean isPagingEnabled;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

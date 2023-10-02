@@ -21,12 +21,12 @@ public class RateAppDialog extends Dialog {
     private EditText edtContent;
     private Runnable rd;
 
-    public RateAppDialog(Context context) {
-        super(context);
-    }
-
     public void setCallback(RateCallback callback) {
         this.callback = callback;
+    }
+
+    public RateAppDialog(Context context) {
+        super(context);
     }
 
     @Override
@@ -44,10 +44,8 @@ public class RateAppDialog extends Dialog {
     }
 
     private void initView() {
-        setCanceledOnTouchOutside(false);
         RatingBar rating = findViewById(R.id.rating);
         edtContent = findViewById(R.id.edt_content);
-        setOnDismissListener(dialogInterface -> callback.onDismiss());
         this.findViewById(R.id.tv_submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +74,6 @@ public class RateAppDialog extends Dialog {
             };
             handler.postDelayed(rd, 200);
         });
-
-    }
-
-    @Override
-    public void onBackPressed() {
 
     }
 }

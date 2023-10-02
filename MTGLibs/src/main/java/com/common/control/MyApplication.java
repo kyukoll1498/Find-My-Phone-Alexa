@@ -35,49 +35,26 @@ public abstract class MyApplication extends Application {
         }
         AdmobManager.getInstance().setShowLoadingDialog(isShowDialogLoadingAd());
 
-        AppConfig appConfig = getAppConfig();
-        AppUtils.getInstance().setAppConfig(appConfig);
-        AdmobManager.getInstance().setHasLog(appConfig.isShowLogIdAd());
-
+        AppUtils.getInstance().setPolicyUrl(getPolicyUrl());
+        AppUtils.getInstance().setEmail(getEmailSupport());
+        AppUtils.getInstance().setSubject(getSubjectSupport());
+        AdmobManager.getInstance().setHasLog(true);
         if (isInitBilling()) {
             PurchaseManager.getInstance().init(this, getPurchaseList());
         }
 
         if (hasAdjust()) {
-            initAdjust();
+            AdmobManager.getInstance().hasAdjust(true);
+            String environment = BuildConfig.DEBUG ? AdjustConfig.ENVIRONMENT_SANDBOX : AdjustConfig.ENVIRONMENT_PRODUCTION;
+            AdjustConfig config = new AdjustConfig(this, getAdjustAppToken(), environment);
+            config.setLogLevel(LogLevel.VERBOSE);
+            //remove log
+//        config.setLogLevel(LogLevel.SUPRESS);
+            Adjust.onCreate(config);
+            registerActivityLifecycleCallbacks(new AdjustLifecycleCallbacks());
         }
     }
 
-    private void initAdjust() {
-        AdmobManager.getInstance().hasAdjust(true);
-        String environment = BuildConfig.DEBUG ? AdjustConfig.ENVIRONMENT_SANDBOX : AdjustConfig.ENVIRONMENT_PRODUCTION;
-        AdjustConfig config = new AdjustConfig(this, getAdjustAppToken(), environment);
-        config.setLogLevel(LogLevel.VERBOSE);
-        Adjust.onCreate(config);
-        registerActivityLifecycleCallbacks(new AdjustLifecycleCallbacks());
-    }
-
-    protected abstract void onApplicationCreate();
-
-    protected abstract boolean hasAdjust();
-
-    protected abstract String getAdjustAppToken();
-
-    protected abstract boolean hasAds();
-
-    protected abstract boolean isShowDialogLoadingAd();
-
-    protected abstract boolean isShowAdsTest();
-
-    protected abstract boolean enableAdsResume();
-
-    protected abstract String getOpenAppAdId();
-
-    protected abstract boolean isInitBilling();
-
-    protected abstract List<PurchaseModel> getPurchaseList();
-
-    protected abstract AppConfig getAppConfig();
 
     private static class AdjustLifecycleCallbacks implements ActivityLifecycleCallbacks {
         @Override
@@ -116,4 +93,32 @@ public abstract class MyApplication extends Application {
         }
 
     }
+
+
+    protected abstract void onApplicationCreate();
+
+    protected abstract boolean hasAdjust();
+
+    protected abstract String getAdjustAppToken();
+
+    protected abstract boolean hasAds();
+
+    protected abstract boolean isShowDialogLoadingAd();
+
+    protected abstract boolean isShowAdsTest();
+
+    protected abstract boolean enableAdsResume();
+
+    protected abstract String getOpenAppAdId();
+
+    protected abstract String getPolicyUrl();
+
+    protected abstract String getSubjectSupport();
+
+    protected abstract String getEmailSupport();
+
+    protected abstract boolean isInitBilling();
+
+    protected abstract List<PurchaseModel> getPurchaseList();
+
 }

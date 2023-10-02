@@ -37,7 +37,7 @@ public class PermissionSystemDialog extends AppCompatActivity {
         String[] permissions = getIntent().getStringArrayExtra("data");
         if (PermissionUtils.permissionGranted(this, permissions)) {
             if (permissionCallback != null) {
-                permissionCallback.onPermissionGranted(this);
+                permissionCallback.onPermissionGranted();
             }
             finish();
             return;
@@ -54,7 +54,7 @@ public class PermissionSystemDialog extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (permissionCallback != null) {
             if (PermissionUtils.permissionGranted(this, permissions)) {
-                permissionCallback.onPermissionGranted(this);
+                permissionCallback.onPermissionGranted();
             } else {
                 permissionCallback.onPermissionDenied();
             }

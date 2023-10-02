@@ -8,15 +8,10 @@ import com.google.gson.Gson;
 
 public class SharePrefUtils {
     private static final String SHARE_PREF_NAME = "setting_app.pref";
-    public static final String SHARE_PREF_REWARD_TRANSLATOR_SHOWING = "SHARE_PREF_NAME";
     @SuppressLint("StaticFieldLeak")
     private static SharePrefUtils instance;
     private Context context;
     private SharedPreferences mSharedPreferences;
-
-    private SharePrefUtils() {
-
-    }
 
     public static SharePrefUtils getInstance() {
         if (instance == null) {
@@ -31,7 +26,12 @@ public class SharePrefUtils {
 
     }
 
-    private <T> T get(String key, Object def, Class<T> anonymousClass) {
+    private SharePrefUtils() {
+
+    }
+
+
+    private  <T> T get(String key, Object def, Class<T> anonymousClass) {
         if (anonymousClass == String.class) {
             return (T) mSharedPreferences.getString(key, (String) def);
         } else if (anonymousClass == Boolean.class) {
@@ -52,7 +52,7 @@ public class SharePrefUtils {
         return mSharedPreferences.getBoolean(key, def);
     }
 
-    public String getString(String key, String def) {
+    public String getString(String key, String  def) {
         return mSharedPreferences.getString(key, def);
     }
 

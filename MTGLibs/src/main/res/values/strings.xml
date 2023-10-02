@@ -8,12 +8,10 @@
     <string name="pl_grant_permission">Grant permission</string>
     <string name="pl_grant_permission_desc">We need the Storage Permission to access your file. Please click Go Settings bellow and active Storage under Storage permission</string>
     <string name="pl_cancel">Cancel</string>
-    <string name="loading_ad">Loading ads...</string>
-    <string name="welcome_back">Welcome Back</string>
-    <string name="rate_title">DO YOU LIKE OUR APP?</string>
-    <string name="rate_body">Give us a quick rating so we know if you like it?</string>
-    <string name="maybe_later">Maybe later</string>
-    <string name="please_feedback">Please leave a feedback to help us improve product</string>
-    <string name="submit">Submit</string>
+    <string name="good">Good</string>
+    <string name="we_are_working_hard_for">We are working hard for a better user experience. We’d greatly appreciate if you can rate us</string>
+    <string name="txt_content">Please leave a feedback to help us improve product</string>
+    <string name="rate_now">Rate Now</string>
+    <string name="later">Later</string>
 
 </resources>

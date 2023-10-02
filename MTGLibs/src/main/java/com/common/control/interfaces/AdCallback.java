@@ -11,6 +11,7 @@ abstract public class AdCallback {
     public AdCallback() {
     }
 
+    @Deprecated
     public void onAdClosed() {
     }
 

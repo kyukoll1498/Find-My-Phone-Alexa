@@ -83,9 +83,7 @@ object ActionUtils {
                 }
             }
 
-            override fun onDismiss() {
 
-            }
         })
         dialog.show()
     }

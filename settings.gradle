@@ -16,5 +16,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FindMyPhone"
 include ':app'
-include ':MTGLibs'
 include ':custom_seekbar'
+include ':MTGLibs'

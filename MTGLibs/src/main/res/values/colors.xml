@@ -9,7 +9,7 @@
 
     <color name="textColor">#ff666666</color>
     <color name="colorAds">#068abf</color>
-    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhite">#ffffffff</color>
     <color name="colorGrayAds">#fff8f8f8</color>
     <color name="stockeCard">#5E58595A</color>
 
@@ -25,6 +25,5 @@
     <color name="gntAdGreen">#3A6728</color>
     <color name="gntGray">#808080</color>
     <color name="gntOutline">#E0E0E0</color>
-
-    <color name="bg_seekbar">#FFDFBA</color>
+    <color name="tranparent">#00FFFFFF</color>
 </resources>

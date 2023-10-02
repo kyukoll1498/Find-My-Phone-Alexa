@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 
 public class CustomEdittext extends AppCompatEditText {
-    private OnHideKeyboardListener mOnHideKeyboardListener;
-
     public CustomEdittext(@NonNull Context context) {
         super(context);
     }
@@ -22,6 +20,8 @@ public class CustomEdittext extends AppCompatEditText {
     public CustomEdittext(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
+    private OnHideKeyboardListener mOnHideKeyboardListener;
 
     public void setOnHideKeyboardListener(OnHideKeyboardListener mOnHideKeyboardListener) {
         this.mOnHideKeyboardListener = mOnHideKeyboardListener;

@@ -3,6 +3,7 @@ package com.common.control.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -29,6 +30,7 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends BaseLangua
         super.onCreate(savedInstanceState);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 //        setTheme(R.style.Theme_AppThemeDark);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         initLanguage();
         binding = DataBindingUtil.setContentView(this, getLayoutId());

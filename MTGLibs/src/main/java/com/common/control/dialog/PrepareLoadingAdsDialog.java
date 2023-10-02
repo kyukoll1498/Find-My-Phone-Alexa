@@ -6,15 +6,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.akexorcist.localizationactivity.ui.LocalizationActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.common.control.R;
 
 
-public class PrepareLoadingAdsDialog extends LocalizationActivity {
+public class PrepareLoadingAdsDialog extends AppCompatActivity {
 
     public static final String ACTION_DISMISS_DIALOG = "action_dismiss_dialog";
     public static final String ACTION_CLEAR_TEXT_AD = "action_clear_text_ad";
+    public static final String ACTION_UPDATE_TEXT = "action_update_text";
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -28,21 +31,24 @@ public class PrepareLoadingAdsDialog extends LocalizationActivity {
         }
     };
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     public static void start(Context context) {
         Intent starter = new Intent(context, PrepareLoadingAdsDialog.class);
         context.startActivity(starter);
     }
 
     @Override
-    public void onBackPressed() {
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_prepair_loading_ads);
-        registerReceiver(receiver, new IntentFilter(ACTION_DISMISS_DIALOG));
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ACTION_DISMISS_DIALOG);
+        filter.addAction(ACTION_CLEAR_TEXT_AD);
+        registerReceiver(receiver, filter);
     }
 
     @Override
@@ -54,5 +60,8 @@ public class PrepareLoadingAdsDialog extends LocalizationActivity {
     public void clearTextAd() {
         TextView tvLoading = findViewById(R.id.loading_dialog_tv);
         tvLoading.setText("Loading...");
+    }
+
+    public static void remove() {
     }
 }

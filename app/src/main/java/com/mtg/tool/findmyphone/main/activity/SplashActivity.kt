@@ -93,9 +93,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                 startActivity(Intent(this@SplashActivity, OnBoardActivity::class.java))
             }
         }
-        Handler(Looper.getMainLooper()).postDelayed({
-            finish()
-        }, 300)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            finish()
+//        }, 300)
     }
 
     override fun onStart() {

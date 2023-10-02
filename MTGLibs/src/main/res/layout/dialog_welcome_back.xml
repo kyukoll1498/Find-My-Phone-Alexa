@@ -24,7 +24,7 @@
             android:layout_below="@+id/spin_kit"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_16sdp"
-            android:text="@string/welcome_back"
+            android:text="Welcome Back"
 
             android:textColor="#000000"
             android:textSize="@dimen/_14sdp" />

@@ -187,7 +187,7 @@ class RealPathUtil {
      * @return The value of the _data column, which is typically a file path.
      */
     private static String getDataColumn(Context context, Uri uri, String selection,
-                                        String[] selectionArgs) {
+                                       String[] selectionArgs) {
 
         Cursor cursor = null;
         final String column = MediaStore.Images.Media.DATA;
@@ -222,7 +222,7 @@ class RealPathUtil {
     }
 
     private static String getPathVsmart(Context context, Uri uri, String selection,
-                                        String[] selectionArgs) {
+                                       String[] selectionArgs) {
 
         Cursor cursor = null;
         final String column = MediaStore.Images.Media.DATA;
@@ -266,7 +266,7 @@ class RealPathUtil {
     }
 
     private static String getNameFile(Context context, Uri uri, String selection,
-                                      String[] selectionArgs) {
+                                     String[] selectionArgs) {
 
         Cursor cursor = null;
         final String column = MediaStore.Images.Media.DISPLAY_NAME;

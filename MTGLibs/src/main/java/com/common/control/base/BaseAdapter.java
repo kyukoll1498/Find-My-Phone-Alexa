@@ -13,14 +13,15 @@ abstract public class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     protected List<T> mList;
     protected Context context;
 
+    public void setCallback(OnActionCallback callback) {
+        this.callback = callback;
+    }
+
     public BaseAdapter(List<T> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }
 
-    public void setCallback(OnActionCallback callback) {
-        this.callback = callback;
-    }
 
     @NonNull
     @Override
@@ -46,6 +47,8 @@ abstract public class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
             return 0;
         }
     }
+
+
 
 
 }

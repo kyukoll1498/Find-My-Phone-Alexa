@@ -3,7 +3,6 @@ package com.mtg.tool.findmyphone
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import com.common.control.AppConfig
 import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
@@ -11,10 +10,9 @@ import com.common.control.model.PurchaseModel
 import com.facebook.FacebookSdk
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.main.activity.SplashActivity
-import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
-import java.util.*
+import java.util.Arrays
 
 
 class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
@@ -86,6 +84,18 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         return BuildConfig.open_app
     }
 
+    override fun getPolicyUrl(): String {
+        return ""
+    }
+
+    override fun getSubjectSupport(): String {
+        return ""
+    }
+
+    override fun getEmailSupport(): String {
+        return ""
+    }
+
     override fun isInitBilling(): Boolean {
         return false
     }
@@ -97,9 +107,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         )
     }
 
-    override fun getAppConfig(): AppConfig {
-        return AppConfig.AppConfigBuilder().setShowLogIdAd(true).build()
-    }
+
 
     override fun onActivityCreated(p0: Activity, p1: Bundle?) {
 

@@ -12,15 +12,15 @@ import java.text.DecimalFormat;
 public class FileUtils {
     private static FileUtils instance;
 
-    private FileUtils() {
-
-    }
-
     public static FileUtils getInstance() {
         if (instance == null) {
             instance = new FileUtils();
         }
         return instance;
+    }
+
+    private FileUtils() {
+
     }
 
     public String getPathFromUri(final Context context, final Uri uri) {

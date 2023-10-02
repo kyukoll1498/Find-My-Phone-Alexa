@@ -10,5 +10,4 @@ public interface RateCallback {
 
     void starRate(float v);
 
-    void onDismiss();
 }

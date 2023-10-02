@@ -3,14 +3,11 @@ package com.common.control.manager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+import android.app.Dialog;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -21,6 +18,7 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.common.control.dialog.WelcomeBackDialog;
 import com.common.control.interfaces.AdCallback;
+import com.common.control.utils.PermissionUtils;
 import com.google.android.gms.ads.AdActivity;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -37,59 +35,24 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     @SuppressLint("StaticFieldLeak")
     private static volatile AppOpenManager INSTANCE;
-    private final List<Class> disabledAppOpenList;
-
-    private final List<Class> disabledAppOpenInRewardList;
     private AppOpenAd appResumeAd = null;
+
     private String appResumeAdId;
+
     private Activity currentActivity;
+
     private Application myApplication;
+
     private boolean isShowingAd = false;
+
     private boolean isInitialized = false;
     private boolean isAppResumeEnabled = true;
-    private String ACTION_DISMISS_NATIVE = "ACTION_DISMISS_NATIVE";
-    private String ACTION_SHOW_NATIVE = "ACTION_SHOW_NATIVE";
+
+    private final List<Class> disabledAppOpenList;
 
     private long loadTime;
     private WelcomeBackDialog dialog;
     private long timeShowLoading = 100;
-    private FrameLayout frAd;
-    private List<FrameLayout> frAds = new ArrayList<>();
-
-    private BroadcastReceiver receiverShowAd = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(ACTION_DISMISS_NATIVE)) {
-                for (FrameLayout frAd : frAds) {
-                    try {
-                        frAd.setVisibility(View.GONE);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else if (intent.getAction().equals(ACTION_SHOW_NATIVE)) {
-                for (FrameLayout frAd : frAds) {
-                    try {
-                        frAd.setVisibility(View.VISIBLE);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    };
-
-    private AppOpenManager() {
-        disabledAppOpenList = new ArrayList<>();
-        disabledAppOpenInRewardList = new ArrayList<>();
-    }
-
-    public static synchronized AppOpenManager getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new AppOpenManager();
-        }
-        return INSTANCE;
-    }
 
     public void setTimeShowLoading(long timeShowLoading) {
         this.timeShowLoading = timeShowLoading;
@@ -123,12 +86,20 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
         return disabledAppOpenList;
     }
 
-    public List<Class> getDisabledAppOpenInRewardList() {
-        return disabledAppOpenInRewardList;
-    }
-
     public long getLoadTime() {
         return loadTime;
+    }
+
+    private AppOpenManager() {
+        disabledAppOpenList = new ArrayList<>();
+    }
+
+
+    public static synchronized AppOpenManager getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new AppOpenManager();
+        }
+        return INSTANCE;
     }
 
     public void init(Application application, String appOpenAdId) {
@@ -147,11 +118,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     public void disableAppResumeWithActivity(Class activityClass) {
         Log.d(TAG, "disableAppResumeWithActivity: " + activityClass.getName());
         disabledAppOpenList.add(activityClass);
-    }
-
-    public void disableAppResumeWithRewardActivity(Class activityClass) {
-        Log.d(TAG, "disableAppResumeWithActivity: " + activityClass.getName());
-        disabledAppOpenInRewardList.add(activityClass);
     }
 
     public void enableAppResumeWithActivity(Class activityClass) {
@@ -174,7 +140,8 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     public void fetchAd(AdCallback callback) {
         if (isAdAvailable()) {
-            if (callback != null) callback.onAdLoaded();
+            if (callback != null)
+                callback.onAdLoaded();
             return;
         }
         AdRequest request = AdmobManager.getInstance().getAdRequest();
@@ -195,7 +162,9 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             }
         };
         AdmobManager.getInstance().log("Request OpenAd :" + appResumeAdId);
-        AppOpenAd.load(myApplication, appResumeAdId, request, AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
+        AppOpenAd.load(
+                myApplication, appResumeAdId, request,
+                AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
     }
 
     private boolean wasLoadTimeLessThanNHoursAgo(long numHours) {
@@ -237,13 +206,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-//        try {
-//            currentActivity.unregisterReceiver(receiverShowAd);
-//        }catch (Exception e){
-//
-//        }
         currentActivity = null;
-
     }
 
 
@@ -259,52 +222,30 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
         }
         if (isAdAvailable()) {
             Log.d(TAG, "Will show ad.");
-            FullScreenContentCallback fullScreenContentCallback = new FullScreenContentCallback() {
-                @Override
-                public void onAdDismissedFullScreenContent() {
-                    // Set the reference to null so isAdAvailable() returns false.
-                    AppOpenManager.this.appResumeAd = null;
-                    isShowingAd = false;
-//                            fetchAd();
-                    dismissDialogLoading();
-                    new Handler().postDelayed(new Runnable() {
+            FullScreenContentCallback fullScreenContentCallback =
+                    new FullScreenContentCallback() {
                         @Override
-                        public void run() {
-                            try {
-                                myApplication.sendBroadcast(new Intent(ACTION_SHOW_NATIVE));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
+                        public void onAdDismissedFullScreenContent() {
+                            // Set the reference to null so isAdAvailable() returns false.
+                            AppOpenManager.this.appResumeAd = null;
+                            isShowingAd = false;
+//                            fetchAd();
+                            dismissDialogLoading();
                         }
-                    }, 100);
-                }
 
-                @Override
-                public void onAdFailedToShowFullScreenContent(AdError adError) {
-                    dismissDialogLoading();
-                    AppOpenManager.this.appResumeAd = null;
-                    fetchAd();
-                    if (adError.getCode() != 0)
-                        myApplication.sendBroadcast(new Intent(ACTION_SHOW_NATIVE));
-                }
+                        @Override
+                        public void onAdFailedToShowFullScreenContent(AdError adError) {
+                            dismissDialogLoading();
+                            AppOpenManager.this.appResumeAd = null;
+                            fetchAd();
+                        }
 
-                @Override
-                public void onAdShowedFullScreenContent() {
-                    isShowingAd = true;
-                }
-            };
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        showAdsWithLoading(fullScreenContentCallback);
-                    } catch (Exception e) {
-                         e.printStackTrace();
-                    }
-                }
-            }, 100);
-
+                        @Override
+                        public void onAdShowedFullScreenContent() {
+                            isShowingAd = true;
+                        }
+                    };
+            showAdsWithLoading(fullScreenContentCallback);
         }
     }
 
@@ -321,47 +262,42 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             return;
         }
         if (ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-//            try {
-//                dismissDialogLoading();
-//                dialog = new WelcomeBackDialog(currentActivity);
-//                dialog.show();
-//            } catch (Exception e) {
-//                dialog = null;
-//                e.printStackTrace();
-//            }
-//            final Dialog finalDialog = dialog;
+            try {
+                dismissDialogLoading();
+                dialog = new WelcomeBackDialog(currentActivity);
+                dialog.show();
+            } catch (Exception e) {
+                dialog = null;
+                e.printStackTrace();
+            }
+            final Dialog finalDialog = dialog;
 
             if (fullScreenContentCallback != null) {
                 appResumeAd.setFullScreenContentCallback(fullScreenContentCallback);
             }
             appResumeAd.setOnPaidEventListener(adValue -> AdmobManager.getInstance().trackRevenue(adValue));
-            appResumeAd.show(currentActivity);
-            myApplication.sendBroadcast(new Intent(ACTION_DISMISS_NATIVE));
 
-//            new Handler().postDelayed(() -> {
-//                if (dialog != null && dialog.isShowing()) {
-//                    AdmobManager.getInstance().log("Show OpenAd :" + appResumeAdId);
-//                    appResumeAd.show(currentActivity);
-//                    currentActivity.sendBroadcast(new Intent("ACTION_DISMISS"));
-//                }
-//            }, timeShowLoading);
+            new Handler().postDelayed(() -> {
+                if (dialog != null && dialog.isShowing()) {
+                    AdmobManager.getInstance().log("Show OpenAd :" + appResumeAdId);
+                    appResumeAd.show(currentActivity);
+                }
+            }, timeShowLoading);
         }
     }
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onResume() {
-        if (!isAppResumeEnabled /*|| !AdsConfigManager.getInstance().hasAds(R.string.oa_return)*/) {
+        if (!isAppResumeEnabled) {
             Log.d(TAG, "onResume: app resume is disabled");
             return;
         }
 
-//        for (Class activity : disabledAppOpenInRewardList) {
-//            if (activity.getName().equals(currentActivity.getClass().getName()) && SharePrefUtils.getInstance().getBoolean(SharePrefUtils.SHARE_PREF_REWARD_TRANSLATOR_SHOWING, false)) {
-//                Log.d(TAG, "onStart: activity is disabled");
-//                return;
-//            }
-//        }
+        if (currentActivity != null && !PermissionUtils.isStoragePermissionGranted(currentActivity)) {
+            Log.d(TAG, "onResume: Permission Not Granted");
+            return;
+        }
 
         for (Class activity : disabledAppOpenList) {
             if (activity.getName().equals(currentActivity.getClass().getName())) {
@@ -374,16 +310,16 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             showAdIfAvailable();
         }
     }
-
     public void hideNativeOrBannerWhenShowOpenApp(Activity activity, FrameLayout frAd) {
-        this.frAd = frAd;
-        if (!frAds.contains(frAd)) {
-            frAds.add(frAd);
-        }
-        IntentFilter filterShowAd = new IntentFilter();
-        filterShowAd.addAction(ACTION_DISMISS_NATIVE);
-        filterShowAd.addAction(ACTION_SHOW_NATIVE);
-        activity.registerReceiver(receiverShowAd, filterShowAd);
+        //todo do nothing load old ads
+//        this.frAd = frAd;
+//        if (!frAds.contains(frAd)) {
+//            frAds.add(frAd);
+//        }
+//        IntentFilter filterShowAd = new IntentFilter();
+//        filterShowAd.addAction(ACTION_DISMISS_NATIVE);
+//        filterShowAd.addAction(ACTION_SHOW_NATIVE);
+//        activity.registerReceiver(receiverShowAd, filterShowAd);
     }
 }
 

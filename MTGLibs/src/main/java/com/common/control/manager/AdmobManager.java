@@ -1,5 +1,7 @@
 package com.common.control.manager;
 
+import static com.common.control.BuildConfig.DEBUG;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -27,7 +29,10 @@ import com.adjust.sdk.AdjustConfig;
 import com.common.control.R;
 import com.common.control.dialog.PrepareLoadingAdsDialog;
 import com.common.control.interfaces.AdCallback;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AudienceNetworkAds;
 import com.google.ads.mediation.admob.AdMobAdapter;
+import com.google.android.ads.mediationtestsuite.MediationTestSuite;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
@@ -42,6 +47,7 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.appopen.AppOpenAd;
 import com.google.android.gms.ads.formats.NativeAdOptions;
+import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.nativead.NativeAd;
@@ -52,6 +58,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
+import java.util.Map;
 
 public class AdmobManager {
     private static AdmobManager instance;
@@ -61,7 +68,6 @@ public class AdmobManager {
     private long customTimeLoadingDialog = 1500;
     private boolean hasAdjust;
     private boolean hasLog;
-
 
     private AdmobManager() {
 
@@ -123,10 +129,18 @@ public class AdmobManager {
             Log.d("log_admob", "init: Admob");
             MobileAds.initialize(context, initializationStatus -> {
             });
-            MobileAds.setRequestConfiguration(new RequestConfiguration.Builder()
-                    .setTestDeviceIds(Collections.singletonList(deviceID)).build());
+            MobileAds.setRequestConfiguration(new RequestConfiguration.Builder().setTestDeviceIds(Collections.singletonList(deviceID)).build());
+
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        initialize(context);
+    }
+
+    private void initialize(Context context) {
+        if (!AudienceNetworkAds.isInitialized(context)) {
+            AudienceNetworkAds.buildInitSettings(context).withInitListener(initResult -> {
+            }).initialize();
         }
     }
 
@@ -148,19 +162,6 @@ public class AdmobManager {
         }
         AdRequest.Builder builder = new AdRequest.Builder();
         return builder.build();
-    }
-
-    public AdRequest getAdCollapsibleBannerRequest() {
-        if (!hasAds || PurchaseManager.getInstance().isPurchased()) {
-            return null;
-        }
-//        AdRequest.Builder builder = new AdRequest.Builder();
-//        return builder.build();
-        Bundle extras = new Bundle();
-        extras.putString("collapsible", "bottom");
-        AdRequest.Builder adRequest = new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras);
-
-        return adRequest.build();
     }
 
     public void loadInterAds(Activity context, String id, AdCallback callback) {
@@ -232,41 +233,24 @@ public class AdmobManager {
         };
 
         AdRequest request = AdmobManager.getInstance().getAdRequest();
-        AppOpenAd.load(
-                context, id, request,
-                AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
-    }
-
-    public void showSplashInterstitial(Context context, String id, AdCallback callback) {
-        loadInterAds((Activity) context, id, new AdCallback() {
-            @Override
-            public void onResultInterstitialAd(InterstitialAd interstitialAd) {
-                super.onResultInterstitialAd(interstitialAd);
-                showInterstitial((Activity) context,interstitialAd,this);
-            }
-
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError i) {
-                super.onAdFailedToLoad(i);
-            }
-
-            @Override
-            public void onNextScreen() {
-                super.onNextScreen();
-            }
-        });
+        AppOpenAd.load(context, id, request, AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
     }
 
     public void showInterstitial(Activity context, final InterstitialAd mInterstitialAd, AdCallback callback) {
+        showInterstitial(context, mInterstitialAd, false, callback);
+    }
+
+    public void showInterstitial(Activity context, final InterstitialAd mInterstitialAd, boolean hasLoadingWhenShow, AdCallback callback) {
 
         if (mInterstitialAd == null || PurchaseManager.getInstance().isPurchased()) {
             if (callback != null) {
+                callback.onAdFailedToShowFullScreenContent(errAd);
                 callback.onAdClosed();
                 callback.onNextScreen();
             }
+
             return;
         }
-
 
         mInterstitialAd.setOnPaidEventListener(this::trackRevenue);
 
@@ -297,14 +281,18 @@ public class AdmobManager {
 
             @Override
             public void onAdShowedFullScreenContent() {
-                context.sendBroadcast(new Intent(PrepareLoadingAdsDialog.ACTION_DISMISS_DIALOG));
+                if (!hasLoadingWhenShow) {
+                    context.sendBroadcast(new Intent(PrepareLoadingAdsDialog.ACTION_DISMISS_DIALOG));
+                } else {
+                    context.sendBroadcast(new Intent(PrepareLoadingAdsDialog.ACTION_CLEAR_TEXT_AD));
+                }
                 if (callback != null) {
                     callback.onAdShowedFullScreenContent();
                 }
             }
         });
 
-        if (context != null && !context.isDestroyed() && ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+        if (context != null && !context.isDestroyed() && ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
             long timeShowLoadingDlg = 0;
             if (isShowLoadingDialog) {
                 PrepareLoadingAdsDialog.start(context);
@@ -374,47 +362,6 @@ public class AdmobManager {
         }
     }
 
-    public void loadCollapsibleBanner(final Activity mActivity, String id, final FrameLayout adContainer) {
-        log("Request Banner :" + id);
-
-        AdRequest request = getAdCollapsibleBannerRequest();
-        if (request == null) {
-            adContainer.removeAllViews();
-            adContainer.setVisibility(View.GONE);
-            return;
-        }
-        try {
-            AdView adView = new AdView(mActivity);
-            adView.setAdUnitId(id);
-            AdSize adSize = getCollapsibleBannerAdSize(mActivity);
-            adView.setAdSize(adSize);
-            adView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-            adView.loadAd(request);
-            adView.setAdListener(new AdListener() {
-                @Override
-                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                    super.onAdFailedToLoad(loadAdError);
-                    adContainer.removeAllViews();
-                    adContainer.setVisibility(View.GONE);
-                }
-
-
-                @Override
-                public void onAdLoaded() {
-                    adContainer.removeAllViews();
-                    adContainer.setVisibility(View.VISIBLE);
-                    adContainer.addView(adView);
-                    adView.setOnPaidEventListener(adValue -> {
-                        trackRevenue(adValue);
-                    });
-                }
-
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private AdSize getAdSize(Activity mActivity) {
         Display display = mActivity.getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -429,20 +376,6 @@ public class AdmobManager {
 
     }
 
-    private AdSize getCollapsibleBannerAdSize(Activity mActivity) {
-        Display display = mActivity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-
-        float widthPixels = outMetrics.widthPixels;
-        float density = outMetrics.density;
-
-        int adWidth = (int) (widthPixels / density);
-
-        return AdSize.getLandscapeAnchoredAdaptiveBannerAdSize(mActivity, adWidth);
-
-    }
-
     @Deprecated
     public void loadNative(Context context, String id, FrameLayout placeHolder) {
         loadNative(context, id, placeHolder, R.layout.custom_native);
@@ -453,12 +386,7 @@ public class AdmobManager {
         loadUnifiedNativeAd(context, id, new AdCallback() {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
-                @SuppressLint("InflateParams")
-                NativeAdView nativeAdView =
-                        (NativeAdView) LayoutInflater.from(context).inflate(
-                                customNative,
-                                null
-                        );
+                @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
                 onBindAdView(nativeAd, nativeAdView);
                 placeHolder.removeAllViews();
                 placeHolder.addView(nativeAdView);
@@ -479,29 +407,21 @@ public class AdmobManager {
             callback.onAdFailedToLoad(errAd);
             return;
         }
-        VideoOptions videoOptions = new VideoOptions.Builder()
-                .setStartMuted(true)
-                .build();
-        NativeAdOptions adOptions = new NativeAdOptions.Builder()
-                .setVideoOptions(videoOptions)
-                .build();
-        AdLoader adLoader = new AdLoader.Builder(context, id)
-                .forNativeAd(nativeAd -> {
-                    if (callback != null) {
-                        callback.onNativeAds(nativeAd);
-                    }
-                })
-                .withAdListener(new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        super.onAdFailedToLoad(loadAdError);
-                        if (callback != null) {
-                            callback.onAdFailedToLoad(loadAdError);
-                        }
-                    }
-                })
-                .withNativeAdOptions(adOptions)
-                .build();
+        VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
+        NativeAdOptions adOptions = new NativeAdOptions.Builder().setVideoOptions(videoOptions).build();
+        AdLoader adLoader = new AdLoader.Builder(context, id).forNativeAd(nativeAd -> {
+            if (callback != null) {
+                callback.onNativeAds(nativeAd);
+            }
+        }).withAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                if (callback != null) {
+                    callback.onAdFailedToLoad(loadAdError);
+                }
+            }
+        }).withNativeAdOptions(adOptions).build();
         adLoader.loadAd(request);
     }
 
@@ -548,8 +468,7 @@ public class AdmobManager {
             if (nativeAd.getIcon() == null) {
                 adView.getIconView().setVisibility(View.GONE);
             } else {
-                ((ImageView) adView.getIconView()).setImageDrawable(
-                        nativeAd.getIcon().getDrawable());
+                ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
                 adView.getIconView().setVisibility(View.VISIBLE);
             }
         } catch (Exception e) {
@@ -583,8 +502,7 @@ public class AdmobManager {
             if (nativeAd.getStarRating() == null) {
                 adView.getStarRatingView().setVisibility(View.INVISIBLE);
             } else {
-                ((RatingBar) adView.getStarRatingView())
-                        .setRating(nativeAd.getStarRating().floatValue());
+                ((RatingBar) adView.getStarRatingView()).setRating(nativeAd.getStarRating().floatValue());
                 adView.getStarRatingView().setVisibility(View.VISIBLE);
             }
         } catch (Exception e) {
@@ -628,26 +546,17 @@ public class AdmobManager {
 
         rewardedAd.setOnPaidEventListener(this::trackRevenue);
         rewardedAd.show(activity, callback::onUserEarnedReward);
-        rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                super.onAdDismissedFullScreenContent();
-                callback.onAdClosed();
-            }
-        });
     }
 
     @SuppressLint("HardwareIds")
     public String getDeviceId(Context context) {
-        String android_id = Settings.Secure.getString(context.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
+        String android_id = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         return md5(android_id).toUpperCase();
     }
 
     private String md5(final String s) {
         try {
-            MessageDigest digest = MessageDigest
-                    .getInstance("MD5");
+            MessageDigest digest = MessageDigest.getInstance("MD5");
             digest.update(s.getBytes());
             byte[] messageDigest = digest.digest();
             // Create Hex String
@@ -655,8 +564,7 @@ public class AdmobManager {
             hexString = new StringBuilder();
             for (byte b : messageDigest) {
                 StringBuilder h = new StringBuilder(Integer.toHexString(0xFF & b));
-                while (h.length() < 2)
-                    h.insert(0, "0");
+                while (h.length() < 2) h.insert(0, "0");
                 hexString.append(h);
             }
             return hexString.toString();
@@ -672,5 +580,72 @@ public class AdmobManager {
 
     public void hasAdjust(boolean b) {
         this.hasAdjust = b;
+    }
+
+    public AdRequest getAdCollapsibleBannerRequest() {
+        if (!hasAds || PurchaseManager.getInstance().isPurchased()) {
+            return null;
+        }
+//        AdRequest.Builder builder = new AdRequest.Builder();
+//        return builder.build();
+        Bundle extras = new Bundle();
+        extras.putString("collapsible", "bottom");
+        AdRequest.Builder adRequest = new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras);
+
+        return adRequest.build();
+    }
+
+    public void loadCollapsibleBanner(final Activity mActivity, String id, final FrameLayout adContainer) {
+        log("Request Banner :" + id);
+
+        AdRequest request = getAdCollapsibleBannerRequest();
+        if (request == null) {
+            adContainer.removeAllViews();
+            adContainer.setVisibility(View.GONE);
+            return;
+        }
+        try {
+            AdView adView = new AdView(mActivity);
+            adView.setAdUnitId(id);
+            AdSize adSize = getCollapsibleBannerAdSize(mActivity);
+            adView.setAdSize(adSize);
+            adView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            adView.loadAd(request);
+            adView.setAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                    super.onAdFailedToLoad(loadAdError);
+                    adContainer.removeAllViews();
+                    adContainer.setVisibility(View.GONE);
+                }
+
+
+                @Override
+                public void onAdLoaded() {
+                    adContainer.removeAllViews();
+                    adContainer.setVisibility(View.VISIBLE);
+                    adContainer.addView(adView);
+                    adView.setOnPaidEventListener(adValue -> {
+                        trackRevenue(adValue);
+                    });
+                }
+
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private AdSize getCollapsibleBannerAdSize(Activity mActivity) {
+        Display display = mActivity.getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float widthPixels = outMetrics.widthPixels;
+        float density = outMetrics.density;
+
+        int adWidth = (int) (widthPixels / density);
+
+        return AdSize.getLandscapeAnchoredAdaptiveBannerAdSize(mActivity, adWidth);
+
     }
 }
