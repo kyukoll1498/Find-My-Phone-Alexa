@@ -2,6 +2,9 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +24,7 @@ import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountry
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
+import java.util.Locale
 
 class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBinding::inflate) {
     private var mList: List<ItemLanguage> = ArrayList()
@@ -45,6 +49,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         super.loadAds()
         AdmobManager.getInstance().loadNative(this, BuildConfig.native_language, binding.frAd, R.layout.custom_native_language)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
+        Log.e(TAG, "loadAds: Show native language" )
     }
 
     private fun setStatusBarColor() {
@@ -101,7 +106,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             }
             appPreferences.currentLanguage = itemLanguage!!.languageToLoad
             appPreferences.isChooseLanguage = true
-            setLanguage(itemLanguage!!.languageToLoad)
+            val locale = Locale(itemLanguage!!.languageToLoad)
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.setLocale(locale)
+            baseContext.createConfigurationContext(config)
+//            setLanguage(itemLanguage!!.languageToLoad)
             //todo go to next
             if (SharedPrefs.getBoolean(this, "is_skip_onboard")) {
                 startActivity(Intent(this, MainActivity::class.java))
