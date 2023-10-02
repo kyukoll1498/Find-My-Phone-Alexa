@@ -3,8 +3,6 @@ package com.mtg.tool.findmyphone.main.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
-import android.os.Build
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,7 +47,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         super.loadAds()
         AdmobManager.getInstance().loadNative(this, BuildConfig.native_language, binding.frAd, R.layout.custom_native_language)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
-        Log.e(TAG, "loadAds: Show native language" )
     }
 
     private fun setStatusBarColor() {
@@ -106,11 +103,13 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             }
             appPreferences.currentLanguage = itemLanguage!!.languageToLoad
             appPreferences.isChooseLanguage = true
+
             val locale = Locale(itemLanguage!!.languageToLoad)
             Locale.setDefault(locale)
             val config = Configuration()
-            config.setLocale(locale)
-            baseContext.createConfigurationContext(config)
+            config.locale = locale
+            resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+
 //            setLanguage(itemLanguage!!.languageToLoad)
             //todo go to next
             if (SharedPrefs.getBoolean(this, "is_skip_onboard")) {
