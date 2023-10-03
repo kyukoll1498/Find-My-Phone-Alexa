@@ -73,7 +73,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
     }
 
     override fun isShowAdsTest(): Boolean {
-        return BuildConfig.TEST_AD
+        return BuildConfig.TEST_AD || BuildConfig.DEBUG
     }
 
     override fun enableAdsResume(): Boolean {
