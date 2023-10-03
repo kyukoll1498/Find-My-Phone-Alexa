@@ -116,7 +116,7 @@
             android:layout_marginTop="@dimen/_1sdp"
             android:layout_marginBottom="@dimen/_3sdp"
             android:background="@drawable/bg_radius_8"
-            android:backgroundTint="@color/txt_inactive2"
+            android:backgroundTint="#818181"
             android:elevation="5dp"
             android:gravity="center"
             android:paddingVertical="@dimen/_10sdp"
