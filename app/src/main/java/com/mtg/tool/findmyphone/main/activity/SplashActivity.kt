@@ -21,8 +21,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     override fun initView() {
-        setImageBackground()
         handleAds()
+        setImageBackground()
 //        Handler(Looper.getMainLooper()).postDelayed({ handleAds() }, 2000)
         EventLogger.getInstance()?.logEvent("open_splash")
 
