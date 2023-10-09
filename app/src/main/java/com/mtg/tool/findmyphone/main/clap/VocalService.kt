@@ -8,8 +8,6 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ServiceInfo
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Handler
@@ -21,7 +19,6 @@ import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.main.activity.MainActivity
-import com.mtg.tool.findmyphone.utils.MediaPlayerUtil.handler
 
 
 @Suppress("DEPRECATION")
@@ -41,7 +38,7 @@ class VocalService : Service() {
         return null
     }
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent == null) {
             return START_NOT_STICKY
         }
