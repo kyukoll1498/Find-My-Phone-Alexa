@@ -14,8 +14,8 @@ android {
         applicationId "com.mtg.tool.findmyphone"
         minSdk 24
         targetSdk 33
-        versionCode 104
-        versionName "1.0.4"
+        versionCode 105
+        versionName "1.0.5"
 
         def formattedDate = new Date().format('MMM.dd.yyyy.hh.mm.ss')
         archivesBaseName = "${namespace}_V${versionName}_${formattedDate}"
