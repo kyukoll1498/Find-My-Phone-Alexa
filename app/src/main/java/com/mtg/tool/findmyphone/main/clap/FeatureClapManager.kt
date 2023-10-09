@@ -104,6 +104,7 @@ class FeatureClapManager(private val context: Context) {
             turnOffFlash()
             return
         }
+
         val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
         val cameraId: String?
         try {
@@ -112,7 +113,9 @@ class FeatureClapManager(private val context: Context) {
             // Check flash of camera
             val cameraCharacteristics = manager.getCameraCharacteristics(cameraId)
             if (!cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)!!) {
-                Toast.makeText(context, "Your Flash is error",Toast.LENGTH_SHORT).show()
+                (context as AppCompatActivity).runOnUiThread {
+                    Toast.makeText(context, "Your Flash is error", Toast.LENGTH_SHORT).show()
+                }
                 return
             }
 
@@ -121,8 +124,8 @@ class FeatureClapManager(private val context: Context) {
 
             handler.postDelayed({
                 try {
-                   manager.setTorchMode(cameraId, false)
-                } catch (e:CameraAccessException){
+                    manager.setTorchMode(cameraId, false)
+                } catch (e: CameraAccessException) {
                     e.printStackTrace()
                 }
                 manager.setTorchMode(cameraId, false)
