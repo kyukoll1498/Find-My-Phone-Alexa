@@ -104,7 +104,6 @@ class FeatureClapManager(private val context: Context) {
             turnOffFlash()
             return
         }
-
         val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
         val cameraId: String?
         try {
@@ -113,7 +112,7 @@ class FeatureClapManager(private val context: Context) {
             // Check flash of camera
             val cameraCharacteristics = manager.getCameraCharacteristics(cameraId)
             if (!cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)!!) {
-                (context as AppCompatActivity).runOnUiThread {
+                handler.post {
                     Toast.makeText(context, "Your Flash is error", Toast.LENGTH_SHORT).show()
                 }
                 return
@@ -125,7 +124,7 @@ class FeatureClapManager(private val context: Context) {
             handler.postDelayed({
                 try {
                     manager.setTorchMode(cameraId, false)
-                } catch (e: CameraAccessException) {
+                } catch (e: CameraAccessException){
                     e.printStackTrace()
                 }
                 manager.setTorchMode(cameraId, false)
@@ -134,6 +133,26 @@ class FeatureClapManager(private val context: Context) {
             throw RuntimeException(e)
         }
     }
+
+//    private fun turnOnFlash(duration: Long, statusFlash: Boolean) {
+//        if (!statusFlash) {
+//            turnOffFlash()
+//            return
+//        }
+//        val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
+//        val cameraId: String?
+//        try {
+//            cameraId = manager.cameraIdList[0]
+//            manager.setTorchMode(cameraId, true)
+//            VibrateFlashThread(context, AppPreferences(context).currentFlash, duration.toInt()).start()
+//
+//            handler.postDelayed({
+//                manager.setTorchMode(cameraId, false)
+//            }, duration)
+//        } catch (e: CameraAccessException) {
+//            throw RuntimeException(e)
+//        }
+//    }
 
     private fun turnOffFlash() {
         val manager = context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
