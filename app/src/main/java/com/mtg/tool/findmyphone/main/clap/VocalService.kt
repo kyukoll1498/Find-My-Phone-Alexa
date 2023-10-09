@@ -45,12 +45,21 @@ class VocalService : Service() {
         if (intent == null) {
             return START_NOT_STICKY
         }
-        if (intent.action == "ACTION_NOTIFICATION_CLICKED") {
+
+        // Cancel notification
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancel(1234)
+
+        val notification = buildNotification()
+        startForeground(1234, notification)
+
+        if (intent.action == ACTION_NOTIFICATION_CLICKED_SERVICE) {
             performNotificationAction()
             stopForeground(true)
             stopSelf()
             return START_NOT_STICKY
         }
+
         //set limit service run in 1 hour
         handler.postDelayed({
             stopForeground(true)
@@ -58,14 +67,10 @@ class VocalService : Service() {
         }, serviceDurationMillis.toLong())
 
         startDetection()
-        // Cancel notification
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.cancel(1234)
 
-        val notification = buildNotification()
-        startForeground(1234, notification)
         return START_STICKY
     }
+
 
     private fun performNotificationAction() {
         val featureClapManager = FeatureClapManager.getInstance(this)
