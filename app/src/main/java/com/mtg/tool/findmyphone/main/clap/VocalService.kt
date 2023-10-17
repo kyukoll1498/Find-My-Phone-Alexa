@@ -147,7 +147,7 @@ class VocalService : Service() {
 
             notificationBuilder.setContent(contentView)
                 .setCustomContentView(contentView)
-                .setSmallIcon(R.drawable.ic_icon_app)
+                .setSmallIcon(R.drawable.ic_icon_app_small)
                 .setCustomBigContentView(contentView)
                 .setCustomHeadsUpContentView(contentView)
                 .setContentIntent(pendingIntentNotificationAction)
@@ -169,7 +169,7 @@ class VocalService : Service() {
         return NotificationCompat.Builder(this.applicationContext, channelId)
             .setContentTitle("Notification Error")
             .setContentText("An error occurred while creating the notification.")
-            .setSmallIcon(R.drawable.icon_app_border)
+            .setSmallIcon(R.drawable.ic_icon_app_small)
             .build()
     }
 
