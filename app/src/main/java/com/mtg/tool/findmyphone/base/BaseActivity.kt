@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
@@ -19,6 +20,8 @@ import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
+import com.mtg.tool.findmyphone.main.activity.SplashActivity
 import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import kotlinx.coroutines.CoroutineScope
@@ -116,7 +119,20 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
         val activityName = this.javaClass.simpleName
         logActivityViewed(activityName)
     }
-
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        if (this is SplashActivity) {
+            return super.dispatchTouchEvent(ev)
+        }
+        return if (ev.action == MotionEvent.ACTION_DOWN) {
+            if (ConsentDialogManager.instance?.showConsentDialogOnButtonClick(this) == true) {
+                true
+            } else {
+                super.dispatchTouchEvent(ev)
+            }
+        } else {
+            super.dispatchTouchEvent(ev)
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()

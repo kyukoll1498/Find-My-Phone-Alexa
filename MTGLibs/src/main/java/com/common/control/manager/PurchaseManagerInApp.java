@@ -29,8 +29,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PurchaseManager {
-    private static PurchaseManager instance;
+public class PurchaseManagerInApp {
+    private static PurchaseManagerInApp instance;
     private final List<Purchase> purchaseList = new ArrayList<>();
     private List<ProductDetails> productDetailsList;
     private PurchaseCallback callback;
@@ -39,35 +39,32 @@ public class PurchaseManager {
         queryPurchase();
     };
     private final PurchasesUpdatedListener purchasesUpdatedListener = (billingResult, list) -> {
-        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
-                && list != null) {
-            for (int i = 0; i < list.size(); i++) {
-                handlePurchase(list.get(i));
-            }
-            callback.purchaseSuccess();
+        try {
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
+                    && list != null) {
+                for (int i = 0; i < list.size(); i++) {
+                    handlePurchase(list.get(i));
+                }
+                callback.purchaseSuccess();
 
-        } else {
-            callback.purchaseFail();
+            } else {
+                callback.purchaseFail();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     };
     private List<PurchaseModel> purchaseModelList;
 
-    private PurchaseManager() {
+    private PurchaseManagerInApp() {
 
     }
 
-    public static PurchaseManager getInstance() {
+    public static PurchaseManagerInApp getInstance() {
         if (instance == null) {
-            instance = new PurchaseManager();
+            instance = new PurchaseManagerInApp();
         }
         return instance;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String convertBillingPeriodToDays(String inputBillingPeriod) {
-        Period period = Period.parse(inputBillingPeriod);
-        int days = period.getDays();
-        return days + " Days";
     }
 
     public void setCallback(PurchaseCallback callback) {
@@ -85,6 +82,7 @@ public class PurchaseManager {
             }
         }
     }
+
 
     public void init(Context context, List<PurchaseModel> purchaseModelList) {
         this.purchaseModelList = purchaseModelList;
@@ -134,7 +132,7 @@ public class PurchaseManager {
                 (billingResult, productDetailsList) -> {
                     // check billingResult
                     // process returned productDetailsList
-                    PurchaseManager.this.productDetailsList = productDetailsList;
+                    PurchaseManagerInApp.this.productDetailsList = productDetailsList;
                 }
         );
     }
@@ -153,6 +151,13 @@ public class PurchaseManager {
         }
 
         return "";
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String convertBillingPeriodToDays(String inputBillingPeriod) {
+        Period period = Period.parse(inputBillingPeriod);
+        int days = period.getDays();
+        return days + " Days";
     }
 
     private void queryPurchase() {
@@ -226,7 +231,7 @@ public class PurchaseManager {
         }
         BillingFlowParams.ProductDetailsParams productDetailsParams = BillingFlowParams.ProductDetailsParams.newBuilder()
                 // retrieve a value for "productDetails" by calling queryProductDetailsAsync()
-                .setProductDetails(productDetails).setOfferToken(productDetails.getSubscriptionOfferDetails().get(0).getOfferToken())
+                .setProductDetails(productDetails)
                 // to get an offer token, call ProductDetails.getSubscriptionOfferDetails()
                 // for a list of offers that are available to the user
                 .build();

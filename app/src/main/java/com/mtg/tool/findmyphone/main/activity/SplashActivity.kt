@@ -8,6 +8,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.base.BaseActivity
+import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
 import com.mtg.tool.findmyphone.databinding.ActivitySplashBinding
 import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
@@ -21,7 +22,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     override fun initView() {
-        handleAds()
+        ConsentDialogManager.instance?.showConsentDialogSplash(this) {
+            handleAds()
+        }
         setImageBackground()
 //        Handler(Looper.getMainLooper()).postDelayed({ handleAds() }, 2000)
         EventLogger.getInstance()?.logEvent("open_splash")

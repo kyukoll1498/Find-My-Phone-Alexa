@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>theme_christmas</key>
+        <value>false</value>
+        <key>theme_new_year</key>
+        <value>false</value>
+        <key>color_top_bar_all_file</key>
+        <value>#00A1E0</value>
+        <key>switch_to_main_screen</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>is_show_consent</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>limit_function_in_app</key>
+        <value>3</value>
+    </entry>
+    <entry>
+        <key>reshow_gdpr_splash</key>
+        <value>2</value>
+    </entry>
+</defaultsMap>

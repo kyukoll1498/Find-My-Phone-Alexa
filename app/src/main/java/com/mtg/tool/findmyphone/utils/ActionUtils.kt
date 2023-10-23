@@ -15,6 +15,7 @@ import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
+import com.mtg.tool.findmyphone.main.activity.PolicyWebViewActivity
 import com.mtg.tool.findmyphone.main.dialog.CustomRateAppDialog
 import com.mtg.tool.findmyphone.utils.constant.Constants
 import com.mtg.tool.findmyphone.utils.constant.Constants.POLICY_URL
@@ -111,7 +112,7 @@ object ActionUtils {
 
     fun showPolicy(context: Context) {
         try {
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(POLICY_URL)))
+            PolicyWebViewActivity.start(context)
         } catch (e: Exception) {
             e.printStackTrace()
         }

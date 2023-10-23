@@ -8,17 +8,19 @@ import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
 import com.facebook.FacebookSdk
+import com.mtg.tool.findmyphone.consent_dialog.dialog.BillingDialog
+import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.main.activity.SplashActivity
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
-import java.util.Arrays
 
 
 class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
-
-    val PRODUCT_LIFETIME_OLD = "com"
-    val PRODUCT_LIFETIME = "com"
+    companion object{
+        const val PRODUCT_SUBS = "subscription.clap.fullaccess"
+        const val PRODUCT_LIFETIME = "com.clap.buyforever"
+    }
     private val lsActivity = ArrayList<Activity>()
 
 
@@ -26,7 +28,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
     override fun onApplicationCreate() {
         RoomDatabase.initDatabase(this)
         AppPreferences(this)
-
+        RemoteConfigManager.instance?.loadRemote()
 
         AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
         AppOpenManager.getInstance().disableAppResumeWithActivity(PermissionStorageDialog::class.java)
@@ -96,18 +98,18 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         return ""
     }
 
+
     override fun isInitBilling(): Boolean {
-        return false
+        return true
     }
 
-    override fun getPurchaseList(): MutableList<PurchaseModel> {
-        return Arrays.asList<PurchaseModel>(
-            PurchaseModel(PRODUCT_LIFETIME_OLD, PurchaseModel.ProductType.INAPP),
-            PurchaseModel(PRODUCT_LIFETIME, PurchaseModel.ProductType.INAPP)
-        )
+    override fun getPurchaseList(): List<PurchaseModel?>? {
+        return listOf<PurchaseModel>(PurchaseModel(PRODUCT_SUBS, PurchaseModel.ProductType.SUBS))
     }
 
-
+    override fun getPurchaseListInApp(): List<PurchaseModel?>? {
+        return listOf<PurchaseModel>(PurchaseModel(PRODUCT_LIFETIME, PurchaseModel.ProductType.INAPP))
+    }
 
     override fun onActivityCreated(p0: Activity, p1: Bundle?) {
 

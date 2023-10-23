@@ -36,7 +36,10 @@
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true"/>
-
+        <activity
+            android:name=".main.activity.PolicyWebViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.PermissionActivity"
             android:exported="false"
@@ -55,7 +58,7 @@
             android:name=".main.activity.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".main.activity.OnBoardActivity"
             android:exported="false"

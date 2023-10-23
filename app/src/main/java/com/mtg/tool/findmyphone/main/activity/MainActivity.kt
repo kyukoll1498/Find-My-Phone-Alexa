@@ -157,7 +157,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             ActionUtils.sendFeedback(this)
         }
         binding.navContent.btnPrivacy.setOnClickListener {
-            ActionUtils.showPolicy(this)
+            PolicyWebViewActivity.start(this)
         }
     }
 

@@ -53,6 +53,7 @@ android {
 
     buildFeatures{
         viewBinding = true
+        dataBinding = true
     }
 
     flavorDimensions "dimen"
@@ -126,6 +127,7 @@ android {
     lintOptions {
         disable 'ContentDescription'
         disable 'SpUsage'
+        disable 'UselessParent'
     }
 }
 

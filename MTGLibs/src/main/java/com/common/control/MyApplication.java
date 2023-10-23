@@ -13,6 +13,7 @@ import com.adjust.sdk.LogLevel;
 import com.common.control.manager.AdmobManager;
 import com.common.control.manager.AppOpenManager;
 import com.common.control.manager.PurchaseManager;
+import com.common.control.manager.PurchaseManagerInApp;
 import com.common.control.model.PurchaseModel;
 import com.common.control.utils.AppUtils;
 import com.common.control.utils.SharePrefUtils;
@@ -41,6 +42,7 @@ public abstract class MyApplication extends Application {
         AdmobManager.getInstance().setHasLog(true);
         if (isInitBilling()) {
             PurchaseManager.getInstance().init(this, getPurchaseList());
+            PurchaseManagerInApp.getInstance().init(this, getPurchaseListInApp());
         }
 
         if (hasAdjust()) {
@@ -120,5 +122,7 @@ public abstract class MyApplication extends Application {
     protected abstract boolean isInitBilling();
 
     protected abstract List<PurchaseModel> getPurchaseList();
+
+    protected abstract List<PurchaseModel> getPurchaseListInApp();
 
 }
