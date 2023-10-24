@@ -8,7 +8,7 @@ import com.google.android.ump.FormError
 import com.mtg.tool.findmyphone.consent_dialog.base.BaseDialogConsentManager
 import com.mtg.tool.findmyphone.consent_dialog.dialog.BillingDialog
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
-import com.mtg.tool.findmyphone.main.activity.MainActivity
+import com.mtg.tool.findmyphone.main.activity.PermissionActivity
 import com.mtg.tool.findmyphone.utils.constant.Constants.KEY_CANCEL
 
 class ConsentDialogManager : BaseDialogConsentManager() {
@@ -109,7 +109,7 @@ class ConsentDialogManager : BaseDialogConsentManager() {
                         buttonClickCount = 0
                         if (canRequestAds(activity)) {
                             BillingDialog.getInstance()!!.dismiss()
-                            val intent = Intent(activity, MainActivity::class.java)
+                            val intent = Intent(activity, PermissionActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             activity.startActivity(intent)
@@ -147,7 +147,7 @@ class ConsentDialogManager : BaseDialogConsentManager() {
         val onDismiss = ConsentForm.OnConsentFormDismissedListener {
             if (canRequestAds(activity)) {
                 BillingDialog.getInstance()!!.dismiss()
-                val intent = Intent(activity, MainActivity::class.java)
+                val intent = Intent(activity, PermissionActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 activity.startActivity(intent)

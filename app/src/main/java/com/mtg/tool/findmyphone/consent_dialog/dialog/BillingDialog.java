@@ -28,7 +28,7 @@ import com.common.control.manager.PurchaseManager;
 import com.common.control.manager.PurchaseManagerInApp;
 import com.mtg.tool.findmyphone.R;
 import com.mtg.tool.findmyphone.databinding.DialogBillingBinding;
-import com.mtg.tool.findmyphone.main.activity.MainActivity;
+import com.mtg.tool.findmyphone.main.activity.PermissionActivity;
 
 public class BillingDialog extends BaseDialog<DialogBillingBinding> implements PurchaseCallback {
     private static BillingDialog INSTANCE;
@@ -146,7 +146,7 @@ public class BillingDialog extends BaseDialog<DialogBillingBinding> implements P
 
         new Handler().postDelayed(() -> {
             requireActivity().finishAffinity();
-            startActivity(new Intent(requireContext(), MainActivity.class));
+            startActivity(new Intent(requireContext(), PermissionActivity.class));
         }, 2000);
     }
 
