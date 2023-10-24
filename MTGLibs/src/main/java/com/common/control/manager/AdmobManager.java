@@ -157,7 +157,7 @@ public class AdmobManager {
     }
 
     public AdRequest getAdRequest() {
-        if (!hasAds || PurchaseManager.getInstance().isPurchased()) {
+        if (!hasAds || PurchaseManager.getInstance().isPurchased() || PurchaseManagerInApp.getInstance().isPurchased()) {
             return null;
         }
         AdRequest.Builder builder = new AdRequest.Builder();
