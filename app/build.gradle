@@ -58,41 +58,8 @@ android {
 
     flavorDimensions "dimen"
     productFlavors{
-        vDevelop_{
-            applicationId "com.mtg.tool.findmyphone"
-
-            buildConfigField "boolean", "TEST_AD", "true"
-//            buildConfigField "boolean", "TEST_AD", "false"
-            buildConfigField "boolean", "PURCHASED", "false"
-            dimension "dimen"
-            versionName "develop"
-
-            def addConstantTo = { target, constantName, constantValue ->
-                target.manifestPlaceholders += [(constantName): constantValue]
-                target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
-            }
-
-
-            addConstantTo(owner, "FACEBOOKE_APP_ID", "1009208823763081")
-
-            addConstantTo(owner, "APP_ID", "ca-app-pub-3940256099942544~3347511713")
-            addConstantTo(owner, "open_app", "ca-app-pub-3940256099942544/3419835294")
-            addConstantTo(owner, "inter_splash", "ca-app-pub-3940256099942544/1033173712")
-
-            addConstantTo(owner, "native_guide", "ca-app-pub-3940256099942544/1044960115")
-            addConstantTo(owner, "native_language", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "native_sound", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "inter_sound", "ca-app-pub-3940256099942544/1033173712")
-
-            addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3940256099942544/2014213617")
-            addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3940256099942544/2014213617")
-            addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3940256099942544/2014213617")
-
-            addConstantTo(owner, "native_create", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
-        }
         vOfficial_ {
-            applicationId "com.mtg.find.phone.clap.phonefinder.findmyphone"
+            applicationId "com.example.develop.findmyphone"
 
             buildConfigField "boolean", "TEST_AD", "false"
             buildConfigField "boolean", "PURCHASED", "false"
@@ -103,23 +70,23 @@ android {
                 target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
             }
 
-            addConstantTo(owner, "APP_ID", "ca-app-pub-3270179691816977~5599069474")
-            addConstantTo(owner, "open_app", "ca-app-pub-3270179691816977/1967312155")
-            addConstantTo(owner, "inter_splash", "ca-app-pub-3270179691816977/9654230488")
+            addConstantTo(owner, "APP_ID", "ca-app-pub-3940256099942544~3347511713")
+            addConstantTo(owner, "open_app", "ca-app-pub-3940256099942544/3419835294")
+            addConstantTo(owner, "inter_splash", "ca-app-pub-3940256099942544/1033173712")
 
-            addConstantTo(owner, "native_guide", "ca-app-pub-3270179691816977/6035098413")
-            addConstantTo(owner, "native_language", "ca-app-pub-3270179691816977/5585587994")
-            addConstantTo(owner, "native_sound", "ca-app-pub-3270179691816977/5966266918")
-            addConstantTo(owner, "inter_sound", "ca-app-pub-3270179691816977/9830873194")
+            addConstantTo(owner, "native_guide", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_language", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_sound", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "inter_sound", "ca-app-pub-3940256099942544/1033173712")
 
-            addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3270179691816977/7279348586")
-            addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3270179691816977/8904804339")
-            addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3270179691816977/1904281713")
+            addConstantTo(owner, "collapsible_banner_home", "ca-app-pub-3940256099942544/2014213617")
+            addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3940256099942544/2014213617")
+            addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3940256099942544/2014213617")
 
-            addConstantTo(owner, "native_create", "ca-app-pub-3270179691816977/5186447374")
-            addConstantTo(owner, "native_record", "ca-app-pub-3270179691816977/1273739635")
+            addConstantTo(owner, "native_create", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
 
-            addConstantTo(owner, "native_permission", "ca-app-pub-3270179691816977/1328174982")
+            addConstantTo(owner, "native_permission", "ca-app-pub-3940256099942544/2247696110")
 
         }
     }
