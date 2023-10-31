@@ -7,9 +7,8 @@ import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
-import com.example.voicelockscreen.ads_executor.inter.InterSplashExecutor
+import com.mtg.tool.findmyphone.ads_executor.inter.InterSplashExecutor
 import com.facebook.FacebookSdk
-import com.mtg.tool.findmyphone.consent_dialog.dialog.BillingDialog
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.main.activity.SplashActivity

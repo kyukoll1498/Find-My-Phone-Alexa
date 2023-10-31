@@ -1,4 +1,4 @@
-package com.example.voicelockscreen.ads_executor.inter
+package com.mtg.tool.findmyphone.ads_executor.inter
 
 import android.app.Activity
 import com.common.control.interfaces.AdCallback

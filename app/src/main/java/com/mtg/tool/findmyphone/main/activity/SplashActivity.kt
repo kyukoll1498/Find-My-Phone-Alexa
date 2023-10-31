@@ -1,13 +1,8 @@
 package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Intent
-import com.common.control.interfaces.AdCallback
-import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
-import com.example.voicelockscreen.ads_executor.inter.InterSplashExecutor
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.ads_executor.inter.InterSplashExecutor
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
 import com.mtg.tool.findmyphone.databinding.ActivitySplashBinding
