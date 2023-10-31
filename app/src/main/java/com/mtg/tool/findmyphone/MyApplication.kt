@@ -7,6 +7,7 @@ import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
+import com.example.voicelockscreen.ads_executor.inter.InterSplashExecutor
 import com.facebook.FacebookSdk
 import com.mtg.tool.findmyphone.consent_dialog.dialog.BillingDialog
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
@@ -41,6 +42,8 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         FacebookSdk.sdkInitialize(this)
 
 //        Common.printHashKey(this)
+
+        InterSplashExecutor.loadInterAds(applicationContext)
     }
 
     override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {

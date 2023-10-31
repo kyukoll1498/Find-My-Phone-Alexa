@@ -26,11 +26,13 @@ public abstract class MyApplication extends Application {
     @Override
     public final void onCreate() {
         super.onCreate();
-        onApplicationCreate();
 
         SharePrefUtils.getInstance().init(this);
         AdmobManager.getInstance().init(this, isShowAdsTest() ? AdmobManager.getInstance().getDeviceId(this) : "");
         AdmobManager.getInstance().hasAds(hasAds());
+
+        onApplicationCreate();
+
         if (enableAdsResume()) {
             AppOpenManager.getInstance().init(this, getOpenAppAdId());
         }

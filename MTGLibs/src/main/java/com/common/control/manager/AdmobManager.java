@@ -190,6 +190,32 @@ public class AdmobManager {
         });
     }
 
+    public void loadInterAds(Context context, String id, AdCallback callback) {
+        log("request inter: " + id + "");
+        AdRequest request = getAdRequest();
+        if (request == null) {
+            callback.onAdFailedToLoad(errAd);
+            return;
+        }
+        InterstitialAd.load(context, id, request, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                if (callback != null) {
+                    callback.onAdFailedToLoad(loadAdError);
+                }
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                super.onAdLoaded(interstitialAd);
+                if (callback != null) {
+                    callback.onResultInterstitialAd(interstitialAd);
+                }
+            }
+        });
+    }
+
     public void log(String s) {
         if (hasLog) {
             Log.d("android_log", "log: " + s);

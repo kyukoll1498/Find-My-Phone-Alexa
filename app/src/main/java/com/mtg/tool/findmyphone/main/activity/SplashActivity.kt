@@ -4,6 +4,7 @@ import android.content.Intent
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.example.voicelockscreen.ads_executor.inter.InterSplashExecutor
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.mtg.tool.findmyphone.BuildConfig
@@ -42,36 +43,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     private fun handleAds() {
         try {
             AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
-            AdmobManager.getInstance()
-                .loadInterAds(this, BuildConfig.inter_splash, object : AdCallback() {
-                    override fun onResultInterstitialAd(interstitialAd: InterstitialAd) {
-                        super.onResultInterstitialAd(interstitialAd)
-                        EventLogger.getInstance()?.logEvent("open_splash_with_ad")
-                        showInter(interstitialAd)
-                    }
-
-                    override fun onAdFailedToLoad(i: LoadAdError) {
-                        super.onAdFailedToLoad(i)
-                        EventLogger.getInstance()?.logEvent("open_splash_without_ad")
-                        startMain()
-                    }
-                })
+            InterSplashExecutor.loadInterAds(this)
+            InterSplashExecutor.showInterAds(this, object : InterSplashExecutor.OnBeforeShowCallback{
+                override fun callback() {
+                    startMain()
+                }
+            }){}
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
-    private fun showInter(interstitialAd: InterstitialAd) {
-        startMain()
-        AdmobManager.getInstance().showInterstitial(this, interstitialAd, object : AdCallback() {
-            override fun onAdClosed() {
-                super.onAdClosed()
-//                startMain()
-            }
-        })
-
-    }
 
     private fun startMain() {
         if (!appPreferences.isChooseLanguage) {
