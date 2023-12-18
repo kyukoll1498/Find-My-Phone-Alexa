@@ -83,6 +83,8 @@ android {
             addConstantTo(owner, "collapsible_banner_detail_sound", "ca-app-pub-3940256099942544/2014213617")
             addConstantTo(owner, "collapsible_banner_how_to_use", "ca-app-pub-3940256099942544/2014213617")
 
+            addConstantTo(owner, "banner_language", "ca-app-pub-3940256099942544/6300978111")
+
             addConstantTo(owner, "native_create", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
 

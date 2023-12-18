@@ -45,7 +45,8 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
 
     override fun loadAds() {
         super.loadAds()
-        AdmobManager.getInstance().loadNative(this, BuildConfig.native_language, binding.frAd, R.layout.custom_native_language)
+
+        AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_language, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
