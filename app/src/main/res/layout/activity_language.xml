@@ -72,10 +72,9 @@
         android:id="@+id/fr_ad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <include layout="@layout/layout_banner_control" />
+        <include layout="@layout/fake_load_fb_banner" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
