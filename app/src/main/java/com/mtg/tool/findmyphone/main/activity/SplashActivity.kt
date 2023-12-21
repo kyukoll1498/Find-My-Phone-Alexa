@@ -52,13 +52,23 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     private fun startMain() {
         if (!appPreferences.isChooseLanguage) {
-            startActivity(Intent(this, LanguageActivity::class.java))
+//            startActivity(Intent(this, LanguageActivity::class.java))
+            val intent = Intent(this, LanguageActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         } else {
             //todo
 //            if (SharedPrefs.getBoolean(this, "is_skip_onboard")) {
 //                startActivity(Intent(this, MainActivity::class.java))
 //                if (!PermissionUtils.checkMicroPermission(mContext)){
-                    startActivity(Intent(this@SplashActivity, PermissionActivity::class.java))
+//                    startActivity(Intent(this@SplashActivity, PermissionActivity::class.java))
+            val intent = Intent(this, PermissionActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
 //                }
 //            } else {
 //                startActivity(Intent(this@SplashActivity, OnBoardActivity::class.java))
