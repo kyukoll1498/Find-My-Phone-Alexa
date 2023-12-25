@@ -31,14 +31,18 @@ class RemoteConfigManager {
     fun loadIsShowConsent(activity: Activity, callback: BooleanCallback) {
         if (isLoading && remoteConfig == null) {
             Thread {
-                while (isLoading && remoteConfig == null) {
+                while (isLoading || remoteConfig == null) {
                     try {
                         Thread.sleep(100)
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     }
                 }
-                activity.runOnUiThread { callback.onResult(remoteConfig!!.getBoolean(IS_SHOW_CONSENT)) }
+                activity.runOnUiThread {
+                    if (remoteConfig != null) {
+                        callback.onResult(remoteConfig!!.getBoolean(IS_SHOW_CONSENT))
+                    }
+                }
             }.start()
         } else {
             if (remoteConfig != null) {
@@ -115,6 +119,7 @@ class RemoteConfigManager {
         private const val LIMIT_FUNCTION_IN_APP = "limit_function_in_app"
         private const val RESHOW_GDPR_SPLASH = "reshow_gdpr_splash"
         private var INSTANCE: RemoteConfigManager? = null
+
         @JvmStatic
         val instance: RemoteConfigManager?
             get() {
