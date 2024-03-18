@@ -26,7 +26,7 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>(ActivityPermi
             this,
             BuildConfig.native_permission,
             binding.frAd,
-            R.layout.custom_native_language
+            R.layout.custom_native_permission
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
 
