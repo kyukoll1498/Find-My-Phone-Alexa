@@ -28,14 +28,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FindMyPhone"
         tools:targetApi="31">
+        <activity
+            android:name=".main.activity.SettingActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
-            android:value="true"/>
-
+            android:value="true" />
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
-            android:value="true"/>
+            android:value="true" />
+
         <activity
             android:name=".main.activity.PolicyWebViewActivity"
             android:exported="false"
@@ -58,7 +61,7 @@
             android:name=".main.activity.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.OnBoardActivity"
             android:exported="false"
@@ -89,12 +92,12 @@
             android:name=".main.activity.CreateSoundActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".main.activity.RecordAudioActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".main.activity.HowToUseActivity"
             android:exported="true"
@@ -107,7 +110,6 @@
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token" />
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="${APP_ID}"

@@ -33,20 +33,20 @@ import com.mtg.tool.findmyphone.utils.hide
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun initView() {
-        setUpRate()
+//        setUpRate()
         setupViewpager()
-        setupDrawerNavigation()
+//        setupDrawerNavigation()
         AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_home, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     private var homeFragment = HomeFragment()
 
-    private fun setUpRate() {
-        if (SharedPrefs.isRated(this)) {
-            hideRate()
-        }
-    }
+//    private fun setUpRate() {
+//        if (SharedPrefs.isRated(this)) {
+//            hideRate()
+//        }
+//    }
 
     override fun addEvent() {
         binding.btnHome.setOnClickListener {
@@ -77,6 +77,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         binding.btnHowToUse.setOnClickListener {
             logEvent("click_guide")
             startActivity(Intent(this, HowToUseActivity::class.java))
+        }
+        binding.btnDrawer.setOnClickListener {
+            logEvent("click_setting")
+            startActivity(Intent(this, SettingActivity::class.java))
         }
 
     }
@@ -134,36 +138,36 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
 
-    private fun setupDrawerNavigation() {
-        binding.navContent.tvVersion.text = "Ver ${BuildConfig.VERSION_NAME}"
-
-        binding.navContent.imgFlag.setImageResource(LanguageUtils.getFlagResourceID(this))
-
-        binding.navContent.btnLanguage.setOnClickListener {
-            EventLogger.getInstance()?.logEvent("click_set_language")
-            startActivity(Intent(this, LanguageActivity::class.java))
-        }
-        binding.navContent.btnRateNavigation.setOnClickListener {
-            EventLogger.getInstance()?.logEvent("click_set_rate")
-            ActionUtils.showRateDialog(this, false, callback = {
-                if (it) hideRate()
-            })
-        }
-        binding.navContent.btnShare.setOnClickListener {
-            EventLogger.getInstance()?.logEvent("click_set_share")
-            ActionUtils.shareApp(this)
-        }
-        binding.navContent.btnFeedback.setOnClickListener {
-            ActionUtils.sendFeedback(this)
-        }
-        binding.navContent.btnPrivacy.setOnClickListener {
-            PolicyWebViewActivity.start(this)
-        }
-    }
-
-    private fun hideRate() {
-        binding.navContent.btnRateNavigation.hide()
-    }
+//    private fun setupDrawerNavigation() {
+//        binding.navContent.tvVersion.text = "Ver ${BuildConfig.VERSION_NAME}"
+//
+//        binding.navContent.imgFlag.setImageResource(LanguageUtils.getFlagResourceID(this))
+//
+//        binding.navContent.btnLanguage.setOnClickListener {
+//            EventLogger.getInstance()?.logEvent("click_set_language")
+//            startActivity(Intent(this, LanguageActivity::class.java))
+//        }
+//        binding.navContent.btnRateNavigation.setOnClickListener {
+//            EventLogger.getInstance()?.logEvent("click_set_rate")
+//            ActionUtils.showRateDialog(this, false, callback = {
+//                if (it) hideRate()
+//            })
+//        }
+//        binding.navContent.btnShare.setOnClickListener {
+//            EventLogger.getInstance()?.logEvent("click_set_share")
+//            ActionUtils.shareApp(this)
+//        }
+//        binding.navContent.btnFeedback.setOnClickListener {
+//            ActionUtils.sendFeedback(this)
+//        }
+//        binding.navContent.btnPrivacy.setOnClickListener {
+//            PolicyWebViewActivity.start(this)
+//        }
+//    }
+//
+//    private fun hideRate() {
+//        binding.navContent.btnRateNavigation.hide()
+//    }
 
     private fun setupViewpager() {
         binding.viewpagerMain.apply {
@@ -254,7 +258,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         if (!SharedPrefs.isRated(this)) {
             ActionUtils.showRateDialog(this, true, callback = {
                 if (it) {
-                    hideRate()
+//                    hideRate()
                 }
             })
         } else {

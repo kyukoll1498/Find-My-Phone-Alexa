@@ -215,20 +215,20 @@
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:drawerLayoutCornerSize="0dp"
-        app:itemHorizontalPadding="@dimen/_20sdp"
-        app:itemIconSize="@dimen/_15sdp">
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/nav_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        app:drawerLayoutCornerSize="0dp"-->
+<!--        app:itemHorizontalPadding="@dimen/_20sdp"-->
+<!--        app:itemIconSize="@dimen/_15sdp">-->
 
-        <include
-            android:id="@+id/nav_content"
-            layout="@layout/header_navigation" />
+<!--        <include-->
+<!--            android:id="@+id/nav_content"-->
+<!--            layout="@layout/header_navigation" />-->
 
 
-    </com.google.android.material.navigation.NavigationView>
+<!--    </com.google.android.material.navigation.NavigationView>-->
 </androidx.drawerlayout.widget.DrawerLayout>

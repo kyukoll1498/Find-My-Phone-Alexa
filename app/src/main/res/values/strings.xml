@@ -14,10 +14,10 @@
     <string name="language">Language</string>
     <string name="english">English</string>
     <string name="learn_more">Learn more</string>
-    <string name="rate_us">Rate Us</string>
-    <string name="privacy">Privacy</string>
-    <string name="feedback_us">Feedback Us</string>
-    <string name="share">Share</string>
+    <string name="rate_us">Rate App</string>
+    <string name="privacy">Privacy Policy</string>
+    <string name="feedback_us">Feedback</string>
+    <string name="share">Share App</string>
     <string name="settings">Settings</string>
     <string name="home">Home</string>
     <string name="add">Add</string>
