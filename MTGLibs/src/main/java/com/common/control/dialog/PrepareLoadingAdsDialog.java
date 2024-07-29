@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.common.control.R;
+import com.common.control.utils.BroadcastUtils;
 
 
 public class PrepareLoadingAdsDialog extends AppCompatActivity {
@@ -48,7 +49,7 @@ public class PrepareLoadingAdsDialog extends AppCompatActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_DISMISS_DIALOG);
         filter.addAction(ACTION_CLEAR_TEXT_AD);
-        registerReceiver(receiver, filter);
+        BroadcastUtils.registerReceiver(this, receiver, filter);
     }
 
     @Override

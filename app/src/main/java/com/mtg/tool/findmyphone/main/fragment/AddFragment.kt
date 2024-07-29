@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.common.control.base.OnActionCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.CREATE_SOUND_TYPE
@@ -80,7 +81,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     }
 
     private fun registerBroadcast() {
-        activity?.registerReceiver(soundReceiver, IntentFilter(ACTION_UPDATE_AUDIO_IMPORT))
+        BroadcastUtils.registerReceiver(context,soundReceiver, IntentFilter(ACTION_UPDATE_AUDIO_IMPORT))
     }
 
     private fun loadSoundList() {

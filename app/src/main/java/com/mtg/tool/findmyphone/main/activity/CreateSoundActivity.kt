@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
@@ -45,7 +46,7 @@ class CreateSoundActivity :
 
 
     override fun initView() {
-        registerReceiver(finishReceiver, IntentFilter(ACTION_FINISH_CREATE_SOUND_SCREEN))
+        BroadcastUtils.registerReceiver(this,finishReceiver, IntentFilter(ACTION_FINISH_CREATE_SOUND_SCREEN))
     }
 
     override fun loadAds() {

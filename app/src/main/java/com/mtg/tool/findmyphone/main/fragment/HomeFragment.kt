@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.startForegroundService
 import com.bumptech.glide.Glide
+import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.base.BaseFragment
@@ -47,7 +48,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     override fun initView() {
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
-        requireActivity().registerReceiver(finishDetectReceiver, IntentFilter(ACTION_FINISH_DETECT))
+        BroadcastUtils.registerReceiver(context,finishDetectReceiver, IntentFilter(ACTION_FINISH_DETECT))
         if (isMyServiceRunning()) {
             isCircleActiveVisible = !isCircleActiveVisible
             binding.apply {

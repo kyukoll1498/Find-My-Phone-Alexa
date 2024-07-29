@@ -14,6 +14,7 @@ import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
@@ -217,7 +218,7 @@ class PlaySoundActivity :
 
     private fun registerVolumeReceiver() {
         receiver = VolumeChangeReceiver(this, this)
-        registerReceiver(receiver, IntentFilter(ACTION_VOLUME_CHANGED))
+        BroadcastUtils.registerReceiver(this,receiver, IntentFilter(ACTION_VOLUME_CHANGED))
     }
 
     private fun updateDuration(duration: Int) {
