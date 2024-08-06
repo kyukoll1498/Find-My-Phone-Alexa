@@ -44,4 +44,13 @@ abstract public class AdCallback {
 
     }
 
+
+    public void onAdClicked() {
+
+    }
+
+    public void onAdImpression() {
+
+    }
+
 }
