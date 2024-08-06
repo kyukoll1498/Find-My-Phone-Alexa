@@ -14,8 +14,8 @@
         />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_above="@id/txt_loading"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/_20sdp"
@@ -31,7 +31,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/_56sdp"
         android:text="@string/this_action_can_contain_ads"
-        android:textColor="@color/color_404040"
+        android:fontFamily="@font/grand_medium"
+        android:textColor="@color/white"
         android:textSize="@dimen/_12sdp" />
 
 
