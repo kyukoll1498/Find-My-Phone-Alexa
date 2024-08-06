@@ -31,6 +31,9 @@
         android:theme="@style/Theme.FindMyPhone"
         tools:targetApi="31">
         <activity
+            android:name=".main.activity.InterestActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.activity.SettingActivity"
             android:exported="false" />
 
