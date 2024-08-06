@@ -108,7 +108,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation 'com.google.android.play:review-ktx:2.0.1'
-    implementation 'com.google.android.gms:play-services-ads:21.2.0'
+    implementation 'com.google.android.gms:play-services-ads:23.2.0'
     implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
@@ -173,4 +173,10 @@ dependencies {
     //Handle Record Sound
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/TarsosDSP-1.7.jar')
+
+    //SDK Network
+    implementation("com.google.ads.mediation:facebook:6.17.0.0")
+    implementation("com.google.ads.mediation:vungle:7.4.0.0")
+    implementation("com.google.ads.mediation:pangle:6.1.0.6.0")
+    implementation("com.google.ads.mediation:applovin:12.6.0.0")
 }
