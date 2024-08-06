@@ -12,49 +12,10 @@
         app:layout_constraintStart_toStartOf="parent"
         android:scaleType="fitXY"
         />
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        app:cardCornerRadius="@dimen/_12sdp"
-        android:layout_above="@id/txt_app_name"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
-            android:src="@drawable/ic_icon_app" />
-    </androidx.cardview.widget.CardView>
-
-
-    <LinearLayout
-        android:id="@+id/txt_app_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:textColor="#404040"
-        android:textSize="@dimen/_22sdp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/clap_to_find"
-            android:textSize="@dimen/_22sdp"
-            android:fontFamily="@font/inter_medium"
-            android:textColor="#F06A33"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_phone"
-            android:textSize="@dimen/_20sdp"
-            android:fontFamily="@font/inter_medium "
-            android:textColor="#828287"/>
-    </LinearLayout>
-
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_above="@id/txt_loading"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/_20sdp"
@@ -70,7 +31,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/_56sdp"
         android:text="@string/this_action_can_contain_ads"
-        android:textColor="@color/color_404040"
+        android:fontFamily="@font/grand_medium"
+        android:textColor="@color/white"
         android:textSize="@dimen/_12sdp" />
 
 
