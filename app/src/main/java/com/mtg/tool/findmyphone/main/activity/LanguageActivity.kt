@@ -35,12 +35,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         initListLanguage()
         initRCLanguage()
         handleButtonBack()
-
-        if (Common.screenWidth / Common.screenHeight > 108 / 216) {
-            binding.imgBackground.layoutParams.height = Common.screenHeight
-        } else {
-            binding.imgBackground.layoutParams.width = Common.screenWidth
-        }
     }
 
     override fun loadAds() {

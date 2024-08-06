@@ -44,13 +44,13 @@ class LanguageAdapter(mList: List<ItemLanguage?>?, context: Context?) :
             binding.tvLanguage.text = itemLanguage.name
             binding.rbCheck.setImageResource(itemLanguage.imgSelect)
             binding.tvLanguage.setSize(16)
-            if (itemLanguage.colorBackground?.isNotEmpty() == true) {
-                itemView.backgroundTintList = ColorStateList.valueOf(Color.parseColor(itemLanguage.colorBackground))
-                binding.tvLanguage.setTextColor(Color.parseColor("#FFFFFF"))
-            } else {
-                itemView.backgroundTintList = null
-                binding.tvLanguage.setTextColor(Color.parseColor("#221F29"))
-            }
+//            if (itemLanguage.colorBackground?.isNotEmpty() == true) {
+//                itemView.backgroundTintList = ColorStateList.valueOf(Color.parseColor(itemLanguage.colorBackground))
+//                binding.tvLanguage.setTextColor(Color.parseColor("#FFFFFF"))
+//            } else {
+//                itemView.backgroundTintList = null
+//                binding.tvLanguage.setTextColor(Color.parseColor("#221F29"))
+//            }
         }
 
         override fun onClick(v: View) {
