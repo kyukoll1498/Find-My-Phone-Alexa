@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:ellipsize="marquee"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/poppins_semibold"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
-                    android:fontFamily="@font/inter"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/home"
                     android:textColor="#F06A33"
                     android:textSize="@dimen/_12sdp" />
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
-                    android:fontFamily="@font/inter"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/sound"
                     android:textColor="@color/_818181"
                     android:textSize="@dimen/_12sdp" />
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
-                    android:fontFamily="@font/inter"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/add"
                     android:textColor="@color/_818181"
                     android:textSize="@dimen/_12sdp" />
@@ -187,7 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
-                    android:fontFamily="@font/inter"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/settings"
                     android:textColor="@color/_818181"
                     android:textSize="@dimen/_12sdp" />

@@ -27,7 +27,7 @@
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_14sdp"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/poppins_regular"
             android:textColor="#3C3C3C"
             android:text="@string/are_you_sure_you_want_to_delete" />
         <LinearLayout
@@ -44,7 +44,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_radius_8"
                 android:backgroundTint="#F06A33"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginEnd="@dimen/_4sdp"
                 android:gravity="center"
                 android:paddingVertical="@dimen/_10sdp"
@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_radius_8"
                 android:backgroundTint="#EBEBEB"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/poppins_regular"
                 android:gravity="center"
                 android:paddingVertical="@dimen/_10sdp"
                 android:text="@string/cancel"

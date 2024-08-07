@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/grant_permission"
             android:textColor="@color/color_404040"
             android:textSize="@dimen/_16sdp"
@@ -65,7 +65,7 @@
             android:text="@string/please_grant"
             android:textColor="#818181"
             android:textSize="@dimen/_13sdp"
-            app:fontFamily="@font/grand_regular"
+            app:fontFamily="@font/poppins_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/aciv" />
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/record_permission"
                 android:textColor="#404040"
                 android:textSize="@dimen/_14sdp"
@@ -128,7 +128,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/poppins_bold"
                 android:text="@string/continue_permission"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />

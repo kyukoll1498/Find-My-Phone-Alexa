@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="14sp"
             android:text="@string/clap_to_find_your_phone_is_running"
             android:textColor="@color/black" />
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/poppins_regular"
             android:textSize="12sp"
             android:text="@string/touch_here_to_deactivate"
             android:textColor="@color/white" />

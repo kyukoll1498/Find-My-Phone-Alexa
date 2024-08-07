@@ -31,7 +31,7 @@
             android:layout_marginStart="@dimen/_16sdp"
             android:maxWidth="@dimen/_170sdp"
             android:ellipsize="marquee"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/poppins_semibold"
             android:singleLine="true"
             android:text="@string/settings"
             android:textColor="@color/color_404040"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/language"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/rate_us"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/share"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />
@@ -211,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/feedback_us"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />
@@ -246,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/grand_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/privacy"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14sdp" />

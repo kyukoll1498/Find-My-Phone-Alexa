@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        android:fontFamily="@font/grand_medium"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/english"
         android:textColor="#3C3C3C"
         android:textSize="@dimen/_14sdp"

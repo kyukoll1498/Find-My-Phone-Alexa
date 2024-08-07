@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/poppins_regular"
             android:text="@string/touch_here_to_deactivate"
             android:textColor="@color/white"
             android:textSize="12sp" />

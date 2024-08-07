@@ -59,7 +59,7 @@
                     android:singleLine="true"
                     android:text="My tilte"
                     android:textColor="#2D2D2D"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/poppins_bold"
                     android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
@@ -81,7 +81,7 @@
                             android:ellipsize="end"
                             android:gravity="bottom"
                             android:maxLines="2"
-                            android:fontFamily="@font/roboto"
+                            android:fontFamily="@font/poppins_regular"
                             android:text="dsa sd sad dsa sa sad ád a\ndsaddsa  dsa dsa"
                             android:textColor="#2D2D2D"
                             android:textSize="@dimen/_10sdp" />
@@ -106,7 +106,7 @@
                 android:text="Install"
                 android:includeFontPadding="false"
                 android:textAllCaps="false"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_12sdp" />
 
