@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Klappa för att enkelt hitta den borttappade telefonen</string>
-    <string name="text_on_boarding_2">Ficklampa i mörkret</string>
-    <string name="text_on_boarding_3">Roliga ljud att välja på</string>
     <string name="get_started">Komma igång</string>
     <string name="this_action_can_contain_ads">Den här åtgärden kan innehålla annonser…</string>
     <string name="do_you_like_our_app">Gillar du vår app?</string>

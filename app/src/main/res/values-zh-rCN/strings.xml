@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">拍拍即可轻松找到丢失的手机</string>
-    <string name="text_on_boarding_2">黑暗中的手电筒</string>
-    <string name="text_on_boarding_3">有趣的声音可供选择</string>
     <string name="get_started">开始使用</string>
     <string name="this_action_can_contain_ads">此操作可能包含广告...</string>
     <string name="do_you_like_our_app">您喜欢我们的应用程序吗？</string>

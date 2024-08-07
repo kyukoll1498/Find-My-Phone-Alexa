@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">ปรบมือเพื่อค้นหาโทรศัพท์ที่หายไปได้อย่างง่ายดาย</string>
-    <string name="text_on_boarding_2">ไฟฉายในที่มืด</string>
-    <string name="text_on_boarding_3">เสียงตลกให้เลือก</string>
     <string name="get_started">เริ่ม</string>
     <string name="this_action_can_contain_ads">การดำเนินการนี้สามารถมีโฆษณา…</string>
     <string name="do_you_like_our_app">คุณชอบแอพของเราไหม?</string>

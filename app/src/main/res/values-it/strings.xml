@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Batti le mani per trovare facilmente il telefono smarrito</string>
-    <string name="text_on_boarding_2">Torcia elettrica nel buio</string>
-    <string name="text_on_boarding_3">Suoni divertenti da scegliere</string>
     <string name="get_started">Iniziare</string>
     <string name="this_action_can_contain_ads">Questa azione può contenere annunci…</string>
     <string name="do_you_like_our_app">Ti piace la nostra App?</string>

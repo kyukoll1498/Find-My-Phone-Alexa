@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Klatschen Sie, um das verlorene Telefon leicht zu finden</string>
-    <string name="text_on_boarding_2">Taschenlampe im Dunkeln</string>
-    <string name="text_on_boarding_3">Lustige Sounds zur Auswahl</string>
     <string name="get_started">Loslegen</string>
     <string name="this_action_can_contain_ads">Diese Aktion kann Werbung enthalten…</string>
     <string name="do_you_like_our_app">Gefällt Ihnen unsere App?</string>

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">분실폰을 쉽게 찾을 수 있는 박수</string>
-    <string name="text_on_boarding_2">어둠 속에서 손전등</string>
-    <string name="text_on_boarding_3">선택할 수있는 재미있는 소리</string>
     <string name="get_started">시작하다</string>
     <string name="this_action_can_contain_ads">이 작업에는 광고가 포함될 수 있습니다…</string>
     <string name="do_you_like_our_app">저희 앱이 마음에 드시나요?</string>

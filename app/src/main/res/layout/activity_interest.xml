@@ -20,11 +20,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingBottom="@dimen/_25sdp"
-            android:text="What's your interest in?"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:paddingTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="@string/where_do_you_usually_lose_your_phone"
+            android:textColor="@color/color_404040"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_25sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,19 +46,49 @@
             app:layout_constraintTop_toBottomOf="@+id/titleTextView">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAnimal"
+                android:id="@+id/btnHome"
                 style="@style/InterestButtonStyle"
-                android:text="@string/animal" />
+                android:text="@string/home" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnMusic"
+                android:id="@+id/btnBedroom"
                 style="@style/InterestButtonStyle"
-                android:text="@string/music" />
+                android:text="@string/bedroom" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnParty"
+                android:id="@+id/btnSofa"
                 style="@style/InterestButtonStyle"
-                android:text="@string/party" />
+                android:text="@string/sofa" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnWork"
+                style="@style/InterestButtonStyle"
+                android:text="@string/work" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGym"
+                style="@style/InterestButtonStyle"
+                android:text="@string/gym" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnFriendHouse"
+                style="@style/InterestButtonStyle"
+                android:text="@string/friend_s_house" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCafe"
+                style="@style/InterestButtonStyle"
+                android:text="@string/caf" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnOutdoors"
+                style="@style/InterestButtonStyle"
+                android:text="@string/outdoors" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSchool"
+                style="@style/InterestButtonStyle"
+                android:text="@string/school" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCar"
@@ -64,44 +96,29 @@
                 android:text="@string/car" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnTravel"
+                android:id="@+id/btnHotel"
                 style="@style/InterestButtonStyle"
-                android:text="@string/travel" />
+                android:text="@string/hotel" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnDrawing"
+                android:id="@+id/btnEvents"
                 style="@style/InterestButtonStyle"
-                android:text="@string/drawing" />
+                android:text="@string/events" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnTechnology"
+                android:id="@+id/btnShoppingMall"
                 style="@style/InterestButtonStyle"
-                android:text="@string/technology" />
+                android:text="@string/shopping_mall" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnGame"
+                android:id="@+id/btnPark"
                 style="@style/InterestButtonStyle"
-                android:text="@string/game" />
+                android:text="@string/park" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnArt"
+                android:id="@+id/btnOthers"
                 style="@style/InterestButtonStyle"
-                android:text="@string/art" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnHomeDecor"
-                style="@style/InterestButtonStyle"
-                android:text="@string/home_decor" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFood"
-                style="@style/InterestButtonStyle"
-                android:text="@string/food" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFunny"
-                style="@style/InterestButtonStyle"
-                android:text="@string/funny" />
+                android:text="@string/others" />
         </GridLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

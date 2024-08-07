@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Bate din palme pentru a găsi cu ușurință telefonul pierdut</string>
-    <string name="text_on_boarding_2">Lanterna în întuneric</string>
-    <string name="text_on_boarding_3">Sunete amuzante de ales</string>
     <string name="get_started">Incepe</string>
     <string name="this_action_can_contain_ads">Această acțiune poate conține reclame…</string>
     <string name="do_you_like_our_app">Îți place aplicația noastră?</string>

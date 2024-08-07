@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">صفق للعثور على الهاتف المفقود بسهولة</string>
-    <string name="text_on_boarding_2">مصباح يدوي في الظلام</string>
-    <string name="text_on_boarding_3">أصوات مضحكة للاختيار</string>
     <string name="get_started">البدء</string>
     <string name="this_action_can_contain_ads">يمكن أن يحتوي هذا الإجراء على إعلانات …</string>
     <string name="do_you_like_our_app">هل يعجبك تطبيقنا؟</string>

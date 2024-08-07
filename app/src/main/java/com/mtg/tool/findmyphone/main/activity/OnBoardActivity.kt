@@ -35,8 +35,6 @@ class OnBoardActivity :
 
     override fun initView() {
         initViewPager()
-        binding.tvNext.setSize(18)
-        binding.tvNext.paintFlags = Paint.UNDERLINE_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG
 
         AdmobManager.getInstance().loadNative(
             this,

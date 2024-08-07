@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Tepuk tangan untuk menemukan ponsel yang hilang dengan mudah</string>
-    <string name="text_on_boarding_2">Senter dalam gelap</string>
-    <string name="text_on_boarding_3">Suara lucu untuk dipilih</string>
     <string name="get_started">Memulai</string>
     <string name="this_action_can_contain_ads">Tindakan ini dapat berisi iklan…</string>
     <string name="do_you_like_our_app">Apakah Anda menyukai Aplikasi kami?</string>
