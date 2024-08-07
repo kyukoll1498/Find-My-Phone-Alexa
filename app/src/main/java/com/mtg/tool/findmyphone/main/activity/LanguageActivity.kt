@@ -79,6 +79,8 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             mCallback = OnActionCallback { key, data ->
                 if (step == 0) {
                     step++
+                    logEvent("complete_lfo1")
+                    logEvent("view_lfo2")
                     if (AdCache.getInstance().lfo2NativeHigh != null) {
                         AdmobManager.getInstance().showNative(
                             this@LanguageActivity,
@@ -145,6 +147,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     override fun addEvent() {
         binding.btBack.setOnClickListener { finish() }
         binding.ivDone.setOnClickListener {
+            logEvent("complete_lfo_flow")
+            if (step == 0) {
+                logEvent("complete_lfo1")
+            } else {
+                logEvent("complete_lfo2")
+            }
             EventLogger.getInstance()?.logEvent("click_language_tick")
             //Intent intent = new Intent(this, MainActivity.class);
             if (itemLanguage == null) {
@@ -169,19 +177,31 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     override fun onResume() {
         super.onResume()
         if (step == 0) {
-            AdmobManager.getInstance().preloadAlternateNative(this, lfo1NativeAds, object : AdCallback(){
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdmobManager.getInstance().showNative(this@LanguageActivity, nativeAd, binding.frAd, com.common.control.R.layout.custom_native_ads_2)
-                }
-            })
+            AdmobManager.getInstance()
+                .preloadAlternateNative(this, lfo1NativeAds, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdmobManager.getInstance().showNative(
+                            this@LanguageActivity,
+                            nativeAd,
+                            binding.frAd,
+                            com.common.control.R.layout.custom_native_ads_2
+                        )
+                    }
+                })
         } else {
-            AdmobManager.getInstance().preloadAlternateNative(this, lfo2NativeAdsReload, object : AdCallback(){
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdmobManager.getInstance().showNative(this@LanguageActivity, nativeAd, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
-                }
-            })
+            AdmobManager.getInstance()
+                .preloadAlternateNative(this, lfo2NativeAdsReload, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdmobManager.getInstance().showNative(
+                            this@LanguageActivity,
+                            nativeAd,
+                            binding.frAd2,
+                            com.common.control.R.layout.custom_native_ads_2
+                        )
+                    }
+                })
         }
     }
 
