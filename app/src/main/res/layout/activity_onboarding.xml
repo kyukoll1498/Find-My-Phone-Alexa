@@ -15,9 +15,9 @@
         android:id="@+id/indicator_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_4sdp"
-        app:layout_constraintBottom_toTopOf="@id/fr_ad"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/clFrad"
         app:layout_constraintStart_toStartOf="parent"
         app:piv_animationType="scale"
         app:piv_dynamicCount="true"
@@ -35,20 +35,54 @@
         android:layout_marginEnd="@dimen/_4sdp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/next"
-        android:textSize="@dimen/_14sdp"
         android:textColor="@color/_303030"
+        android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="@id/indicator_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/indicator_view" />
 
-    <FrameLayout
-        android:id="@+id/fr_ad"
+    <!--    <FrameLayout-->
+    <!--        android:id="@+id/fr_ad"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginHorizontal="@dimen/_8sdp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintHeight_percent=".3">-->
+
+    <!--        <include layout="@layout/fake_load_fb" />-->
+    <!--    </FrameLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clFrad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/_8sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".3">
 
-        <include layout="@layout/fake_load_fb" />
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fr_ad"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".3">
+
+            <include layout="@layout/fake_loading" />
+        </FrameLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animation_onboard"
+            app:lottie_speed="1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

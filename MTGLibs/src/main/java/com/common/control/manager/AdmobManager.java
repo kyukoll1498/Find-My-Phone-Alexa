@@ -4,9 +4,12 @@ import static com.common.control.BuildConfig.DEBUG;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -64,6 +67,8 @@ import java.util.List;
 import java.util.Map;
 
 public class AdmobManager {
+    public static final String ACTION_CLOSE_NATIVE_ADS = "ACTION_CLOSE_NATIVE_ADS";
+    public static final String ACTION_OPEN_NATIVE_ADS = "ACTION_OPEN_NATIVE_ADS";
     private static AdmobManager instance;
     private final LoadAdError errAd = new LoadAdError(2, "No Ad", "", null, null);
     private boolean hasAds = true;
@@ -496,48 +501,6 @@ public class AdmobManager {
         });
     }
 
-    private void loadUnifiedNativeAd(Context context, String id, final AdCallback callback) {
-        AdRequest request = getAdRequest();
-        if (request == null) {
-            callback.onAdFailedToLoad(errAd);
-            return;
-        }
-        VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
-        NativeAdOptions adOptions = new NativeAdOptions.Builder().setVideoOptions(videoOptions).build();
-        AdLoader adLoader = new AdLoader.Builder(context, id).forNativeAd(nativeAd -> {
-            if (callback != null) {
-                callback.onNativeAds(nativeAd);
-            }
-        }).withAdListener(new AdListener() {
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                super.onAdFailedToLoad(loadAdError);
-                if (callback != null) {
-                    callback.onAdFailedToLoad(loadAdError);
-                }
-            }
-        }).withNativeAdOptions(adOptions).build();
-        adLoader.loadAd(request);
-    }
-
-    public void loadNativeFullScreen(Context context, String id, FrameLayout placeHolder){
-        loadFullScreenUnifiedNativeAd(context, id, new AdCallback() {
-            @Override
-            public void onNativeAds(NativeAd nativeAd) {
-                @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(R.layout.custom_full_screen_native_ads, null);
-                onBindAdView(nativeAd, nativeAdView);
-                placeHolder.removeAllViews();
-                placeHolder.addView(nativeAdView);
-                nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
-            }
-
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError i) {
-                placeHolder.removeAllViews();
-                placeHolder.setVisibility(View.GONE);
-            }
-        });
-    }
     public void loadNativeFullScreenWithCallback(Context context, String id, FrameLayout placeHolder, final AdCallback callback){
         loadFullScreenUnifiedNativeAd(context, id, new AdCallback() {
             @Override
@@ -567,6 +530,7 @@ public class AdmobManager {
             }
         });
     }
+
     public void loadFullScreenUnifiedNativeAd(Context context, String id, final AdCallback callback) {
         AdRequest request = getAdRequest();
         if (request == null) {
@@ -574,7 +538,116 @@ public class AdmobManager {
             return;
         }
         VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
-        NativeAdOptions adOptions = new NativeAdOptions.Builder() .setMediaAspectRatio(MediaAspectRatio.ANY).setVideoOptions(videoOptions).build();
+        com.google.android.gms.ads.formats.NativeAdOptions adOptions = new com.google.android.gms.ads.formats.NativeAdOptions.Builder() .setMediaAspectRatio(MediaAspectRatio.ANY).setVideoOptions(videoOptions).build();
+        AdLoader adLoader = new AdLoader.Builder(context, id).forNativeAd(nativeAd -> {
+            if (callback != null) {
+                callback.onNativeAds(nativeAd);
+            }
+        }).withAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                if (callback != null) {
+                    callback.onAdFailedToLoad(loadAdError);
+                }
+            }
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                callback.onAdImpression();
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                callback.onAdClicked();
+            }
+        }).withNativeAdOptions(adOptions).build();
+        adLoader.loadAd(request);
+    }
+
+    private void registerDialogBehaviorReceiver(Context context, FrameLayout placeHolder) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            context.registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (intent.getAction() != null) {
+                        if (placeHolder != null) {
+                            if (intent.getAction().equals(ACTION_CLOSE_NATIVE_ADS)) {
+                                placeHolder.setVisibility(View.GONE);
+                            } else if (intent.getAction().equals(ACTION_OPEN_NATIVE_ADS)) {
+                                placeHolder.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }
+                }
+            }, initDialogBehaviorIntentFilter(), Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            context.registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (intent.getAction() != null) {
+                        if (placeHolder != null) {
+                            if (intent.getAction().equals(ACTION_CLOSE_NATIVE_ADS)) {
+                                placeHolder.setVisibility(View.GONE);
+                            } else if (intent.getAction().equals(ACTION_OPEN_NATIVE_ADS)) {
+                                placeHolder.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }
+                }
+            }, initDialogBehaviorIntentFilter());
+        }
+    }
+
+    private IntentFilter initDialogBehaviorIntentFilter() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ACTION_CLOSE_NATIVE_ADS);
+        intentFilter.addAction(ACTION_OPEN_NATIVE_ADS);
+        return intentFilter;
+    }
+
+    public void loadNativeWithCallback(Context context, String id, FrameLayout placeHolder, int customNative, final AdCallback callback) {
+        log("Request NativeAd :" + id);
+        registerDialogBehaviorReceiver(context, placeHolder);
+        loadUnifiedNativeAd(context, id, new AdCallback() {
+            @Override
+            public void onNativeAds(NativeAd nativeAd) {
+                @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
+                onBindAdView(nativeAd, nativeAdView);
+                placeHolder.removeAllViews();
+                placeHolder.addView(nativeAdView);
+                nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError i) {
+                placeHolder.removeAllViews();
+                placeHolder.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                callback.onAdClicked();
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                callback.onAdImpression();
+            }
+        });
+    }
+
+    private void loadUnifiedNativeAd(Context context, String id, final AdCallback callback) {
+        AdRequest request = getAdRequest();
+        if (request == null) {
+            callback.onAdFailedToLoad(errAd);
+            return;
+        }
+        VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
+        NativeAdOptions adOptions = new NativeAdOptions.Builder().setVideoOptions(videoOptions).build();
         AdLoader adLoader = new AdLoader.Builder(context, id).forNativeAd(nativeAd -> {
             if (callback != null) {
                 callback.onNativeAds(nativeAd);

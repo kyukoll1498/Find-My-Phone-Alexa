@@ -22,4 +22,8 @@
         <key>reshow_gdpr_splash</key>
         <value>2</value>
     </entry>
+    <entry>
+        <key>native_ads_full_screen_intro</key>
+        <value>true</value>
+    </entry>
 </defaultsMap>
