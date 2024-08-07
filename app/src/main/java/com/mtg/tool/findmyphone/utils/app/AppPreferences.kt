@@ -101,7 +101,8 @@ class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
         }
     inline var isChooseLanguage: Boolean
         get() {
-            return getBoolean(KEY_CHOOSE_LANGUAGE, false)
+            return false
+//            return getBoolean(KEY_CHOOSE_LANGUAGE, false)
         }
         set(value) {
             putBoolean(KEY_CHOOSE_LANGUAGE, true)

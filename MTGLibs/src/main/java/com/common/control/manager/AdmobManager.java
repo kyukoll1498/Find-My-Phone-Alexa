@@ -472,8 +472,26 @@ public class AdmobManager {
                 callback.onAdFailedToLoad(i);
             }
         });
+    }public void preloadFullScreenNative(Context context, String id, AdCallback callback) {
+        Log.d("AdmobLogger", "preloadNative: " + id);
+        loadFullScreenUnifiedNativeAd(context, id, new AdCallback() {
+            @Override
+            public void onNativeAds(NativeAd nativeAd) {
+                callback.onNativeAds(nativeAd);
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError i) {
+                callback.onAdFailedToLoad(i);
+            }
+        });
     }
     public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, int customNative){
+        if(nativeAd == null){
+            placeHolder.setVisibility(View.GONE);
+            return;
+        }
+        placeHolder.setVisibility(View.VISIBLE);
         @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
         onBindAdView(nativeAd, nativeAdView);
         placeHolder.removeAllViews();
