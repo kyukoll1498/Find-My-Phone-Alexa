@@ -11,6 +11,7 @@ public class AdCache {
     private InterstitialAd interSound;
 
     public NativeAd lfo2NativeHigh = null;
+    public NativeAd lfo1Native = null;
 
 
     private AdCache() {

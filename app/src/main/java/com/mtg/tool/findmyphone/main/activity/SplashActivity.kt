@@ -21,6 +21,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     val bannerAds = arrayListOf(BuildConfig.banner_splash_high, BuildConfig.banner_splash)
     val interAds = arrayListOf(BuildConfig.inter_splash_high, BuildConfig.inter_splash)
+    val lfo1NativeAds = arrayListOf(BuildConfig.lfo1_native_high, BuildConfig.lfo1_native)
     override fun binding() {
         isFullScreen = true
         super.binding()
@@ -47,15 +48,31 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     private fun handleAds() {
         try {
-            AdmobManager.getInstance().loadAlternateBanner(this, bannerAds, binding.frAd)
-            AdmobManager.getInstance()
-                .preloadNative(this, BuildConfig.lfo2_native_high, object : AdCallback() {
-                    override fun onNativeAds(nativeAd: NativeAd?) {
-                        super.onNativeAds(nativeAd)
-                        AdCache.getInstance().lfo2NativeHigh = nativeAd
-                    }
-                })
-            AdmobManager.getInstance().loadAlternateInter(this, interAds, object : AdCallback() {
+            if (!appPreferences.isChooseLanguage) {
+//            1. preload lfo2_native_high
+                preloadNativeLanguage2()
+//            2 - 3. load alternate inter_splash_high, inter_splash
+                loadAlternateInter()
+//            4 - 5. load alternate banner_splash_high, banner_splash
+                loadAlternateBanner()
+            } else {
+//            1 - 2. load alternate banner_splash_high, banner_splash
+                loadAlternateBanner()
+//            3 - 4. load alternate inter_splash_high, inter_splash
+                loadAlternateInter()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun loadAlternateBanner() {
+        AdmobManager.getInstance().loadAlternateBanner(this, bannerAds, binding.frAd)
+    }
+
+    private fun loadAlternateInter() {
+        AdmobManager.getInstance()
+            .loadAlternateInter(this, interAds, object : AdCallback() {
                 override fun onResultInterstitialAd(interstitialAd: InterstitialAd?) {
                     super.onResultInterstitialAd(interstitialAd)
                     Handler().postDelayed(Runnable {
@@ -66,17 +83,30 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                             object : AdCallback() {
                                 override fun onAdShowedFullScreenContent() {
                                     super.onAdShowedFullScreenContent()
+                                    logEvent("view_inter_splash")
                                     if (AdCache.getInstance().lfo2NativeHigh == null) {
+//                                      1. preload lfo2_native_high1
                                         AdmobManager.getInstance().preloadNative(
                                             this@SplashActivity,
-                                            BuildConfig.lfo2_native_high,
+                                            BuildConfig.lfo2_native_high1,
                                             object : AdCallback() {
                                                 override fun onNativeAds(nativeAd: NativeAd?) {
                                                     super.onNativeAds(nativeAd)
-                                                    AdCache.getInstance().lfo2NativeHigh = nativeAd
+                                                    AdCache.getInstance().lfo2NativeHigh =
+                                                        nativeAd
                                                 }
                                             })
                                     }
+//                                    2. preload alternate lfo1_native_high, lfo1_native
+                                    AdmobManager.getInstance().preloadAlternateNative(
+                                        this@SplashActivity,
+                                        lfo1NativeAds,
+                                        object : AdCallback() {
+                                            override fun onNativeAds(nativeAd: NativeAd?) {
+                                                super.onNativeAds(nativeAd)
+                                                AdCache.getInstance().lfo1Native = nativeAd
+                                            }
+                                        })
                                 }
                             })
                     }, 1000)
@@ -90,9 +120,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                     }, 1000)
                 }
             })
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+    }
+
+    private fun preloadNativeLanguage2() {
+        AdmobManager.getInstance()
+            .preloadNative(this, BuildConfig.lfo2_native_high, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().lfo2NativeHigh = nativeAd
+                }
+            })
     }
 
 
