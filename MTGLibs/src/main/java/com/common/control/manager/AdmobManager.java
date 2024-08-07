@@ -469,6 +469,11 @@ public class AdmobManager {
         });
     }
     public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, int customNative){
+        if(nativeAd == null){
+            placeHolder.setVisibility(View.GONE);
+            return;
+        }
+        placeHolder.setVisibility(View.VISIBLE);
         @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
         onBindAdView(nativeAd, nativeAdView);
         placeHolder.removeAllViews();

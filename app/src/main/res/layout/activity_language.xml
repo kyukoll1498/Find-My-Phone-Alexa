@@ -64,9 +64,18 @@
         android:id="@+id/fr_ad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent">
-
-        <include layout="@layout/fake_load_fb_banner" />
+        <include layout="@layout/fake_loading" />
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/fr_ad2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/_4sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <include layout="@layout/fake_loading" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

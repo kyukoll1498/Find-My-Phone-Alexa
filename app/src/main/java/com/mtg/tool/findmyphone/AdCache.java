@@ -1,5 +1,8 @@
 package com.mtg.tool.findmyphone;
 
+import androidx.lifecycle.MutableLiveData;
+
+import com.facebook.internal.Mutable;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.nativead.NativeAd;
 
@@ -11,7 +14,13 @@ public class AdCache {
     private InterstitialAd interSound;
 
     public NativeAd lfo2NativeHigh = null;
-    public NativeAd lfo1Native = null;
+    public NativeAd lfo2NativeHigh1 = null;
+    public NativeAd lfo2NativeHigh2 = null;
+
+    public NativeAd ob4NativeHigh = null;
+    public NativeAd ob4NativeHigh1 = null;
+    public NativeAd ob4NativeHigh2 = null;
+    public MutableLiveData<NativeAd> lfo1Native = new MutableLiveData<>(null);
 
 
     private AdCache() {

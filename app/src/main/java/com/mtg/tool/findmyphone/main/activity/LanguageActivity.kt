@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.control.base.OnActionCallback
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.google.android.gms.ads.nativead.NativeAd
+import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
@@ -26,19 +30,33 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     private var languageAdapter: LanguageAdapter? = null
     private var itemLanguage: ItemLanguage? = null
     private var appPreferences = AppPreferences.instance
+    val lfo2NativeAds = arrayListOf(BuildConfig.lfo2_native_high2, BuildConfig.lfo2_native)
+    var step = 0
 
     override fun initView() {
+        AdCache.getInstance().lfo1Native.observe(
+            this
+        ) { value ->
+            AdmobManager.getInstance().showNative(
+                this@LanguageActivity,
+                value,
+                binding.frAd,
+                com.common.control.R.layout.custom_native_ads_2
+            )
+        }
+        if (AdCache.getInstance().lfo2NativeHigh == null && AdCache.getInstance().lfo2NativeHigh1 == null) {
+            AdmobManager.getInstance()
+                .preloadAlternateNative(this, lfo2NativeAds, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().lfo2NativeHigh2 = nativeAd
+                    }
+                })
+        }
         setStatusBarColor()
         initListLanguage()
         initRCLanguage()
         handleButtonBack()
-    }
-
-    override fun loadAds() {
-        super.loadAds()
-
-        AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_language, binding.frAd)
-        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     private fun setStatusBarColor() {
@@ -57,6 +75,43 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     private fun initRCLanguage() {
         languageAdapter = LanguageAdapter(mList, this).apply {
             mCallback = OnActionCallback { key, data ->
+                if (step == 0) {
+                    step++
+                    if (AdCache.getInstance().lfo2NativeHigh != null) {
+                        AdmobManager.getInstance().showNative(
+                            this@LanguageActivity,
+                            AdCache.getInstance().lfo2NativeHigh,
+                            binding.frAd2,
+                            com.common.control.R.layout.custom_native_ads_2
+                        )
+                    } else if (AdCache.getInstance().lfo2NativeHigh1 != null) {
+                        AdmobManager.getInstance().showNative(
+                            this@LanguageActivity,
+                            AdCache.getInstance().lfo2NativeHigh1,
+                            binding.frAd2,
+                            com.common.control.R.layout.custom_native_ads_2
+                        )
+                    } else if (AdCache.getInstance().lfo2NativeHigh2 != null) {
+                        AdmobManager.getInstance().showNative(
+                            this@LanguageActivity,
+                            AdCache.getInstance().lfo2NativeHigh2,
+                            binding.frAd2,
+                            com.common.control.R.layout.custom_native_ads_2
+                        )
+                    }
+                    binding.frAd.visibility = View.GONE
+                    AdmobManager.getInstance().preloadNative(
+                        this@LanguageActivity,
+                        BuildConfig.ob4_native_high,
+                        object : AdCallback() {
+                            override fun onNativeAds(nativeAd: NativeAd?) {
+                                super.onNativeAds(nativeAd)
+                                AdCache.getInstance().ob4NativeHigh = nativeAd
+                            }
+                        }
+
+                    )
+                }
                 for (item in mList) {
                     item?.let { it.imgSelect = (R.drawable.ic_disable) }
                     itemLanguage?.colorBackground = null
@@ -102,7 +157,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 InterestActivity.start(this)
                 finish()
             } else {
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }

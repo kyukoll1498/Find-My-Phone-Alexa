@@ -92,7 +92,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                                             object : AdCallback() {
                                                 override fun onNativeAds(nativeAd: NativeAd?) {
                                                     super.onNativeAds(nativeAd)
-                                                    AdCache.getInstance().lfo2NativeHigh =
+                                                    AdCache.getInstance().lfo2NativeHigh1 =
                                                         nativeAd
                                                 }
                                             })
@@ -104,7 +104,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                                         object : AdCallback() {
                                             override fun onNativeAds(nativeAd: NativeAd?) {
                                                 super.onNativeAds(nativeAd)
-                                                AdCache.getInstance().lfo1Native = nativeAd
+                                                AdCache.getInstance().lfo1Native.value = nativeAd
                                             }
                                         })
                                 }
