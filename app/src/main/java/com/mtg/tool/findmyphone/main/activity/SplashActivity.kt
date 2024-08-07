@@ -1,8 +1,14 @@
 package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Intent
-import com.common.control.manager.AppOpenManager
-import com.mtg.tool.findmyphone.ads_executor.inter.InterSplashExecutor
+import android.os.Handler
+import com.common.control.interfaces.AdCallback
+import com.common.control.manager.AdmobManager
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.nativead.NativeAd
+import com.mtg.tool.findmyphone.AdCache
+import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
 import com.mtg.tool.findmyphone.databinding.ActivitySplashBinding
@@ -12,12 +18,16 @@ import com.mtg.tool.findmyphone.utils.app.AppPreferences
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
     private var appPreferences = AppPreferences.instance
+
+    val bannerAds = arrayListOf(BuildConfig.banner_splash_high, BuildConfig.banner_splash)
+    val interAds = arrayListOf(BuildConfig.inter_splash_high, BuildConfig.inter_splash)
     override fun binding() {
         isFullScreen = true
         super.binding()
     }
 
     override fun initView() {
+        logEvent("view_splash")
         ConsentDialogManager.instance?.showConsentDialogSplash(this) {
             handleAds()
         }
@@ -37,15 +47,49 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     private fun handleAds() {
         try {
-            AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
-            InterSplashExecutor.loadInterAds(this)
-            InterSplashExecutor.showInterAds(
-                this,
-                object : InterSplashExecutor.OnBeforeShowCallback {
-                    override fun callback() {
-                        startMain()
+            AdmobManager.getInstance().loadAlternateBanner(this, bannerAds, binding.frAd)
+            AdmobManager.getInstance()
+                .preloadNative(this, BuildConfig.lfo2_native_high, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().lfo2NativeHigh = nativeAd
                     }
-                }) {}
+                })
+            AdmobManager.getInstance().loadAlternateInter(this, interAds, object : AdCallback() {
+                override fun onResultInterstitialAd(interstitialAd: InterstitialAd?) {
+                    super.onResultInterstitialAd(interstitialAd)
+                    Handler().postDelayed(Runnable {
+                        startMain()
+                        AdmobManager.getInstance().showInterstitial(
+                            this@SplashActivity,
+                            interstitialAd,
+                            object : AdCallback() {
+                                override fun onAdShowedFullScreenContent() {
+                                    super.onAdShowedFullScreenContent()
+                                    if (AdCache.getInstance().lfo2NativeHigh == null) {
+                                        AdmobManager.getInstance().preloadNative(
+                                            this@SplashActivity,
+                                            BuildConfig.lfo2_native_high,
+                                            object : AdCallback() {
+                                                override fun onNativeAds(nativeAd: NativeAd?) {
+                                                    super.onNativeAds(nativeAd)
+                                                    AdCache.getInstance().lfo2NativeHigh = nativeAd
+                                                }
+                                            })
+                                    }
+                                }
+                            })
+                    }, 1000)
+
+                }
+
+                override fun onAdFailedToLoad(i: LoadAdError) {
+                    super.onAdFailedToLoad(i)
+                    Handler().postDelayed(Runnable {
+                        startMain()
+                    }, 1000)
+                }
+            })
         } catch (e: Exception) {
             e.printStackTrace()
         }

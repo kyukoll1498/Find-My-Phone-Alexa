@@ -1,6 +1,7 @@
 package com.mtg.tool.findmyphone;
 
 import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.nativead.NativeAd;
 
 public class AdCache {
 
@@ -8,6 +9,9 @@ public class AdCache {
     private int interSoundCount = 0;
 
     private InterstitialAd interSound;
+
+    public NativeAd lfo2NativeHigh = null;
+
 
     private AdCache() {
     }

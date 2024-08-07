@@ -455,6 +455,7 @@ public class AdmobManager {
     }
 
     public void preloadNative(Context context, String id, AdCallback callback) {
+        Log.d("AdmobLogger", "preloadNative: " + id);
         loadUnifiedNativeAd(context, id, new AdCallback() {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
@@ -890,12 +891,12 @@ public class AdmobManager {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError i) {
                 super.onAdFailedToLoad(i);
+                Log.d("AdmobLogger", "loadAlternateBanner: " + "fail-" + ids.get(0));
                 ids.remove(0);
                 if (!ids.isEmpty()) {
                     adContainer.setVisibility(View.VISIBLE);
                     loadAlternateBanner(act, ids, adContainer);
                 }
-                Log.d("AdmobLogger", "loadAlternateBanner: " + "fail-" + ids.get(0));
 
             }
 

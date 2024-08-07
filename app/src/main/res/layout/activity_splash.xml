@@ -8,10 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/img_bg_splash"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:scaleType="fitXY"
-        />
+        android:layout_above="@id/fr_ad"
+        android:scaleType="fitXY" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="@dimen/_90sdp"
@@ -33,6 +31,15 @@
         android:fontFamily="@font/poppins_medium"
         android:textColor="@color/white"
         android:textSize="@dimen/_12sdp" />
+
+    <FrameLayout
+        android:id="@+id/fr_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true">
+        <include layout="@layout/load_fb_banner" />
+    </FrameLayout>
 
 
 </RelativeLayout>
