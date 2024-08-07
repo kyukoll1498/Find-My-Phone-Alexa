@@ -30,7 +30,9 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     private var languageAdapter: LanguageAdapter? = null
     private var itemLanguage: ItemLanguage? = null
     private var appPreferences = AppPreferences.instance
+    val lfo1NativeAds = arrayListOf(BuildConfig.lfo1_native_high, BuildConfig.lfo1_native)
     val lfo2NativeAds = arrayListOf(BuildConfig.lfo2_native_high2, BuildConfig.lfo2_native)
+    val lfo2NativeAdsReload = arrayListOf(BuildConfig.lfo2_native_high, BuildConfig.lfo2_native)
     var step = 0
 
     override fun initView() {
@@ -161,6 +163,25 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 startActivity(intent)
                 finish()
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (step == 0) {
+            AdmobManager.getInstance().preloadAlternateNative(this, lfo1NativeAds, object : AdCallback(){
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdmobManager.getInstance().showNative(this@LanguageActivity, nativeAd, binding.frAd, com.common.control.R.layout.custom_native_ads_2)
+                }
+            })
+        } else {
+            AdmobManager.getInstance().preloadAlternateNative(this, lfo2NativeAdsReload, object : AdCallback(){
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdmobManager.getInstance().showNative(this@LanguageActivity, nativeAd, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
+                }
+            })
         }
     }
 
