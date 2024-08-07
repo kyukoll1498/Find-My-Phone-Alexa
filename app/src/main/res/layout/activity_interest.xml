@@ -19,10 +19,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center"
             android:paddingBottom="@dimen/_25sdp"
             android:text="What's your interest in?"
             android:textColor="@android:color/black"
-            android:gravity="center"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +33,7 @@
             android:id="@+id/interestsGridLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_13sdp"
             android:alignmentMode="alignMargins"
             android:columnCount="3"
             android:paddingBottom="16dp"
@@ -42,56 +43,66 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAnimal"
                 style="@style/InterestButtonStyle"
-                android:text="Animal" />
+                android:text="@string/animal" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMusic"
                 style="@style/InterestButtonStyle"
-                android:text="Music" />
+                android:text="@string/music" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnParty"
                 style="@style/InterestButtonStyle"
-                android:text="Party" />
+                android:text="@string/party" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCar"
                 style="@style/InterestButtonStyle"
-                android:text="Car" />
+                android:text="@string/car" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTravel"
                 style="@style/InterestButtonStyle"
-                android:text="Travel" />
+                android:text="@string/travel" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDrawing"
                 style="@style/InterestButtonStyle"
-                android:text="Drawing" />
+                android:text="@string/drawing" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTechnology"
                 style="@style/InterestButtonStyle"
-                android:text="Technology" />
+                android:text="@string/technology" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGame"
                 style="@style/InterestButtonStyle"
-                android:text="Game" />
+                android:text="@string/game" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnArt"
                 style="@style/InterestButtonStyle"
-                android:text="Art" />
+                android:text="@string/art" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnHomeDecor"
                 style="@style/InterestButtonStyle"
-                android:text="Home Decor" />
+                android:text="@string/home_decor" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnFood"
                 style="@style/InterestButtonStyle"
-                android:text="Food"/>
+                android:text="@string/food" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnFunny"
                 style="@style/InterestButtonStyle"
-                android:text="Funny" />
+                android:text="@string/funny" />
         </GridLayout>
-
-        <!-- Next Button -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
