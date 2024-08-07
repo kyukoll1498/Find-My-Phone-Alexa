@@ -32,5 +32,6 @@ object Constants {
     const val SHARE_PREF_LANGUAGE = "SHARE_PREF_LANGUAGE"
     const val KEY_LANGUAGE = "KEY_LANGUAGE"
     const val KEY_CANCEL: String = "KEY_CANCEL"
+    const val SKIP_ONBOARD: String = "IS_SKIP_ONBOARD"
 
 }

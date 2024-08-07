@@ -39,11 +39,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         try {
             AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
             InterSplashExecutor.loadInterAds(this)
-            InterSplashExecutor.showInterAds(this, object : InterSplashExecutor.OnBeforeShowCallback{
-                override fun callback() {
-                    startMain()
-                }
-            }){}
+            InterSplashExecutor.showInterAds(
+                this,
+                object : InterSplashExecutor.OnBeforeShowCallback {
+                    override fun callback() {
+                        startMain()
+                    }
+                }) {}
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -52,38 +54,18 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     private fun startMain() {
         if (!appPreferences.isChooseLanguage) {
-//            startActivity(Intent(this, LanguageActivity::class.java))
             val intent = Intent(this, LanguageActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         } else {
-            //todo
-//            if (SharedPrefs.getBoolean(this, "is_skip_onboard")) {
-//                startActivity(Intent(this, MainActivity::class.java))
-//                if (!PermissionUtils.checkMicroPermission(mContext)){
-//                    startActivity(Intent(this@SplashActivity, PermissionActivity::class.java))
             val intent = Intent(this, PermissionActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
-//                }
-//            } else {
-//                startActivity(Intent(this@SplashActivity, OnBoardActivity::class.java))
-//            }
         }
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            finish()
-//        }, 300)
-    }
-
-    override fun onStart() {
-        super.onStart()
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            startActivity(Intent(this@SplashActivity, OnBoardActivity::class.java)) //check onboard first time in OnboardActivity
-//        }, 2000)
     }
 
     override fun addEvent() {
@@ -92,14 +74,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     override fun onResume() {
         super.onResume()
-//        if (AdCache.getInstance().interGuide == null) {
-//            AdmobManager.getInstance()
-//                .loadInterAds(this, BuildConfig.inter_guide, object : AdCallback() {
-//                    override fun onResultInterstitialAd(interstitialAd: InterstitialAd?) {
-//                        super.onResultInterstitialAd(interstitialAd)
-//                        AdCache.getInstance().interGuide = interstitialAd
-//                    }
-//                })
-//        }
+
     }
 }

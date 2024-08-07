@@ -2,7 +2,6 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.res.Configuration
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,13 +15,11 @@ import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityLanguageBinding
 import com.mtg.tool.findmyphone.main.adapter.LanguageAdapter
-import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountry
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
-import java.util.Locale
 
 class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBinding::inflate) {
     private var mList: List<ItemLanguage> = ArrayList()
@@ -99,21 +96,16 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             appPreferences.currentLanguage = itemLanguage!!.languageToLoad
             appPreferences.isChooseLanguage = true
 
-            val locale = Locale(itemLanguage!!.languageToLoad)
-            Locale.setDefault(locale)
-            val config = Configuration()
-            config.locale = locale
-            resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+            setLanguageWithoutNotification(itemLanguage!!.languageToLoad)
 
-//            setLanguage(itemLanguage!!.languageToLoad)
-            //todo go to next
-//            if (SharedPrefs.getBoolean(this, "is_skip_onboard")) {
-                startActivity(Intent(this, PermissionActivity::class.java))
+            if (!SharedPrefs.getBoolean(this, Constants.SKIP_ONBOARD)) {
+                InterestActivity.start(this)
                 finish()
-//            } else {
-//                startActivity(Intent(this, OnBoardActivity::class.java))
-//                finish()
-//            }
+            } else {
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 

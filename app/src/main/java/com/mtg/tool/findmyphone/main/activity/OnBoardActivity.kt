@@ -1,6 +1,7 @@
 package com.mtg.tool.findmyphone.main.activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.util.Log
@@ -15,14 +16,21 @@ import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityOnboardingBinding
 import com.mtg.tool.findmyphone.main.fragment.OnBoardFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
+import com.mtg.tool.findmyphone.utils.constant.Constants
 import com.mtg.tool.findmyphone.utils.setSize
 
 class OnBoardActivity :
     BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
     override fun binding() {
         isFullScreen = true
-        SharedPrefs.put(this, "is_skip_onboard", true)
         super.binding()
+    }
+
+    companion object{
+        fun start(context: Context){
+            val intent = Intent(context, OnBoardActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
     override fun initView() {

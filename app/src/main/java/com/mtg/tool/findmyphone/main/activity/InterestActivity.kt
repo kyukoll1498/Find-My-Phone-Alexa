@@ -1,12 +1,15 @@
 package com.mtg.tool.findmyphone.main.activity
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.widget.Button
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
+import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityInterestBinding
+import com.mtg.tool.findmyphone.utils.constant.Constants
 import com.mtg.tool.findmyphone.utils.setSize
 
 class InterestActivity :
@@ -15,7 +18,15 @@ class InterestActivity :
 
     override fun binding() {
         isFullScreen = false
+        SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
         super.binding()
+    }
+
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, InterestActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
     override fun initView() {
@@ -49,7 +60,6 @@ class InterestActivity :
     }
 
     override fun addEvent() {
-
         binding.tvNext.setOnClickListener {
             saveSelectedInterests()
         }
@@ -69,8 +79,10 @@ class InterestActivity :
     }
 
     private fun saveSelectedInterests() {
-        val intent = Intent(this, OnBoardActivity::class.java)
-        intent.putStringArrayListExtra("selectedInterests", ArrayList(selectedInterests))
-        startActivity(intent)
+//        val intent = Intent(this, OnBoardActivity::class.java)
+//        intent.putStringArrayListExtra("selectedInterests", ArrayList(selectedInterests))
+//        startActivity(intent)
+        OnBoardActivity.start(this)
+        finish()
     }
 }
