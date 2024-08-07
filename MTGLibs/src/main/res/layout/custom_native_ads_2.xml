@@ -5,9 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_native_ads_2"
-    android:backgroundTint="#FFFFFF"
-    android:elevation="@dimen/_1sdp">
+    android:background="@drawable/bg_native_ads_2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
