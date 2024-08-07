@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Пляскайте, за да намерите лесно изгубения телефон</string>
-    <string name="text_on_boarding_2">Фенерче в тъмното</string>
-    <string name="text_on_boarding_3">Смешни звуци за избор</string>
     <string name="get_started">Първи стъпки</string>
     <string name="this_action_can_contain_ads">Това действие може да съдържа реклами…</string>
     <string name="do_you_like_our_app">Харесвате ли нашето приложение?</string>

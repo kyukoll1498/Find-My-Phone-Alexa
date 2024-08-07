@@ -30,25 +30,25 @@ class InterestActivity :
     }
 
     override fun initView() {
-        binding.tvNext.setSize(18)
-        binding.tvNext.paintFlags = Paint.UNDERLINE_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG
-
         selectedInterests = mutableListOf()
 
         // Initialize buttons
         val buttons = listOf(
-            binding.btnAnimal,
-            binding.btnMusic,
-            binding.btnParty,
+            binding.btnHome,
+            binding.btnBedroom,
+            binding.btnSofa,
+            binding.btnWork,
+            binding.btnGym,
+            binding.btnFriendHouse,
+            binding.btnCafe,
+            binding.btnOutdoors,
+            binding.btnSchool,
             binding.btnCar,
-            binding.btnTravel,
-            binding.btnDrawing,
-            binding.btnTechnology,
-            binding.btnGame,
-            binding.btnArt,
-            binding.btnHomeDecor,
-            binding.btnFood,
-            binding.btnFunny,
+            binding.btnHotel,
+            binding.btnEvents,
+            binding.btnShoppingMall,
+            binding.btnPark,
+            binding.btnOthers,
         )
 
         buttons.forEach { button ->

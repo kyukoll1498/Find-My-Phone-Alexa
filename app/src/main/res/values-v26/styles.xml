@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="InterestButtonStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -13,5 +14,8 @@
         <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:maxLines">1</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/_13sdp</item>
+        <item name="android:autoSizeMinTextSize">@dimen/_10sdp</item>
+        <item name="android:autoSizeTextType">uniform</item>
     </style>
 </resources>

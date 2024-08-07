@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Applaudissez pour retrouver facilement le téléphone perdu</string>
-    <string name="text_on_boarding_2">Lampe de poche dans le noir</string>
-    <string name="text_on_boarding_3">Sons amusants à choisir</string>
     <string name="get_started">Commencer</string>
     <string name="this_action_can_contain_ads">Cette action peut contenir des publicités…</string>
     <string name="do_you_like_our_app">Aimez-vous notre application?</string>

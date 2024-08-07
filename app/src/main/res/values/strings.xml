@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">Find my phone by Clap, Whistle</string>
 
-    <string name="text_on_boarding_1">Clap to find the lost phone easily</string>
-    <string name="text_on_boarding_2">Flashlight in the dark</string>
-    <string name="text_on_boarding_3">Funny sounds to choose</string>
+    <string name="text_on_boarding_1">Easily find your lost phone by clapping</string>
+    <string name="text_on_boarding_2">Various sound effects to choose</string>
+    <string name="text_on_boarding_3">Clap to turn on flashlight in the dark</string>
     <string name="get_started">Get Started</string>
     <string name="this_action_can_contain_ads">This action can contain ads…</string>
     <string name="do_you_like_our_app">Do you like our App?</string>
@@ -95,8 +95,8 @@
     <string name="allow_clap_to_find_your_phone_to_access_the_notification">Allow <b>Clap To Find Your Phone</b> to access the Notification</string>
     <string name="app_name_setting" translatable="false">Find my phone</string>
 
-    <string name="grant_permission">Grant Permission</string>
-    <string name="please_grant">Please grant the following permission to provide phone finder by clapping</string>
+    <string name="grant_permission">Permission Request</string>
+    <string name="please_grant">Please grant permission to provide phone finder by clapping?</string>
     <string name="record_permission">Record Permission</string>
     <string name="continue_permission">Continue</string>
     <string name="toast_permission_continue">Allow permission to continue!</string>
@@ -132,16 +132,21 @@
     <string name="save_50">Save 50%</string>
     <string name="basic">Basic</string>
     <string name="premium">Premium</string>
-    <string name="animal">Animal</string>
-    <string name="music">Music</string>
-    <string name="party">Party</string>
+
+    <string name="where_do_you_usually_lose_your_phone">Where do you usually lose your phone?</string>
+    <string name="bedroom">Bedroom</string>
+    <string name="sofa">Sofa</string>
+    <string name="work">Work</string>
+    <string name="gym">Gym</string>
+    <string name="friend_s_house">Friend\'s House</string>
+    <string name="caf">Café</string>
+    <string name="outdoors">Outdoors</string>
+    <string name="school">School</string>
     <string name="car">Car</string>
-    <string name="travel">Travel</string>
-    <string name="drawing">Drawing</string>
-    <string name="technology">Technology</string>
-    <string name="game">Game</string>
-    <string name="art">Art</string>
-    <string name="home_decor">Home Decor</string>
-    <string name="food">Food</string>
-    <string name="funny">Funny</string>
+    <string name="hotel">Hotel</string>
+    <string name="events">Events</string>
+    <string name="shopping_mall">Shopping Mall</string>
+    <string name="park">Park</string>
+    <string name="others">Others</string>
+    <string name="skip">Skip</string>
 </resources>

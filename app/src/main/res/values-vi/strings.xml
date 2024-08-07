@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Vỗ tay để tìm điện thoại bị mất một cách dễ dàng</string>
-    <string name="text_on_boarding_2">Đèn pin trong bóng tối</string>
-    <string name="text_on_boarding_3">Âm thanh vui nhộn để lựa chọn</string>
     <string name="get_started">Bắt đầu</string>
     <string name="this_action_can_contain_ads">Hành động này có thể chứa quảng cáo…</string>
     <string name="do_you_like_our_app">Bạn có thích ứng dụng của chúng tôi?</string>

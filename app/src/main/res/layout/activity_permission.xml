@@ -5,60 +5,64 @@
     android:layout_height="match_parent"
     android:background="@color/transparent">
 
-    <ImageView
-        android:id="@+id/img_background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/img_background_gradient"
-        app:layout_constraintDimensionRatio="108:216"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ct_top_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_toolbar"
+        android:paddingHorizontal="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/poppins_regular"
             android:text="@string/grant_permission"
             android:textColor="@color/color_404040"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="@dimen/_18sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/ll_continue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/skip"
+            android:textColor="#80303030"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBody"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/fr_ad"
+        app:layout_constraintBottom_toTopOf="@+id/clAd"
         app:layout_constraintTop_toBottomOf="@+id/ct_top_bar">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/aciv"
-            android:layout_width="@dimen/_107sdp"
-            android:layout_height="@dimen/_106sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_per"
+            app:layout_constraintDimensionRatio="224:134"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.7" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/actv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
             android:gravity="center"
             android:lineSpacingExtra="8dp"
             android:paddingVertical="@dimen/_5sdp"
@@ -66,6 +70,7 @@
             android:textColor="#818181"
             android:textSize="@dimen/_13sdp"
             app:fontFamily="@font/poppins_regular"
+            app:layout_constraintBottom_toTopOf="@+id/ll_create_sound"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/aciv" />
@@ -73,34 +78,57 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_create_sound"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_42sdp"
+            android:layout_height="@dimen/_60sdp"
             android:layout_marginHorizontal="@dimen/_18sdp"
             android:background="@drawable/bg_radius_8"
             android:backgroundTint="#FFFFFF"
             android:elevation="5dp"
-            android:paddingVertical="@dimen/_10sdp"
-            app:layout_constraintBottom_toTopOf="@+id/ll_continue"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/actv">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvIm"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_app_pms" />
+            </androidx.cardview.widget.CardView>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvCenter"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/record_permission"
+                android:layout_marginHorizontal="@dimen/_18sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:text="Clap to find my phone"
                 android:textColor="#404040"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/sb_permission"
+                app:layout_constraintStart_toEndOf="@+id/cvIm"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.mtg.tool.findmyphone.main.widget.SwitchButton
                 android:id="@+id/sb_permission"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_26sdp"
-                android:layout_marginEnd="@dimen/_6sdp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -108,43 +136,30 @@
                 app:sb_uncheck_color="#D9D9D9" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_continue"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_42sdp"
-            android:layout_marginHorizontal="@dimen/_18sdp"
-            android:layout_marginTop="@dimen/_1sdp"
-            android:layout_marginBottom="@dimen/_3sdp"
-            android:background="@drawable/bg_radius_8"
-            android:backgroundTint="#818181"
-            android:elevation="5dp"
-            android:gravity="center"
-            android:paddingVertical="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_create_sound">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/continue_permission"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp" />
-
-        </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/fr_ad"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clAd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.35"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginBottom="@dimen/_3sdp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <include layout="@layout/fake_load_fb_banner" />
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fr_ad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <include layout="@layout/fake_load_fb_banner" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

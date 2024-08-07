@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_on_boarding_1">Zatleskejte, abyste ztracený telefon snadno našli</string>
-    <string name="text_on_boarding_2">Svítilna ve tmě</string>
-    <string name="text_on_boarding_3">Vtipné zvuky na výběr</string>
     <string name="get_started">Začít</string>
     <string name="this_action_can_contain_ads">Tato akce může obsahovat reklamy…</string>
     <string name="do_you_like_our_app">Líbí se vám naše aplikace?</string>
