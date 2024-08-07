@@ -8,6 +8,7 @@ import com.mtg.tool.findmyphone.R
 class RemoteConfigManager {
     private var remoteConfig: FirebaseRemoteConfig? = null
     private var isLoading = false
+    var isShowNativeFullScreenOnboard: Boolean = true
     fun loadRemote() {
         if (isLoading) {
             return
@@ -22,6 +23,7 @@ class RemoteConfigManager {
             isLoading = false
             if (task.isSuccessful) {
                 remoteConfig = FirebaseRemoteConfig.getInstance()
+                isShowNativeFullScreenOnboard = config.getBoolean("native_ads_full_screen_intro")
             } else {
                 loadRemote()
             }

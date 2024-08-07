@@ -4,29 +4,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/img_inside"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/img_inside_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_inside"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
-        android:lines="2"
-        android:text="@string/text_on_boarding_1"
-        android:textColor="@color/color_404040"
-        android:textSize="@dimen/_14sdp"
-        app:layout_constraintTop_toBottomOf="@id/img_inside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/img_inside"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_inside_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_inside"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:lines="2"
+            android:text="@string/text_on_boarding_1"
+            android:textColor="@color/color_404040"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintTop_toBottomOf="@id/img_inside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/ads_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A4A4A4"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

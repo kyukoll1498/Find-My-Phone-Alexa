@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.util.Log
+import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
@@ -26,8 +27,8 @@ class OnBoardActivity :
         super.binding()
     }
 
-    companion object{
-        fun start(context: Context){
+    companion object {
+        fun start(context: Context) {
             val intent = Intent(context, OnBoardActivity::class.java)
             context.startActivity(intent)
         }
@@ -47,17 +48,39 @@ class OnBoardActivity :
     }
 
     private fun initViewPager() {
+        val adapter = ViewPagerAddFragmentsAdapter(
+            supportFragmentManager, lifecycle
+        )
         binding.viewpagerOnboard.adapter =
-            ViewPagerAddFragmentsAdapter(supportFragmentManager, lifecycle).apply {
-                addFrag(OnBoardFragment(R.drawable.img_inside_1, R.string.text_on_boarding_1))
-                addFrag(OnBoardFragment(R.drawable.img_inside_2, R.string.text_on_boarding_2))
-                addFrag(OnBoardFragment(R.drawable.img_inside_3, R.string.text_on_boarding_3))
+            adapter.apply {
+                addFrag(OnBoardFragment(0, R.drawable.img_inside_1, R.string.text_on_boarding_1))
+                addFrag(OnBoardFragment(1, R.drawable.img_inside_2, R.string.text_on_boarding_2))
+                addFrag(OnBoardFragment(2, R.drawable.img_inside_2, R.string.text_on_boarding_2))
+                addFrag(OnBoardFragment(3, R.drawable.img_inside_3, R.string.text_on_boarding_3))
             }
         binding.viewpagerOnboard.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.indicatorView.selection = position
+                if (position == 1) {
+                    binding.indicatorView.visibility = View.VISIBLE
+                    binding.tvNext.visibility = View.VISIBLE
+                    binding.frAd.visibility = View.INVISIBLE
+                    binding.lottie.setVisibility(View.VISIBLE)
+                }
+                if (position == 2) {
+                    binding.indicatorView.visibility = View.GONE
+                    binding.tvNext.visibility = View.GONE
+                    binding.frAd.visibility = View.GONE
+                    binding.lottie.setVisibility(View.GONE)
+                }
+                if (position == 0 || position == adapter.itemCount - 1) {
+                    binding.indicatorView.visibility = View.VISIBLE
+                    binding.tvNext.visibility = View.VISIBLE
+                    binding.frAd.visibility = View.VISIBLE
+                    binding.lottie.setVisibility(View.GONE)
+                }
                 if (position == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
                     binding.tvNext.text = getString(R.string.get_started)
                 } else
