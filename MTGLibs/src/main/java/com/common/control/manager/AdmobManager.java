@@ -855,7 +855,7 @@ public class AdmobManager {
         });
     }
 
-    public void loadAlternateNative(Context context, List<String> ids, AdCallback callback) {
+    public void preloadAlternateNative(Context context, List<String> ids, AdCallback callback) {
         if (ids.isEmpty()) {
             Log.d("AdmobLogger", "loadAlternateNative: " + "empty");
             return;
@@ -869,7 +869,7 @@ public class AdmobManager {
                 if (ids.isEmpty()) {
                     callback.onAdFailedToLoad(i);
                 } else {
-                    loadAlternateNative(context, ids, callback);
+                    preloadAlternateNative(context, ids, callback);
                 }
             }
 
