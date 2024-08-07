@@ -14,7 +14,7 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "FindMyPhone"
+rootProject.name = "FindMyPhone2"
 include ':app'
 include ':custom_seekbar'
 include ':MTGLibs'
