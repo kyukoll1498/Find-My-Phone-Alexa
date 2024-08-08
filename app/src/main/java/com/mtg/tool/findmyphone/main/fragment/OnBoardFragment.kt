@@ -1,5 +1,6 @@
 package com.mtg.tool.findmyphone.main.fragment
 
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -7,6 +8,7 @@ import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
@@ -48,31 +50,29 @@ class OnBoardFragment(
                     ) {
                         binding.llMain.visibility = View.GONE
                         binding.adsContainer.visibility = View.VISIBLE
-                        AdmobManager.getInstance().loadNativeFullScreenWithCallback(
-                            requireContext(),
-                            BuildConfig.native_language,
-                            binding.adsContainer,
-                            object : AdCallback() {
-                                override fun onAdImpression() {
-                                    super.onAdImpression()
-                                    EventLogger.firebaseLog(
-                                        requireActivity(),
-                                        "ads_impression_native_home_guide_fullscreen"
-                                    )
-                                }
-
-                                override fun onAdClicked() {
-                                    super.onAdClicked()
-                                    EventLogger.firebaseLog(
-                                        requireActivity(),
-                                        "ads_clicked_native_home_guide_fullscreen"
-                                    )
-                                }
-                            })
+                        logEvent("complete_lfo1")
+                        logEvent("view_lfo2")
+                        if (AdCache.getInstance().ob4NativeHigh1 != null) {
+                            Log.d("showFullNative", "ob4NativeHigh1")
+                            AdmobManager.getInstance().showNative(
+                                context,
+                                AdCache.getInstance().ob4NativeHigh1,
+                                binding.adsContainer,
+                                com.common.control.R.layout.custom_full_screen_native_ads
+                            )
+                        } else if (AdCache.getInstance().ob4NativeHigh2AndNative != null) {
+                            Log.d("showFullNative", "ob4NativeHigh2AndNative")
+                            AdmobManager.getInstance().showNative(
+                                context,
+                                AdCache.getInstance().ob4NativeHigh2AndNative,
+                                binding.adsContainer,
+                                com.common.control.R.layout.custom_full_screen_native_ads
+                            )
+                        }
                     } else {
                         Glide.with(requireContext()).load(idImage)
                             .into(binding.imgInside)
-                        binding.tvInside.setText(getString(idText))
+                        binding.tvInside.text = getString(idText)
                     }
                 }
                 run {

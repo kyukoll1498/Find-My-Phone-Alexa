@@ -36,7 +36,7 @@ class InterestActivity :
     }
 
     override fun initView() {
-        AdmobManager.getInstance().preloadNative(
+        AdmobManager.getInstance().preloadFullScreenNative(
             this@InterestActivity,
             BuildConfig.ob4_native_high1,
             object : AdCallback() {

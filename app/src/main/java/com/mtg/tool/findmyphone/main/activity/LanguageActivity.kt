@@ -111,7 +111,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                         object : AdCallback() {
                             override fun onNativeAds(nativeAd: NativeAd?) {
                                 super.onNativeAds(nativeAd)
-                                AdCache.getInstance().ob4NativeHigh = nativeAd
+                                AdCache.getInstance().ob4NativeHigh2AndNative = nativeAd
                             }
                         }
 
