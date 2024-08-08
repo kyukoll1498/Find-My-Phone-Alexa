@@ -1,6 +1,7 @@
 package com.mtg.tool.findmyphone.main.fragment
 
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager

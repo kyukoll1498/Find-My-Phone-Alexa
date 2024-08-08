@@ -41,30 +41,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/indicator_view" />
 
-    <!--    <FrameLayout-->
-    <!--        android:id="@+id/fr_ad"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginHorizontal="@dimen/_8sdp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintHeight_percent=".3">-->
-
-    <!--        <include layout="@layout/fake_load_fb" />-->
-    <!--    </FrameLayout>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clFrad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginHorizontal="@dimen/_2sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent=".3">
+        app:layout_constraintHeight_percent=".35">
 
         <FrameLayout
             android:id="@+id/fr_ad"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <include layout="@layout/fake_loading" />
