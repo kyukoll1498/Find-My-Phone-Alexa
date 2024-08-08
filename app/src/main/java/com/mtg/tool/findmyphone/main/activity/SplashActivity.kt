@@ -8,6 +8,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
+import com.mtg.tool.findmyphone.AppSession
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
@@ -28,6 +29,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     override fun initView() {
+        AppSession.isCompletedInterSplash = false
         logEvent("view_splash")
         ConsentDialogManager.instance?.showConsentDialogSplash(this) {
             handleAds()
@@ -108,6 +110,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                                             }
                                         })
                                 }
+
+                                override fun onNextScreen() {
+                                    super.onNextScreen()
+                                    Handler().postDelayed(Runnable {
+                                        AppSession.isCompletedInterSplash = false
+                                    }, 300)
+
+                                }
                             })
                     }, 1000)
 
@@ -117,6 +127,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                     super.onAdFailedToLoad(i)
                     Handler().postDelayed(Runnable {
                         startMain()
+                        Handler().postDelayed(Runnable {
+                            AppSession.isCompletedInterSplash = false
+                        }, 300)
                     }, 1000)
                 }
             })
