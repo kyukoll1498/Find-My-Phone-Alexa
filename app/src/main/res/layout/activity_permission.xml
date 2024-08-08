@@ -140,14 +140,13 @@
             android:layout_width="@dimen/_82sdp"
             android:layout_height="@dimen/_94sdp"
             android:layout_centerHorizontal="true"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:elevation="6dp"
-            app:lottie_rawRes="@raw/animation_pms"
             android:layout_marginEnd="@dimen/_minus10sdp"
+            android:elevation="6dp"
             app:layout_constraintEnd_toEndOf="@+id/ll_create_sound"
             app:layout_constraintTop_toTopOf="@+id/ll_create_sound"
-            />
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animation_pms" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -155,20 +154,18 @@
         android:id="@+id/clAd"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.35"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_3sdp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_marginHorizontal="@dimen/_3sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.35">
 
         <FrameLayout
             android:id="@+id/fr_ad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <include layout="@layout/fake_load_fb_banner" />
         </FrameLayout>
