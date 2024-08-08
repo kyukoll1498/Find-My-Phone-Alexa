@@ -4,18 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.control.base.OnActionCallback
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
-import com.common.control.manager.AppOpenManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AppSession
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
+import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityLanguageBinding
@@ -34,9 +33,11 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     val lfo1NativeAds = arrayListOf(BuildConfig.lfo1_native_high, BuildConfig.lfo1_native)
     val lfo2NativeAds = arrayListOf(BuildConfig.lfo2_native_high2, BuildConfig.lfo2_native)
     val lfo2NativeAdsReload = arrayListOf(BuildConfig.lfo2_native_high, BuildConfig.lfo2_native)
+    val ob1NativeAds = arrayListOf(BuildConfig.ob1_native_high, BuildConfig.ob1_native)
     var step = 0
 
     override fun initView() {
+        updateRemoteConfig()
         AdCache.getInstance().lfo1Native.observe(
             this
         ) { value ->
@@ -56,10 +57,47 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                     }
                 })
         }
+        AdmobManager.getInstance()
+            .preloadAlternateNative(this, ob1NativeAds, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob1Native = nativeAd
+                }
+            })
         setStatusBarColor()
         initListLanguage()
         initRCLanguage()
         handleButtonBack()
+    }
+
+    private fun updateRemoteConfig() {
+        if (!RemoteConfigManager.instance!!._202_lfo_n_native_high_2) {
+            lfo2NativeAds.removeIf { it == BuildConfig.lfo2_native_high2 }
+        }
+        if (!RemoteConfigManager.instance!!._202_lfo_n_native) {
+            lfo2NativeAds.removeIf { it == BuildConfig.lfo2_native }
+        }
+        if (!RemoteConfigManager.instance!!._202_lfo_n_native_high) {
+            lfo2NativeAdsReload.removeIf { it == BuildConfig.lfo2_native_high }
+        }
+        if (!RemoteConfigManager.instance!!._301_ob1_n_native_high) {
+            ob1NativeAds.removeIf { it == BuildConfig.ob1_native_high }
+        }
+        if (!RemoteConfigManager.instance!!._301_ob1_n_native) {
+            ob1NativeAds.removeIf { it == BuildConfig.ob1_native }
+        }
+        if (!RemoteConfigManager.instance!!._201_lfo_n_native_high) {
+            lfo1NativeAds.removeIf { it == BuildConfig.lfo1_native_high }
+        }
+        if (!RemoteConfigManager.instance!!._201_lfo_n_native) {
+            lfo1NativeAds.removeIf { it == BuildConfig.lfo1_native }
+        }
+        if (!RemoteConfigManager.instance!!._202_lfo_n_native_high) {
+            lfo2NativeAdsReload.removeIf { it == BuildConfig.lfo2_native_high}
+        }
+        if (!RemoteConfigManager.instance!!._202_lfo_n_native) {
+            lfo2NativeAdsReload.removeIf { it == BuildConfig.lfo2_native}
+        }
     }
 
     private fun setStatusBarColor() {
@@ -177,7 +215,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
 
     override fun onResume() {
         super.onResume()
-        if(AppSession.isCompletedInterSplash){
+        if (AppSession.isCompletedInterSplash) {
             if (step == 0) {
                 AdmobManager.getInstance()
                     .preloadAlternateNative(this, lfo1NativeAds, object : AdCallback() {

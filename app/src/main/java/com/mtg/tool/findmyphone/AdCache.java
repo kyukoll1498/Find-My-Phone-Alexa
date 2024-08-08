@@ -6,6 +6,8 @@ import com.facebook.internal.Mutable;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.nativead.NativeAd;
 
+import org.jetbrains.annotations.Nullable;
+
 public class AdCache {
 
     private static AdCache instance;
@@ -21,6 +23,8 @@ public class AdCache {
     public NativeAd ob6NativeHigh = null;
     public NativeAd ob4NativeHigh1 = null;
     public NativeAd ob2NativeHigh = null;
+
+    public NativeAd ob1Native = null;
     public MutableLiveData<NativeAd> lfo1Native = new MutableLiveData<>(null);
 
 
