@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.manager.AppOpenManager
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.mtg.tool.findmyphone.AdCache
@@ -42,7 +43,19 @@ class OnBoardFragment(
         binding.tvInside.setSize(20)
 
         when (position) {
-            0, 1 -> {}
+            0 -> {
+                AdmobManager.getInstance().showNative(
+                    context,
+                    AdCache.getInstance().ob2NativeHigh,
+                    binding.frAd,
+                    com.common.control.R.layout.custom_native_ads_2
+                )
+                Log.d("nativeOB", "ob2NativeHigh")
+            }
+            1 -> {
+                binding.lottie.setVisibility(View.VISIBLE)
+                binding.frAd.visibility = View.GONE
+            }
             2 -> {
                 run {
                     if (Objects.requireNonNull(RemoteConfigManager.instance)
@@ -83,8 +96,13 @@ class OnBoardFragment(
             }
 
             3 -> {
-                Glide.with(requireContext()).load(idImage).into(binding.imgInside)
-                binding.tvInside.text = getString(idText)
+                AdmobManager.getInstance().showNative(
+                    context,
+                    AdCache.getInstance().ob5NativeHigh,
+                    binding.frAd,
+                    com.common.control.R.layout.custom_native_ads_2
+                )
+                Log.d("nativeOB", "ob5NativeHigh")
             }
         }
     }
