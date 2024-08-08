@@ -123,10 +123,10 @@ class OnBoardActivity :
 
     fun handleAds2() {
         AdmobManager.getInstance()
-            .preloadAlternateNative(this, onb4NativeAds, object : AdCallback() {
+            .preloadFullScreenAlternateNative(this, onb4NativeAds, object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob4NativeHigh =
+                    AdCache.getInstance().ob4NativeHigh2AndNative =
                         nativeAd
                 }
             })
@@ -152,10 +152,9 @@ class OnBoardActivity :
     }
 
     fun handleAds4() {
-        Toast.makeText(this, "showNativeAd3", Toast.LENGTH_SHORT).show()
+
     }
 
     fun handleAds5() {
-        Toast.makeText(this, "showNativeAd4", Toast.LENGTH_SHORT).show()
     }
 }
