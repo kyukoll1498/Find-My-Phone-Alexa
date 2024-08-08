@@ -22,6 +22,7 @@ class OnBoardActivity :
     BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
     val onb4NativeAds = arrayListOf(BuildConfig.ob4_native_high2, BuildConfig.ob4_native)
     val onb5NativeAds = arrayListOf(BuildConfig.ob5_native_high, BuildConfig.ob5_native)
+    val onb6NativeAds = arrayListOf(BuildConfig.ob6_native_high, BuildConfig.ob6_native)
 
     override fun binding() {
         isFullScreen = true
@@ -140,7 +141,14 @@ class OnBoardActivity :
     }
 
     fun handleAds3() {
-        Toast.makeText(this, "showNativeAd2", Toast.LENGTH_SHORT).show()
+        AdmobManager.getInstance()
+            .preloadAlternateNative(this, onb6NativeAds, object : AdCallback(){
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob6NativeHigh =
+                        nativeAd
+                }
+            })
     }
 
     fun handleAds4() {

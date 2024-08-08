@@ -19,6 +19,7 @@ public class AdCache {
 
     public NativeAd ob4NativeHigh = null;
     public NativeAd ob5NativeHigh = null;
+    public NativeAd ob6NativeHigh = null;
     public NativeAd ob4NativeHigh1 = null;
     public NativeAd ob2NativeHigh = null;
     public MutableLiveData<NativeAd> lfo1Native = new MutableLiveData<>(null);
