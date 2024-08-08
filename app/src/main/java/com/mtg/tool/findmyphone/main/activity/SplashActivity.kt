@@ -12,6 +12,7 @@ import com.mtg.tool.findmyphone.AppSession
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
+import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.databinding.ActivitySplashBinding
 import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
@@ -23,6 +24,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     val bannerAds = arrayListOf(BuildConfig.banner_splash_high, BuildConfig.banner_splash)
     val interAds = arrayListOf(BuildConfig.inter_splash_high, BuildConfig.inter_splash)
     val lfo1NativeAds = arrayListOf(BuildConfig.lfo1_native_high, BuildConfig.lfo1_native)
+    var lfo2NativeHighAds = BuildConfig.lfo2_native_high
+    var lfo2NativeHigh1Ads = BuildConfig.lfo2_native_high1
     override fun binding() {
         isFullScreen = true
         super.binding()
@@ -51,6 +54,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     private fun handleAds() {
         try {
             if (!appPreferences.isChooseLanguage) {
+                updateRemoteConfig()
 //            1. preload lfo2_native_high
                 preloadNativeLanguage2()
 //            2 - 3. load alternate inter_splash_high, inter_splash
@@ -65,6 +69,33 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             }
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun updateRemoteConfig() {
+        if (!RemoteConfigManager.instance!!._101_splash_n_banner_high) {
+            bannerAds.removeIf { it == BuildConfig.banner_splash_high }
+        }
+        if (!RemoteConfigManager.instance!!._101_splash_n_banner) {
+            bannerAds.removeIf { it == BuildConfig.banner_splash }
+        }
+        if (!RemoteConfigManager.instance!!._102_splash_n_inter_high) {
+            interAds.removeIf { it == BuildConfig.inter_splash_high }
+        }
+        if (!RemoteConfigManager.instance!!._102_splash_n_inter) {
+            interAds.removeIf { it == BuildConfig.inter_splash }
+        }
+        if (!RemoteConfigManager.instance!!._202_lfo_n_native_high) {
+            lfo2NativeHighAds = ""
+        }
+        if (!RemoteConfigManager.instance!!._202_lfo_n_native_high_1) {
+            lfo2NativeHigh1Ads = ""
+        }
+        if (!RemoteConfigManager.instance!!._201_lfo_n_native_high) {
+            lfo1NativeAds.removeIf { it == BuildConfig.lfo1_native_high }
+        }
+        if (!RemoteConfigManager.instance!!._201_lfo_n_native) {
+            lfo1NativeAds.removeIf { it == BuildConfig.lfo1_native }
         }
     }
 
@@ -88,16 +119,18 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                                     logEvent("view_inter_splash")
                                     if (AdCache.getInstance().lfo2NativeHigh == null) {
 //                                      1. preload lfo2_native_high1
-                                        AdmobManager.getInstance().preloadNative(
-                                            this@SplashActivity,
-                                            BuildConfig.lfo2_native_high1,
-                                            object : AdCallback() {
-                                                override fun onNativeAds(nativeAd: NativeAd?) {
-                                                    super.onNativeAds(nativeAd)
-                                                    AdCache.getInstance().lfo2NativeHigh1 =
-                                                        nativeAd
-                                                }
-                                            })
+                                        if (lfo2NativeHigh1Ads.isNotBlank()){
+                                            AdmobManager.getInstance().preloadNative(
+                                                this@SplashActivity,
+                                                lfo2NativeHigh1Ads,
+                                                object : AdCallback() {
+                                                    override fun onNativeAds(nativeAd: NativeAd?) {
+                                                        super.onNativeAds(nativeAd)
+                                                        AdCache.getInstance().lfo2NativeHigh1 =
+                                                            nativeAd
+                                                    }
+                                                })
+                                        }
                                     }
 //                                    2. preload alternate lfo1_native_high, lfo1_native
                                     AdmobManager.getInstance().preloadAlternateNative(
@@ -136,13 +169,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun preloadNativeLanguage2() {
-        AdmobManager.getInstance()
-            .preloadNative(this, BuildConfig.lfo2_native_high, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().lfo2NativeHigh = nativeAd
-                }
-            })
+        if (lfo2NativeHighAds.isNotBlank()) {
+            AdmobManager.getInstance()
+                .preloadNative(this, BuildConfig.lfo2_native_high, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().lfo2NativeHigh = nativeAd
+                    }
+                })
+        }
     }
 
 
