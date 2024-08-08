@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.google.android.gms.ads.nativead.NativeAd
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.mtg.tool.findmyphone.AdCache
@@ -26,18 +27,15 @@ class OnBoardFragment(
     var idText: Int = R.string.text_on_boarding_1
 ) : BaseFragment<FragmentOnboadingBinding>(FragmentOnboadingBinding::inflate) {
 
+    private var isFirstResume = true
+    private var isFirstPause = true
+
+    private val onb2NativeAds = arrayListOf(BuildConfig.ob2_native_high, BuildConfig.ob2_native)
+    private val onb4NativeAds = arrayListOf(BuildConfig.ob4_native_high, BuildConfig.ob4_native)
+    private val onb5NativeAds = arrayListOf(BuildConfig.ob5_native_high, BuildConfig.ob5_native)
+
 
     override fun initView() {
-        val config = FirebaseRemoteConfig.getInstance()
-        val configSettings =
-            FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(3600).build()
-        config.setConfigSettingsAsync(configSettings)
-        config.setDefaultsAsync(R.xml.default_config)
-        config.fetchAndActivate().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-            }
-        }
-
         binding.imgInside.setImageResource(idImage)
         binding.tvInside.text = getString(idText)
         binding.tvInside.setSize(20)
@@ -52,10 +50,12 @@ class OnBoardFragment(
                 )
                 Log.d("nativeOB", "ob2NativeHigh")
             }
+
             1 -> {
                 binding.lottie.setVisibility(View.VISIBLE)
                 binding.frAd.visibility = View.GONE
             }
+
             2 -> {
                 run {
                     if (Objects.requireNonNull(RemoteConfigManager.instance)
@@ -65,7 +65,15 @@ class OnBoardFragment(
                         binding.adsContainer.visibility = View.VISIBLE
                         logEvent("complete_lfo1")
                         logEvent("view_lfo2")
-                        if (AdCache.getInstance().ob4NativeHigh1 != null) {
+                        if (AdCache.getInstance().ob4NativeHigh != null) {
+                            Log.d("showFullNative", "ob4NativeHigh1")
+                            AdmobManager.getInstance().showNative(
+                                context,
+                                AdCache.getInstance().ob4NativeHigh,
+                                binding.adsContainer,
+                                com.common.control.R.layout.custom_full_screen_native_ads
+                            )
+                        } else if (AdCache.getInstance().ob4NativeHigh1 != null) {
                             Log.d("showFullNative", "ob4NativeHigh1")
                             AdmobManager.getInstance().showNative(
                                 context,
@@ -109,6 +117,76 @@ class OnBoardFragment(
 
     override fun addEvent() {
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isFirstResume) {
+            isFirstResume = false
+            logEvent("view_ob" + position + 2)
+        }
+        when (position) {
+            0 -> {
+                AdmobManager.getInstance().preloadAlternateNative(
+                    requireActivity(),
+                    onb2NativeAds,
+                    object : AdCallback() {
+                        override fun onNativeAds(nativeAd: NativeAd?) {
+                            super.onNativeAds(nativeAd)
+                            AdmobManager.getInstance().showNative(
+                                requireActivity(),
+                                nativeAd,
+                                binding.frAd,
+                                com.common.control.R.layout.custom_native_ads_2
+                            )
+                        }
+                    })
+            }
+
+            1 -> {
+
+            }
+
+            2 -> {
+                AdmobManager.getInstance().preloadFullScreenAlternateNative(
+                    requireActivity(),
+                    onb4NativeAds,
+                    object : AdCallback() {
+                        override fun onNativeAds(nativeAd: NativeAd?) {
+                            super.onNativeAds(nativeAd)
+                            AdmobManager.getInstance().showNative(
+                                requireActivity(), nativeAd, binding.adsContainer,
+                                com.common.control.R.layout.custom_full_screen_native_ads
+                            )
+                        }
+                    })
+            }
+
+            3 -> {
+                AdmobManager.getInstance().preloadAlternateNative(
+                    requireActivity(),
+                    onb5NativeAds,
+                    object : AdCallback() {
+                        override fun onNativeAds(nativeAd: NativeAd?) {
+                            super.onNativeAds(nativeAd)
+                            AdmobManager.getInstance().showNative(
+                                requireActivity(),
+                                nativeAd,
+                                binding.frAd,
+                                com.common.control.R.layout.custom_native_ads_2
+                            )
+                        }
+                    })
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (isFirstPause) {
+            isFirstPause = false
+            logEvent("complete_onb" + position + 2)
+        }
     }
 
 }

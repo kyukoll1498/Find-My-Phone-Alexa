@@ -38,7 +38,7 @@
             android:id="@+id/clFrad"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/_3sdp"
+            android:layout_marginHorizontal="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent=".35">
 

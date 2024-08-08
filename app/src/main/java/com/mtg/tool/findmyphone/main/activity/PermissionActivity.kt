@@ -3,8 +3,10 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.Manifest
 import android.content.Intent
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
@@ -13,9 +15,14 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.databinding.ActivityPermissionBinding
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 
-class PermissionActivity : BaseActivity<ActivityPermissionBinding>(ActivityPermissionBinding::inflate) {
+class PermissionActivity :
+    BaseActivity<ActivityPermissionBinding>(ActivityPermissionBinding::inflate) {
+
+    private var isFirstResume = true
+    private val onb6NativeAds = arrayListOf(BuildConfig.ob6_native_high, BuildConfig.ob6_native)
 
     override fun initView() {
+        logEvent("view_permission")
         showNative();
         // Do not allow user interaction sbPermission
         binding.sbPermission.isEnabled = false
@@ -36,7 +43,10 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>(ActivityPermi
     }
 
     private fun checkPermissionMicro() {
-        if (!PermissionUtils.checkMicroPermission(mContext) && !shouldShowRequestPermissionRationale(Manifest.permission.RECORD_AUDIO)) {
+        if (!PermissionUtils.checkMicroPermission(mContext) && !shouldShowRequestPermissionRationale(
+                Manifest.permission.RECORD_AUDIO
+            )
+        ) {
             PermissionUtils.requestMicroPermission(this)
         } else {
             PermissionUtils.goSettingsForMicroPermission(this)
@@ -79,8 +89,6 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>(ActivityPermi
     }
 
     private fun showNative() {
-        logEvent("complete_onb6")
-        logEvent("view_onb6")
         AdmobManager.getInstance().showNative(
             this@PermissionActivity,
             AdCache.getInstance().ob6NativeHigh,
@@ -89,4 +97,19 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>(ActivityPermi
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (isFirstResume) {
+            isFirstResume = false
+        } else {
+            AdmobManager.getInstance().preloadAlternateNative(this, onb6NativeAds, object: AdCallback(){
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdmobManager.getInstance().showNative(this@PermissionActivity, nativeAd, binding.frAd, com.common.control.R.layout.custom_native_ads_2)
+                }
+            })
+        }
+    }
+
 }

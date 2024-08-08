@@ -127,13 +127,14 @@ class InterestActivity :
     override fun onResume() {
         super.onResume()
         if(!isFirstResume){
-            isFirstResume = false
             AdmobManager.getInstance().preloadAlternateNative(this, onb1NativeAds, object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
                     AdmobManager.getInstance().showNative(this@InterestActivity, nativeAd, binding.frAd, com.common.control.R.layout.custom_native_ads_2)
                 }
             })
+        } else {
+            isFirstResume = false
         }
     }
 }
