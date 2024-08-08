@@ -25,11 +25,12 @@ object LanguageUtils {
             )
             mList.add(ItemLanguage(R.drawable.flag_en, "English", R.drawable.ic_disable, "en"))
             mList.add(ItemLanguage(R.drawable.flag_hi, "हिंदी", R.drawable.ic_disable, "hi"))
-            mList.add(ItemLanguage(R.drawable.flag_pk, "پاکستان", R.drawable.ic_disable, "ar"))
-            mList.add(ItemLanguage(R.drawable.flag_br, "Portugal", R.drawable.ic_disable, "ar"))
-            mList.add(ItemLanguage(R.drawable.flag_es, "España", R.drawable.ic_disable, "ar"))
-            mList.add(ItemLanguage(R.drawable.flag_ru, "Pусский", R.drawable.ic_disable, "ar"))
-            mList.add(ItemLanguage(R.drawable.flag_hi, "ভারত", R.drawable.ic_disable, "ar"))
+            mList.add(ItemLanguage(R.drawable.flag_pk, "پاکستان", R.drawable.ic_disable, "ur"))
+            mList.add(ItemLanguage(R.drawable.flag_br, "Portugal", R.drawable.ic_disable, "pt"))
+            mList.add(ItemLanguage(R.drawable.flag_es, "España", R.drawable.ic_disable, "es"))
+            mList.add(ItemLanguage(R.drawable.flag_ru, "Pусский", R.drawable.ic_disable, "ru"))
+            mList.add(ItemLanguage(R.drawable.flag_hi, "ভারত", R.drawable.ic_disable, "pa"))
+            mList.add(ItemLanguage(R.drawable.flag_hi, "Mexico", R.drawable.ic_disable, "es"))
 
             return mList
         }
