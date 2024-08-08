@@ -18,6 +18,7 @@ public class AdCache {
     public NativeAd lfo2NativeHigh = null;
     public NativeAd lfo2NativeHigh1 = null;
     public NativeAd lfo2NativeHigh2 = null;
+    public NativeAd ob4NativeHigh = null;
     public NativeAd ob4NativeHigh2AndNative = null;
     public NativeAd ob5NativeHigh = null;
     public NativeAd ob6NativeHigh = null;
