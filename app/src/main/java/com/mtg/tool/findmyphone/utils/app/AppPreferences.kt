@@ -94,7 +94,7 @@ class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
         }
     inline var currentLanguage: String
         get() {
-            return getString(KEY_CURRENT_LANGUAGE, LanguageUtils.getDefaultLanguage())
+            return getString(KEY_CURRENT_LANGUAGE, "en")
         }
         set(value) {
             putString(KEY_CURRENT_LANGUAGE, value)
