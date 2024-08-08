@@ -10,7 +10,7 @@ import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
@@ -20,9 +20,9 @@ import com.mtg.tool.findmyphone.utils.EventLogger
 
 class OnBoardActivity :
     BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
-    val onb4NativeAds = arrayListOf(BuildConfig.ob4_native_high2, BuildConfig.ob4_native)
-    val onb5NativeAds = arrayListOf(BuildConfig.ob5_native_high, BuildConfig.ob5_native)
-    val onb6NativeAds = arrayListOf(BuildConfig.ob6_native_high, BuildConfig.ob6_native)
+    private val onb4NativeAds = arrayListOf(AdIds.ob4_native_high2, AdIds.ob4_native)
+    private val onb5NativeAds = arrayListOf(AdIds.ob5_native_high, AdIds.ob5_native)
+    private val onb6NativeAds = arrayListOf(AdIds.ob6_native_high, AdIds.ob6_native)
 
     override fun binding() {
         isFullScreen = true

@@ -2,19 +2,14 @@ package com.mtg.tool.findmyphone.main.fragment
 
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
-import com.common.control.manager.AppOpenManager
 import com.google.android.gms.ads.nativead.NativeAd
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.mtg.tool.findmyphone.AdCache
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
-import com.mtg.tool.findmyphone.consent_dialog.base.EventLogger
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.databinding.FragmentOnboadingBinding
 import com.mtg.tool.findmyphone.utils.setSize
@@ -30,9 +25,9 @@ class OnBoardFragment(
     private var isFirstResume = true
     private var isFirstPause = true
 
-    private val onb2NativeAds = arrayListOf(BuildConfig.ob2_native_high, BuildConfig.ob2_native)
-    private val onb4NativeAds = arrayListOf(BuildConfig.ob4_native_high, BuildConfig.ob4_native)
-    private val onb5NativeAds = arrayListOf(BuildConfig.ob5_native_high, BuildConfig.ob5_native)
+    private val onb2NativeAds = arrayListOf(AdIds.ob2_native_high, AdIds.ob2_native)
+    private val onb4NativeAds = arrayListOf(AdIds.ob4_native_high, AdIds.ob4_native)
+    private val onb5NativeAds = arrayListOf(AdIds.ob5_native_high, AdIds.ob5_native)
 
 
     override fun initView() {

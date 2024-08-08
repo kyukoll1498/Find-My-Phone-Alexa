@@ -11,7 +11,7 @@ import com.common.control.manager.AdmobManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AppSession
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
@@ -30,11 +30,11 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     private var languageAdapter: LanguageAdapter? = null
     private var itemLanguage: ItemLanguage? = null
     private var appPreferences = AppPreferences.instance
-    val lfo1NativeAds = arrayListOf(BuildConfig.lfo1_native_high, BuildConfig.lfo1_native)
-    val lfo2NativeAds = arrayListOf(BuildConfig.lfo2_native_high2, BuildConfig.lfo2_native)
-    val lfo2NativeAdsReload = arrayListOf(BuildConfig.lfo2_native_high, BuildConfig.lfo2_native)
-    val ob1NativeAds = arrayListOf(BuildConfig.ob1_native_high, BuildConfig.ob1_native)
-    var step = 0
+    private val lfo1NativeAds = arrayListOf(AdIds.lfo1_native_high, AdIds.lfo1_native)
+    private val lfo2NativeAds = arrayListOf(AdIds.lfo2_native_high2, AdIds.lfo2_native)
+    private val lfo2NativeAdsReload = arrayListOf(AdIds.lfo2_native_high, AdIds.lfo2_native)
+    private val ob1NativeAds = arrayListOf(AdIds.ob1_native_high, AdIds.ob1_native)
+    private var step = 0
 
     override fun initView() {
         updateRemoteConfig()
@@ -72,31 +72,31 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
 
     private fun updateRemoteConfig() {
         if (!RemoteConfigManager.instance!!._202_lfo_n_native_high_2) {
-            lfo2NativeAds.removeIf { it == BuildConfig.lfo2_native_high2 }
+            lfo2NativeAds.removeIf { it == AdIds.lfo2_native_high2 }
         }
         if (!RemoteConfigManager.instance!!._202_lfo_n_native) {
-            lfo2NativeAds.removeIf { it == BuildConfig.lfo2_native }
+            lfo2NativeAds.removeIf { it == AdIds.lfo2_native }
         }
         if (!RemoteConfigManager.instance!!._202_lfo_n_native_high) {
-            lfo2NativeAdsReload.removeIf { it == BuildConfig.lfo2_native_high }
+            lfo2NativeAdsReload.removeIf { it == AdIds.lfo2_native_high }
         }
         if (!RemoteConfigManager.instance!!._301_ob1_n_native_high) {
-            ob1NativeAds.removeIf { it == BuildConfig.ob1_native_high }
+            ob1NativeAds.removeIf { it == AdIds.ob1_native_high }
         }
         if (!RemoteConfigManager.instance!!._301_ob1_n_native) {
-            ob1NativeAds.removeIf { it == BuildConfig.ob1_native }
+            ob1NativeAds.removeIf { it == AdIds.ob1_native }
         }
         if (!RemoteConfigManager.instance!!._201_lfo_n_native_high) {
-            lfo1NativeAds.removeIf { it == BuildConfig.lfo1_native_high }
+            lfo1NativeAds.removeIf { it == AdIds.lfo1_native_high }
         }
         if (!RemoteConfigManager.instance!!._201_lfo_n_native) {
-            lfo1NativeAds.removeIf { it == BuildConfig.lfo1_native }
+            lfo1NativeAds.removeIf { it == AdIds.lfo1_native }
         }
         if (!RemoteConfigManager.instance!!._202_lfo_n_native_high) {
-            lfo2NativeAdsReload.removeIf { it == BuildConfig.lfo2_native_high}
+            lfo2NativeAdsReload.removeIf { it == AdIds.lfo2_native_high}
         }
         if (!RemoteConfigManager.instance!!._202_lfo_n_native) {
-            lfo2NativeAdsReload.removeIf { it == BuildConfig.lfo2_native}
+            lfo2NativeAdsReload.removeIf { it == AdIds.lfo2_native}
         }
     }
 
@@ -145,7 +145,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                     binding.frAd.visibility = View.GONE
                     AdmobManager.getInstance().preloadNative(
                         this@LanguageActivity,
-                        BuildConfig.ob4_native_high,
+                        AdIds.ob4_native_high,
                         object : AdCallback() {
                             override fun onNativeAds(nativeAd: NativeAd?) {
                                 super.onNativeAds(nativeAd)

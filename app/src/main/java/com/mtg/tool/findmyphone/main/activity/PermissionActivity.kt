@@ -8,8 +8,7 @@ import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
-import com.mtg.tool.findmyphone.BuildConfig
-import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.databinding.ActivityPermissionBinding
@@ -19,7 +18,7 @@ class PermissionActivity :
     BaseActivity<ActivityPermissionBinding>(ActivityPermissionBinding::inflate) {
 
     private var isFirstResume = true
-    private val onb6NativeAds = arrayListOf(BuildConfig.ob6_native_high, BuildConfig.ob6_native)
+    private val onb6NativeAds = arrayListOf(AdIds.ob6_native_high, AdIds.ob6_native)
 
     override fun initView() {
         logEvent("view_permission")
