@@ -1,27 +1,29 @@
 package com.mtg.tool.findmyphone.main.activity
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Paint
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.google.android.gms.ads.nativead.NativeAd
+import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
-import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityOnboardingBinding
 import com.mtg.tool.findmyphone.main.fragment.OnBoardFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
-import com.mtg.tool.findmyphone.utils.constant.Constants
-import com.mtg.tool.findmyphone.utils.setSize
 
 class OnBoardActivity :
     BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
+    val onb4NativeAds = arrayListOf(BuildConfig.ob4_native_high2, BuildConfig.ob4_native)
+    val onb5NativeAds = arrayListOf(BuildConfig.ob5_native_high, BuildConfig.ob5_native)
+    val onb6NativeAds = arrayListOf(BuildConfig.ob6_native_high, BuildConfig.ob6_native)
+
     override fun binding() {
         isFullScreen = true
         super.binding()
@@ -35,16 +37,20 @@ class OnBoardActivity :
     }
 
     override fun initView() {
+        showNative()
         initViewPager()
+    }
 
-        AdmobManager.getInstance().loadNative(
-            this,
-            BuildConfig.native_guide,
+    private fun showNative() {
+        logEvent("complete_onb2")
+        logEvent("view_onb2")
+        AdmobManager.getInstance().showNative(
+            this@OnBoardActivity,
+            AdCache.getInstance().ob2NativeHigh,
             binding.frAd,
-            R.layout.custom_native_onboarding
+            com.common.control.R.layout.custom_native_ads_2
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
-
     }
 
     private fun initViewPager() {
@@ -63,6 +69,14 @@ class OnBoardActivity :
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.indicatorView.selection = position
+
+                when (position) {
+                    0 -> handleAds2()
+                    1 -> handleAds3()
+                    2 -> handleAds4()
+                    3 -> handleAds5()
+                }
+
                 if (position == 1) {
                     binding.indicatorView.visibility = View.VISIBLE
                     binding.tvNext.visibility = View.VISIBLE
@@ -105,5 +119,43 @@ class OnBoardActivity :
 
     override fun addEvent() {
 
+    }
+
+    fun handleAds2() {
+        AdmobManager.getInstance()
+            .preloadAlternateNative(this, onb4NativeAds, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob4NativeHigh =
+                        nativeAd
+                }
+            })
+        AdmobManager.getInstance()
+            .preloadAlternateNative(this, onb5NativeAds, object : AdCallback(){
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob5NativeHigh =
+                        nativeAd
+                }
+            })
+    }
+
+    fun handleAds3() {
+        AdmobManager.getInstance()
+            .preloadAlternateNative(this, onb6NativeAds, object : AdCallback(){
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob6NativeHigh =
+                        nativeAd
+                }
+            })
+    }
+
+    fun handleAds4() {
+        Toast.makeText(this, "showNativeAd3", Toast.LENGTH_SHORT).show()
+    }
+
+    fun handleAds5() {
+        Toast.makeText(this, "showNativeAd4", Toast.LENGTH_SHORT).show()
     }
 }
