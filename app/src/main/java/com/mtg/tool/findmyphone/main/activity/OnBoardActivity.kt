@@ -75,25 +75,25 @@ class OnBoardActivity :
                     2 -> handleAds4()
                     3 -> handleAds5()
                 }
-//
-//                if (position == 1) {
-//                    binding.indicatorView.visibility = View.VISIBLE
-//                    binding.tvNext.visibility = View.VISIBLE
-////                    binding.frAd.visibility = View.INVISIBLE
-////                    binding.lottie.setVisibility(View.VISIBLE)
-//                }
-//                if (position == 2) {
-//                    binding.indicatorView.visibility = View.GONE
-//                    binding.tvNext.visibility = View.GONE
-////                    binding.frAd.visibility = View.GONE
-////                    binding.lottie.setVisibility(View.GONE)
-//                }
-//                if (position == 0 || position == adapter.itemCount - 1) {
-//                    binding.indicatorView.visibility = View.VISIBLE
-//                    binding.tvNext.visibility = View.VISIBLE
-////                    binding.frAd.visibility = View.VISIBLE
-////                    binding.lottie.setVisibility(View.GONE)
-//                }
+
+                if (position == 1) {
+                    binding.indicatorView.visibility = View.VISIBLE
+                    binding.tvNext.visibility = View.VISIBLE
+//                    binding.frAd.visibility = View.INVISIBLE
+//                    binding.lottie.setVisibility(View.VISIBLE)
+                }
+                if (position == 2) {
+                    binding.indicatorView.visibility = View.GONE
+                    binding.tvNext.visibility = View.GONE
+//                    binding.frAd.visibility = View.GONE
+//                    binding.lottie.setVisibility(View.GONE)
+                }
+                if (position == 0 || position == adapter.itemCount - 1) {
+                    binding.indicatorView.visibility = View.VISIBLE
+                    binding.tvNext.visibility = View.VISIBLE
+//                    binding.frAd.visibility = View.VISIBLE
+//                    binding.lottie.setVisibility(View.GONE)
+                }
                 if (position == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
                     binding.tvNext.text = getString(R.string.get_started)
                 } else
