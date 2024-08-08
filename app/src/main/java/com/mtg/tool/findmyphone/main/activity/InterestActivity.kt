@@ -51,6 +51,8 @@ class InterestActivity :
             .preloadAlternateNative(this, onb2NativeAds, object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob2NativeHigh =
+                        nativeAd
                 }
             })
 
