@@ -5,6 +5,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.widget.Button
+import com.common.control.interfaces.AdCallback
+import com.common.control.manager.AdmobManager
+import com.google.android.gms.ads.nativead.NativeAd
+import com.mtg.tool.findmyphone.AdCache
+import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
@@ -15,6 +20,7 @@ import com.mtg.tool.findmyphone.utils.setSize
 class InterestActivity :
     BaseActivity<ActivityInterestBinding>(ActivityInterestBinding::inflate) {
     private lateinit var selectedInterests: MutableList<String>
+    val onb2NativeAds = arrayListOf(BuildConfig.ob2_native_high, BuildConfig.ob2_native)
 
     override fun binding() {
         isFullScreen = false
@@ -30,6 +36,24 @@ class InterestActivity :
     }
 
     override fun initView() {
+        AdmobManager.getInstance().preloadNative(
+            this@InterestActivity,
+            BuildConfig.ob4_native_high1,
+            object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob4NativeHigh1 =
+                        nativeAd
+                }
+            })
+
+        AdmobManager.getInstance()
+            .preloadAlternateNative(this, onb2NativeAds, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                }
+            })
+
         selectedInterests = mutableListOf()
 
         // Initialize buttons
