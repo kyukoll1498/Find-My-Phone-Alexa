@@ -22,8 +22,103 @@
         <key>reshow_gdpr_splash</key>
         <value>2</value>
     </entry>
+<!--    remote ads-->
     <entry>
         <key>native_ads_full_screen_intro</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>101_splash_n_banner_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>101_splash_n_banner</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>102_splash_n_inter_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>102_splash_n_inter</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>201_lfo_n_native_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>201_lfo_n_native</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>202_lfo_n_native_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>202_lfo_n_native_high_1</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>202_lfo_n_native_high_2</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>202_lfo_n_native</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>301_ob1_n_native_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>301_ob1_n_native</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>302_ob2_n_native_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>302_ob2_n_native</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>304_ob4_n_native_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>304_ob4_n_native_high_1</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>304_ob4_n_native_high_2</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>304_ob4_n_native</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>305_ob5_n_native_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>305_ob5_n_native</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>306_ob6_n_native_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>306_ob6_n_native</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>401_app_o_reopen</key>
         <value>true</value>
     </entry>
 </defaultsMap>
