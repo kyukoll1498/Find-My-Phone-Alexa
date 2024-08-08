@@ -121,14 +121,16 @@ class OnBoardActivity :
     }
 
     fun handleAds2() {
-        AdmobManager.getInstance()
-            .preloadFullScreenAlternateNative(this, onb4NativeAds, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob4NativeHigh2AndNative =
-                        nativeAd
-                }
-            })
+        if(AdCache.getInstance().ob4NativeHigh == null && AdCache.getInstance().ob4NativeHigh1 == null){
+            AdmobManager.getInstance()
+                .preloadFullScreenAlternateNative(this, onb4NativeAds, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().ob4NativeHigh2AndNative =
+                            nativeAd
+                    }
+                })
+        }
         AdmobManager.getInstance()
             .preloadAlternateNative(this, onb5NativeAds, object : AdCallback(){
                 override fun onNativeAds(nativeAd: NativeAd?) {

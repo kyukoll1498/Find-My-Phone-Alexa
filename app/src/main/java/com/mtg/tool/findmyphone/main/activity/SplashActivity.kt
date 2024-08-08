@@ -147,7 +147,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                                 override fun onNextScreen() {
                                     super.onNextScreen()
                                     Handler().postDelayed(Runnable {
-                                        AppSession.isCompletedInterSplash = false
+                                        AppSession.isCompletedInterSplash = true
                                     }, 300)
 
                                 }
@@ -161,7 +161,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                     Handler().postDelayed(Runnable {
                         startMain()
                         Handler().postDelayed(Runnable {
-                            AppSession.isCompletedInterSplash = false
+                            AppSession.isCompletedInterSplash = true
                         }, 300)
                     }, 1000)
                 }
