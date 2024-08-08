@@ -123,7 +123,8 @@ class OnBoardFragment(
         super.onResume()
         if (isFirstResume) {
             isFirstResume = false
-            logEvent("view_ob" + position + 2)
+            logEvent("view_ob" + (position + 2))
+            return
         }
         when (position) {
             0 -> {
@@ -185,7 +186,7 @@ class OnBoardFragment(
         super.onPause()
         if (isFirstPause) {
             isFirstPause = false
-            logEvent("complete_onb" + position + 2)
+            logEvent("complete_onb" + (position + 2))
         }
     }
 
