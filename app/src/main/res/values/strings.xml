@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Find my phone by Clap, Whistle</string>
+    <string name="app_name" translatable="false">Clap to find your phone</string>
 
     <string name="text_on_boarding_1">Easily find your lost phone by clapping</string>
     <string name="text_on_boarding_2">Various sound effects to choose</string>

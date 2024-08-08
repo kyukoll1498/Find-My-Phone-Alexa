@@ -20,6 +20,7 @@
             android:id="@+id/layout_top"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_toolbar"
+            android:background="@drawable/bg_radius_bottom_12"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -83,11 +84,11 @@
         <LinearLayout
             android:id="@+id/layout_bottom"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_radius_top12"
+            android:layout_height="@dimen/_65sdp"
+            android:background="@drawable/bg_bt_menu"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/_5sdp"
+            android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_5sdp"
             app:layout_constraintBottom_toTopOf="@id/view_decor2"
             app:layout_constraintEnd_toEndOf="parent"
