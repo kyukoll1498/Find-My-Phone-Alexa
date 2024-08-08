@@ -56,26 +56,31 @@
         android:clipToPadding="false"
         android:paddingBottom="@dimen/_30sdp"
         tools:listitem="@layout/item_language"
-        app:layout_constraintBottom_toTopOf="@+id/fr_ad"
+        app:layout_constraintBottom_toTopOf="@+id/container_ads"
         app:layout_constraintTop_toBottomOf="@id/ct_top_bar"  />
 
-
     <FrameLayout
-        android:id="@+id/fr_ad"
+        android:id="@+id/container_ads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent">
-        <include layout="@layout/fake_loading" />
-    </FrameLayout>
-    <FrameLayout
-        android:id="@+id/fr_ad2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_margin="@dimen/_4sdp"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <include layout="@layout/fake_loading" />
+        <FrameLayout
+            android:id="@+id/fr_ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <include layout="@layout/fake_loading" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fr_ad2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_margin="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <include layout="@layout/fake_loading" />
+        </FrameLayout>
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
