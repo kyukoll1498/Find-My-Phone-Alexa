@@ -21,10 +21,12 @@ class InterestActivity :
     BaseActivity<ActivityInterestBinding>(ActivityInterestBinding::inflate) {
     private lateinit var selectedInterests: MutableList<String>
     val onb2NativeAds = arrayListOf(BuildConfig.ob2_native_high, BuildConfig.ob2_native)
+    val onb1NativeAds = arrayListOf(BuildConfig.ob1_native_high, BuildConfig.ob1_native)
+    var isFirstResume = true
 
     override fun binding() {
         isFullScreen = false
-        SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
+//        SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
         super.binding()
     }
 
@@ -36,16 +38,25 @@ class InterestActivity :
     }
 
     override fun initView() {
-        AdmobManager.getInstance().preloadFullScreenNative(
-            this@InterestActivity,
-            BuildConfig.ob4_native_high1,
-            object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob4NativeHigh1 =
-                        nativeAd
-                }
-            })
+        logEvent("view_onboard1")
+        AdmobManager.getInstance().showNative(
+            this,
+            AdCache.getInstance().ob1Native,
+            binding.frAd,
+            com.common.control.R.layout.custom_native_ads_2
+        )
+        if (AdCache.getInstance().ob4NativeHigh != null) {
+            AdmobManager.getInstance().preloadFullScreenNative(
+                this@InterestActivity,
+                BuildConfig.ob4_native_high1,
+                object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().ob4NativeHigh1 =
+                            nativeAd
+                    }
+                })
+        }
 
         AdmobManager.getInstance()
             .preloadAlternateNative(this, onb2NativeAds, object : AdCallback() {
@@ -108,7 +119,21 @@ class InterestActivity :
 //        val intent = Intent(this, OnBoardActivity::class.java)
 //        intent.putStringArrayListExtra("selectedInterests", ArrayList(selectedInterests))
 //        startActivity(intent)
+        logEvent("complete_onb1")
         OnBoardActivity.start(this)
         finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(!isFirstResume){
+            isFirstResume = false
+            AdmobManager.getInstance().preloadAlternateNative(this, onb1NativeAds, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdmobManager.getInstance().showNative(this@InterestActivity, nativeAd, binding.frAd, com.common.control.R.layout.custom_native_ads_2)
+                }
+            })
+        }
     }
 }
