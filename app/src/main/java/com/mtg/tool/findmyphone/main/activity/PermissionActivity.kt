@@ -5,6 +5,7 @@ import android.Manifest
 import android.content.Intent
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
@@ -15,20 +16,12 @@ import com.mtg.tool.findmyphone.utils.PermissionUtils
 class PermissionActivity : BaseActivity<ActivityPermissionBinding>(ActivityPermissionBinding::inflate) {
 
     override fun initView() {
-
+        showNative();
         // Do not allow user interaction sbPermission
         binding.sbPermission.isEnabled = false
         binding.sbPermission.isClickable = false
 
 //        updateLLContinueBackground()
-
-        AdmobManager.getInstance().loadNative(
-            this,
-            BuildConfig.native_permission,
-            binding.frAd,
-            R.layout.custom_native_permission
-        )
-        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
 
         binding.llContinue.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -83,5 +76,17 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>(ActivityPermi
 //                updateLLContinueBackground()
             }
         }
+    }
+
+    private fun showNative() {
+        logEvent("complete_onb6")
+        logEvent("view_onb6")
+        AdmobManager.getInstance().showNative(
+            this@PermissionActivity,
+            AdCache.getInstance().ob6NativeHigh,
+            binding.frAd,
+            com.common.control.R.layout.custom_native_ads_2
+        )
+        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 }
