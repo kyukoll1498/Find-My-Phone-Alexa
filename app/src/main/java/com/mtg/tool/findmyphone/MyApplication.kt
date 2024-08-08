@@ -7,13 +7,15 @@ import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
-import com.mtg.tool.findmyphone.ads_executor.inter.InterSplashExecutor
 import com.facebook.FacebookSdk
+import com.mtg.tool.findmyphone.ads_executor.inter.InterSplashExecutor
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.main.activity.SplashActivity
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
+import com.vungle.ads.VunglePrivacySettings.setCCPAStatus
+import com.vungle.ads.VunglePrivacySettings.setGDPRStatus
 
 
 class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
@@ -26,6 +28,13 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 
 
     override fun onApplicationCreate() {
+//        val sdk: MBridgeSDK = MBridgeSDKFactory.getMBridgeSDK()
+//        sdk.setConsentStatus(applicationContext, MBridgeConstans.IS_SWITCH_ON)
+
+        setGDPRStatus(true, "v2.2.0")
+        setCCPAStatus(true)
+
+
         RoomDatabase.initDatabase(this)
         AppPreferences(this)
         RemoteConfigManager.instance?.loadRemote()

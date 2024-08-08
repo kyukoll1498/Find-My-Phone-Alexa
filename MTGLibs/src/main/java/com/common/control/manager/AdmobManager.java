@@ -51,7 +51,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.appopen.AppOpenAd;
-import com.google.android.gms.ads.formats.NativeAdOptions;
+import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
@@ -556,7 +556,7 @@ public class AdmobManager {
             return;
         }
         VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
-        com.google.android.gms.ads.formats.NativeAdOptions adOptions = new com.google.android.gms.ads.formats.NativeAdOptions.Builder() .setMediaAspectRatio(MediaAspectRatio.ANY).setVideoOptions(videoOptions).build();
+        NativeAdOptions adOptions = new NativeAdOptions.Builder() .setMediaAspectRatio(MediaAspectRatio.ANY).setVideoOptions(videoOptions).build();
         AdLoader adLoader = new AdLoader.Builder(context, id).forNativeAd(nativeAd -> {
             if (callback != null) {
                 callback.onNativeAds(nativeAd);
