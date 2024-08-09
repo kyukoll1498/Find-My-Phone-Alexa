@@ -9,7 +9,7 @@ import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
@@ -20,13 +20,13 @@ import com.mtg.tool.findmyphone.utils.setSize
 class InterestActivity :
     BaseActivity<ActivityInterestBinding>(ActivityInterestBinding::inflate) {
     private lateinit var selectedInterests: MutableList<String>
-    val onb2NativeAds = arrayListOf(BuildConfig.ob2_native_high, BuildConfig.ob2_native)
-    val onb1NativeAds = arrayListOf(BuildConfig.ob1_native_high, BuildConfig.ob1_native)
+    val onb2NativeAds = arrayListOf(AdIds.ob2_native_high, AdIds.ob2_native)
+    val onb1NativeAds = arrayListOf(AdIds.ob1_native_high, AdIds.ob1_native)
     var isFirstResume = true
 
     override fun binding() {
         isFullScreen = false
-//        SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
+        SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
         super.binding()
     }
 
@@ -45,10 +45,10 @@ class InterestActivity :
             binding.frAd,
             com.common.control.R.layout.custom_native_ads_2
         )
-        if (AdCache.getInstance().ob4NativeHigh != null) {
+        if (AdCache.getInstance().ob4NativeHigh == null) {
             AdmobManager.getInstance().preloadFullScreenNative(
                 this@InterestActivity,
-                BuildConfig.ob4_native_high1,
+                AdIds.ob4_native_high1,
                 object : AdCallback() {
                     override fun onNativeAds(nativeAd: NativeAd?) {
                         super.onNativeAds(nativeAd)

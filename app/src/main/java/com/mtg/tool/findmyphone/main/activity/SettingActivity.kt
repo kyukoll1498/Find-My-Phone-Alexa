@@ -23,7 +23,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
 
         binding.btnLanguage.setOnClickListener {
             EventLogger.getInstance()?.logEvent("click_set_language")
-            startActivity(Intent(this, LanguageActivity::class.java))
+            startActivity(Intent(this, Language2Activity::class.java))
         }
         binding.btnRateNavigation.setOnClickListener {
             EventLogger.getInstance()?.logEvent("click_set_rate")

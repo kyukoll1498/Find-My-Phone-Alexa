@@ -11,7 +11,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.mtg.tool.findmyphone"
+        applicationId "com.yugi.fmf"
         minSdk 24
         targetSdk 34
         versionCode 116
@@ -59,7 +59,7 @@ android {
     flavorDimensions "dimen"
     productFlavors{
         vOfficial_ {
-            applicationId "com.example.develop.findmyphone"
+            applicationId "com.yugi.fmf"
 
             buildConfigField "boolean", "TEST_AD", "false"
             buildConfigField "boolean", "PURCHASED", "false"
