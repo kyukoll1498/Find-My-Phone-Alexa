@@ -202,9 +202,9 @@ dependencies {
     implementation files('libs/TarsosDSP-1.7.jar')
 
     //SDK Network
-    implementation  'com.google.ads.mediation:facebook:6.17.0.0'
-    implementation  'com.google.ads.mediation:applovin:12.6.0.0'
+//    implementation  'com.google.ads.mediation:facebook:6.17.0.0'
+//    implementation  'com.google.ads.mediation:applovin:12.6.0.0'
     implementation  'com.google.ads.mediation:vungle:7.4.0.0'
-    implementation  'com.google.ads.mediation:pangle:6.1.0.6.0'
-    implementation  'com.google.ads.mediation:mintegral:16.7.91.0'
+//    implementation  'com.google.ads.mediation:pangle:6.1.0.7.0'
+    implementation("com.google.ads.mediation:mintegral:16.7.91.0")
 }
