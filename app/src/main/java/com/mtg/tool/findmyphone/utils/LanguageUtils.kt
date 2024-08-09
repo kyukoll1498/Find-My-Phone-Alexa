@@ -14,28 +14,17 @@ object LanguageUtils {
     private var appPreferences = AppPreferences.instance
     val listCountry: List<ItemLanguage>
         get() {
+            listCountryDefault.forEach {
+                it.imgSelect = R.drawable.ic_disable
+                it.colorBackground = null
+            }
             val mList: MutableList<ItemLanguage> = ArrayList()
-            mList.add(
-                ItemLanguage(
-                    R.drawable.flag_fr,
-                    "Français",
-                    R.drawable.ic_disable,
-                    "fr"
-                )
-            )
-            mList.add(ItemLanguage(R.drawable.flag_en, "English", R.drawable.ic_disable, "en"))
-            mList.add(ItemLanguage(R.drawable.flag_hi, "हिंदी", R.drawable.ic_disable, "hi"))
-            mList.add(ItemLanguage(R.drawable.flag_pk, "پاکستان", R.drawable.ic_disable, "ur"))
-            mList.add(ItemLanguage(R.drawable.flag_br, "Brasil", R.drawable.ic_disable, "pt"))
-            mList.add(ItemLanguage(R.drawable.flag_es, "España", R.drawable.ic_disable, "es"))
-            mList.add(ItemLanguage(R.drawable.flag_ru, "Pусский", R.drawable.ic_disable, "ru"))
-            mList.add(ItemLanguage(R.drawable.flag_hi, "ভারত", R.drawable.ic_disable, "bn"))
-            mList.add(ItemLanguage(R.drawable.flag_mxc, "México", R.drawable.ic_disable, "es"))
+            mList.addAll(listCountryDefault)
             val languageCodeDefault = Resources.getSystem().configuration.locales.get(0).language
             if (mList[0].languageToLoad == languageCodeDefault || mList[1].languageToLoad == languageCodeDefault) {
                 return mList
             } else {
-                val item = mList.findLast { it.languageToLoad ==  languageCodeDefault}
+                val item = mList.findLast { it.languageToLoad == languageCodeDefault }
                 if (item != null) {
                     mList.remove(item)
                     mList.add(2, item)
@@ -43,6 +32,28 @@ object LanguageUtils {
                 return mList
             }
         }
+
+    val listCountryDefault: List<ItemLanguage> by lazy {
+        val mList: MutableList<ItemLanguage> = ArrayList()
+        mList.add(
+            ItemLanguage(
+                R.drawable.flag_fr,
+                "Français",
+                R.drawable.ic_disable,
+                "fr"
+            )
+        )
+        mList.add(ItemLanguage(R.drawable.flag_en, "English", R.drawable.ic_disable, "en"))
+        mList.add(ItemLanguage(R.drawable.flag_hi, "हिंदी", R.drawable.ic_disable, "hi"))
+        mList.add(ItemLanguage(R.drawable.flag_pk, "پاکستان", R.drawable.ic_disable, "ur"))
+        mList.add(ItemLanguage(R.drawable.flag_br, "Brasil", R.drawable.ic_disable, "pt"))
+        mList.add(ItemLanguage(R.drawable.flag_es, "España", R.drawable.ic_disable, "es"))
+        mList.add(ItemLanguage(R.drawable.flag_ru, "Pусский", R.drawable.ic_disable, "ru"))
+        mList.add(ItemLanguage(R.drawable.flag_hi, "ভারত", R.drawable.ic_disable, "bn"))
+        mList.add(ItemLanguage(R.drawable.flag_mxc, "México", R.drawable.ic_disable, "es"))
+        return@lazy mList
+    }
+
 
     fun getFlagResourceID(context: Context): Int {
         val itemLanguage =

@@ -22,6 +22,7 @@ import com.mtg.tool.findmyphone.main.adapter.LanguageAdapter
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountry
+import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountryDefault
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
 
@@ -173,14 +174,9 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
 
     private fun initListLanguage() {
         mList = listCountry
-        for (i in mList.indices) {
-            if (mList[i].languageToLoad == appPreferences.currentLanguage) {
-                itemLanguage = mList[i]
-                itemLanguage?.colorBackground = "#ED6A40"
-                mList[i].imgSelect = (R.drawable.ic_checked)
-                return
-            }
-        }
+        itemLanguage = listCountryDefault[appPreferences.currentIndexLanguage]
+        itemLanguage?.colorBackground = "#ED6A40"
+        itemLanguage?.imgSelect = (R.drawable.ic_checked)
     }
 
     override fun addEvent() {
@@ -198,6 +194,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 itemLanguage = LanguageUtils.getDefaultItemLanguage()
             }
             appPreferences.currentLanguage = itemLanguage!!.languageToLoad
+            appPreferences.currentIndexLanguage = listCountryDefault.indexOf(itemLanguage)
             appPreferences.isChooseLanguage = true
 
             setLanguageWithoutNotification(itemLanguage!!.languageToLoad)

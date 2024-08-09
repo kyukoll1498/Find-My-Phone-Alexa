@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.Gson
 import com.mtg.tool.findmyphone.KEY_CHOOSE_LANGUAGE
 import com.mtg.tool.findmyphone.KEY_CURRENT_DURATION
+import com.mtg.tool.findmyphone.KEY_CURRENT_IDX_LANGUAGE
 import com.mtg.tool.findmyphone.KEY_CURRENT_LANGUAGE
 import com.mtg.tool.findmyphone.KEY_CURRENT_VOLUME
 import com.mtg.tool.findmyphone.KEY_HAS_FLASH
@@ -99,10 +100,17 @@ class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
         set(value) {
             putString(KEY_CURRENT_LANGUAGE, value)
         }
+    inline var currentIndexLanguage: Int
+        get() {
+            return getInt(KEY_CURRENT_IDX_LANGUAGE, 1)
+        }
+        set(value) {
+            putInt(KEY_CURRENT_IDX_LANGUAGE, value)
+        }
     inline var isChooseLanguage: Boolean
         get() {
-            return false
-//            return getBoolean(KEY_CHOOSE_LANGUAGE, false)
+//            return false
+            return getBoolean(KEY_CHOOSE_LANGUAGE, false)
         }
         set(value) {
             putBoolean(KEY_CHOOSE_LANGUAGE, true)
