@@ -38,7 +38,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     private var step = 0
 
     override fun initView() {
-        updateRemoteConfig()
         AdCache.getInstance().lfo1Native.observe(
             this
         ) { value ->
@@ -71,35 +70,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         handleButtonBack()
     }
 
-    private fun updateRemoteConfig() {
-        if (!RemoteConfigManager.instance!!._202_lfo_n_native_high_2) {
-            lfo2NativeAds.removeIf { it == AdIds.lfo2_native_high2 }
-        }
-        if (!RemoteConfigManager.instance!!._202_lfo_n_native) {
-            lfo2NativeAds.removeIf { it == AdIds.lfo2_native }
-        }
-        if (!RemoteConfigManager.instance!!._202_lfo_n_native_high) {
-            lfo2NativeAdsReload.removeIf { it == AdIds.lfo2_native_high }
-        }
-        if (!RemoteConfigManager.instance!!._301_ob1_n_native_high) {
-            ob1NativeAds.removeIf { it == AdIds.ob1_native_high }
-        }
-        if (!RemoteConfigManager.instance!!._301_ob1_n_native) {
-            ob1NativeAds.removeIf { it == AdIds.ob1_native }
-        }
-        if (!RemoteConfigManager.instance!!._201_lfo_n_native_high) {
-            lfo1NativeAds.removeIf { it == AdIds.lfo1_native_high }
-        }
-        if (!RemoteConfigManager.instance!!._201_lfo_n_native) {
-            lfo1NativeAds.removeIf { it == AdIds.lfo1_native }
-        }
-        if (!RemoteConfigManager.instance!!._202_lfo_n_native_high) {
-            lfo2NativeAdsReload.removeIf { it == AdIds.lfo2_native_high}
-        }
-        if (!RemoteConfigManager.instance!!._202_lfo_n_native) {
-            lfo2NativeAdsReload.removeIf { it == AdIds.lfo2_native}
-        }
-    }
 
     private fun setStatusBarColor() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.color_1D1C21)

@@ -90,6 +90,10 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".main.activity.Language2Activity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".main.activity.PlaySoundActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
