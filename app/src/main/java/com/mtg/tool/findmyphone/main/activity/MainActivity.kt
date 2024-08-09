@@ -95,43 +95,43 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             when (currentItem) {
                 0 -> {
                     binding.ivHome.setImageDrawable(getDrawable(R.drawable.ic_home))
-                    binding.tvHome.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+                    binding.tvHome.setTextColor(ColorStateList.valueOf(Color.parseColor("#868686")))
                 }
 
                 1 -> {
                     binding.ivSound.setImageDrawable(getDrawable(R.drawable.ic_sound))
-                    binding.tvSound.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+                    binding.tvSound.setTextColor(ColorStateList.valueOf(Color.parseColor("#868686")))
                 }
 
                 2 -> {
                     binding.ivAdd.setImageDrawable(getDrawable(R.drawable.ic_import))
-                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#868686")))
                 }
 
                 3 -> {
                     binding.ivSetting.setImageDrawable(getDrawable(R.drawable.ic_settings))
-                    binding.tvSetting.setTextColor(ColorStateList.valueOf(Color.parseColor("#818181")))
+                    binding.tvSetting.setTextColor(ColorStateList.valueOf(Color.parseColor("#868686")))
                 }
             }
             when (nextItem) {
                 0 -> {
                     binding.ivHome.setImageDrawable(getDrawable(R.drawable.ic_home_selected))
-                    binding.tvHome.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+                    binding.tvHome.setTextColor(ColorStateList.valueOf(Color.parseColor("#1380FF")))
                 }
 
                 1 -> {
                     binding.ivSound.setImageDrawable(getDrawable(R.drawable.ic_sound_selected))
-                    binding.tvSound.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+                    binding.tvSound.setTextColor(ColorStateList.valueOf(Color.parseColor("#1380FF")))
                 }
 
                 2 -> {
                     binding.ivAdd.setImageDrawable(getDrawable(R.drawable.ic_import_selected))
-                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+                    binding.tvAdd.setTextColor(ColorStateList.valueOf(Color.parseColor("#1380FF")))
                 }
 
                 3 -> {
                     binding.ivSetting.setImageDrawable(getDrawable(R.drawable.ic_settings_selected))
-                    binding.tvSetting.setTextColor(ColorStateList.valueOf(Color.parseColor("#F06A33")))
+                    binding.tvSetting.setTextColor(ColorStateList.valueOf(Color.parseColor("#1380FF")))
                 }
             }
         }

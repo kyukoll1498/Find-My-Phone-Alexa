@@ -27,13 +27,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_190sdp"
+                android:layout_height="@dimen/_190sdp"
+                app:layout_constraintWidth_percent=".6"
+                app:layout_constraintHeight_percent="1.5"
+                android:background="@drawable/blur_btn_main"
+                app:layout_constraintBottom_toBottomOf="@+id/cl_click_tab"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="@+id/cl_click_tab"
+                app:layout_constraintStart_toStartOf="@+id/cl_click_tab"
+                app:layout_constraintTop_toTopOf="@+id/cl_click_tab" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_click_tab"
                 android:layout_width="@dimen/_144sdp"
                 android:layout_height="@dimen/_144sdp"
-                android:layout_marginTop="@dimen/_16sdp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:background="@drawable/icon_tap_active"
                 android:clipToOutline="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,11 +98,11 @@
                 android:id="@+id/lav_click_active"
                 android:layout_width="@dimen/_107sdp"
                 android:layout_height="@dimen/_113sdp"
+                android:padding="@dimen/_20sdp"
+                android:src="@drawable/ic_click"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/space"
                 app:layout_constraintTop_toBottomOf="@+id/space"
-                android:src="@drawable/ic_click"
-                android:padding="@dimen/_20sdp"
-                android:visibility="invisible"
                 tools:ignore="MissingConstraints" />
 
 
@@ -104,10 +116,9 @@
             android:text="@string/tap_to_inactive"
             android:textColor="#404040"
             android:textSize="@dimen/_16sdp"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_center"/>
+            app:layout_constraintTop_toBottomOf="@+id/cl_center" />
 
         <TextView
             android:id="@+id/txt_active"
@@ -118,30 +129,30 @@
             android:textColor="#404040"
             android:textSize="@dimen/_16sdp"
             android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@id/txt_inactive"
+            app:layout_constraintBottom_toBottomOf="@id/txt_inactive"
             app:layout_constraintEnd_toEndOf="@id/txt_inactive"
-            app:layout_constraintTop_toTopOf="@id/txt_inactive"
-            app:layout_constraintBottom_toBottomOf="@id/txt_inactive"/>
+            app:layout_constraintStart_toStartOf="@id/txt_inactive"
+            app:layout_constraintTop_toTopOf="@id/txt_inactive" />
 
         <TextView
             android:id="@+id/tv_inactive"
             android:layout_width="@dimen/_235sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="@dimen/_24sdp"
             android:background="@drawable/frame_guide"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center_horizontal|top"
             android:lineSpacingExtra="5sp"
-            android:layout_marginTop="@dimen/_24sdp"
             android:padding="@dimen/_8sdp"
             android:text="@string/activation_text2"
             android:textColor="#7E7E7E"
             android:textSize="@dimen/_14sdp"
             android:translationY="-2.52sp"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_active"/>
+            app:layout_constraintTop_toBottomOf="@+id/txt_active" />
 
         <LinearLayout
             android:id="@+id/ll_tv_inactive"
@@ -151,35 +162,26 @@
             android:background="@drawable/frame_guide"
             android:gravity="center"
             android:orientation="horizontal"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@id/tv_inactive"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/tv_inactive"
-            app:layout_constraintTop_toTopOf="@id/tv_inactive"
-            app:layout_constraintEnd_toEndOf="@id/tv_inactive">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lav_clap"
-                android:layout_width="@dimen/_46sdp"
-                android:layout_height="@dimen/_46sdp"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/animation_clap"
-                tools:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toEndOf="@id/tv_inactive"
+            app:layout_constraintStart_toStartOf="@id/tv_inactive"
+            app:layout_constraintTop_toTopOf="@id/tv_inactive">
 
             <TextView
                 android:id="@+id/tv_active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/poppins_medium"
                 android:foregroundGravity="center"
                 android:lineSpacingExtra="5sp"
                 android:text="@string/txt_active"
-                android:textColor="#F06A33"
+                android:textColor="#7E7E7E"
                 android:textSize="@dimen/_15sdp" />
         </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
 </LinearLayout>

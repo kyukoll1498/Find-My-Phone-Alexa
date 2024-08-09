@@ -84,11 +84,11 @@
         <LinearLayout
             android:id="@+id/layout_bottom"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_65sdp"
+            android:layout_height="@dimen/_68sdp"
             android:background="@drawable/bg_bt_menu"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/_10sdp"
+            android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_5sdp"
             app:layout_constraintBottom_toTopOf="@id/view_decor2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +115,7 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/home"
-                    android:textColor="#F06A33"
+                    android:textColor="#1380FF"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
 
