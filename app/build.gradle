@@ -51,13 +51,13 @@ android {
         jvmTarget = '17'
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
         dataBinding = true
     }
 
     flavorDimensions "dimen"
-    productFlavors{
+    productFlavors {
         vOfficial_ {
             applicationId "com.yugi.fmf"
 
@@ -113,8 +113,6 @@ android {
             addConstantTo(owner, "ob5_native", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "ob6_native_high", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "ob6_native", "ca-app-pub-3940256099942544/2247696110")
-
-
 
 
         }
@@ -182,7 +180,6 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:16.0.0'
 
 
-
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation 'androidx.activity:activity:1.8.0'
@@ -202,9 +199,9 @@ dependencies {
     implementation files('libs/TarsosDSP-1.7.jar')
 
     //SDK Network
-//    implementation  'com.google.ads.mediation:facebook:6.17.0.0'
-//    implementation  'com.google.ads.mediation:applovin:12.6.0.0'
-    implementation  'com.google.ads.mediation:vungle:7.4.0.0'
-//    implementation  'com.google.ads.mediation:pangle:6.1.0.7.0'
-    implementation("com.google.ads.mediation:mintegral:16.7.91.0")
+    implementation 'com.google.ads.mediation:facebook:6.17.0.0'
+    implementation 'com.google.ads.mediation:applovin:12.6.0.0'
+    implementation 'com.google.ads.mediation:vungle:7.4.0.0'
+    implementation 'com.google.ads.mediation:pangle:6.1.0.7.0'
+    implementation 'com.google.ads.mediation:mintegral:16.8.11.0'
 }
