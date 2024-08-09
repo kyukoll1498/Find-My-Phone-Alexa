@@ -118,7 +118,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun showAdAndStartMain(interstitialAd: InterstitialAd?) {
-        startMain()
         AdmobManager.getInstance().showInterstitial(
             this@SplashActivity,
             interstitialAd,
@@ -155,6 +154,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
                 override fun onNextScreen() {
                     super.onNextScreen()
+                    startMain()
                     Handler().postDelayed(Runnable {
                         AppSession.isCompletedInterSplash = true
                     }, 300)
