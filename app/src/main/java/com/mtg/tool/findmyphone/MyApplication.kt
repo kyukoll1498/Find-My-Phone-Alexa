@@ -8,6 +8,9 @@ import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
 import com.facebook.FacebookSdk
+import com.mbridge.msdk.MBridgeConstans
+import com.mbridge.msdk.MBridgeSDK
+import com.mbridge.msdk.out.MBridgeSDKFactory
 import com.mtg.tool.findmyphone.ads_executor.inter.InterSplashExecutor
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
@@ -28,8 +31,8 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 
 
     override fun onApplicationCreate() {
-//        val sdk: MBridgeSDK = MBridgeSDKFactory.getMBridgeSDK()
-//        sdk.setConsentStatus(applicationContext, MBridgeConstans.IS_SWITCH_ON)
+        val sdk: MBridgeSDK = MBridgeSDKFactory.getMBridgeSDK()
+        sdk.setConsentStatus(applicationContext, MBridgeConstans.IS_SWITCH_ON)
 
         setGDPRStatus(true, "v2.2.0")
         setCCPAStatus(true)
