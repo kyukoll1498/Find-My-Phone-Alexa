@@ -49,12 +49,12 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         registerActivityLifecycleCallbacks(this)
         EventLogger.init(applicationContext)
         //todo facebook sdk
-        AudienceNetworkInitializeHelper.initialize(this)
-        FacebookSdk.sdkInitialize(this)
+//        AudienceNetworkInitializeHelper.initialize(this)
+//        FacebookSdk.sdkInitialize(this)
 
 //        Common.printHashKey(this)
 
-        InterSplashExecutor.loadInterAds(applicationContext)
+//        InterSplashExecutor.loadInterAds(applicationContext)
     }
 
     override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
