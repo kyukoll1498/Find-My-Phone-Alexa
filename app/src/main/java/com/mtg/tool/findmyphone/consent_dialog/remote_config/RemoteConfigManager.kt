@@ -48,7 +48,6 @@ class RemoteConfigManager {
             isLoading = false
             if (task.isSuccessful) {
                 remoteConfig = FirebaseRemoteConfig.getInstance()
-                isShowNativeFullScreenOnboard = config.getBoolean("native_ads_full_screen_intro")
                 _101_splash_n_banner_high = config.getBoolean("101_splash_n_banner_high")
                 _101_splash_n_banner = config.getBoolean("101_splash_n_banner")
                 _102_splash_n_inter_high = config.getBoolean("102_splash_n_inter_high")
@@ -72,6 +71,8 @@ class RemoteConfigManager {
                 _306_ob6_n_native_high = config.getBoolean("306_ob6_n_native_high")
                 _306_ob6_n_native = config.getBoolean("306_ob6_n_native")
                 _401_app_o_reopen = config.getBoolean("401_app_o_reopen")
+
+                isShowNativeFullScreenOnboard = _304_ob4_n_native_high || _304_ob4_n_native_high_1 || _304_ob4_n_native_high_2 || _304_ob4_n_native
             } else {
                 loadRemote()
             }
