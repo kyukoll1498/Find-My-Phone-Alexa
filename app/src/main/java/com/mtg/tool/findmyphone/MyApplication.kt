@@ -54,7 +54,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 
 //        Common.printHashKey(this)
 
-        InterSplashExecutor.loadInterAds(applicationContext)
+//        InterSplashExecutor.loadInterAds(applicationContext)
     }
 
     override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
