@@ -473,7 +473,7 @@ public class AdmobManager {
             }
         });
     }public void preloadFullScreenNative(Context context, String id, AdCallback callback) {
-        Log.d("AdmobLogger", "preloadNative: " + id);
+        Log.d("AdmobLogger", "preloadFsNative: " + id);
         loadFullScreenUnifiedNativeAd(context, id, new AdCallback() {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
@@ -974,14 +974,14 @@ public class AdmobManager {
     }
     public void preloadFullScreenAlternateNative(Context context, List<String> ids, AdCallback callback) {
         if (ids.isEmpty()) {
-            Log.d("AdmobLogger", "loadAlternateNative: " + "empty");
+            Log.d("AdmobLogger", "loadAlternatefsNative: " + "empty");
             return;
         }
         preloadFullScreenNative(context, ids.get(0), new AdCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError i) {
                 super.onAdFailedToLoad(i);
-                Log.d("AdmobLogger", "loadAlternateNative: " + "fail-" + ids.get(0));
+                Log.d("AdmobLogger", "loadAlternatefsNative: " + "fail-" + ids.get(0));
                 ids.remove(0);
                 if (ids.isEmpty()) {
                     callback.onAdFailedToLoad(i);
@@ -994,7 +994,7 @@ public class AdmobManager {
             public void onNativeAds(NativeAd nativeAd) {
                 super.onNativeAds(nativeAd);
                 callback.onNativeAds(nativeAd);
-                Log.d("AdmobLogger", "loadAlternateNative: " + "success-" + ids.get(0));
+                Log.d("AdmobLogger", "loadAlternatefsNative: " + "success-" + ids.get(0));
             }
         });
     }
