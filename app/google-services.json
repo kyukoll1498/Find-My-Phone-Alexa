@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1077799935274",
-    "project_id": "findmyphone2-9cfd3",
-    "storage_bucket": "findmyphone2-9cfd3.appspot.com"
+    "project_number": "1040751639156",
+    "project_id": "fmfyugi",
+    "storage_bucket": "fmfyugi.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1077799935274:android:5c4d7899e818501f541253",
+        "mobilesdk_app_id": "1:1040751639156:android:467f3b112c8a61b183af21",
         "android_client_info": {
-          "package_name": "com.example.develop.findmyphone"
+          "package_name": "com.yugi.fmf"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDdqm4HnRaFUecfvxVMhq371Sx4vcK7JXE"
+          "current_key": "AIzaSyA3D5nhxtgHOyqFlI1Elq8o0edhg6cCKZ4"
         }
       ],
       "services": {
