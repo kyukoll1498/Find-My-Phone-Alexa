@@ -45,7 +45,7 @@ class InterestActivity :
             binding.frAd,
             com.common.control.R.layout.custom_native_ads_2
         )
-        if (AdCache.getInstance().ob4NativeHigh != null) {
+        if (AdCache.getInstance().ob4NativeHigh == null) {
             AdmobManager.getInstance().preloadFullScreenNative(
                 this@InterestActivity,
                 AdIds.ob4_native_high1,
