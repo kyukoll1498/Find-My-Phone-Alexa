@@ -31,6 +31,7 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
     private var languageAdapter: LanguageAdapter? = null
     private var itemLanguage: ItemLanguage? = null
     private var appPreferences = AppPreferences.instance
+    private val lfo2NativeAdsReload = arrayListOf(AdIds.lfo2_native_high, AdIds.lfo2_native)
 
     override fun initView() {
         setStatusBarColor()
@@ -102,5 +103,25 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
                 finish()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadNative()
+    }
+
+    private fun loadNative() {
+        AdmobManager.getInstance()
+            .preloadAlternateNative(this, lfo2NativeAdsReload, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdmobManager.getInstance().showNative(
+                        this@Language2Activity,
+                        nativeAd,
+                        binding.frAd2,
+                        com.common.control.R.layout.custom_native_ads_2
+                    )
+                }
+            })
     }
 }
