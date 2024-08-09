@@ -1,0 +1,145 @@
+<resources>
+    <string name="app_name" translatable="false">Clap to find your phone</string>
+    <string name="facebook_app_id" translatable="false">637304811853627</string>
+    <string name="facebook_client_token" translatable="false">a19c6384059194c82a1e5c201c09f2e6edb23407abdc3b0ed0ef62799a543105</string>
+    <string name="loading" translatable="false">Loading</string>
+    <string name="only" translatable="false">Only</string>
+    <string name="remove_ad_forever" translatable="false">Remove Ads <font color='#3D9835'>FOREVER</font></string>
+    <string name="save_your_time" translatable="false">Save your time for useless advertisement</string>
+    <string name="read_more_effect" translatable="false">Reading more effectively</string>
+    <string name="ready_premium" translatable="false">I’m ready to Premium</string>
+    <string name="oke_with_ad" translatable="false">No, I’m OK with Ads</string>
+    <string name="please_wait" translatable="false">Please wait!</string>
+    <string name="processing_your_pack" translatable="false">Processing your pack…</string>
+    <string name="clap_to_find" translatable="false">Clap to Find</string>
+    <string name="my_phone" translatable="false">My Phone</string>
+    <string name="app_name_setting" translatable="false">Find my phone</string>
+
+    <string name="text_on_boarding_1">Easily find your lost phone by clapping</string>
+    <string name="text_on_boarding_2">Various sound effects to choose</string>
+    <string name="text_on_boarding_3">Clap to turn on flashlight in the dark</string>
+    <string name="get_started">Get Started</string>
+    <string name="this_action_can_contain_ads">This action can contain ads…</string>
+    <string name="do_you_like_our_app">Do you like our App?</string>
+    <string name="write_your_feedback">Write your feedback…</string>
+    <string name="first_content_rate">We’re working hard for a better user experience.</string>
+    <string name="second_content_rate">We’d greatly appreciate if you can rate us.</string>
+    <string name="thank_you">Thank you</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="learn_more">Learn more</string>
+    <string name="rate_us">Rate App</string>
+    <string name="privacy">Privacy Policy</string>
+    <string name="feedback_us">Feedback</string>
+    <string name="share">Share App</string>
+    <string name="settings">Settings</string>
+    <string name="home">Home</string>
+    <string name="add">Add</string>
+    <string name="sound">Sound</string>
+    <string name="next">Next</string>
+    <string name="trumpet">Trumpet</string>
+    <string name="police_whistle">Police Whistle</string>
+    <string name="party_horn">Party Horn</string>
+    <string name="door_bell">Door Bell</string>
+    <string name="car_horn">Car Horn</string>
+    <string name="hello">Hello</string>
+    <string name="whistle">Whistle</string>
+    <string name="hey_stay_here">Hey Stay Here</string>
+    <string name="dog_barking">Dog Barking</string>
+    <string name="cat_meowing">Cat Meowing</string>
+    <string name="tap_to_active">Tap to deactivate</string>
+    <string name="tap_to_inactive">Tap to activate</string>
+    <string name="activation_text">Click to activate button and clap to find your phone</string>
+    <string name="txt_active">Clap to find your phone</string>
+    <string name="txt_inactive">Click to activate button and clap to find your phone</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="volume">Volume</string>
+    <string name="duration">Duration</string>
+    <string name="apply">Apply</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="txt_default">Default</string>
+    <string name="disco_mode">Disco Mode</string>
+    <string name="sos_mode">SOS Mode</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="strong_vibration">Strong Vibration</string>
+    <string name="heartbeat">Heartbeat</string>
+    <string name="ticktock">Ticktock</string>
+    <string name="txt_clap_running_notify">Clap to find my phone is running</string>
+    <string name="txt_touch_here_notify">Touch Here to deactivate</string>
+    <string name="touch_here_to_deactivate">Touch here to deactivate</string>
+    <string name="clap_to_find_your_phone_is_running">Clap to find your phone is running</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">There are no files.\n Let’s try to <font color="#F06A33">create new files</font> now.</string>
+    <string name="create_sound">Create Sound</string>
+    <string name="import_audio">Import Audio</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Allow <b>Clap To Find Your Phone</b> to access the Microphone</string>
+    <string name="deny">Deny</string>
+    <string name="allow">Allow</string>
+    <string name="record_sound">Record Sound</string>
+    <string name="enter_name_sound">Enter Name Sound</string>
+    <string name="save_sound">Save sound</string>
+    <string name="name_sound_is_empty">Name Sound is Empty</string>
+    <string name="create_new">Create new</string>
+    <string name="name_sound_already_exists">Name Sound already exists</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Allow <b>Clap To Find Your Phone</b> to access audio files</string>
+    <string name="how_to_use">How to use</string>
+    <string name="activate">ACTIVATE</string>
+    <string name="click_the_activate_button">Click the activate button</string>
+    <string name="clap">CLAP</string>
+    <string name="double_clap_to_find_your_phone">Double clap to find your phone</string>
+    <string name="detect">DETECT</string>
+    <string name="app_detect_the_clap_and_start_ringing">App detect the clap and start ringing</string>
+    <string name="permission">PERMISSION</string>
+    <string name="allow_permission_to_access_microphone_audio_files">Allow permission to access microphone. audio files</string>
+    <string name="txt_settings">SETTINGS</string>
+    <string name="before_activating_set_flashlight_adjust_volume">Before activating, set flashlight, adjust volume..</string>
+    <string name="activation_text2">Click to <font color="#F06A33">activate button</font> and <font color="#F06A33">clap</font> to find your phone</string>
+    <string name="save">Save</string>
+    <string name="rename">Rename</string>
+    <string name="enter_name">Enter name</string>
+    <string name="cancel">Cancel</string>
+    <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete</string>
+    <string name="delete">Delete</string>
+    <string name="maybe_later">Maybe later</string>
+    <string name="submit">Submit</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Allow <b>Clap To Find Your Phone</b> to access the Notification</string>
+    <string name="grant_permission">Permission Request</string>
+    <string name="please_grant">Please grant permission to provide phone finder by clapping?</string>
+    <string name="record_permission">Record Permission</string>
+    <string name="continue_permission">Continue</string>
+    <string name="toast_permission_continue">Allow permission to continue!</string>
+    <string name="start_like_a_pro">START LIKE A PRO</string>
+    <string name="remove_ads_100">Remove Ads</string>
+    <string name="benefit_2">Easy to locate phone></string>
+    <string name="benefit_3">Ringtones &amp; flashlight</string>
+    <string name="benefit_4">Various sound effects</string>
+    <string name="free">Free</string>
+    <string name="s_continue">Continue</string>
+    <string name="i_m_ok_with_ads">I’m OK with Ads</string>
+    <string name="forever">Forever</string>
+    <string name="include_ads">Include Ads</string>
+    <string name="excel_reader_plus">UNLIMITED FEATURES</string>
+    <string name="unlimited_access_to_all">Unlimited access to all</string>
+    <string name="term_of_use_privacy_policy">I am OK with ads</string>
+    <string name="_7_days">%1$s days</string>
+    <string name="monthly">Save 30%</string>
+    <string name="save_50">Save 50%</string>
+    <string name="basic">Basic</string>
+    <string name="premium">Premium</string>
+    <string name="where_do_you_usually_lose_your_phone">Where do you usually lose your phone?</string>
+    <string name="bedroom">Bedroom</string>
+    <string name="sofa">Sofa</string>
+    <string name="work">Work</string>
+    <string name="gym">Gym</string>
+    <string name="friend_s_house">Friend\'s House</string>
+    <string name="caf">Café</string>
+    <string name="outdoors">Outdoors</string>
+    <string name="school">School</string>
+    <string name="car">Car</string>
+    <string name="hotel">Hotel</string>
+    <string name="events">Events</string>
+    <string name="shopping_mall">Shopping Mall</string>
+    <string name="park">Park</string>
+    <string name="others">Others</string>
+    <string name="skip">Skip</string>
+</resources>
