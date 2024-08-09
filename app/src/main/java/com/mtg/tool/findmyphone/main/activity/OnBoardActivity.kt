@@ -24,6 +24,11 @@ class OnBoardActivity :
     private val onb5NativeAds = arrayListOf(AdIds.ob5_native_high, AdIds.ob5_native)
     private val onb6NativeAds = arrayListOf(AdIds.ob6_native_high, AdIds.ob6_native)
 
+    private var isHandleAds2 = false
+    private var isHandleAds3 = false
+    private var isHandleAds4 = false
+    private var isHandleAds5 = false
+
     override fun binding() {
         isFullScreen = true
         super.binding()
@@ -121,35 +126,41 @@ class OnBoardActivity :
     }
 
     fun handleAds2() {
-        if(AdCache.getInstance().ob4NativeHigh == null && AdCache.getInstance().ob4NativeHigh1 == null){
+        if (!isHandleAds2) {
+            isHandleAds2 = true
+            if (AdCache.getInstance().ob4NativeHigh == null && AdCache.getInstance().ob4NativeHigh1 == null) {
+                AdmobManager.getInstance()
+                    .preloadFullScreenAlternateNative(this, onb4NativeAds, object : AdCallback() {
+                        override fun onNativeAds(nativeAd: NativeAd?) {
+                            super.onNativeAds(nativeAd)
+                            AdCache.getInstance().ob4NativeHigh2AndNative =
+                                nativeAd
+                        }
+                    })
+            }
             AdmobManager.getInstance()
-                .preloadFullScreenAlternateNative(this, onb4NativeAds, object : AdCallback() {
+                .preloadAlternateNative(this, onb5NativeAds, object : AdCallback() {
                     override fun onNativeAds(nativeAd: NativeAd?) {
                         super.onNativeAds(nativeAd)
-                        AdCache.getInstance().ob4NativeHigh2AndNative =
+                        AdCache.getInstance().ob5NativeHigh =
                             nativeAd
                     }
                 })
         }
-        AdmobManager.getInstance()
-            .preloadAlternateNative(this, onb5NativeAds, object : AdCallback(){
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob5NativeHigh =
-                        nativeAd
-                }
-            })
     }
 
     fun handleAds3() {
-        AdmobManager.getInstance()
-            .preloadAlternateNative(this, onb6NativeAds, object : AdCallback(){
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob6NativeHigh =
-                        nativeAd
-                }
-            })
+        if (!isHandleAds3) {
+            AdmobManager.getInstance()
+                .preloadAlternateNative(this, onb6NativeAds, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().ob6NativeHigh =
+                            nativeAd
+                    }
+                })
+            isHandleAds3 = true
+        }
     }
 
     fun handleAds4() {

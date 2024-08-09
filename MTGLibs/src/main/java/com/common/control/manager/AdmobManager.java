@@ -62,6 +62,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -919,7 +920,8 @@ public class AdmobManager {
     }
 
     //    ads
-    public void loadAlternateInter(Context context, List<String> ids, AdCallback callback) {
+    public void loadAlternateInter(Context context, List<String> idsInput, AdCallback callback) {
+        List<String> ids = new ArrayList<>(idsInput);
         if (ids.isEmpty()) {
             Log.d("AdmobLogger", "loadAlternateInter: " + "empty");
             return;
@@ -928,7 +930,7 @@ public class AdmobManager {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError i) {
                 super.onAdFailedToLoad(i);
-                Log.d("AdmobLogger", "loadAlternateInter: " + "fail-" + ids.get(0));
+                Log.w("AdmobLogger", "loadAlternateInter: " + "fail-" + ids.get(0));
                 ids.remove(0);
                 if (ids.isEmpty()) {
                     callback.onAdFailedToLoad(i);
@@ -941,12 +943,13 @@ public class AdmobManager {
             public void onResultInterstitialAd(InterstitialAd interstitialAd) {
                 super.onResultInterstitialAd(interstitialAd);
                 callback.onResultInterstitialAd(interstitialAd);
-                Log.d("AdmobLogger", "loadAlternateInter: " + "success-" + ids.get(0));
+                Log.i("AdmobLogger", "loadAlternateInter: " + "success-" + ids.get(0));
             }
         });
     }
 
-    public void preloadAlternateNative(Context context, List<String> ids, AdCallback callback) {
+    public void preloadAlternateNative(Context context, List<String> idsInput, AdCallback callback) {
+        List<String> ids = new ArrayList<>(idsInput);
         if (ids.isEmpty()) {
             Log.d("AdmobLogger", "loadAlternateNative: " + "empty");
             return;
@@ -955,7 +958,7 @@ public class AdmobManager {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError i) {
                 super.onAdFailedToLoad(i);
-                Log.d("AdmobLogger", "loadAlternateNative: " + "fail-" + ids.get(0));
+                Log.w("AdmobLogger", "loadAlternateNative: " + "fail-" + ids.get(0));
                 ids.remove(0);
                 if (ids.isEmpty()) {
                     callback.onAdFailedToLoad(i);
@@ -968,11 +971,12 @@ public class AdmobManager {
             public void onNativeAds(NativeAd nativeAd) {
                 super.onNativeAds(nativeAd);
                 callback.onNativeAds(nativeAd);
-                Log.d("AdmobLogger", "loadAlternateNative: " + "success-" + ids.get(0));
+                Log.i("AdmobLogger", "loadAlternateNative: " + "success-" + ids.get(0));
             }
         });
     }
-    public void preloadFullScreenAlternateNative(Context context, List<String> ids, AdCallback callback) {
+    public void preloadFullScreenAlternateNative(Context context, List<String> idsInput, AdCallback callback) {
+        List<String> ids = new ArrayList<>(idsInput);
         if (ids.isEmpty()) {
             Log.d("AdmobLogger", "loadAlternatefsNative: " + "empty");
             return;
@@ -981,7 +985,7 @@ public class AdmobManager {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError i) {
                 super.onAdFailedToLoad(i);
-                Log.d("AdmobLogger", "loadAlternatefsNative: " + "fail-" + ids.get(0));
+                Log.w("AdmobLogger", "loadAlternatefsNative: " + "fail-" + ids.get(0));
                 ids.remove(0);
                 if (ids.isEmpty()) {
                     callback.onAdFailedToLoad(i);
@@ -994,21 +998,22 @@ public class AdmobManager {
             public void onNativeAds(NativeAd nativeAd) {
                 super.onNativeAds(nativeAd);
                 callback.onNativeAds(nativeAd);
-                Log.d("AdmobLogger", "loadAlternatefsNative: " + "success-" + ids.get(0));
+                Log.i("AdmobLogger", "loadAlternatefsNative: " + "success-" + ids.get(0));
             }
         });
     }
 
-    public void loadAlternateBanner(Activity act, List<String> ids, final FrameLayout adContainer) {
+    public void loadAlternateBanner(Activity act, List<String> idsInput, final FrameLayout adContainer) {
+        List<String> ids = new ArrayList<>(idsInput);
         if (ids.isEmpty()) {
-            Log.d("AdmobLogger", "loadAlternateBanner: ");
+            Log.d("AdmobLogger", "loadAlternateBanner: empty");
             return;
         }
         loadBanner(act, ids.get(0), adContainer, new AdCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError i) {
                 super.onAdFailedToLoad(i);
-                Log.d("AdmobLogger", "loadAlternateBanner: " + "fail-" + ids.get(0));
+                Log.w("AdmobLogger", "loadAlternateBanner: " + "fail-" + ids.get(0));
                 ids.remove(0);
                 if (!ids.isEmpty()) {
                     adContainer.setVisibility(View.VISIBLE);
@@ -1020,7 +1025,7 @@ public class AdmobManager {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                Log.d("AdmobLogger", "loadAlternateBanner: " + "success-" + ids.get(0));
+                Log.i("AdmobLogger", "loadAlternateBanner: " + "success-" + ids.get(0));
             }
         });
     }
