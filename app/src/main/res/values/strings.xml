@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Clap to find your phone</string>
+    <string name="app_name" translatable="false">Clap to find my phone</string>
     <string name="loading" translatable="false">Loading</string>
     <string name="only" translatable="false">Only</string>
     <string name="remove_ad_forever" translatable="false">Remove Ads <font color='#3D9835'>FOREVER</font></string>

@@ -42,7 +42,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     override fun initView() {
         Handler().postDelayed(Runnable {
             canNextScreen.value = true
-        }, 3000)
+        }, 15000)
         AppSession.isCompletedInterSplash = false
         logEvent("view_splash")
         ConsentDialogManager.instance?.showConsentDialogSplash(this) {
