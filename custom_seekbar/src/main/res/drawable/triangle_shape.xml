@@ -4,6 +4,8 @@
         <rotate android:fromDegrees="45" android:pivotX="-40%" android:pivotY="87%" android:toDegrees="45">
             <shape android:shape="rectangle">
                 <solid android:color="#F06A33" />
+                <gradient android:startColor="#3CBAE3" android:endColor="#25D9C0"/>
+
             </shape>
         </rotate>
     </item>
