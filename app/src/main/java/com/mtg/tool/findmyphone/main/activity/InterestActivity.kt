@@ -26,7 +26,6 @@ class InterestActivity :
 
     override fun binding() {
         isFullScreen = false
-        SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
         super.binding()
     }
 
