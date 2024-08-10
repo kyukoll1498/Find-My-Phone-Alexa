@@ -62,6 +62,7 @@ class PlaySoundActivity :
         binding.tvName.setSelected(true)
         binding.tvVolume.setSelected(true)
         binding.tvDuration.setSelected(true)
+        binding.tvDuration15s.isSelected = true
     }
 
     private fun setUpUI() {
@@ -223,57 +224,10 @@ class PlaySoundActivity :
 
     private fun updateDuration(duration: Int) {
         if (currentDuration != duration) {
-            when (currentDuration) {
-                15 -> {
-                    binding.tvDuration15s.setTextColor(ColorStateList.valueOf(Color.parseColor("#828287")))
-                    binding.tvDuration15s.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#EDEDED"))
-                }
-
-                30 -> {
-                    binding.tvDuration30s.setTextColor(ColorStateList.valueOf(Color.parseColor("#828287")))
-                    binding.tvDuration30s.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#EDEDED"))
-                }
-
-                60 -> {
-                    binding.tvDuration1m.setTextColor(ColorStateList.valueOf(Color.parseColor("#828287")))
-                    binding.tvDuration1m.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#EDEDED"))
-                }
-
-                120 -> {
-                    binding.tvDuration2m.setTextColor(ColorStateList.valueOf(Color.parseColor("#828287")))
-                    binding.tvDuration2m.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#EDEDED"))
-                }
-            }
-
-            when (duration) {
-                15 -> {
-                    binding.tvDuration15s.setTextColor(ColorStateList.valueOf(Color.parseColor("#FFFFFF")))
-                    binding.tvDuration15s.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#F06A33"))
-                }
-
-                30 -> {
-                    binding.tvDuration30s.setTextColor(ColorStateList.valueOf(Color.parseColor("#FFFFFF")))
-                    binding.tvDuration30s.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#F06A33"))
-                }
-
-                60 -> {
-                    binding.tvDuration1m.setTextColor(ColorStateList.valueOf(Color.parseColor("#FFFFFF")))
-                    binding.tvDuration1m.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#F06A33"))
-                }
-
-                120 -> {
-                    binding.tvDuration2m.setTextColor(ColorStateList.valueOf(Color.parseColor("#FFFFFF")))
-                    binding.tvDuration2m.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#F06A33"))
-                }
-            }
+            binding.tvDuration15s.isSelected = duration == 15
+            binding.tvDuration30s.isSelected = duration == 30
+            binding.tvDuration1m.isSelected = duration == 60
+            binding.tvDuration2m.isSelected = duration == 120
             currentDuration = duration
         }
     }
