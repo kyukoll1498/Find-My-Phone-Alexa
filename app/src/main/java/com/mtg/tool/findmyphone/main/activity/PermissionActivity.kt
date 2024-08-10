@@ -11,8 +11,10 @@ import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
+import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityPermissionBinding
 import com.mtg.tool.findmyphone.utils.PermissionUtils
+import com.mtg.tool.findmyphone.utils.constant.Constants
 
 class PermissionActivity :
     BaseActivity<ActivityPermissionBinding>(ActivityPermissionBinding::inflate) {
@@ -21,6 +23,7 @@ class PermissionActivity :
     private val onb6NativeAds = arrayListOf(AdIds.ob6_native_high, AdIds.ob6_native)
 
     override fun initView() {
+        SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
         logEvent("view_permission")
         showNative();
         // Do not allow user interaction sbPermission

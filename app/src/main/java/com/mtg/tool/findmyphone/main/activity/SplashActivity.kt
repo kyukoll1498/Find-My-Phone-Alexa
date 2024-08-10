@@ -15,10 +15,12 @@ import com.mtg.tool.findmyphone.AppSession
 import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
+import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivitySplashBinding
 import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
+import com.mtg.tool.findmyphone.utils.constant.Constants
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
@@ -184,8 +186,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
-        } else {
-            val intent = Intent(this, PermissionActivity::class.java)
+        } else if (!SharedPrefs.getBoolean(this, Constants.SKIP_ONBOARD)) {
+            val intent = Intent(this, InterestActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
+        else {
+            val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
