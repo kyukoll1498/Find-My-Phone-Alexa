@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Clap to find your phone</string>
-    <string name="facebook_app_id" translatable="false">637304811853627</string>
-    <string name="facebook_client_token" translatable="false">a19c6384059194c82a1e5c201c09f2e6edb23407abdc3b0ed0ef62799a543105</string>
     <string name="loading" translatable="false">Loading</string>
     <string name="only" translatable="false">Only</string>
     <string name="remove_ad_forever" translatable="false">Remove Ads <font color='#3D9835'>FOREVER</font></string>
