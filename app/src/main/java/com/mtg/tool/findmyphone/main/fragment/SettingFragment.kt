@@ -1,5 +1,6 @@
 package com.mtg.tool.findmyphone.main.fragment
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
@@ -10,15 +11,23 @@ import com.mtg.tool.findmyphone.MODE_VIBRATE_HEART
 import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 import com.mtg.tool.findmyphone.MODE_VIBRATE_TICKTOCK
 import com.mtg.tool.findmyphone.base.BaseFragment
+import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.FragmentSettingBinding
+import com.mtg.tool.findmyphone.main.activity.Language2Activity
+import com.mtg.tool.findmyphone.main.activity.PolicyWebViewActivity
+import com.mtg.tool.findmyphone.utils.ActionUtils
+import com.mtg.tool.findmyphone.utils.EventLogger
+import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
+import com.mtg.tool.findmyphone.utils.hide
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
     private var appPreferences = AppPreferences.instance
 
     override fun initView() {
         setUpSelection()
+        setUpRate()
     }
 
     private fun setUpSelection() {
@@ -141,6 +150,27 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         }
         binding.vLockFlash.setOnClickListener { Log.e("android_log_error", "it is disabled") }
         binding.vLockVibrate.setOnClickListener { Log.e("android_log_error", "it is disabled") }
+
+        binding.btnLanguage.setOnClickListener {
+            EventLogger.getInstance()?.logEvent("click_set_language")
+            startActivity(Intent(requireActivity(), Language2Activity::class.java))
+        }
+        binding.btnRate.setOnClickListener {
+            EventLogger.getInstance()?.logEvent("click_set_rate")
+            ActionUtils.showRateDialog(requireActivity(), false, callback = {
+                if (it) hideRate()
+            })
+        }
+        binding.btnShare.setOnClickListener {
+            EventLogger.getInstance()?.logEvent("click_set_share")
+            ActionUtils.shareApp(requireActivity())
+        }
+        binding.btnFeedback.setOnClickListener {
+            ActionUtils.sendFeedback(requireActivity())
+        }
+        binding.btnPrivacy.setOnClickListener {
+            PolicyWebViewActivity.start(requireActivity())
+        }
     }
 
     private fun runVibrateFlashThread(mode: Int) {
@@ -188,10 +218,26 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         binding.vLockVibrate.visibility = View.VISIBLE
     }
 
+
+    private fun hideRate() {
+        binding.btnRate.hide()
+    }
+
+    private fun setUpRate() {
+        if (SharedPrefs.isRated(requireActivity())) {
+            hideRate()
+        }
+    }
+
     override fun onPause() {
         super.onPause()
         appPreferences.hasSound = binding.sbSound.isChecked
         appPreferences.hasFlash = binding.sbFlash.isChecked
         appPreferences.hasVibrate = binding.sbVibrate.isChecked
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.ivFlag.setImageResource(LanguageUtils.listCountryDefault[appPreferences.currentIndexLanguage].imageFlag)
     }
 }

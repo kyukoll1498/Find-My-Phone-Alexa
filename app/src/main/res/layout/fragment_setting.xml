@@ -3,13 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/ll_sound_controller"
                 android:layout_width="match_parent"
@@ -17,7 +20,7 @@
                 android:layout_marginHorizontal="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_14sdp"
                 android:background="@drawable/bg_radius_12"
-                android:backgroundTint="#CCFFFFFF"
+                android:backgroundTint="#F5F9FF"
                 android:gravity="center_vertical"
                 android:paddingVertical="@dimen/_14sdp"
                 android:paddingStart="@dimen/_8sdp"
@@ -25,8 +28,8 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:src="@drawable/ic_sound_settings" />
 
                 <TextView
@@ -53,13 +56,13 @@
                 android:layout_marginHorizontal="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:background="@drawable/bg_radius_12"
-                android:backgroundTint="#CCFFFFFF"
+                android:backgroundTint="#F5F9FF"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/_14sdp"
-                android:paddingBottom="@dimen/_2sdp"
                 android:paddingStart="@dimen/_8sdp"
+                android:paddingTop="@dimen/_14sdp"
                 android:paddingEnd="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_2sdp"
                 app:layout_constraintTop_toBottomOf="@id/ll_sound_controller">
 
                 <LinearLayout
@@ -69,8 +72,8 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
                         android:src="@drawable/ic_flash" />
 
                     <TextView
@@ -96,78 +99,83 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:background="#F5F5F5" />
+
                 <FrameLayout
                     android:id="@+id/fr_contain_flash"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_14sdp">
+
                     <View
                         android:id="@+id/v_lock_flash"
-                        android:elevation="1dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:elevation="1dp" />
+
                     <RadioGroup
                         android:id="@+id/rg_flash"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/rb_flash_default"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layoutDirection="rtl"
-                            android:paddingStart="@dimen/_8sdp"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:fontFamily="@font/poppins_medium"
+                            android:layoutDirection="rtl"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:text="@string/txt_default"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
-                            android:text="@string/txt_default"
-                            app:buttonTint="#F06A33"/>
+                            app:buttonTint="#868686" />
+
                         <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/rb_flash_disco"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layoutDirection="rtl"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:paddingStart="@dimen/_8sdp"
-
                             android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
                             android:fontFamily="@font/poppins_medium"
+                            android:layoutDirection="rtl"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:text="@string/disco_mode"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
-                            android:text="@string/disco_mode"
-                            app:buttonTint="#F06A33"/>
+                            app:buttonTint="#868686" />
+
                         <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/rb_flash_sos"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layoutDirection="rtl"
-                            android:layout_marginEnd="@dimen/_12sdp"
                             android:layout_marginTop="@dimen/_6sdp"
-                            android:paddingStart="@dimen/_8sdp"
-
+                            android:layout_marginEnd="@dimen/_12sdp"
                             android:fontFamily="@font/poppins_medium"
+                            android:layoutDirection="rtl"
+
+                            android:paddingStart="@dimen/_8sdp"
+                            android:text="@string/sos_mode"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
-                            android:text="@string/sos_mode"
-                            app:buttonTint="#F06A33"/>
+                            app:buttonTint="#868686" />
                     </RadioGroup>
                 </FrameLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:background="@drawable/bg_radius_12"
-                android:backgroundTint="#CCFFFFFF"
+                android:backgroundTint="#F5F9FF"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:layout_marginBottom="@dimen/_36sdp"
-                android:paddingTop="@dimen/_14sdp"
-                android:paddingBottom="@dimen/_2sdp"
                 android:paddingStart="@dimen/_8sdp"
+                android:paddingTop="@dimen/_14sdp"
                 android:paddingEnd="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_2sdp"
                 app:layout_constraintTop_toBottomOf="@id/ll_sound_controller">
 
                 <LinearLayout
@@ -177,8 +185,8 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
                         android:src="@drawable/ic_vibrate" />
 
                     <TextView
@@ -204,83 +212,239 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:background="#F5F5F5" />
+
                 <FrameLayout
                     android:id="@+id/fr_contain_vibrate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_14sdp">
+
                     <View
                         android:id="@+id/v_lock_vibrate"
-                        android:elevation="1dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:elevation="1dp" />
+
                     <RadioGroup
                         android:id="@+id/rg_vibrate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/rb_vibrate_default"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layoutDirection="rtl"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:fontFamily="@font/poppins_medium"
+                            android:layoutDirection="rtl"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:text="@string/txt_default"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
-                            android:paddingStart="@dimen/_8sdp"
+                            app:buttonTint="#868686" />
 
-                            android:text="@string/txt_default"
-                            app:buttonTint="#F06A33"/>
                         <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/rb_vibrate_strong"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layoutDirection="rtl"
-                            android:layout_marginEnd="@dimen/_12sdp"
                             android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
                             android:fontFamily="@font/poppins_medium"
+                            android:layoutDirection="rtl"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:text="@string/strong_vibration"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
-                            android:paddingStart="@dimen/_8sdp"
+                            app:buttonTint="#868686" />
 
-                            android:text="@string/strong_vibration"
-                            app:buttonTint="#F06A33"/>
                         <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/rb_vibrate_heart"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layoutDirection="rtl"
-                            android:layout_marginEnd="@dimen/_12sdp"
                             android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
                             android:fontFamily="@font/poppins_medium"
+                            android:layoutDirection="rtl"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:text="@string/heartbeat"
                             android:textColor="#404040"
                             android:textSize="@dimen/_14sdp"
-                            android:paddingStart="@dimen/_8sdp"
+                            app:buttonTint="#868686" />
 
-                            android:text="@string/heartbeat"
-                            app:buttonTint="#F06A33"/>
                         <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/rb_vibrate_ticktock"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layoutDirection="rtl"
-                            android:layout_marginEnd="@dimen/_12sdp"
                             android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
                             android:fontFamily="@font/poppins_medium"
-                            android:textColor="#404040"
+                            android:layoutDirection="rtl"
                             android:paddingStart="@dimen/_8sdp"
-
-                            android:textSize="@dimen/_14sdp"
                             android:text="@string/ticktock"
-                            app:buttonTint="#F06A33"/>
+                            android:textColor="#404040"
+                            android:textSize="@dimen/_14sdp"
+                            app:buttonTint="#868686" />
                     </RadioGroup>
                 </FrameLayout>
-
-
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_language"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_52sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_item_language"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:src="@drawable/ic_settings_language" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/language"
+                    android:textColor="#404040"
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:id="@+id/iv_flag"
+                    android:layout_width="@dimen/_26sdp"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:src="@drawable/flag_2" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_rate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_52sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_item_language"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:src="@drawable/ic_settings_rate" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/rate_us"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:textColor="#404040"
+                    android:textSize="@dimen/_15sdp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_share"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_52sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_item_language"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:src="@drawable/ic_settings_share" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/txt_share"
+                    android:textColor="#404040"
+                    android:textSize="@dimen/_15sdp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_52sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_item_language"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:src="@drawable/ic_settings_feedback" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/txt_feedback_us"
+                    android:textColor="#404040"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:textSize="@dimen/_15sdp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_privacy"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_52sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_item_language"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:src="@drawable/ic_settings_privacy" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/txt_privacy"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:textColor="#404040"
+                    android:textSize="@dimen/_15sdp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_24sdp" />
         </LinearLayout>
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
