@@ -56,6 +56,14 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
         fun loadData(soundItem: SoundItem) {
             itemView.tag = soundItem
             context?.let { Glide.with(it).load(soundItem.image).into(binding.ivImage) }
+            context?.let { Glide.with(it).load(soundItem.image).into(binding.ivImage2) }
+            if (soundItem.image == R.drawable.avatar_audio_default) {
+                binding.cardImage.visibility = View.VISIBLE
+                binding.ivImage.visibility = View.GONE
+            } else {
+                binding.cardImage.visibility = View.GONE
+                binding.ivImage.visibility = View.VISIBLE
+            }
             binding.tvName.text = soundItem.name
         }
 
