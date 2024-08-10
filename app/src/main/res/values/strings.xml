@@ -140,4 +140,7 @@
     <string name="park">Park</string>
     <string name="others">Others</string>
     <string name="skip">Skip</string>
+    <string name="txt_share">Share</string>
+    <string name="txt_feedback_us">Feedback us</string>
+    <string name="txt_privacy">Privacy</string>
 </resources>
