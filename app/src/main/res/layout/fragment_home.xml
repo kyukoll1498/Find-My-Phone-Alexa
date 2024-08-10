@@ -54,13 +54,16 @@
 
                 <ImageView
                     android:id="@+id/iv_circle_active"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:background="@drawable/circle_active"
                     android:visibility="invisible"
+                    app:layout_constraintHeight_percent="0.72"
+                    app:layout_constraintWidth_percent="0.72"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
                 <ImageView
                     android:id="@+id/iv_avatar"
                     android:layout_width="@dimen/_65sdp"
