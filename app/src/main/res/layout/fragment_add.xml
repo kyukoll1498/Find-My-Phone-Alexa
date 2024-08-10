@@ -15,12 +15,14 @@
 
         <ImageView
             android:id="@+id/iv_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:src="@drawable/ic_empty"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintHeight_percent="0.2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintBottom_toTopOf="@id/tv_empty"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,8 +30,8 @@
             android:id="@+id/tv_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:background="@drawable/bg_radius_8"
+            android:background="@drawable/frame_guide"
+            android:layout_marginTop="@dimen/_20sdp"
             android:gravity="center"
             android:elevation="5dp"
             android:layout_marginBottom="@dimen/_8sdp"
@@ -37,11 +39,11 @@
             android:paddingVertical="@dimen/_8sdp"
             android:text="@string/there_are_no_files_n_let_s_try_to_create_new_files_now"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/ll_create_sound"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_empty"
-            app:layout_constraintVertical_chainStyle="packed" />
+            android:textColor="#7E7E7E"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintEnd_toEndOf="@+id/iv_empty"
+            app:layout_constraintStart_toStartOf="@+id/iv_empty"
+            app:layout_constraintTop_toBottomOf="@+id/iv_empty"/>
 
         <ImageView
             android:id="@+id/iv_guide_create"
@@ -57,9 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_48sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:background="@drawable/bg_radius_8"
-            android:backgroundTint="#FF7A2F"
+            app:layout_constraintVertical_bias="0.2"
+            android:background="@drawable/bg_radius_gradient"
+            app:layout_constraintTop_toBottomOf="@+id/tv_empty"
+            app:layout_constraintStart_toStartOf="@+id/tv_empty"
+            app:layout_constraintEnd_toEndOf="@+id/tv_empty"
             android:gravity="center"
             android:elevation="5dp"
             android:paddingVertical="@dimen/_8sdp"
@@ -74,8 +78,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/create_sound"
+                android:includeFontPadding="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp" />
         </LinearLayout>

@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.manager.AdmobManager
@@ -32,7 +33,13 @@ import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.hide
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+    override fun binding() {
+        isFullScreen = false
+        super.binding()
+    }
+
     override fun initView() {
+        changeStatusBar(ContextCompat.getColor(this, R.color._138EFF))
 //        setUpRate()
         setupViewpager()
 //        setupDrawerNavigation()
