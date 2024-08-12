@@ -58,25 +58,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun addEvent() {
         binding.btnHome.setOnClickListener {
             logEvent("click_home")
-            if (binding.viewpagerMain.currentItem != 0) {
-                AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_home, binding.frAd)
-            }
             changeUITools(binding.viewpagerMain.currentItem, 0)
             binding.viewpagerMain.setCurrentItem(0, false)
         }
         binding.btnSound.setOnClickListener {
             logEvent("click_sound")
-            if (binding.viewpagerMain.currentItem != 1) {
-                AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_sound, binding.frAd)
-            }
             changeUITools(binding.viewpagerMain.currentItem, 1)
             binding.viewpagerMain.setCurrentItem(1, false)
         }
         binding.btnAdd.setOnClickListener {
             logEvent("click_add")
-            if (binding.viewpagerMain.currentItem != 2) {
-                AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_add, binding.frAd)
-            }
             changeUITools(binding.viewpagerMain.currentItem, 2)
             binding.viewpagerMain.setCurrentItem(2, false)
         }
