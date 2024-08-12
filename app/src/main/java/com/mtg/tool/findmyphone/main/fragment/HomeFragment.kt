@@ -15,9 +15,12 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.startForegroundService
 import com.bumptech.glide.Glide
+import com.common.control.manager.AdmobManager
 import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
+import com.mtg.tool.findmyphone.AdIds
+import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
@@ -49,6 +52,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
         BroadcastUtils.registerReceiver(context,finishDetectReceiver, IntentFilter(ACTION_FINISH_DETECT))
+        AdmobManager.getInstance().loadNative(requireActivity(), AdIds.native_home, binding.frAd, com.common.control.R.layout.custom_native_ads_1)
         if (isMyServiceRunning()) {
             isCircleActiveVisible = !isCircleActiveVisible
             binding.apply {

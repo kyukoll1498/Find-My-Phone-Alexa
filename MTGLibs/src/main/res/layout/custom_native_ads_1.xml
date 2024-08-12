@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-    android:elevation="@dimen/_1sdp">
+    android:background="#FFFFFF">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,13 +17,15 @@
             android:src="@drawable/ic_native_ads_1" />
 
         <LinearLayout
+            android:id="@+id/ll_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_13sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -46,7 +47,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -56,11 +57,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:fontFamily="@font/poppins_medium"
                     android:singleLine="true"
                     android:text="My tilte"
-                    android:textColor="#2D2D2D"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textSize="@dimen/_14sdp" />
+                    android:includeFontPadding="false"
+                    android:textColor="#3C3C3C"
+                    android:textSize="@dimen/_13sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,12 +81,13 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
                             android:gravity="bottom"
                             android:maxLines="2"
-                            android:fontFamily="@font/poppins_regular"
+                            android:includeFontPadding="false"
                             android:text="dsa sd sad dsa sa sad ád a\ndsaddsa  dsa dsa"
-                            android:textColor="#2D2D2D"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textColor="#80303030"
+                            android:textSize="@dimen/_9sdp" />
 
 
                     </LinearLayout>
@@ -92,15 +95,13 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <Button
+            <TextView
                 android:id="@+id/ad_call_to_action"
                 android:layout_width="@dimen/_68sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_16sdp"
                 android:background="@drawable/bg_action_native_1"
-                android:backgroundTint="@color/color_action_ads"
+                android:backgroundTint="#1380FF"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:text="Install"
@@ -108,11 +109,8 @@
                 android:textAllCaps="false"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_12sdp" />
-
+                android:textSize="@dimen/_10sdp" />
         </LinearLayout>
-
-
     </RelativeLayout>
 
 </com.google.android.gms.ads.nativead.NativeAdView>
