@@ -26,8 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:background="@drawable/bg_notification"
-            android:backgroundTint="@color/orange_200"
+            android:background="@drawable/bg_radius_gradient"
             android:layout_marginEnd="@dimen/_16sdp"
             android:layout_marginStart="@dimen/_10sdp">
 
