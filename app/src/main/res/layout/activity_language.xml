@@ -64,13 +64,13 @@
         android:id="@+id/container_ads"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".35">
         <FrameLayout
             android:id="@+id/fr_ad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent">
             <include layout="@layout/fake_loading" />
         </FrameLayout>
@@ -79,7 +79,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            android:layout_margin="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent">
             <include layout="@layout/fake_loading" />
         </FrameLayout>
