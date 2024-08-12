@@ -3,7 +3,7 @@ package com.mtg.tool.findmyphone.main.activity
 import android.os.Bundle
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.databinding.ActivityHowToUseBinding
@@ -24,7 +24,7 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
     }
 
     override fun initView() {
-        AdmobManager.getInstance().loadBanner(this, BuildConfig.native_tutorial, binding.frAd)
+        AdmobManager.getInstance().loadNative(this, AdIds.native_tutorial, binding.frAd, com.common.control.R.layout.custom_native_ads_1)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 

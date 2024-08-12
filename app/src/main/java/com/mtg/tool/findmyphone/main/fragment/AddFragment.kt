@@ -9,11 +9,8 @@ import android.os.Handler
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.common.control.base.OnActionCallback
-import com.common.control.manager.AdmobManager
-import com.common.control.manager.AppOpenManager
 import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
-import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.CREATE_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA

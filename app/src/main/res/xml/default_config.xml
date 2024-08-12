@@ -131,10 +131,6 @@
         <value>true</value>
     </entry>
     <entry>
-        <key>banner_sound</key>
-        <value>true</value>
-    </entry>
-    <entry>
         <key>native_sound</key>
         <value>true</value>
     </entry>
@@ -143,31 +139,11 @@
         <value>true</value>
     </entry>
     <entry>
-        <key>banner_add</key>
+        <key>native_add</key>
         <value>true</value>
     </entry>
     <entry>
-        <key>native_create</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>native_import</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>native_record</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>native_record_save</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>banner_setting</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>banner_tutorial</key>
+        <key>native_tutorial</key>
         <value>true</value>
     </entry>
 </defaultsMap>

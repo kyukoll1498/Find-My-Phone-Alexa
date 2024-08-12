@@ -11,7 +11,7 @@ import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ADAPTER_ADS_TYPE
 import com.mtg.tool.findmyphone.ADAPTER_ITEM_TYPE
 import com.mtg.tool.findmyphone.ADS_SOUND_TYPE
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseAdapter
@@ -77,7 +77,7 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
         init {
             AdmobManager.getInstance().loadNative(
                 context,
-                BuildConfig.native_sound,
+                AdIds.native_sound,
                 binding.frAds,
                 R.layout.custom_native_ads_item
             )

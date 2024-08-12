@@ -1,13 +1,11 @@
 package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Intent
-import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivitySettingBinding
 import com.mtg.tool.findmyphone.utils.ActionUtils
 import com.mtg.tool.findmyphone.utils.EventLogger
-import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.hide
 
 class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBinding::inflate)  {

@@ -2,7 +2,6 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Intent
 import android.os.CountDownTimer
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.common.control.manager.AdmobManager
@@ -10,7 +9,7 @@ import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.R
@@ -47,7 +46,7 @@ class RecordAudioActivity :
         super.loadAds()
         AdmobManager.getInstance().loadNative(
             this,
-            BuildConfig.native_record,
+            AdIds.native_sound,
             binding.frAd,
             com.common.control.R.layout.custom_native_ads_2
         )
@@ -123,7 +122,7 @@ class RecordAudioActivity :
     private fun getNameAudio(): String {
         var name = "audio"
         var id = 1
-        while (AppRepository.checkHasSound(currentSoundItem.name!!)){
+        while (AppRepository.checkHasSound("$name$id")){
             id++
         }
         return "$name$id"
@@ -144,9 +143,9 @@ class RecordAudioActivity :
         binding.ctRecordController.visibility = View.GONE
         binding.ctSaveRecord.visibility = View.VISIBLE
         binding.btnSave.visibility = View.VISIBLE
-        binding.frAd.visibility = View.GONE
-        binding.frAd2.visibility = View.VISIBLE
-        AdmobManager.getInstance().loadNative(this, BuildConfig.native_record_save, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
+//        binding.frAd.visibility = View.GONE
+//        binding.frAd2.visibility = View.VISIBLE
+//        AdmobManager.getInstance().loadNative(this, BuildConfig.native_record_save, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
     }
 
     private fun cutAudio15s() {
@@ -282,10 +281,10 @@ class RecordAudioActivity :
 
     override fun onBackPressed() {
         if (binding.ctSaveRecord.visibility == View.VISIBLE) {
-            binding.frAd.visibility = View.VISIBLE
-            binding.frAd2.visibility = View.GONE
-            binding.frAd2.removeAllViews()
-            LayoutInflater.from(this).inflate(R.layout.fake_loading, binding.frAd2)
+//            binding.frAd.visibility = View.VISIBLE
+//            binding.frAd2.visibility = View.GONE
+//            binding.frAd2.removeAllViews()
+//            LayoutInflater.from(this).inflate(R.layout.fake_loading, binding.frAd2)
             pauseAudio()
             binding.tvPlayerController.text = getString(R.string.play)
             binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
