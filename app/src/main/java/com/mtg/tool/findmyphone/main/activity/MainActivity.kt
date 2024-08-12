@@ -4,14 +4,13 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_NOTIFICATION_PERMISSION_CODE
@@ -19,7 +18,6 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityMainBinding
-import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.main.dialog.NotificationPermissionDialog
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.main.fragment.AddFragment
@@ -28,9 +26,7 @@ import com.mtg.tool.findmyphone.main.fragment.SettingFragment
 import com.mtg.tool.findmyphone.main.fragment.SoundFragment
 import com.mtg.tool.findmyphone.utils.ActionUtils
 import com.mtg.tool.findmyphone.utils.EventLogger
-import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.PermissionUtils
-import com.mtg.tool.findmyphone.utils.hide
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun binding() {
@@ -43,7 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 //        setUpRate()
         setupViewpager()
 //        setupDrawerNavigation()
-        AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_home, binding.frAd)
+        AdmobManager.getInstance().loadBanner(this, AdIds.banner_home, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 

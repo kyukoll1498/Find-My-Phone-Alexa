@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.common.control.manager.AdmobManager
@@ -14,7 +13,7 @@ import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
-import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.R
@@ -28,7 +27,6 @@ import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.ActivityCreateSoundBinding
 import com.mtg.tool.findmyphone.main.dialog.ReadAudioPermissionDialog
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
-import com.mtg.tool.findmyphone.utils.AudioUtil
 import com.mtg.tool.findmyphone.utils.CacheUtils
 import com.mtg.tool.findmyphone.utils.FileUtils
 import com.mtg.tool.findmyphone.utils.PermissionUtils
@@ -54,7 +52,7 @@ class CreateSoundActivity :
         super.loadAds()
         AdmobManager.getInstance().loadNative(
             this,
-            BuildConfig.native_create,
+            AdIds.native_sound,
             binding.frAd,
             com.common.control.R.layout.custom_native_ads_2
         )
@@ -230,9 +228,9 @@ class CreateSoundActivity :
         binding.ctOptions.visibility = View.GONE
         binding.ctSaveRecord.visibility = View.VISIBLE
         binding.btnSave.visibility = View.VISIBLE
-        binding.frAd.visibility = View.GONE
-        binding.frAd2.visibility = View.VISIBLE
-        AdmobManager.getInstance().loadNative(this, BuildConfig.native_import, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
+//        binding.frAd.visibility = View.GONE
+//        binding.frAd2.visibility = View.VISIBLE
+//        AdmobManager.getInstance().loadNative(this, BuildConfig.native_import, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
     }
 
 
@@ -251,10 +249,10 @@ class CreateSoundActivity :
 
     override fun onBackPressed() {
         if (binding.ctSaveRecord.visibility == View.VISIBLE) {
-            binding.frAd.visibility = View.VISIBLE
-            binding.frAd2.visibility = View.GONE
-            binding.frAd2.removeAllViews()
-            LayoutInflater.from(this).inflate(R.layout.fake_loading, binding.frAd2)
+//            binding.frAd.visibility = View.VISIBLE
+//            binding.frAd2.visibility = View.GONE
+//            binding.frAd2.removeAllViews()
+//            LayoutInflater.from(this).inflate(R.layout.fake_loading, binding.frAd2)
             pauseAudio()
             binding.tvPlayerController.text = getString(R.string.play)
             binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
