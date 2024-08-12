@@ -33,6 +33,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     private val lfo1NativeAds by lazy { arrayListOf(AdIds.lfo1_native_high, AdIds.lfo1_native) }
     private val lfo2NativeHighAds by lazy { AdIds.lfo2_native_high }
     private val lfo2NativeHigh1Ads by lazy { AdIds.lfo2_native_high1 }
+    private val onb1NativeAds = arrayListOf(AdIds.ob1_native_high, AdIds.ob1_native)
+
 
     private var canNextScreen = MutableLiveData<Boolean>(false)
 
@@ -75,10 +77,19 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 //            4 - 5. load alternate banner_splash_high, banner_splash
                 loadAlternateBanner()
             } else {
+                if (SharedPrefs.getBoolean(this, Constants.SKIP_ONBOARD)) {
 //            1 - 2. load alternate banner_splash_high, banner_splash
-                loadAlternateBanner()
+                    loadAlternateBanner()
 //            3 - 4. load alternate inter_splash_high, inter_splash
-                loadAlternateInter()
+                    loadAlternateInter()
+                } else {
+//            1 - 2. preload onb1_native_high, onb1_native
+                    preloadNativeOb1()
+//            3 - 4. load alternate inter_splash_high, inter_splash
+                    loadAlternateInter()
+//            5 - 6. load alternate banner_splash_high, banner_splash
+                    loadAlternateBanner()
+                }
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -127,31 +138,35 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                 override fun onAdShowedFullScreenContent() {
                     super.onAdShowedFullScreenContent()
                     logEvent("view_inter_splash")
-                    if (AdCache.getInstance().lfo2NativeHigh == null) {
+                    if (!appPreferences.isChooseLanguage) {
+                        if (AdCache.getInstance().lfo2NativeHigh == null) {
 //                                      1. preload lfo2_native_high1
-                        if (lfo2NativeHigh1Ads.isNotBlank()) {
-                            AdmobManager.getInstance().preloadNative(
-                                this@SplashActivity,
-                                lfo2NativeHigh1Ads,
-                                object : AdCallback() {
-                                    override fun onNativeAds(nativeAd: NativeAd?) {
-                                        super.onNativeAds(nativeAd)
-                                        AdCache.getInstance().lfo2NativeHigh1 =
-                                            nativeAd
-                                    }
-                                })
-                        }
-                    }
-//                                    2. preload alternate lfo1_native_high, lfo1_native
-                    AdmobManager.getInstance().preloadAlternateNative(
-                        this@SplashActivity,
-                        lfo1NativeAds,
-                        object : AdCallback() {
-                            override fun onNativeAds(nativeAd: NativeAd?) {
-                                super.onNativeAds(nativeAd)
-                                AdCache.getInstance().lfo1Native.value = nativeAd
+                            if (lfo2NativeHigh1Ads.isNotBlank()) {
+                                AdmobManager.getInstance().preloadNative(
+                                    this@SplashActivity,
+                                    lfo2NativeHigh1Ads,
+                                    object : AdCallback() {
+                                        override fun onNativeAds(nativeAd: NativeAd?) {
+                                            super.onNativeAds(nativeAd)
+                                            AdCache.getInstance().lfo2NativeHigh1 =
+                                                nativeAd
+                                        }
+                                    })
                             }
-                        })
+                        }
+//                                    2. preload alternate lfo1_native_high, lfo1_native
+                        AdmobManager.getInstance().preloadAlternateNative(
+                            this@SplashActivity,
+                            lfo1NativeAds,
+                            object : AdCallback() {
+                                override fun onNativeAds(nativeAd: NativeAd?) {
+                                    super.onNativeAds(nativeAd)
+                                    AdCache.getInstance().lfo1Native.value = nativeAd
+                                }
+                            })
+                    } else if (!SharedPrefs.getBoolean(this@SplashActivity, Constants.SKIP_ONBOARD)) {
+                        preloadNativeOb4()
+                    }
                 }
 
                 override fun onNextScreen() {
@@ -178,6 +193,25 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         }
     }
 
+    private fun preloadNativeOb1() {
+        AdmobManager.getInstance()
+            .preloadAlternateNative(this, onb1NativeAds, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob1Native = nativeAd
+                }
+            })
+    }
+    private fun preloadNativeOb4() {
+        AdmobManager.getInstance()
+            .preloadFullScreenNative(this, AdIds.ob4_native_high, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdCache.getInstance().ob4NativeHigh = nativeAd
+                }
+            })
+    }
+
 
     private fun startMain() {
         if (!appPreferences.isChooseLanguage) {
@@ -192,8 +226,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
-        }
-        else {
+        } else {
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
