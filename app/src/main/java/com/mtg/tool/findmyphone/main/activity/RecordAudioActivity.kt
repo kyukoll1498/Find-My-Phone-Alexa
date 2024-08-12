@@ -146,7 +146,7 @@ class RecordAudioActivity :
         binding.btnSave.visibility = View.VISIBLE
         binding.frAd.visibility = View.GONE
         binding.frAd2.visibility = View.VISIBLE
-        AdmobManager.getInstance().loadNative(this, BuildConfig.native_import, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
+        AdmobManager.getInstance().loadNative(this, BuildConfig.native_record_save, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
     }
 
     private fun cutAudio15s() {
