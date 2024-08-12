@@ -9,12 +9,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="#eaeaea"/>
-
+            android:layout_height="0.5dp"
+            android:background="#EAEAEA"/>
         <ImageView
             android:layout_width="@dimen/_17sdp"
             android:layout_height="@dimen/_12sdp"

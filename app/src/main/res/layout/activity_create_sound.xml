@@ -50,7 +50,7 @@
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/fr_ad"
+        app:layout_constraintBottom_toTopOf="@id/container_ads"
         app:layout_constraintTop_toBottomOf="@id/layout_top">
 
         <View
@@ -147,10 +147,11 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_minus30sdp"
             android:backgroundTint="#ACACAC"
+            android:maxWidth="@dimen/_120sdp"
             android:fontFamily="@font/poppins_semibold"
             android:hint="@string/enter_name_sound"
             android:imeOptions="actionDone"
-            android:maxLength="21"
+            android:maxLength="50"
             android:singleLine="true"
             android:textColor="#404040"
             android:textColorHint="#ACACAC"
@@ -224,7 +225,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_48sdp"
-        android:layout_marginBottom="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/bg_action_primary"
         android:elevation="5dp"
         android:fontFamily="@font/poppins_bold"
@@ -234,18 +235,35 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_16sdp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/fr_ad"
+        app:layout_constraintBottom_toTopOf="@+id/container_ads"
         app:layout_constraintTop_toBottomOf="@+id/ct_save_record"
         app:layout_constraintVertical_bias="1" />
 
-
     <FrameLayout
-        android:id="@+id/fr_ad"
+        android:id="@+id/container_ads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent">
+        <FrameLayout
+            android:id="@+id/fr_ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <include layout="@layout/fake_loading" />
+            <include layout="@layout/fake_loading" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fr_ad2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <include layout="@layout/fake_loading" />
+        </FrameLayout>
     </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
