@@ -34,7 +34,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/_22sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:background="@drawable/bg_action_ads_sound"
+                android:background="@drawable/bg_radius_gradient"
                 android:elevation="5dp"
                 android:fontFamily="@font/poppins_bold"
                 android:foreground="?attr/selectableItemBackground"
@@ -117,6 +117,7 @@
             android:layout_height="@dimen/_15sdp"
             android:layout_gravity="end"
             android:elevation="1dp"
+            android:visibility="gone"
             android:src="@drawable/ic_ads_info_sound"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

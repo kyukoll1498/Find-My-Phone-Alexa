@@ -26,8 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:background="@drawable/bg_notification"
-            android:backgroundTint="@color/orange_200"
+            android:background="@drawable/bg_radius_gradient"
             android:layout_marginEnd="@dimen/_16sdp"
             android:layout_marginStart="@dimen/_10sdp">
 
@@ -39,6 +38,7 @@
                 android:layout_marginEnd="@dimen/_4sdp"
                 android:fontFamily="@font/poppins_medium"
                 android:paddingStart="@dimen/_6sdp"
+                android:includeFontPadding="false"
                 android:ellipsize="marquee"
                 android:text="@string/txt_touch_here_notify"
                 android:textColor="@color/white"
