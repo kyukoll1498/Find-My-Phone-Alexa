@@ -242,24 +242,14 @@
     <FrameLayout
         android:id="@+id/container_ads"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".35"
         android:layout_marginHorizontal="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent">
         <FrameLayout
             android:id="@+id/fr_ad"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_4sdp"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <include layout="@layout/fake_loading" />
-        </FrameLayout>
-        <FrameLayout
-            android:id="@+id/fr_ad2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <include layout="@layout/fake_loading" />

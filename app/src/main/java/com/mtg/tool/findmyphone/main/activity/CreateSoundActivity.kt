@@ -52,7 +52,7 @@ class CreateSoundActivity :
         super.loadAds()
         AdmobManager.getInstance().loadNative(
             this,
-            AdIds.native_sound,
+            AdIds.native_add,
             binding.frAd,
             com.common.control.R.layout.custom_native_ads_2
         )
