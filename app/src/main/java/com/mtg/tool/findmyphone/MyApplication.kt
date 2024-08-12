@@ -97,7 +97,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
     }
 
     override fun getOpenAppAdId(): String {
-        return BuildConfig.open_app
+        return BuildConfig.app_reopen
     }
 
     override fun getPolicyUrl(): String {

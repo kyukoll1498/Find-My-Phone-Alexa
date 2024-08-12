@@ -43,7 +43,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 //        setUpRate()
         setupViewpager()
 //        setupDrawerNavigation()
-        AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_home, binding.frAd)
+        AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_home, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 

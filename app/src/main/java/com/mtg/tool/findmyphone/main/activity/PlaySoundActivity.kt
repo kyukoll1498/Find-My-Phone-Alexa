@@ -56,8 +56,8 @@ class PlaySoundActivity :
         setUpWithFileSound()
         setSeekbarView()
         setDetailCommandView()
-        AdmobManager.getInstance()
-            .loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
+//        AdmobManager.getInstance()
+//            .loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
