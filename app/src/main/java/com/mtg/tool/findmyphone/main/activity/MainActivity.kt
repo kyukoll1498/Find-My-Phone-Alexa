@@ -35,7 +35,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     override fun initView() {
-        changeStatusBar(ContextCompat.getColor(this, R.color._138EFF))
+        changeStatusBar(Color.parseColor("#e7f4ff"))
 //        setUpRate()
         setupViewpager()
 //        setupDrawerNavigation()
