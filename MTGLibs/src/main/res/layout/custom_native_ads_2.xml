@@ -139,7 +139,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/poppins_bold"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_14sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
             android:layout_marginHorizontal="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:foreground="?attr/selectableItemBackground"
