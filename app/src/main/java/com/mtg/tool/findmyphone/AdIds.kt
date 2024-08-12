@@ -51,6 +51,13 @@ object AdIds {
         app_reopen =
             if (RemoteConfigManager.instance!!._401_app_o_reopen) BuildConfig.app_reopen else ""
 
+        native_home =  if (RemoteConfigManager.instance!!._501_home_o_native) BuildConfig.native_home else ""
+        banner_home =  if (RemoteConfigManager.instance!!._502_home_o_banner) BuildConfig.banner_home else ""
+        native_sound =  if (RemoteConfigManager.instance!!._601_sound_o_native) BuildConfig.native_sound else ""
+        native_effect =  if (RemoteConfigManager.instance!!._602_sound_o_native) BuildConfig.native_effect else ""
+        native_add =  if (RemoteConfigManager.instance!!._701_add_o_native) BuildConfig.native_add else ""
+        native_tutorial =  if (RemoteConfigManager.instance!!._901_tutorial_o_native) BuildConfig.native_tutorial else ""
+
     }
 
     var app_reopen = BuildConfig.app_reopen
