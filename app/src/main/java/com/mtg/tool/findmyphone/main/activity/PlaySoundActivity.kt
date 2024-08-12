@@ -49,11 +49,15 @@ class PlaySoundActivity :
         registerVolumeReceiver()
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
         currentSoundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as SoundItem
+        if (currentSoundItem.avatar == R.drawable.ic_default_audio_avatar) {
+            binding.ivSoundAvatar.setPadding(100, 100, 100, 100)
+        }
         setUpUI()
         setUpWithFileSound()
         setSeekbarView()
         setDetailCommandView()
-        AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
+        AdmobManager.getInstance()
+            .loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
@@ -181,11 +185,16 @@ class PlaySoundActivity :
         }
 
         binding.ivEdit.setOnClickListener {
-            RenameDialog(this@PlaySoundActivity){state, name ->
+            RenameDialog(this@PlaySoundActivity) { state, name ->
                 run {
                     if (state) {
                         binding.tvName.text = name
-                        currentSoundItem.soundPath?.let { it1 -> AppRepository.updateName(it1, name) }
+                        currentSoundItem.soundPath?.let { it1 ->
+                            AppRepository.updateName(
+                                it1,
+                                name
+                            )
+                        }
                         sendBroadcast(Intent(ACTION_UPDATE_AUDIO_IMPORT))
                     }
                 }
@@ -193,7 +202,7 @@ class PlaySoundActivity :
         }
 
         binding.ivDelete.setOnClickListener {
-            DeleteDialog(this@PlaySoundActivity, binding.tvName.text.toString()){
+            DeleteDialog(this@PlaySoundActivity, binding.tvName.text.toString()) {
                 if (it) {
                     logEvent("click_add_audio_delete")
                     currentSoundItem.soundPath?.let { it1 -> AppRepository.deleteSound(it1) }
@@ -219,7 +228,7 @@ class PlaySoundActivity :
 
     private fun registerVolumeReceiver() {
         receiver = VolumeChangeReceiver(this, this)
-        BroadcastUtils.registerReceiver(this,receiver, IntentFilter(ACTION_VOLUME_CHANGED))
+        BroadcastUtils.registerReceiver(this, receiver, IntentFilter(ACTION_VOLUME_CHANGED))
     }
 
     private fun updateDuration(duration: Int) {
