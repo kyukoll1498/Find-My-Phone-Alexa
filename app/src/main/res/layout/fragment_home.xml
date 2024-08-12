@@ -138,7 +138,7 @@
         android:padding="@dimen/_8sdp"
         android:text="@string/activation_text2"
         android:textColor="#7E7E7E"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/_12sdp"
         android:translationY="-2.52sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -169,7 +169,7 @@
             android:lineSpacingExtra="5sp"
             android:text="@string/txt_active"
             android:textColor="#7E7E7E"
-            android:textSize="@dimen/_15sdp" />
+            android:textSize="@dimen/_12sdp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

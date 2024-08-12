@@ -74,8 +74,8 @@ object AdIds {
             if (RemoteConfigManager.instance!!._704_record_o_native) BuildConfig.native_record_save else ""
         banner_setting =
             if (RemoteConfigManager.instance!!._801setting_o_banner) BuildConfig.banner_setting else ""
-        banner_tutorial =
-            if (RemoteConfigManager.instance!!._901_tutorial_o_banner) BuildConfig.banner_tutorial else ""
+        native_tutorial =
+            if (RemoteConfigManager.instance!!._901_tutorial_o_banner) BuildConfig.native_tutorial else ""
 
 
     }
@@ -115,5 +115,5 @@ object AdIds {
     var native_record = BuildConfig.native_record
     var native_record_save = BuildConfig.native_record_save
     var banner_setting = BuildConfig.banner_setting
-    var banner_tutorial = BuildConfig.banner_tutorial
+    var native_tutorial = BuildConfig.native_tutorial
 }

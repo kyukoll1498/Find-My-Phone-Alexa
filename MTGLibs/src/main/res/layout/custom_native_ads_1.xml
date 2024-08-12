@@ -15,7 +15,13 @@
             android:layout_width="@dimen/_17sdp"
             android:layout_height="@dimen/_12sdp"
             android:adjustViewBounds="true"
+            android:elevation="@dimen/_1sdp"
             android:src="@drawable/ic_native_ads_1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#c6c6c6"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,10 +62,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:fontFamily="@font/poppins_semibold"
                     android:singleLine="true"
                     android:text="My tilte"
                     android:textColor="#2D2D2D"
-                    android:fontFamily="@font/poppins_bold"
                     android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
@@ -79,11 +85,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
                             android:gravity="bottom"
                             android:maxLines="2"
-                            android:fontFamily="@font/poppins_regular"
                             android:text="dsa sd sad dsa sa sad ád a\ndsaddsa  dsa dsa"
-                            android:textColor="#2D2D2D"
+                            android:textColor="#8D8D8D"
                             android:textSize="@dimen/_10sdp" />
 
 
@@ -96,17 +102,17 @@
             <Button
                 android:id="@+id/ad_call_to_action"
                 android:layout_width="@dimen/_68sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/_16sdp"
-                android:background="@drawable/bg_action_native_1"
+                android:background="@drawable/bg_action_native_2"
                 android:backgroundTint="@color/color_action_ads"
+                android:fontFamily="@font/poppins_medium"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:text="Install"
                 android:includeFontPadding="false"
+                android:text="Install"
                 android:textAllCaps="false"
-                android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_12sdp" />
 

@@ -105,8 +105,8 @@
 
                 <ImageView
                     android:id="@+id/iv_home"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:src="@drawable/ic_home_selected" />
 
                 <TextView
@@ -117,7 +117,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/home"
                     android:textColor="#1380FF"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_11sdp" />
             </LinearLayout>
 
             <LinearLayout
@@ -130,8 +130,8 @@
 
                 <ImageView
                     android:id="@+id/iv_sound"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:src="@drawable/ic_sound" />
 
                 <TextView
@@ -142,7 +142,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/sound"
                     android:textColor="@color/_818181"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_11sdp" />
             </LinearLayout>
 
             <LinearLayout
@@ -155,8 +155,8 @@
 
                 <ImageView
                     android:id="@+id/iv_add"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:src="@drawable/ic_import" />
 
                 <TextView
@@ -167,7 +167,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/add"
                     android:textColor="@color/_818181"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_11sdp" />
             </LinearLayout>
 
             <LinearLayout
@@ -180,8 +180,8 @@
 
                 <ImageView
                     android:id="@+id/iv_setting"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:src="@drawable/ic_settings" />
 
                 <TextView
@@ -192,7 +192,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/settings"
                     android:textColor="@color/_818181"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_11sdp" />
             </LinearLayout>
 
 
