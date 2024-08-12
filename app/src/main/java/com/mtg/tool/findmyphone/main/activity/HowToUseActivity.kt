@@ -1,17 +1,32 @@
 package com.mtg.tool.findmyphone.main.activity
 
+import android.os.Bundle
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.BuildConfig
+import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
-import com.mtg.tool.findmyphone.databinding.ActivityCreateSoundBinding
 import com.mtg.tool.findmyphone.databinding.ActivityHowToUseBinding
+import com.mtg.tool.findmyphone.main.activity.jpcompose.HowToUseScreen
 
-class HowToUseActivity: BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseBinding::inflate) {
+class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseBinding::inflate) {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Hiển thị HowToUseScreen trong ComposeView
+        binding.composeView.setContent {
+            HowToUseScreen()
+        }
+        R.layout.activity_how_to_use
+        initView()
+        addEvent()
+    }
+
     override fun initView() {
-        AdmobManager.getInstance().loadCollapsibleBanner(this, BuildConfig.collapsible_banner_how_to_use, binding.frAd)
+        AdmobManager.getInstance()
+            .loadCollapsibleBanner(this, BuildConfig.collapsible_banner_how_to_use, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
-
     }
 
     override fun addEvent() {
