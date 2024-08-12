@@ -2,6 +2,7 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Intent
 import android.os.CountDownTimer
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.common.control.manager.AdmobManager
@@ -48,7 +49,7 @@ class RecordAudioActivity :
             this,
             BuildConfig.native_record,
             binding.frAd,
-            R.layout.custom_native_ads_30
+            com.common.control.R.layout.custom_native_ads_2
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
@@ -133,6 +134,9 @@ class RecordAudioActivity :
         binding.ctRecordController.visibility = View.GONE
         binding.ctSaveRecord.visibility = View.VISIBLE
         binding.btnSave.visibility = View.VISIBLE
+        binding.frAd.visibility = View.GONE
+        binding.frAd2.visibility = View.VISIBLE
+        AdmobManager.getInstance().loadNative(this, BuildConfig.native_import, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
     }
 
     private fun cutAudio15s() {
@@ -268,6 +272,10 @@ class RecordAudioActivity :
 
     override fun onBackPressed() {
         if (binding.ctSaveRecord.visibility == View.VISIBLE) {
+            binding.frAd.visibility = View.VISIBLE
+            binding.frAd2.visibility = View.GONE
+            binding.frAd2.removeAllViews()
+            LayoutInflater.from(this).inflate(R.layout.fake_loading, binding.frAd2)
             pauseAudio()
             binding.tvPlayerController.text = getString(R.string.play)
             binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))

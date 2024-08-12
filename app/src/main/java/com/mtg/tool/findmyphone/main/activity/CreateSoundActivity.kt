@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.common.control.manager.AdmobManager
@@ -210,6 +211,7 @@ class CreateSoundActivity :
                 var file = FileUtils.saveFileFromUri(uri, CacheUtils.getNewNameFileAudio(this), this)
 
                 binding.tvPath.text = FileUtils.getFileNameAudioFromUri(uri, this, 12)
+                binding.edtName.setText(FileUtils.getFileNameAudioFromUri(uri, this, 100))
                 var duration = file?.let { FileUtils.getDurationFromAudioFile(it.path) }
 //                if (duration != null && duration > 15000) {
 //                    file?.path?.let { AudioUtil.cutAudio(this, 0, 15*1000, duration, it, true){} }
@@ -228,6 +230,9 @@ class CreateSoundActivity :
         binding.ctOptions.visibility = View.GONE
         binding.ctSaveRecord.visibility = View.VISIBLE
         binding.btnSave.visibility = View.VISIBLE
+        binding.frAd.visibility = View.GONE
+        binding.frAd2.visibility = View.VISIBLE
+        AdmobManager.getInstance().loadNative(this, BuildConfig.native_import, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
     }
 
 
@@ -246,6 +251,10 @@ class CreateSoundActivity :
 
     override fun onBackPressed() {
         if (binding.ctSaveRecord.visibility == View.VISIBLE) {
+            binding.frAd.visibility = View.VISIBLE
+            binding.frAd2.visibility = View.GONE
+            binding.frAd2.removeAllViews()
+            LayoutInflater.from(this).inflate(R.layout.fake_loading, binding.frAd2)
             pauseAudio()
             binding.tvPlayerController.text = getString(R.string.play)
             binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
