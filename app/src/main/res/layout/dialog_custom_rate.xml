@@ -31,6 +31,8 @@
         android:text="@string/do_you_like_our_app"
         android:textAlignment="center"
         android:textColor="#F86716"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:textSize="@dimen/_18sdp"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
@@ -109,14 +111,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/bg_rate_blue"
+            android:background="@drawable/bg_radius_gradient"
+            android:layout_marginHorizontal="@dimen/_15sdp"
             android:fontFamily="@font/poppins_medium"
             android:padding="@dimen/_12sdp"
             android:text="@string/submit"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/_14sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ln_feedback" />
