@@ -1,6 +1,8 @@
 package com.mtg.tool.findmyphone.consent_dialog.remote_config
 
 import android.app.Activity
+import android.os.Build
+import com.common.control.utils.InternetUtil
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.mtg.tool.findmyphone.R
@@ -95,6 +97,12 @@ class RemoteConfigManager {
     }
 
     fun loadIsShowConsent(activity: Activity, callback: BooleanCallback) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!InternetUtil.isNetworkAvailable(activity)) {
+                callback.onResult(false)
+                return
+            }
+        }
         if (isLoading && remoteConfig == null) {
             Thread {
                 while (isLoading || remoteConfig == null) {
@@ -143,7 +151,7 @@ class RemoteConfigManager {
     fun loadReshowGDPRSplashCount(activity: Activity, callback: NumberCallback) {
         if (isLoading && remoteConfig == null) {
             Thread {
-                while (isLoading && remoteConfig == null) {
+                while (isLoading || remoteConfig == null) {
                     try {
                         Thread.sleep(100)
                     } catch (e: InterruptedException) {
