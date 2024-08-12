@@ -34,6 +34,20 @@ class RemoteConfigManager {
    var _306_ob6_n_native: Boolean = true
    var _401_app_o_reopen: Boolean = true
 
+    var _501_home_o_native: Boolean = true
+    var _502_home_o_banner: Boolean = true
+    var _601_sound_o_banner: Boolean = true
+    var _601_sound_o_native: Boolean = true
+    var _602_sound_o_native: Boolean = true
+    var _701_add_o_banner: Boolean = true
+    var _702_create_o_native: Boolean = true
+    var _703_import_o_native: Boolean = true
+    var _704_record_o_native: Boolean = true
+    var _704_record_save_o_native: Boolean = true
+    var _801setting_o_banner: Boolean = true
+    var _901_tutorial_o_banner: Boolean = true
+
+
     fun loadRemote() {
         if (isLoading) {
             return
@@ -71,6 +85,19 @@ class RemoteConfigManager {
                 _306_ob6_n_native_high = config.getBoolean("ob6_native_high")
                 _306_ob6_n_native = config.getBoolean("ob6_native")
                 _401_app_o_reopen = config.getBoolean("app_reopen")
+
+                _501_home_o_native = config.getBoolean("native_home")
+                _502_home_o_banner = config.getBoolean("banner_home")
+                _601_sound_o_banner = config.getBoolean("banner_sound")
+                _601_sound_o_native = config.getBoolean("native_sound")
+                _602_sound_o_native = config.getBoolean("native_effect")
+                _701_add_o_banner = config.getBoolean("banner_add")
+                _702_create_o_native = config.getBoolean("native_create")
+                _703_import_o_native = config.getBoolean("native_import")
+                _704_record_o_native = config.getBoolean("native_record")
+                _704_record_save_o_native = config.getBoolean("native_record_save")
+                _801setting_o_banner = config.getBoolean("banner_setting")
+                _901_tutorial_o_banner = config.getBoolean("banner_tutorial")
 
                 isShowNativeFullScreenOnboard = _304_ob4_n_native_high || _304_ob4_n_native_high_1 || _304_ob4_n_native_high_2 || _304_ob4_n_native
             } else {

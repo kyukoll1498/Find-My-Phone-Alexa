@@ -50,6 +50,34 @@ object AdIds {
             if (RemoteConfigManager.instance!!._306_ob6_n_native) BuildConfig.ob6_native else ""
         app_reopen =
             if (RemoteConfigManager.instance!!._401_app_o_reopen) BuildConfig.app_reopen else ""
+
+
+        native_home =
+            if (RemoteConfigManager.instance!!._501_home_o_native) BuildConfig.native_home else ""
+        banner_home =
+            if (RemoteConfigManager.instance!!._502_home_o_banner) BuildConfig.banner_home else ""
+        banner_sound =
+            if (RemoteConfigManager.instance!!._601_sound_o_banner) BuildConfig.banner_sound else ""
+        native_sound =
+            if (RemoteConfigManager.instance!!._601_sound_o_native) BuildConfig.native_sound else ""
+        native_effect =
+            if (RemoteConfigManager.instance!!._602_sound_o_native) BuildConfig.native_effect else ""
+        banner_add =
+            if (RemoteConfigManager.instance!!._701_add_o_banner) BuildConfig.banner_add else ""
+        native_create =
+            if (RemoteConfigManager.instance!!._702_create_o_native) BuildConfig.native_create else ""
+        native_import =
+            if (RemoteConfigManager.instance!!._703_import_o_native) BuildConfig.native_import else ""
+        native_record =
+            if (RemoteConfigManager.instance!!._704_record_o_native) BuildConfig.native_record else ""
+        native_record_save =
+            if (RemoteConfigManager.instance!!._704_record_o_native) BuildConfig.native_record_save else ""
+        banner_setting =
+            if (RemoteConfigManager.instance!!._801setting_o_banner) BuildConfig.banner_setting else ""
+        banner_tutorial =
+            if (RemoteConfigManager.instance!!._901_tutorial_o_banner) BuildConfig.banner_tutorial else ""
+
+
     }
 
     var app_reopen = BuildConfig.app_reopen
@@ -75,4 +103,17 @@ object AdIds {
     var ob5_native = BuildConfig.ob5_native
     var ob6_native_high = BuildConfig.ob6_native_high
     var ob6_native = BuildConfig.ob6_native
+
+    var native_home = BuildConfig.native_home
+    var banner_home = BuildConfig.banner_home
+    var banner_sound = BuildConfig.banner_sound
+    var native_sound = BuildConfig.native_sound
+    var native_effect = BuildConfig.native_effect
+    var banner_add = BuildConfig.banner_add
+    var native_create = BuildConfig.native_create
+    var native_import = BuildConfig.native_import
+    var native_record = BuildConfig.native_record
+    var native_record_save = BuildConfig.native_record_save
+    var banner_setting = BuildConfig.banner_setting
+    var banner_tutorial = BuildConfig.banner_tutorial
 }

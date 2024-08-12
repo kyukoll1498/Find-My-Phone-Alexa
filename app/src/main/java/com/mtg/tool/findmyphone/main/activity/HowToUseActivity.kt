@@ -24,8 +24,7 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
     }
 
     override fun initView() {
-        AdmobManager.getInstance()
-            .loadCollapsibleBanner(this, BuildConfig.collapsible_banner_how_to_use, binding.frAd)
+        AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_tutorial, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 

@@ -87,14 +87,14 @@ class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::i
     }
 
     private fun loadInter() {
-        if (AdCache.getInstance().interSound == null) {
-            AdmobManager.getInstance()
-                .loadInterAds(requireActivity(), BuildConfig.inter_sound, object : AdCallback() {
-                    override fun onResultInterstitialAd(interstitialAd: InterstitialAd) {
-                        super.onResultInterstitialAd(interstitialAd)
-                        AdCache.getInstance().interSound = interstitialAd
-                    }
-                })
-        }
+//        if (AdCache.getInstance().interSound == null) {
+//            AdmobManager.getInstance()
+//                .loadInterAds(requireActivity(), BuildConfig.inter_sound, object : AdCallback() {
+//                    override fun onResultInterstitialAd(interstitialAd: InterstitialAd) {
+//                        super.onResultInterstitialAd(interstitialAd)
+//                        AdCache.getInstance().interSound = interstitialAd
+//                    }
+//                })
+//        }
     }
 }
