@@ -116,7 +116,17 @@ class RecordAudioActivity :
         restartTimer()
         binding.ivRecordController.setImageDrawable(getDrawable(R.drawable.ic_micro_start))
         updateCurrentSound()
+        binding.edtName.setText(getNameAudio())
         gotoSave()
+    }
+
+    private fun getNameAudio(): String {
+        var name = "audio"
+        var id = 1
+        while (AppRepository.checkHasSound(currentSoundItem.name!!)){
+            id++
+        }
+        return "$name$id"
     }
 
     private fun updateCurrentSound() {
