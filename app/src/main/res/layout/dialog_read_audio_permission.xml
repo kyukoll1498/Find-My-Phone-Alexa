@@ -17,7 +17,7 @@
             android:id="@+id/tv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:text="@string/allow_clap_to_find_your_phone_to_access_audio_files"
             android:textColor="#3C3C3C"

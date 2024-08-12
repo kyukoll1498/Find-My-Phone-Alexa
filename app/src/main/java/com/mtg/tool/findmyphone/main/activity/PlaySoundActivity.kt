@@ -18,6 +18,7 @@ import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
+import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
@@ -56,8 +57,8 @@ class PlaySoundActivity :
         setUpWithFileSound()
         setSeekbarView()
         setDetailCommandView()
-//        AdmobManager.getInstance()
-//            .loadCollapsibleBanner(this, BuildConfig.collapsible_banner_detail_sound, binding.frAd)
+        AdmobManager.getInstance()
+            .loadNative(this, AdIds.native_effect, binding.frAd, com.common.control.R.layout.custom_native_ads_1)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
