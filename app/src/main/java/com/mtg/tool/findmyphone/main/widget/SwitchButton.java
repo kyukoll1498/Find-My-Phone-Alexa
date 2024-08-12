@@ -168,7 +168,7 @@ public class SwitchButton extends View implements Checkable {
 
         background = optColor(typedArray,
                 R.styleable.SwitchButton_sb_background,
-                Color.WHITE);//Color.WHITE;
+                Color.GRAY);//Color.WHITE;
 
         enableEffect = optBoolean(typedArray,
                 R.styleable.SwitchButton_sb_enable_effect,

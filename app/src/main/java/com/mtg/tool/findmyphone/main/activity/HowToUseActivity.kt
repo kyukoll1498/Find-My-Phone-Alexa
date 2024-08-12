@@ -24,7 +24,7 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
     }
 
     override fun initView() {
-        AdmobManager.getInstance().loadBanner(this, BuildConfig.banner_tutorial, binding.frAd)
+        AdmobManager.getInstance().loadBanner(this, BuildConfig.native_tutorial, binding.frAd)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 

@@ -77,7 +77,7 @@
             android:text="@string/next"
             android:textColor="@color/white"
             android:textSize="@dimen/_11sdp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/iv_record_controller"
             app:layout_constraintStart_toEndOf="@+id/iv_record_controller"
             app:layout_constraintTop_toTopOf="@+id/iv_record_controller" />
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_15sdp"
             android:src="@drawable/ic_restart_record"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/iv_record_controller"
             app:layout_constraintEnd_toStartOf="@+id/iv_record_controller"
             app:layout_constraintTop_toTopOf="@+id/iv_record_controller" />

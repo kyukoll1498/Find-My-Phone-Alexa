@@ -45,9 +45,9 @@
 
                 <com.mtg.tool.findmyphone.main.widget.SwitchButton
                     android:id="@+id/sb_sound"
-                    android:layout_width="@dimen/_42sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    app:sb_checked_color="#5987FF" />
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    app:sb_checked_color="#1380FF" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,9 +89,9 @@
 
                     <com.mtg.tool.findmyphone.main.widget.SwitchButton
                         android:id="@+id/sb_flash"
-                        android:layout_width="@dimen/_42sdp"
-                        android:layout_height="@dimen/_28sdp"
-                        app:sb_checked_color="#5987FF" />
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        app:sb_checked_color="#1380FF" />
                 </LinearLayout>
 
                 <View
@@ -202,9 +202,9 @@
 
                     <com.mtg.tool.findmyphone.main.widget.SwitchButton
                         android:id="@+id/sb_vibrate"
-                        android:layout_width="@dimen/_42sdp"
-                        android:layout_height="@dimen/_28sdp"
-                        app:sb_checked_color="#5987FF" />
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        app:sb_checked_color="#1380FF" />
                 </LinearLayout>
 
                 <View

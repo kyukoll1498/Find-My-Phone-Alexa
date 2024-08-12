@@ -108,7 +108,7 @@ android {
             addConstantTo(owner, "native_record", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_record_save", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "banner_setting", "ca-app-pub-3940256099942544/6300978111")
-            addConstantTo(owner, "banner_tutorial", "ca-app-pub-3940256099942544/6300978111")
+            addConstantTo(owner, "native_tutorial", "ca-app-pub-3940256099942544/2247696110")
         }
     }
 

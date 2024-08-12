@@ -97,7 +97,7 @@ class RemoteConfigManager {
                 _704_record_o_native = config.getBoolean("native_record")
                 _704_record_save_o_native = config.getBoolean("native_record_save")
                 _801setting_o_banner = config.getBoolean("banner_setting")
-                _901_tutorial_o_banner = config.getBoolean("banner_tutorial")
+                _901_tutorial_o_banner = config.getBoolean("native_tutorial")
 
                 isShowNativeFullScreenOnboard = _304_ob4_n_native_high || _304_ob4_n_native_high_1 || _304_ob4_n_native_high_2 || _304_ob4_n_native
             } else {
