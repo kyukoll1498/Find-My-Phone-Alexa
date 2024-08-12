@@ -38,6 +38,7 @@
                 android:layout_marginEnd="@dimen/_4sdp"
                 android:fontFamily="@font/poppins_medium"
                 android:paddingStart="@dimen/_6sdp"
+                android:includeFontPadding="false"
                 android:ellipsize="marquee"
                 android:text="@string/txt_touch_here_notify"
                 android:textColor="@color/white"
