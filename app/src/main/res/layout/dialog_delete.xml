@@ -9,27 +9,22 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_radius_12"
         android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_16sdp"
         android:paddingVertical="@dimen/_20sdp"
-        android:paddingHorizontal="@dimen/_28sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="@dimen/_75sdp"
-            android:layout_height="@dimen/_75sdp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_delete_file" />
 
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_6sdp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_6sdp"
             android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:text="@string/are_you_sure_you_want_to_delete"
             android:textColor="#3C3C3C"
-            android:text="@string/are_you_sure_you_want_to_delete" />
+            android:textSize="@dimen/_14sdp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,39 +33,37 @@
 
 
             <TextView
-                android:id="@+id/tv_delete"
+                android:id="@+id/tv_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/bg_radius_8"
-                android:backgroundTint="#F06A33"
-                android:fontFamily="@font/poppins_regular"
                 android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_radius_100"
+                android:backgroundTint="#F0F0F0"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:paddingVertical="@dimen/_10sdp"
-                android:text="@string/delete"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textFontWeight="700"
+                android:text="@string/cancel"
+                android:textAllCaps="true"
+                android:textColor="#828287"
                 android:textSize="@dimen/_12sdp" />
+
             <TextView
-                android:id="@+id/tv_cancel"
+                android:id="@+id/tv_delete"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_4sdp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_radius_8"
-                android:backgroundTint="#EBEBEB"
-                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/bg_radius_gradient"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
                 android:gravity="center"
                 android:paddingVertical="@dimen/_10sdp"
-                android:text="@string/cancel"
-                android:textAllCaps="false"
-                android:textColor="#605D5D"
-                android:textFontWeight="700"
+                android:text="@string/delete"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp" />
-
-
 
 
         </LinearLayout>
