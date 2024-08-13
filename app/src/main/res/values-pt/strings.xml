@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Clap to find your phone</string>
     <string name="text_on_boarding_1">Encontre facilmente seu telefone perdido batendo palmas</string>
     <string name="text_on_boarding_2">Vários efeitos sonoros para escolher</string>
     <string name="text_on_boarding_3">Bata palmas para ligar a lanterna no escuro</string>
@@ -54,10 +55,10 @@
     <string name="txt_touch_here_notify">Toque aqui para desativar</string>
     <string name="touch_here_to_deactivate">Toque aqui para desativar</string>
     <string name="clap_to_find_your_phone_is_running">Bata palmas para descobrir que seu telefone está funcionando</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"Não há arquivos.\\n Vamos tentar "</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">Não há arquivos.\\n Vamos tentar <font color="#1380FF">criar novos arquivos</font> agora.</string>
     <string name="create_sound">Criar som</string>
     <string name="import_audio">Importar áudio</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">"Permitir "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Permitir que <b>Clap To Find Your Phone</b> acesse o microfone</string>
     <string name="deny">Negar</string>
     <string name="allow">Permitir</string>
     <string name="record_sound">Gravar som</string>
@@ -66,7 +67,7 @@
     <string name="name_sound_is_empty">O som do nome está vazio</string>
     <string name="create_new">Criar novo</string>
     <string name="name_sound_already_exists">O nome do som já existe</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">"Permitir "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Permitir que <b>Clap To Find Your Phone</b> acesse arquivos de áudio</string>
     <string name="how_to_use">Como usar</string>
     <string name="activate">ATIVAR</string>
     <string name="click_the_activate_button">Clique no botão ativar</string>
@@ -78,7 +79,7 @@
     <string name="allow_permission_to_access_microphone_audio_files">Permita permissão para acessar o microfone. arquivos de áudio</string>
     <string name="txt_settings">CONFIGURAÇÕES</string>
     <string name="before_activating_set_flashlight_adjust_volume">Antes de ativar, ajuste a lanterna, ajuste o volume.</string>
-    <string name="activation_text2">"Clique para "</string>
+    <string name="activation_text2">Clique para <font color="#1380FF">botão ativar</font> e <font color="#1380FF">bater palmas</font> para encontrar seu telefone</string>
     <string name="save">Salvar</string>
     <string name="rename">Renomear</string>
     <string name="enter_name">Digite o nome</string>
@@ -87,7 +88,7 @@
     <string name="delete">Excluir</string>
     <string name="maybe_later">Talvez mais tarde</string>
     <string name="submit">Enviar</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">"Permitir "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Permitir que <b>Clap To Find Your Phone</b> acesse a notificação</string>
     <string name="grant_permission">Solicitação de permissão</string>
     <string name="please_grant">Por favor, conceda permissão para fornecer localizador de telefone batendo palmas.</string>
     <string name="record_permission">Permissão de gravação</string>

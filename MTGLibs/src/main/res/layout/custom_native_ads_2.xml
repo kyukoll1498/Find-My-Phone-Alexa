@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/bg_native_ads_2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:layout_width="@dimen/_14sdp"
@@ -115,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_26sdp"
             android:layout_marginTop="@dimen/_6sdp"
+            app:layout_constraintBottom_toTopOf="@id/ad_call_to_action"
             app:layout_constraintTop_toBottomOf="@id/ll_content">
 
             <com.google.android.gms.ads.nativead.MediaView
@@ -147,8 +148,7 @@
             android:text="Install"
             android:includeFontPadding="false"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_13sdp"
-            app:layout_constraintTop_toBottomOf="@id/ct_media" />
+            android:textSize="@dimen/_13sdp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
