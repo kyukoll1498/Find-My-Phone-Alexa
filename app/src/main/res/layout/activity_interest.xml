@@ -19,26 +19,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:paddingTop="@dimen/_20sdp"
             android:paddingBottom="@dimen/_10sdp"
             android:text="@string/where_do_you_usually_lose_your_phone"
             android:textColor="@color/color_404040"
-            android:fontFamily="@font/poppins_medium"
             android:textSize="@dimen/_15sdp"
-            android:layout_marginHorizontal="@dimen/_25sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/_8sdp"
             android:layout_marginHorizontal="@dimen/_13sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView">
+
             <GridLayout
                 android:id="@+id/interestsGridLayout"
                 android:layout_width="match_parent"
@@ -124,7 +126,6 @@
                     android:text="@string/others" />
             </GridLayout>
         </androidx.core.widget.NestedScrollView>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
