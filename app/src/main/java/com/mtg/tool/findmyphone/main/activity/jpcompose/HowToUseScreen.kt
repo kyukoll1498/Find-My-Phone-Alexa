@@ -2,6 +2,7 @@ package com.mtg.tool.findmyphone.main.activity.jpcompose
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -22,46 +23,51 @@ import com.mtg.tool.findmyphone.R
 
 @Composable
 fun HowToUseScreen() {
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-
-        HowToUseItem(
-            icon = painterResource(id = R.drawable.ic_guide_active),
-            title = "1. " + stringResource(id = R.string.activate),
-            description = stringResource(id = R.string.click_the_activate_button),
-            backgroundColor = Color(0xFFF5F9FF)
-        )
-
-        HowToUseItem(
-            icon = painterResource(id = R.drawable.ic_guide_clap),
-            title = "2. " + stringResource(id = R.string.clap),
-            description = stringResource(id = R.string.double_clap_to_find_your_phone),
-            backgroundColor = Color(0xFFF5F9FF)
-        )
-
-        HowToUseItem(
-            icon = painterResource(id = R.drawable.ic_guide_detect),
-            title = "3. " + stringResource(id = R.string.detect),
-            description = stringResource(id = R.string.app_detect_the_clap_and_start_ringing),
-            backgroundColor = Color(0xFFF5F9FF)
-        )
-
-        HowToUseItem(
-            icon = painterResource(id = R.drawable.ic_guide_settings),
-            title = "4. " + stringResource(id = R.string.txt_settings),
-            description = stringResource(id = R.string.before_activating_set_flashlight_adjust_volume),
-            backgroundColor = Color(0xFFF5F9FF)
-        )
-
-        HowToUseItem(
-            icon = painterResource(id = R.drawable.ic_guide_pms),
-            title = "5. " + stringResource(id = R.string.permission),
-            description = stringResource(id = R.string.allow_permission_to_access_microphone_audio_files),
-            backgroundColor = Color(0xFFF5F9FF)
-        )
+        item {
+            HowToUseItem(
+                icon = painterResource(id = R.drawable.ic_guide_active),
+                title = "1. " + stringResource(id = R.string.activate),
+                description = stringResource(id = R.string.click_the_activate_button),
+                backgroundColor = Color(0xFFF5F9FF)
+            )
+        }
+        item {
+            HowToUseItem(
+                icon = painterResource(id = R.drawable.ic_guide_clap),
+                title = "2. " + stringResource(id = R.string.clap),
+                description = stringResource(id = R.string.double_clap_to_find_your_phone),
+                backgroundColor = Color(0xFFF5F9FF)
+            )
+        }
+        item {
+            HowToUseItem(
+                icon = painterResource(id = R.drawable.ic_guide_detect),
+                title = "3. " + stringResource(id = R.string.detect),
+                description = stringResource(id = R.string.app_detect_the_clap_and_start_ringing),
+                backgroundColor = Color(0xFFF5F9FF)
+            )
+        }
+        item {
+            HowToUseItem(
+                icon = painterResource(id = R.drawable.ic_guide_settings),
+                title = "4. " + stringResource(id = R.string.txt_settings),
+                description = stringResource(id = R.string.before_activating_set_flashlight_adjust_volume),
+                backgroundColor = Color(0xFFF5F9FF)
+            )
+        }
+        item {
+            HowToUseItem(
+                icon = painterResource(id = R.drawable.ic_guide_pms),
+                title = "5. " + stringResource(id = R.string.permission),
+                description = stringResource(id = R.string.allow_permission_to_access_microphone_audio_files),
+                backgroundColor = Color(0xFFF5F9FF)
+            )
+        }
     }
 }
 
