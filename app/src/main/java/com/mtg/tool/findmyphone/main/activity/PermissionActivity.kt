@@ -3,12 +3,14 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.Manifest
 import android.content.Intent
+import android.graphics.Paint
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AdIds
+import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
@@ -23,6 +25,8 @@ class PermissionActivity :
     private val onb6NativeAds = arrayListOf(AdIds.ob6_native_high, AdIds.ob6_native)
 
     override fun initView() {
+        binding.llContinue.paintFlags = Paint.UNDERLINE_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG
+        binding.llContinue.setText(R.string.skip)
         SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
         logEvent("view_permission")
         showNative();
@@ -82,6 +86,7 @@ class PermissionActivity :
             } else {
                 // Auto checked sbPermission when allow permission record micro
                 turnOnSwitchButton()
+                MainActivity.start(this)
 //                hasMicrophonePermission = true
 
                 // Change color button ll_continue

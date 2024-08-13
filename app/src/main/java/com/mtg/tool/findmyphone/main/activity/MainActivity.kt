@@ -1,5 +1,6 @@
 package com.mtg.tool.findmyphone.main.activity
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -32,6 +33,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun binding() {
         isFullScreen = false
         super.binding()
+    }
+
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
     override fun initView() {
