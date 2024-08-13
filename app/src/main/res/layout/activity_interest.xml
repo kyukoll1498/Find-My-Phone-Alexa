@@ -138,7 +138,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="@string/next"
         android:textColor="#303030"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toTopOf="@id/fr_ad"
         app:layout_constraintEnd_toEndOf="parent" />
 
