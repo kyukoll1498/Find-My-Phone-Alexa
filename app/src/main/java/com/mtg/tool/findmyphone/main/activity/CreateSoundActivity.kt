@@ -99,7 +99,7 @@ class CreateSoundActivity :
 
     private fun saveSoundItem() {
         logEvent("click_add_save_sound")
-        currentSoundItem.name = binding.edtName.text.toString()
+        currentSoundItem.name = binding.edtName.text.toString().trim()
         if (currentSoundItem.name!!.isEmpty()) {
             Toast.makeText(this, getString(R.string.name_sound_is_empty), Toast.LENGTH_SHORT).show()
         } else if (AppRepository.checkHasSound(currentSoundItem.name!!)) {
