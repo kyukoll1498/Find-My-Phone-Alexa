@@ -117,6 +117,21 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_main_audio"
+                android:drawablePadding="@dimen/_8sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="audio1"
+                android:textColor="#979797"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_center" />
+
+
+            <TextView
                 android:id="@+id/txt_inactive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -126,7 +141,7 @@
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cl_center" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
             <TextView
                 android:id="@+id/txt_active"
