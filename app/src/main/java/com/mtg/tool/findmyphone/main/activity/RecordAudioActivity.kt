@@ -40,6 +40,7 @@ class RecordAudioActivity :
     private var currentTime = 0
     private var timer: CountDownTimer? = null
     override fun initView() {
+        binding.tvNext.isSelected = true
     }
 
     override fun loadAds() {
