@@ -18,6 +18,7 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityMainBinding
+import com.mtg.tool.findmyphone.main.dialog.ExitDialog
 import com.mtg.tool.findmyphone.main.dialog.NotificationPermissionDialog
 import com.mtg.tool.findmyphone.main.dialog.RecordPermissionDialog
 import com.mtg.tool.findmyphone.main.fragment.AddFragment
@@ -265,7 +266,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 }
             })
         } else {
-            super.onBackPressed()
+            ExitDialog(this){
+                super.onBackPressed()
+            }.show()
         }
     }
 }
