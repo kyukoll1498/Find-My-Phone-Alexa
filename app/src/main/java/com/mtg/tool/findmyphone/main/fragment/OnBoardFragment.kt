@@ -33,7 +33,6 @@ class OnBoardFragment(
     override fun initView() {
         binding.imgInside.setImageResource(idImage)
         binding.tvInside.text = getString(idText)
-        binding.tvInside.setSize(20)
 
         when (position) {
             0 -> {

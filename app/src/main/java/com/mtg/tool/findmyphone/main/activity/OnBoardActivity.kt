@@ -3,11 +3,9 @@ package com.mtg.tool.findmyphone.main.activity
 import android.content.Context
 import android.content.Intent
 import android.view.View
-import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
-import com.common.control.manager.AppOpenManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AdIds
@@ -42,19 +40,7 @@ class OnBoardActivity :
     }
 
     override fun initView() {
-        showNative()
         initViewPager()
-    }
-
-    private fun showNative() {
-//        logEvent("complete_onb2")
-//        logEvent("view_onb2")
-//        AdmobManager.getInstance().showNative(
-//            this@OnBoardActivity,
-//            AdCache.getInstance().ob2NativeHigh,
-//            binding.frAd,
-//            com.common.control.R.layout.custom_native_ads_2
-//        )
     }
 
     private fun initViewPager() {
@@ -84,20 +70,14 @@ class OnBoardActivity :
                 if (position == 1) {
                     binding.indicatorView.visibility = View.VISIBLE
                     binding.tvNext.visibility = View.VISIBLE
-//                    binding.frAd.visibility = View.INVISIBLE
-//                    binding.lottie.setVisibility(View.VISIBLE)
                 }
                 if (position == 2) {
                     binding.indicatorView.visibility = View.GONE
                     binding.tvNext.visibility = View.GONE
-//                    binding.frAd.visibility = View.GONE
-//                    binding.lottie.setVisibility(View.GONE)
                 }
                 if (position == 0 || position == adapter.itemCount - 1) {
                     binding.indicatorView.visibility = View.VISIBLE
                     binding.tvNext.visibility = View.VISIBLE
-//                    binding.frAd.visibility = View.VISIBLE
-//                    binding.lottie.setVisibility(View.GONE)
                 }
                 if (position == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
                     binding.tvNext.text = getString(R.string.get_started)
