@@ -41,12 +41,12 @@
                 android:layout_marginStart="@dimen/_16sdp"
                 android:ellipsize="marquee"
                 android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="@string/app_name"
                 android:textColor="#404040"
-                android:gravity="center"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_how_to_use"
@@ -71,6 +71,7 @@
             android:id="@+id/viewpager_main"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_minus7sdp"
             app:layout_constraintBottom_toTopOf="@id/layout_bottom"
             app:layout_constraintTop_toBottomOf="@id/layout_top" />
 
@@ -115,6 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     android:text="@string/home"
                     android:textColor="#1380FF"
                     android:textSize="@dimen/_11sdp" />
@@ -140,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     android:text="@string/sound"
                     android:textColor="@color/_818181"
                     android:textSize="@dimen/_11sdp" />
@@ -165,6 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     android:text="@string/add"
                     android:textColor="@color/_818181"
                     android:textSize="@dimen/_11sdp" />
@@ -190,6 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     android:text="@string/settings"
                     android:textColor="@color/_818181"
                     android:textSize="@dimen/_11sdp" />
@@ -217,20 +222,20 @@
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:id="@+id/nav_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="start"-->
-<!--        android:fitsSystemWindows="true"-->
-<!--        app:drawerLayoutCornerSize="0dp"-->
-<!--        app:itemHorizontalPadding="@dimen/_20sdp"-->
-<!--        app:itemIconSize="@dimen/_15sdp">-->
+    <!--    <com.google.android.material.navigation.NavigationView-->
+    <!--        android:id="@+id/nav_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_gravity="start"-->
+    <!--        android:fitsSystemWindows="true"-->
+    <!--        app:drawerLayoutCornerSize="0dp"-->
+    <!--        app:itemHorizontalPadding="@dimen/_20sdp"-->
+    <!--        app:itemIconSize="@dimen/_15sdp">-->
 
-<!--        <include-->
-<!--            android:id="@+id/nav_content"-->
-<!--            layout="@layout/header_navigation" />-->
+    <!--        <include-->
+    <!--            android:id="@+id/nav_content"-->
+    <!--            layout="@layout/header_navigation" />-->
 
 
-<!--    </com.google.android.material.navigation.NavigationView>-->
+    <!--    </com.google.android.material.navigation.NavigationView>-->
 </androidx.drawerlayout.widget.DrawerLayout>
