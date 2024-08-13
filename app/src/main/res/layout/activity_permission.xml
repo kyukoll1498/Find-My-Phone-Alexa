@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_icon_app" />
+                    android:src="@drawable/ic_app_pms" />
             </androidx.cardview.widget.CardView>
 
             <TextView
