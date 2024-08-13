@@ -13,7 +13,7 @@ open class DeleteDialog(context: Context, val name: String, val callback: (Boole
         super.onCreate(savedInstanceState)
 
         binding.tvContent.text =
-            Html.fromHtml(context.getString(R.string.are_you_sure_you_want_to_delete) + " " + "<b>$name?</b>")
+            Html.fromHtml(context.getString(R.string.are_you_sure_you_want_to_delete))
         addEvent()
     }
 
