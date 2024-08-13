@@ -38,6 +38,7 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
         initListLanguage()
         initRCLanguage()
         handleButtonBack()
+        binding.ivDone.setImageResource(R.drawable.ic_tick_done)
     }
 
 
