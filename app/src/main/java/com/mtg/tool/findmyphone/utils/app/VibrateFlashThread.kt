@@ -167,7 +167,7 @@ class VibrateFlashThread :
                 }
             } else {
                 cameraId?.let { manager.setTorchMode(it, true) }
-                if (!startSleep(duration)) {
+                if (startSleep(duration)) {
                     cameraId?.let { manager.setTorchMode(it, false) }
                     return
                 }
