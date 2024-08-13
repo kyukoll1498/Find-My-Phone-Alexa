@@ -225,7 +225,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_48sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
         android:background="@drawable/bg_action_primary"
         android:elevation="5dp"
         android:fontFamily="@font/poppins_bold"

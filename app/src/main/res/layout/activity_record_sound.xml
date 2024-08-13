@@ -131,18 +131,18 @@
         android:id="@+id/ct_save_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:elevation="5dp"
         android:visibility="gone"
-        android:layout_marginTop="@dimen/_minus12sdp"
-        android:layout_marginHorizontal="@dimen/_16sdp"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toBottomOf="@id/layout_top">
 
         <ImageView
             android:id="@+id/iv_sound_avatar"
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
-            android:layout_marginTop="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:src="@drawable/avatar_audio_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -152,17 +152,18 @@
             android:id="@+id/edt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_minus30sdp"
             android:backgroundTint="#ACACAC"
+            android:maxWidth="@dimen/_120sdp"
             android:fontFamily="@font/poppins_semibold"
             android:hint="@string/enter_name_sound"
+            android:imeOptions="actionDone"
+            android:maxLength="50"
+            android:singleLine="true"
             android:textColor="#404040"
             android:textColorHint="#ACACAC"
-            android:layout_marginEnd="@dimen/_minus30sdp"
             android:textSize="@dimen/_11sdp"
-            android:singleLine="true"
-            android:maxLength="21"
-            android:imeOptions="actionDone"
             app:layout_constraintEnd_toEndOf="@+id/iv_sound_avatar"
             app:layout_constraintStart_toStartOf="@+id/iv_sound_avatar"
             app:layout_constraintTop_toBottomOf="@+id/iv_sound_avatar" />
@@ -177,16 +178,17 @@
 
         <LinearLayout
             android:id="@+id/ll_audio_controller"
-            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_radius_gradient"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_action_primary"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_12sdp"
-            android:paddingVertical="@dimen/_6sdp"
+            android:paddingVertical="@dimen/_8sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/tv_path"
             app:layout_constraintTop_toBottomOf="@+id/edt_name">
 
             <ImageView
@@ -206,6 +208,24 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_path"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_music"
+            android:drawablePadding="@dimen/_6sdp"
+            android:visibility="gone"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="hay.mp3"
+            android:textColor="#404040"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_audio_controller"
+            app:layout_constraintEnd_toStartOf="@+id/ll_audio_controller"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ll_audio_controller" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
