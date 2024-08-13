@@ -14,14 +14,14 @@
     <string name="language">Langue</string>
     <string name="english">Anglais</string>
     <string name="learn_more">Apprendre encore plus</string>
-    <string name="rate_us">Application de taux</string>
+    <string name="rate_us">Évaluer l\'application</string>
     <string name="privacy">politique de confidentialité</string>
     <string name="feedback_us">Retour</string>
     <string name="share">Partager l\'application</string>
     <string name="settings">Paramètres</string>
     <string name="home">Maison</string>
     <string name="add">Ajouter</string>
-    <string name="sound">Son</string>
+    <string name="sound">Des sons</string>
     <string name="next">Suivant</string>
     <string name="trumpet">Trompette</string>
     <string name="police_whistle">Sifflet de police</string>
@@ -31,7 +31,7 @@
     <string name="hello">Bonjour</string>
     <string name="whistle">Siffler</string>
     <string name="hey_stay_here">Hé, reste ici</string>
-    <string name="dog_barking">Aboiement de chien</string>
+    <string name="dog_barking">Chien qui aboie</string>
     <string name="cat_meowing">Chat qui miaule</string>
     <string name="tap_to_active">Appuyez pour désactiver</string>
     <string name="tap_to_inactive">Appuyez pour activer</string>
@@ -49,13 +49,13 @@
     <string name="sos_mode">Mode SOS</string>
     <string name="vibrate">Vibrer</string>
     <string name="strong_vibration">Forte vibration</string>
-    <string name="heartbeat">Battement de coeur</string>
-    <string name="ticktock">TIC Tac</string>
+    <string name="heartbeat">Pulsation</string>
+    <string name="ticktock">Tic-tac</string>
     <string name="txt_clap_running_notify">Applaudissez pour constater que mon téléphone est en marche</string>
     <string name="txt_touch_here_notify">Touchez ici pour désactiver</string>
     <string name="touch_here_to_deactivate">Touchez ici pour désactiver</string>
     <string name="clap_to_find_your_phone_is_running">Applaudissez pour constater que votre téléphone est en marche</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">Il n\'y a aucun fichier.\\n Essayons de <font color="#F06A33">créer de nouveaux fichiers</font> maintenant.</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">Il n\'y a aucun fichier.\\n Essayons de <font color="#1380FF">créer de nouveaux fichiers</font> maintenant.</string>
     <string name="create_sound">Créer du son</string>
     <string name="import_audio">Importer du son</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Autorisez <b>Clap To Find Your Phone</b> à accéder au microphone</string>
@@ -65,7 +65,7 @@
     <string name="enter_name_sound">Entrez le son du nom</string>
     <string name="save_sound">Enregistrer le son</string>
     <string name="name_sound_is_empty">Le son du nom est vide</string>
-    <string name="create_new">Créer un nouveau</string>
+    <string name="create_new">Créer nouveau</string>
     <string name="name_sound_already_exists">Le son du nom existe déjà</string>
     <string name="allow_clap_to_find_your_phone_to_access_audio_files">Autoriser <b>Clap To Find Your Phone</b> à accéder aux fichiers audio</string>
     <string name="how_to_use">Comment utiliser</string>
@@ -79,12 +79,12 @@
     <string name="allow_permission_to_access_microphone_audio_files">Autoriser l\'autorisation d\'accéder au microphone. fichiers audio</string>
     <string name="txt_settings">PARAMÈTRES</string>
     <string name="before_activating_set_flashlight_adjust_volume">Avant d\'activer, réglez la lampe de poche, réglez le volume.</string>
-    <string name="activation_text2">Cliquez pour <font color="#F06A33">activer le bouton</font> et <font color="#F06A33">applaudissez</font> pour trouver votre téléphone</string>
+    <string name="activation_text2">Cliquez pour <font color="#1380FF">activer le bouton</font> et <font color="#1380FF">applaudissez</font> pour trouver votre téléphone</string>
     <string name="save">Sauvegarder</string>
-    <string name="rename">Renommer</string>
+    <string name="rename">Rebaptiser</string>
     <string name="enter_name">Entrez le nom</string>
     <string name="cancel">Annuler</string>
-    <string name="are_you_sure_you_want_to_delete">Etes-vous sûr que vous voulez supprimer</string>
+    <string name="are_you_sure_you_want_to_delete">Êtes-vous sûr de vouloir supprimer ?</string>
     <string name="delete">Supprimer</string>
     <string name="maybe_later">Peut-être plus tard</string>
     <string name="submit">Soumettre</string>
@@ -95,7 +95,7 @@
     <string name="continue_permission">Continuer</string>
     <string name="toast_permission_continue">Autorisez la permission de continuer !</string>
     <string name="start_like_a_pro">COMMENCEZ COMME UN PRO</string>
-    <string name="remove_ads_100">Supprimez la pub</string>
+    <string name="remove_ads_100">Supprimer les publicités</string>
     <string name="benefit_2">Téléphone facile à localiser></string>
     <string name="benefit_3">Sonneries et amp; lampe de poche</string>
     <string name="benefit_4">Divers effets sonores</string>
@@ -117,7 +117,7 @@
     <string name="sofa">Canapé</string>
     <string name="work">Travail</string>
     <string name="gym">Salle de sport</string>
-    <string name="friend_s_house">La maison des amis</string>
+    <string name="friend_s_house">Maison d\'un ami</string>
     <string name="caf">Café</string>
     <string name="outdoors">En plein air</string>
     <string name="school">École</string>
@@ -128,4 +128,7 @@
     <string name="park">Parc</string>
     <string name="others">Autres</string>
     <string name="skip">Sauter</string>
+    <string name="txt_share">Partager</string>
+    <string name="txt_feedback_us">Faites-nous part de vos commentaires</string>
+    <string name="txt_privacy">Confidentialité</string>
 </resources>

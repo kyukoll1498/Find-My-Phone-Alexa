@@ -4,7 +4,7 @@
     <string name="text_on_boarding_1">تالیاں بجا کر اپنا کھویا ہوا فون آسانی سے تلاش کریں۔</string>
     <string name="text_on_boarding_2">منتخب کرنے کے لیے مختلف صوتی اثرات</string>
     <string name="text_on_boarding_3">اندھیرے میں ٹارچ آن کرنے کے لیے تالیاں بجائیں۔</string>
-    <string name="get_started">شروع کرنے کے</string>
+    <string name="get_started">شروع کریں</string>
     <string name="this_action_can_contain_ads">اس کارروائی میں اشتہارات شامل ہو سکتے ہیں…</string>
     <string name="do_you_like_our_app">کیا آپ کو ہماری ایپ پسند ہے؟</string>
     <string name="write_your_feedback">اپنی رائے لکھیں…</string>
@@ -13,7 +13,7 @@
     <string name="thank_you">شکریہ</string>
     <string name="language">زبان</string>
     <string name="english">انگریزی</string>
-    <string name="learn_more">اورجانیے</string>
+    <string name="learn_more">مزید جانیں</string>
     <string name="rate_us">ایپ کی درجہ بندی کریں۔</string>
     <string name="privacy">رازداری کی پالیسی</string>
     <string name="feedback_us">تاثرات</string>
@@ -21,13 +21,13 @@
     <string name="settings">ترتیبات</string>
     <string name="home">گھر</string>
     <string name="add">شامل کریں۔</string>
-    <string name="sound">آواز</string>
-    <string name="next">اگلے</string>
+    <string name="sound">آوازیں</string>
+    <string name="next">اگلا</string>
     <string name="trumpet">صور</string>
     <string name="police_whistle">پولیس کی سیٹی</string>
     <string name="party_horn">پارٹی ہارن</string>
     <string name="door_bell">دروازے کی گھنٹی</string>
-    <string name="car_horn">گاڑی کا ہارن</string>
+    <string name="car_horn">کار ہارن</string>
     <string name="hello">ہیلو</string>
     <string name="whistle">سیٹی بجانا</string>
     <string name="hey_stay_here">ارے یہیں رہو</string>
@@ -42,7 +42,7 @@
     <string name="pause">توقف</string>
     <string name="volume">حجم</string>
     <string name="duration">دورانیہ</string>
-    <string name="apply">درخواست دیں</string>
+    <string name="apply">لگائیں</string>
     <string name="flashlight">ٹارچ</string>
     <string name="txt_default">طے شدہ</string>
     <string name="disco_mode">ڈسکو موڈ</string>
@@ -55,7 +55,7 @@
     <string name="txt_touch_here_notify">غیر فعال کرنے کے لیے یہاں ٹچ کریں۔</string>
     <string name="touch_here_to_deactivate">غیر فعال کرنے کے لیے یہاں ٹچ کریں۔</string>
     <string name="clap_to_find_your_phone_is_running">یہ معلوم کرنے کے لیے تالی بجائیں کہ آپ کا فون چل رہا ہے۔</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">کوئی فائلیں نہیں ہیں۔\\n آئیے ابھی <font color="#F06A33">نئی فائلیں بنانے کی کوشش کریں</font>۔</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">کوئی فائلیں نہیں ہیں۔\\n آئیے ابھی <font color="#1380FF">نئی فائلیں بنانے کی کوشش کریں</font>۔</string>
     <string name="create_sound">آواز بنائیں</string>
     <string name="import_audio">آڈیو درآمد کریں۔</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone">مائیکروفون تک رسائی حاصل کرنے کے لیے <b>اپنے فون کو تلاش کرنے کے لیے تالیاں</b> کو اجازت دیں۔</string>
@@ -67,9 +67,9 @@
     <string name="name_sound_is_empty">نام کی آواز خالی ہے۔</string>
     <string name="create_new">نیا بنائیں</string>
     <string name="name_sound_already_exists">نام کی آواز پہلے سے موجود ہے۔</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">آڈیو فائلوں تک رسائی کے لیے <b>اپنے فون کو ڈھونڈنے کے لیے تالیاں</b> کو اجازت دیں۔</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">آڈیو فائلوں تک رسائی کے لیے <b>اپنے فون کو تلاش کرنے کے لیے تالیاں</b> کو اجازت دیں۔</string>
     <string name="how_to_use">استعمال کرنے کا طریقہ</string>
-    <string name="activate">محرک کریں</string>
+    <string name="activate">چالو کریں۔</string>
     <string name="click_the_activate_button">ایکٹیویٹ بٹن پر کلک کریں۔</string>
     <string name="clap">CLAP</string>
     <string name="double_clap_to_find_your_phone">اپنا فون تلاش کرنے کے لیے ڈبل تالیاں بجائیں۔</string>
@@ -79,20 +79,20 @@
     <string name="allow_permission_to_access_microphone_audio_files">مائیکروفون تک رسائی کی اجازت دیں۔ آڈیو فائلیں</string>
     <string name="txt_settings">سیٹنگز</string>
     <string name="before_activating_set_flashlight_adjust_volume">چالو کرنے سے پہلے، ٹارچ سیٹ کریں، والیوم ایڈجسٹ کریں..</string>
-    <string name="activation_text2">اپنا فون تلاش کرنے کے لیے <font color="#F06A33">ایکٹیویٹ بٹن</font> اور <font color="#F06A33">تالیاں بجانے</font> پر کلک کریں</string>
+    <string name="activation_text2">اپنا فون تلاش کرنے کے لیے <font color="#1380FF">ایکٹیویٹ بٹن</font> اور <font color="#1380FF">تالیاں بجانے</font> پر کلک کریں</string>
     <string name="save">محفوظ کریں۔</string>
     <string name="rename">نام تبدیل کریں۔</string>
-    <string name="enter_name">نام درج کریں</string>
+    <string name="enter_name">نام درج کریں۔</string>
     <string name="cancel">منسوخ کریں۔</string>
-    <string name="are_you_sure_you_want_to_delete">کیا آپ واقعی حذف کرنا چاہتے ہیں۔</string>
+    <string name="are_you_sure_you_want_to_delete">کیا آپ واقعی حذف کرنا چاہتے ہیں؟</string>
     <string name="delete">حذف کریں۔</string>
     <string name="maybe_later">شاید بعد میں</string>
-    <string name="submit">جمع کرائیں</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">نوٹیفکیشن تک رسائی حاصل کرنے کے لیے <b>اپنے فون کو تلاش کرنے کے لیے تالیاں بجائیں</b> کی اجازت دیں۔</string>
+    <string name="submit">جمع کروائیں۔</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">اطلاع تک رسائی حاصل کرنے کے لیے <b>اپنے فون کو ڈھونڈنے کے لیے تالیاں بجائیں</b> کی اجازت دیں۔</string>
     <string name="grant_permission">اجازت کی درخواست</string>
     <string name="please_grant">براہ کرم تالی بجا کر فون فائنڈر فراہم کرنے کی اجازت دیں؟</string>
     <string name="record_permission">ریکارڈ کی اجازت</string>
-    <string name="continue_permission">جاری رہے</string>
+    <string name="continue_permission">جاری رکھیں</string>
     <string name="toast_permission_continue">جاری رکھنے کی اجازت دیں!</string>
     <string name="start_like_a_pro">ایک PRO کی طرح شروع کریں۔</string>
     <string name="remove_ads_100">اشتہارات کو ہٹا دیں۔</string>
@@ -100,7 +100,7 @@
     <string name="benefit_3">رنگ ٹونز &amp; ٹارچ</string>
     <string name="benefit_4">مختلف صوتی اثرات</string>
     <string name="free">مفت</string>
-    <string name="s_continue">جاری رہے</string>
+    <string name="s_continue">جاری رکھیں</string>
     <string name="i_m_ok_with_ads">میں اشتہارات کے ساتھ ٹھیک ہوں۔</string>
     <string name="forever">ہمیشہ کے لیے</string>
     <string name="include_ads">اشتہارات شامل کریں۔</string>
@@ -120,12 +120,15 @@
     <string name="friend_s_house">دوست کا گھر</string>
     <string name="caf">کیفے</string>
     <string name="outdoors">باہر</string>
-    <string name="school">اسکول</string>
-    <string name="car">گاڑی</string>
+    <string name="school">سکول</string>
+    <string name="car">کار</string>
     <string name="hotel">ہوٹل</string>
-    <string name="events">تقریبات</string>
-    <string name="shopping_mall">خریداری کرنے کے لیے مختص جگہ</string>
+    <string name="events">واقعات</string>
+    <string name="shopping_mall">شاپنگ مال</string>
     <string name="park">پارک</string>
     <string name="others">دوسرے</string>
-    <string name="skip">چھوڑ دو</string>
+    <string name="skip">چھوڑیں۔</string>
+    <string name="txt_share">شیئر کریں۔</string>
+    <string name="txt_feedback_us">ہمیں رائے دیں۔</string>
+    <string name="txt_privacy">رازداری</string>
 </resources>
