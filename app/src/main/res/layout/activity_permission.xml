@@ -84,6 +84,7 @@
             android:background="@drawable/bg_radius_8"
             android:backgroundTint="#FFFFFF"
             android:elevation="5dp"
+           android:layout_marginBottom="@dimen/_25sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -107,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_app_pms" />
+                    android:src="@drawable/ic_icon_app" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -133,7 +134,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:sb_checked_color="#F06A33"
+                app:sb_checked_color="#1380FF"
                 app:sb_uncheck_color="#D9D9D9" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
