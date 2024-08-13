@@ -349,7 +349,7 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="@string/rate_us"
+                    android:text="@string/txt_rate_us"
                     android:layout_marginEnd="@dimen/_16sdp"
                     android:textColor="#404040"
                     android:textSize="@dimen/_15sdp" />
