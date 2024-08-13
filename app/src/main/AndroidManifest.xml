@@ -66,8 +66,9 @@
         <activity
             android:name=".main.activity.MainActivity"
             android:exported="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".main.activity.OnBoardActivity"
             android:exported="false"

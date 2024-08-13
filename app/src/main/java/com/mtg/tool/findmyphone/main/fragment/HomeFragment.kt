@@ -51,8 +51,17 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     override fun initView() {
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
-        BroadcastUtils.registerReceiver(context,finishDetectReceiver, IntentFilter(ACTION_FINISH_DETECT))
-        AdmobManager.getInstance().loadNative(requireActivity(), AdIds.native_home, binding.frAd, com.common.control.R.layout.custom_native_ads_1)
+        BroadcastUtils.registerReceiver(
+            context,
+            finishDetectReceiver,
+            IntentFilter(ACTION_FINISH_DETECT)
+        )
+        AdmobManager.getInstance().loadNative(
+            requireActivity(),
+            AdIds.native_home,
+            binding.frAd,
+            com.common.control.R.layout.custom_native_ads_1
+        )
         if (isMyServiceRunning()) {
             isCircleActiveVisible = !isCircleActiveVisible
             binding.apply {
@@ -102,8 +111,13 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     private fun setUpWidthData() {
         currentSoundItem = AppPreferences.instance.currentSound
         currentSoundItem.let {
-            Glide.with(this).load(it.avatar).into(binding.ivAvatar)
+            if (it.avatar == R.drawable.ic_default_audio_avatar) {
+                Glide.with(this).load(R.drawable.ic_main_default_audio).into(binding.ivAvatar)
+            } else {
+                Glide.with(this).load(it.avatar).into(binding.ivAvatar)
+            }
         }
+        binding.tvName.text = currentSoundItem.name
     }
 
     override fun addEvent() {
