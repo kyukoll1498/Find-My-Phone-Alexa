@@ -30,7 +30,7 @@ class OnBoardActivity :
     private var isHandleAds5 = false
 
     override fun binding() {
-        isFullScreen = true
+//        isFullScreen = true
         super.binding()
     }
 
