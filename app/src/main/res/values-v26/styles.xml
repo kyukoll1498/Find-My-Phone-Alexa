@@ -15,7 +15,7 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:maxLines">1</item>
         <item name="android:autoSizeMaxTextSize">@dimen/_13sdp</item>
-        <item name="android:autoSizeMinTextSize">@dimen/_10sdp</item>
+        <item name="android:autoSizeMinTextSize">@dimen/_4sdp</item>
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
