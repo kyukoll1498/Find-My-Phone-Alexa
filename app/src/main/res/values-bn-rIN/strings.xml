@@ -134,4 +134,5 @@
     <string name="are_you_sure_you_want_to_exit">আপনি কি নিশ্চিত আপনি প্রস্থান করতে চান?</string>
     <string name="exit">প্রস্থান করুন</string>
     <string name="txt_rate_us">আমাদের রেট</string>
+    <string name="save_successfully">সফলভাবে সংরক্ষণ করুন!</string>
 </resources>

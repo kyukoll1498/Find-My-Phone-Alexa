@@ -177,7 +177,7 @@ class PlaySoundActivity :
             }
             logEvent("click_detail_apply")
             saveSoundAndDuration()
-            Toast.makeText(this, "Save successfully!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
 
         }
 

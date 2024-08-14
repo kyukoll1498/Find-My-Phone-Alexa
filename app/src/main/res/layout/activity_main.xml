@@ -90,8 +90,7 @@
             android:background="@drawable/bg_bt_menu"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/_15sdp"
-            android:paddingBottom="@dimen/_5sdp"
+            android:paddingTop="@dimen/_10sdp"
             app:layout_constraintBottom_toTopOf="@id/fr_ad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

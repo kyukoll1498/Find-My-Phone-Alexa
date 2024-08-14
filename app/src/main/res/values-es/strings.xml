@@ -134,4 +134,5 @@
     <string name="are_you_sure_you_want_to_exit">¿Estás seguro de que quieres salir?</string>
     <string name="exit">Salida</string>
     <string name="txt_rate_us">Califícanos</string>
+    <string name="save_successfully">¡Guarda con éxito!</string>
 </resources>

@@ -20,7 +20,8 @@
             android:text="@string/grant_permission"
             android:textColor="@color/color_404040"
             android:textSize="@dimen/_18sdp"
-            android:paddingHorizontal="@dimen/_24sdp"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_44sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +29,11 @@
 
         <TextView
             android:id="@+id/ll_continue"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_46sdp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/skip"
+            android:gravity="end|center"
             android:textColor="#80303030"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,11 +55,12 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_per"
+            android:layout_marginHorizontal="@dimen/_32sdp"
             app:layout_constraintDimensionRatio="224:134"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.7" />
+            app:layout_constraintBottom_toTopOf="@id/actv"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/actv"
