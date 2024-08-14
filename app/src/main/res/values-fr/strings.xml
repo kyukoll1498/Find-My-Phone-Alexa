@@ -58,7 +58,7 @@
     <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"Il n\'y a aucun fichier.\\n Essayons de "</string>
     <string name="create_sound">Créer du son</string>
     <string name="import_audio">Importer du son</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">"Permettre "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Autorisez <b>Clap To Find Your Phone</b> à accéder au microphone</string>
     <string name="deny">Refuser</string>
     <string name="allow">Permettre</string>
     <string name="record_sound">Enregistrer le son</string>
@@ -67,7 +67,7 @@
     <string name="name_sound_is_empty">Le son du nom est vide</string>
     <string name="create_new">Créer nouveau</string>
     <string name="name_sound_already_exists">Le son du nom existe déjà</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">"Permettre "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Autoriser <b>Clap To Find Your Phone</b> à accéder aux fichiers audio</string>
     <string name="how_to_use">Comment utiliser</string>
     <string name="activate">ACTIVER</string>
     <string name="click_the_activate_button">Cliquez sur le bouton activer</string>
@@ -79,7 +79,7 @@
     <string name="allow_permission_to_access_microphone_audio_files">Autoriser l\'autorisation d\'accéder au microphone. fichiers audio</string>
     <string name="txt_settings">PARAMÈTRES</string>
     <string name="before_activating_set_flashlight_adjust_volume">Avant d\'activer, réglez la lampe de poche, réglez le volume.</string>
-    <string name="activation_text2">"Cliquez pour "</string>
+    <string name="activation_text2">Cliquez pour <font color="#1380FF">activer le bouton</font> et <font color="#1380FF">applaudissez</font> pour trouver votre téléphone</string>
     <string name="save">Sauvegarder</string>
     <string name="rename">Rebaptiser</string>
     <string name="enter_name">Entrez le nom</string>
@@ -88,7 +88,7 @@
     <string name="delete">Supprimer</string>
     <string name="maybe_later">Peut-être plus tard</string>
     <string name="submit">Soumettre</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">"Permettre "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Autorisez <b>Clap To Find Your Phone</b> à accéder à la notification</string>
     <string name="grant_permission">Demande d\'autorisation</string>
     <string name="please_grant">Veuillez accorder la permission de fournir un outil de recherche de téléphone en applaudissant ?</string>
     <string name="record_permission">Autorisation d\'enregistrement</string>

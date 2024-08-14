@@ -58,7 +58,7 @@
     <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"کوئی فائلیں نہیں ہیں۔\\n آئیے کوشش کرتے ہیں۔ "</string>
     <string name="create_sound">آواز بنائیں</string>
     <string name="import_audio">آڈیو درآمد کریں۔</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">"اجازت دیں۔ "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">مائیکروفون تک رسائی حاصل کرنے کے لیے <b>اپنے فون کو تلاش کرنے کے لیے تالیاں</b> کو اجازت دیں۔</string>
     <string name="deny">انکار کرنا</string>
     <string name="allow">اجازت دیں۔</string>
     <string name="record_sound">آواز ریکارڈ کریں۔</string>
@@ -67,7 +67,7 @@
     <string name="name_sound_is_empty">نام کی آواز خالی ہے۔</string>
     <string name="create_new">نیا بنائیں</string>
     <string name="name_sound_already_exists">نام کی آواز پہلے سے موجود ہے۔</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">"اجازت دیں۔ "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">آڈیو فائلوں تک رسائی کے لیے <b>اپنے فون کو ڈھونڈنے کے لیے تالیاں</b> کو اجازت دیں۔</string>
     <string name="how_to_use">استعمال کرنے کا طریقہ</string>
     <string name="activate">چالو کریں۔</string>
     <string name="click_the_activate_button">ایکٹیویٹ بٹن پر کلک کریں۔</string>
@@ -79,7 +79,7 @@
     <string name="allow_permission_to_access_microphone_audio_files">مائیکروفون تک رسائی کی اجازت دیں۔ آڈیو فائلیں</string>
     <string name="txt_settings">سیٹنگز</string>
     <string name="before_activating_set_flashlight_adjust_volume">چالو کرنے سے پہلے، ٹارچ سیٹ کریں، والیوم ایڈجسٹ کریں..</string>
-    <string name="activation_text2">"پر کلک کریں۔ "</string>
+    <string name="activation_text2">اپنا فون تلاش کرنے کے لیے <font color="#1380FF">ایکٹیویٹ بٹن</font> اور <font color="#1380FF">تالیاں بجانے</font> پر کلک کریں</string>
     <string name="save">محفوظ کریں۔</string>
     <string name="rename">نام تبدیل کریں۔</string>
     <string name="enter_name">نام درج کریں۔</string>
@@ -88,7 +88,7 @@
     <string name="delete">حذف کریں۔</string>
     <string name="maybe_later">شاید بعد میں</string>
     <string name="submit">جمع کروائیں۔</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">"اجازت دیں۔ "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">اطلاع تک رسائی حاصل کرنے کے لیے <b>اپنے فون کو ڈھونڈنے کے لیے تالیاں بجائیں</b> کی اجازت دیں۔</string>
     <string name="grant_permission">اجازت کی درخواست</string>
     <string name="please_grant">براہ کرم تالی بجا کر فون فائنڈر فراہم کرنے کی اجازت دیں؟</string>
     <string name="record_permission">ریکارڈ کی اجازت</string>
