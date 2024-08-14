@@ -58,7 +58,7 @@
     <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"Файлов нет.\\n Попробуем "</string>
     <string name="create_sound">Создать звук</string>
     <string name="import_audio">Импорт аудио</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">"Позволять "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Разрешите <b>Clap To Find Your Phone</b> доступ к микрофону</string>
     <string name="deny">Отрицать</string>
     <string name="allow">Позволять</string>
     <string name="record_sound">Запись звука</string>
@@ -67,7 +67,7 @@
     <string name="name_sound_is_empty">Звук имени пуст</string>
     <string name="create_new">Создать новый</string>
     <string name="name_sound_already_exists">Звук имени уже существует</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">"Позволять "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Разрешите <b>Clap To Find Your Phone</b> доступ к аудиофайлам</string>
     <string name="how_to_use">Как использовать</string>
     <string name="activate">АКТИВИРОВАТЬ</string>
     <string name="click_the_activate_button">Нажмите кнопку активировать</string>
@@ -79,7 +79,7 @@
     <string name="allow_permission_to_access_microphone_audio_files">Разрешите доступ к микрофону. аудиофайлы</string>
     <string name="txt_settings">НАСТРОЙКИ</string>
     <string name="before_activating_set_flashlight_adjust_volume">Перед активацией установите фонарик, отрегулируйте громкость..</string>
-    <string name="activation_text2">"Нажмите, чтобы "</string>
+    <string name="activation_text2">Нажмите, чтобы <font color="#1380FF">активировать кнопку</font> и <font color="#1380FF">хлопните</font>, чтобы найти свой телефон.</string>
     <string name="save">Сохранять</string>
     <string name="rename">Переименовать</string>
     <string name="enter_name">Введите имя</string>
@@ -88,7 +88,7 @@
     <string name="delete">Удалить</string>
     <string name="maybe_later">Может быть позже</string>
     <string name="submit">Представлять на рассмотрение</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">"Позволять "</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Разрешите <b>Clap To Find Your Phone</b> доступ к уведомлению</string>
     <string name="grant_permission">Запрос разрешения</string>
     <string name="please_grant">Пожалуйста, дайте разрешение на поиск телефона по хлопкам?</string>
     <string name="record_permission">Разрешение на запись</string>
