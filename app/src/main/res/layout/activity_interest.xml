@@ -12,7 +12,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.65"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fr_ad">
 
         <TextView
             android:id="@+id/titleTextView"
@@ -135,8 +136,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_2sdp"
         android:fontFamily="@font/poppins_medium"
+        android:includeFontPadding="false"
         android:text="@string/next"
         android:textColor="#303030"
         android:textSize="@dimen/_14sdp"
@@ -147,10 +149,9 @@
         android:id="@+id/fr_ad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/_4sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent=".35">
+        android:layout_margin="@dimen/_2sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <include layout="@layout/fake_load_fb" />
+        <include layout="@layout/fake_loading" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
