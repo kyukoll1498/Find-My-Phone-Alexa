@@ -55,10 +55,10 @@
     <string name="txt_touch_here_notify">निष्क्रिय करने के लिए यहां स्पर्श करें</string>
     <string name="touch_here_to_deactivate">निष्क्रिय करने के लिए यहां स्पर्श करें</string>
     <string name="clap_to_find_your_phone_is_running">यह जानने के लिए ताली बजाएं कि आपका फ़ोन चल रहा है</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">कोई फ़ाइल नहीं है।\\nआइए अब <font color="#1380FF">नई फ़ाइलें बनाने</font> का प्रयास करें।</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"कोई फ़ाइल नहीं है.\\nआइए प्रयास करें "</string>
     <string name="create_sound">ध्वनि बनाएँ</string>
     <string name="import_audio">ऑडियो आयात करें</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone"><b>क्लैप टू फाइंड योर फोन</b> को माइक्रोफोन तक पहुंचने की अनुमति दें</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">"अनुमति दें "</string>
     <string name="deny">अस्वीकार करना</string>
     <string name="allow">अनुमति दें</string>
     <string name="record_sound">रिकॉर्ड ध्वनि</string>
@@ -67,7 +67,7 @@
     <string name="name_sound_is_empty">नाम ध्वनि रिक्त है</string>
     <string name="create_new">नया निर्माण</string>
     <string name="name_sound_already_exists">नाम ध्वनि पहले से मौजूद है</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">ऑडियो फ़ाइलों तक पहुंचने के लिए <b>क्लैप टू फाइंड योर फोन</b> को अनुमति दें</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">"अनुमति दें "</string>
     <string name="how_to_use">का उपयोग कैसे करें</string>
     <string name="activate">सक्रिय करें</string>
     <string name="click_the_activate_button">सक्रिय करें बटन पर क्लिक करें</string>
@@ -79,7 +79,7 @@
     <string name="allow_permission_to_access_microphone_audio_files">माइक्रोफ़ोन तक पहुंचने की अनुमति दें. ऑडियो फ़ाइलें</string>
     <string name="txt_settings">सेटिंग्स</string>
     <string name="before_activating_set_flashlight_adjust_volume">सक्रिय करने से पहले, फ़्लैशलाइट सेट करें, वॉल्यूम समायोजित करें..</string>
-    <string name="activation_text2">अपना फ़ोन ढूंढने के लिए <font color="#1380FF">सक्रिय बटन</font> और <font color="#1380FF">क्लैप</font> पर क्लिक करें।</string>
+    <string name="activation_text2">"के लिए क्लिक करें "</string>
     <string name="save">बचाना</string>
     <string name="rename">नाम बदलें</string>
     <string name="enter_name">नाम दर्ज करें</string>
@@ -88,7 +88,7 @@
     <string name="delete">मिटाना</string>
     <string name="maybe_later">शायद बाद में</string>
     <string name="submit">जमा करना</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">अधिसूचना तक पहुंचने के लिए <b>क्लैप टू फाइंड योर फोन</b> को अनुमति दें</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">"अनुमति दें "</string>
     <string name="grant_permission">अनुमति अनुरोध</string>
     <string name="please_grant">कृपया ताली बजाकर फ़ोन खोजक प्रदान करने की अनुमति दें?</string>
     <string name="record_permission">रिकॉर्ड अनुमति</string>
@@ -131,4 +131,7 @@
     <string name="txt_share">शेयर करना</string>
     <string name="txt_feedback_us">हमें प्रतिक्रिया दें</string>
     <string name="txt_privacy">गोपनीयता</string>
+    <string name="are_you_sure_you_want_to_exit">क्या आप निश्चित हैं आपकी बाहर निकलने की इच्छा है?</string>
+    <string name="exit">बाहर निकलना</string>
+    <string name="txt_rate_us">हमें रेटिंग दें</string>
 </resources>

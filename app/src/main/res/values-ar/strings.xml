@@ -143,4 +143,7 @@
     <string name="txt_share">يشارك</string>
     <string name="txt_feedback_us">ردود الفعل لنا</string>
     <string name="txt_privacy">خصوصية</string>
+    <string name="are_you_sure_you_want_to_exit">هل أنت متأكد أنك تريد الخروج؟</string>
+    <string name="exit">مخرج</string>
+    <string name="txt_rate_us">قيمنا</string>
 </resources>

@@ -55,10 +55,10 @@
     <string name="txt_touch_here_notify">Toque aquí para desactivar</string>
     <string name="touch_here_to_deactivate">Toca aquí para desactivar</string>
     <string name="clap_to_find_your_phone_is_running">Aplaude para descubrir que tu teléfono está funcionando</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">No hay archivos.\\n Intentemos <font color="#1380FF">crear nuevos archivos</font> ahora.</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"No hay archivos.\\n Intentemos "</string>
     <string name="create_sound">Crear sonido</string>
     <string name="import_audio">Importar Audio</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Permitir que <b>Clap To Find Your Phone</b> acceda al micrófono</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">"Permitir "</string>
     <string name="deny">Denegar</string>
     <string name="allow">Permitir</string>
     <string name="record_sound">Grabar sonido</string>
@@ -67,7 +67,7 @@
     <string name="name_sound_is_empty">El sonido del nombre está vacío</string>
     <string name="create_new">Crear nuevo</string>
     <string name="name_sound_already_exists">Nombre El sonido ya existe</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Permitir que <b>Clap To Find Your Phone</b> acceda a archivos de audio</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">"Permitir "</string>
     <string name="how_to_use">como usar</string>
     <string name="activate">ACTIVAR</string>
     <string name="click_the_activate_button">Haga clic en el botón activar</string>
@@ -79,7 +79,7 @@
     <string name="allow_permission_to_access_microphone_audio_files">Permitir permiso para acceder al micrófono. archivos de audio</string>
     <string name="txt_settings">AJUSTES</string>
     <string name="before_activating_set_flashlight_adjust_volume">Antes de activar, configure la linterna, ajuste el volumen.</string>
-    <string name="activation_text2">Haga clic para <font color="#1380FF">activar el botón</font> y <font color="#1380FF">aplauda</font> para encontrar su teléfono.</string>
+    <string name="activation_text2">"Haga clic para "</string>
     <string name="save">Ahorrar</string>
     <string name="rename">Rebautizar</string>
     <string name="enter_name">Introduce el nombre</string>
@@ -88,7 +88,7 @@
     <string name="delete">Borrar</string>
     <string name="maybe_later">tal vez más tarde</string>
     <string name="submit">Entregar</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Permita que <b>Aplauda para encontrar su teléfono</b> acceda a la notificación</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">"Permitir "</string>
     <string name="grant_permission">Solicitud de permiso</string>
     <string name="please_grant">¿Por favor, conceda permiso para proporcionar el buscador de teléfonos aplaudiendo?</string>
     <string name="record_permission">Permiso de registro</string>
@@ -131,4 +131,7 @@
     <string name="txt_share">Compartir</string>
     <string name="txt_feedback_us">Déjanos tu opinión</string>
     <string name="txt_privacy">Privacidad</string>
+    <string name="are_you_sure_you_want_to_exit">¿Estás seguro de que quieres salir?</string>
+    <string name="exit">Salida</string>
+    <string name="txt_rate_us">Califícanos</string>
 </resources>

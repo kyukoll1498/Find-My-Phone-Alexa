@@ -55,10 +55,10 @@
     <string name="txt_touch_here_notify">নিষ্ক্রিয় করতে এখানে স্পর্শ করুন</string>
     <string name="touch_here_to_deactivate">নিষ্ক্রিয় করতে এখানে স্পর্শ করুন</string>
     <string name="clap_to_find_your_phone_is_running">আপনার ফোন চলছে তা খুঁজে বের করুন</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">কোনো ফাইল নেই৷\\n এখনই <font color="#1380FF">নতুন ফাইল তৈরি করার</font> চেষ্টা করা যাক৷</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"কোন ফাইল নেই।\\n আসুন চেষ্টা করি "</string>
     <string name="create_sound">সাউন্ড তৈরি করুন</string>
     <string name="import_audio">অডিও আমদানি করুন</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">মাইক্রোফোন অ্যাক্সেস করতে <b>আপনার ফোন খুঁজে পেতে হাততালি</b>কে অনুমতি দিন</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">"অনুমতি দিন "</string>
     <string name="deny">অস্বীকার করুন</string>
     <string name="allow">অনুমতি দিন</string>
     <string name="record_sound">রেকর্ড সাউন্ড</string>
@@ -67,7 +67,7 @@
     <string name="name_sound_is_empty">নাম শব্দ খালি</string>
     <string name="create_new">নতুন তৈরি করুন</string>
     <string name="name_sound_already_exists">নাম শব্দ ইতিমধ্যেই বিদ্যমান</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">অডিও ফাইল অ্যাক্সেস করতে <b>আপনার ফোন খুঁজে পেতে হাততালি</b>কে অনুমতি দিন</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">"অনুমতি দিন "</string>
     <string name="how_to_use">কিভাবে ব্যবহার করবেন</string>
     <string name="activate">সক্রিয় করুন</string>
     <string name="click_the_activate_button">সক্রিয় বোতামে ক্লিক করুন</string>
@@ -79,7 +79,7 @@
     <string name="allow_permission_to_access_microphone_audio_files">মাইক্রোফোন অ্যাক্সেস করার অনুমতি দিন। অডিও ফাইল</string>
     <string name="txt_settings">সেটিংস</string>
     <string name="before_activating_set_flashlight_adjust_volume">সক্রিয় করার আগে, টর্চলাইট সেট করুন, ভলিউম সামঞ্জস্য করুন..</string>
-    <string name="activation_text2">আপনার ফোন খুঁজে পেতে <font color="#1380FF">অ্যাক্টিভেট বোতাম</font> এবং <font color="#1380FF">তালি দিতে</font> ক্লিক করুন</string>
+    <string name="activation_text2">"ক্লিক করুন "</string>
     <string name="save">সংরক্ষণ করুন</string>
     <string name="rename">নাম পরিবর্তন করুন</string>
     <string name="enter_name">নাম লিখুন</string>
@@ -88,7 +88,7 @@
     <string name="delete">মুছে দিন</string>
     <string name="maybe_later">হয়তো পরে</string>
     <string name="submit">জমা দিন</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">বিজ্ঞপ্তি অ্যাক্সেস করতে <b>আপনার ফোন খুঁজে পেতে হাততালি</b>কে অনুমতি দিন</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">"অনুমতি দিন "</string>
     <string name="grant_permission">অনুমতির অনুরোধ</string>
     <string name="please_grant">অনুগ্রহ করে হাততালি দিয়ে ফোন ফাইন্ডার দেওয়ার অনুমতি দেবেন?</string>
     <string name="record_permission">রেকর্ড করার অনুমতি</string>
@@ -131,4 +131,7 @@
     <string name="txt_share">শেয়ার করুন</string>
     <string name="txt_feedback_us">আমাদের প্রতিক্রিয়া</string>
     <string name="txt_privacy">গোপনীয়তা</string>
+    <string name="are_you_sure_you_want_to_exit">আপনি কি নিশ্চিত আপনি প্রস্থান করতে চান?</string>
+    <string name="exit">প্রস্থান করুন</string>
+    <string name="txt_rate_us">আমাদের রেট</string>
 </resources>
