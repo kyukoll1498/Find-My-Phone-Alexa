@@ -134,4 +134,5 @@
     <string name="are_you_sure_you_want_to_exit">Вы уверены, что хотите выйти?</string>
     <string name="exit">Выход</string>
     <string name="txt_rate_us">Оцените нас</string>
+    <string name="save_successfully">Сохраняйтесь успешно!</string>
 </resources>
