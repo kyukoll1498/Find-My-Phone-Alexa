@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import com.common.control.manager.AdmobManager
@@ -64,30 +65,42 @@ class CreateSoundActivity :
     override fun addEvent() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.llRecordAudio.setOnClickListener {
-            if (SharedPrefs.getBoolean(this, Constants.REQUEST_POPUP_PMS_MICRO)) return@setOnClickListener
-
-            SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_MICRO, true)
+            binding.llImportAudio.isEnabled = false
+            binding.llImportAudio.isClickable = false
+            binding.llRecordAudio.isEnabled = false
+            binding.llRecordAudio.isClickable = false
+            Handler().postDelayed(Runnable {
+                binding.llImportAudio.isEnabled = true
+                binding.llImportAudio.isClickable = true
+                binding.llRecordAudio.isEnabled = true
+                binding.llRecordAudio.isClickable = true
+            }, 1000)
             sendBroadcast(Intent(ACTION_FINISH_DETECT))
             logEvent("click_add_import_pms")
             if (!PermissionUtils.checkMicroPermission(this)) {
                 PermissionUtils.requestMicroPermission(this)
             } else {
                 startRecordAudio()
-                SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_MICRO, false)
             }
 
         }
         binding.llImportAudio.setOnClickListener {
-            if (SharedPrefs.getBoolean(this, Constants.REQUEST_POPUP_PMS_ACCESS)) return@setOnClickListener
-
-            SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_ACCESS, true)
+            binding.llImportAudio.isEnabled = false
+            binding.llImportAudio.isClickable = false
+            binding.llRecordAudio.isEnabled = false
+            binding.llRecordAudio.isClickable = false
+            Handler().postDelayed(Runnable {
+                binding.llImportAudio.isEnabled = true
+                binding.llImportAudio.isClickable = true
+                binding.llRecordAudio.isEnabled = true
+                binding.llRecordAudio.isClickable = true
+            }, 1000)
             sendBroadcast(Intent(ACTION_FINISH_DETECT))
             logEvent("click_add_record_pms")
             if (!PermissionUtils.checkReadAudioPermission(this)) {
                 PermissionUtils.requestReadAudioPermission(this)
             } else {
                 startImportAudio()
-                SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_ACCESS, false)
             }
         }
         binding.btnSave.setOnClickListener { saveSoundItem() }
