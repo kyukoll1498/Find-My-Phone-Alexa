@@ -23,6 +23,7 @@ import com.mtg.tool.findmyphone.REQUEST_READ_AUDIO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_READ_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.model.SoundItem
+import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.ActivityCreateSoundBinding
 import com.mtg.tool.findmyphone.main.dialog.ReadAudioPermissionDialog
@@ -31,10 +32,10 @@ import com.mtg.tool.findmyphone.utils.CacheUtils
 import com.mtg.tool.findmyphone.utils.FileUtils
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
+import com.mtg.tool.findmyphone.utils.constant.Constants
 
 class CreateSoundActivity :
     BaseActivity<ActivityCreateSoundBinding>(ActivityCreateSoundBinding::inflate) {
-
     private val finishReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @SuppressLint("NotifyDataSetChanged")
         override fun onReceive(context: Context, intent: Intent) {
@@ -63,22 +64,30 @@ class CreateSoundActivity :
     override fun addEvent() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.llRecordAudio.setOnClickListener {
+            if (SharedPrefs.getBoolean(this, Constants.REQUEST_POPUP_PMS_MICRO)) return@setOnClickListener
+
+            SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_MICRO, true)
             sendBroadcast(Intent(ACTION_FINISH_DETECT))
             logEvent("click_add_import_pms")
             if (!PermissionUtils.checkMicroPermission(this)) {
                 PermissionUtils.requestMicroPermission(this)
             } else {
                 startRecordAudio()
+                SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_MICRO, false)
             }
 
         }
         binding.llImportAudio.setOnClickListener {
+            if (SharedPrefs.getBoolean(this, Constants.REQUEST_POPUP_PMS_ACCESS)) return@setOnClickListener
+
+            SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_ACCESS, true)
             sendBroadcast(Intent(ACTION_FINISH_DETECT))
             logEvent("click_add_record_pms")
             if (!PermissionUtils.checkReadAudioPermission(this)) {
                 PermissionUtils.requestReadAudioPermission(this)
             } else {
                 startImportAudio()
+                SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_ACCESS, false)
             }
         }
         binding.btnSave.setOnClickListener { saveSoundItem() }
@@ -159,6 +168,7 @@ class CreateSoundActivity :
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_MICRO_PERMISSION_CODE) {
+            SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_MICRO, false)
             if (!PermissionUtils.checkMicroPermission(this)) {
                 showRecordPermissionDialog()
             } else {
@@ -167,6 +177,7 @@ class CreateSoundActivity :
         }
 
         if (requestCode == REQUEST_READ_AUDIO_PERMISSION_CODE || requestCode == REQUEST_READ_PERMISSION_CODE) {
+            SharedPrefs.put(this, Constants.REQUEST_POPUP_PMS_ACCESS, false)
             if (!PermissionUtils.checkReadAudioPermission(this)) {
                 showReadAudioPermissionDialog()
             } else {
