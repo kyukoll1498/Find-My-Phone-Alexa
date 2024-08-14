@@ -55,7 +55,7 @@
     <string name="txt_touch_here_notify">নিষ্ক্রিয় করতে এখানে স্পর্শ করুন</string>
     <string name="touch_here_to_deactivate">নিষ্ক্রিয় করতে এখানে স্পর্শ করুন</string>
     <string name="clap_to_find_your_phone_is_running">আপনার ফোন চলছে তা খুঁজে বের করুন</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"কোন ফাইল নেই।\\n আসুন চেষ্টা করি "</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"কোন ফাইল নেই। \n আসুন চেষ্টা করি "</string>
     <string name="create_sound">সাউন্ড তৈরি করুন</string>
     <string name="import_audio">অডিও আমদানি করুন</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone">মাইক্রোফোন অ্যাক্সেস করতে <b>আপনার ফোন খুঁজে পেতে হাততালি</b>কে অনুমতি দিন</string>
