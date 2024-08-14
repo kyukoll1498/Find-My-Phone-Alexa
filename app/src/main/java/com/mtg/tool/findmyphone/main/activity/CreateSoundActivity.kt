@@ -228,6 +228,7 @@ class CreateSoundActivity :
         binding.ctOptions.visibility = View.GONE
         binding.ctSaveRecord.visibility = View.VISIBLE
         binding.btnSave.visibility = View.VISIBLE
+        binding.tvAppName.text = getString(R.string.import_audio)
 //        binding.frAd.visibility = View.GONE
 //        binding.frAd2.visibility = View.VISIBLE
 //        AdmobManager.getInstance().loadNative(this, BuildConfig.native_import, binding.frAd2, com.common.control.R.layout.custom_native_ads_2)
@@ -260,6 +261,7 @@ class CreateSoundActivity :
             binding.ctOptions.visibility = View.VISIBLE
             binding.ctSaveRecord.visibility = View.GONE
             binding.btnSave.visibility = View.GONE
+            binding.tvAppName.text = getString(R.string.create_sound)
         } else {
             super.onBackPressed()
         }
