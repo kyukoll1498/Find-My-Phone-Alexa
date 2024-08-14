@@ -23,6 +23,7 @@ import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.data.model.SoundItem
+import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
 import com.mtg.tool.findmyphone.main.clap.ClassesApp
 import com.mtg.tool.findmyphone.main.clap.FeatureClapManager
@@ -117,7 +118,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 Glide.with(this).load(it.avatar).into(binding.ivAvatar)
             }
         }
-        binding.tvName.text = currentSoundItem.name
+        binding.tvName.text = AppRepository.getAllSound(requireContext()).find { it.soundPath == currentSoundItem.soundPath }?.name
     }
 
     override fun addEvent() {
