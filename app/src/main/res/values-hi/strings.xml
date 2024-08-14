@@ -55,7 +55,7 @@
     <string name="txt_touch_here_notify">निष्क्रिय करने के लिए यहां स्पर्श करें</string>
     <string name="touch_here_to_deactivate">निष्क्रिय करने के लिए यहां स्पर्श करें</string>
     <string name="clap_to_find_your_phone_is_running">यह जानने के लिए ताली बजाएं कि आपका फ़ोन चल रहा है</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"कोई फ़ाइल नहीं है.\\nआइए प्रयास करें "</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"कोई फ़ाइल नहीं है.\nआइए प्रयास करें "</string>
     <string name="create_sound">ध्वनि बनाएँ</string>
     <string name="import_audio">ऑडियो आयात करें</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone"><b>क्लैप टू फाइंड योर फोन</b> को माइक्रोफोन तक पहुंचने की अनुमति दें</string>

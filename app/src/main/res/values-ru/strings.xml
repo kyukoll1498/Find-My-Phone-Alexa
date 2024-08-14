@@ -55,7 +55,7 @@
     <string name="txt_touch_here_notify">Нажмите здесь, чтобы деактивировать</string>
     <string name="touch_here_to_deactivate">Нажмите здесь, чтобы отключить</string>
     <string name="clap_to_find_your_phone_is_running">Хлопните и обнаружите, что ваш телефон работает.</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"Файлов нет.\\n Попробуем "</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"Файлов нет.\n Попробуем "</string>
     <string name="create_sound">Создать звук</string>
     <string name="import_audio">Импорт аудио</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Разрешите <b>Clap To Find Your Phone</b> доступ к микрофону</string>

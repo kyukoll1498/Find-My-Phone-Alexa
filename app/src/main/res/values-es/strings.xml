@@ -55,7 +55,7 @@
     <string name="txt_touch_here_notify">Toque aquí para desactivar</string>
     <string name="touch_here_to_deactivate">Toca aquí para desactivar</string>
     <string name="clap_to_find_your_phone_is_running">Aplaude para descubrir que tu teléfono está funcionando</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"No hay archivos.\\n Intentemos "</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"No hay archivos.\n Intentemos "</string>
     <string name="create_sound">Crear sonido</string>
     <string name="import_audio">Importar Audio</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Permitir que <b>Clap To Find Your Phone</b> acceda al micrófono</string>

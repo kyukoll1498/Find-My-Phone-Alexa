@@ -67,7 +67,7 @@
     <string name="txt_touch_here_notify">المس هنا لإلغاء التنشيط</string>
     <string name="touch_here_to_deactivate">المس هنا لإلغاء التنشيط</string>
     <string name="clap_to_find_your_phone_is_running">التصفيق للعثور على هاتفك قيد التشغيل</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"لا توجد ملفات.\\n فلنحاول ذلك "</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"لا توجد ملفات.\n فلنحاول ذلك "</string>
     <string name="create_sound">إنشاء الصوت</string>
     <string name="import_audio">استيراد الصوت</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone">"يسمح "</string>
