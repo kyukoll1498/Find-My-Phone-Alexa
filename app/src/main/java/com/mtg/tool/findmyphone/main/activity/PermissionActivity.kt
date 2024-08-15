@@ -28,7 +28,7 @@ class PermissionActivity :
         binding.llContinue.paintFlags = Paint.UNDERLINE_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG
         binding.llContinue.setText(R.string.skip)
         SharedPrefs.put(this, Constants.SKIP_ONBOARD, true)
-        logEvent("view_permission")
+        logEvent("permission_view")
         showNative();
         // Do not allow user interaction sbPermission
         binding.sbPermission.isEnabled = false
