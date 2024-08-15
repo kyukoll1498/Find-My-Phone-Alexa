@@ -434,6 +434,21 @@ public class AdmobManager {
                     });
                 }
 
+                @Override
+                public void onAdImpression() {
+                    super.onAdImpression();
+                    if (callback != null) {
+                        callback.onAdImpression();
+                    }
+                }
+
+                @Override
+                public void onAdClicked() {
+                    super.onAdClicked();
+                    if (callback != null) {
+                        callback.onAdClicked();
+                    }
+                }
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -473,7 +488,9 @@ public class AdmobManager {
                 callback.onAdFailedToLoad(i);
             }
         });
-    }public void preloadFullScreenNative(Context context, String id, AdCallback callback) {
+    }
+
+    public void preloadFullScreenNative(Context context, String id, AdCallback callback) {
         Log.d("AdmobLogger", "preloadFsNative: " + id);
         loadFullScreenUnifiedNativeAd(context, id, new AdCallback() {
             @Override
@@ -487,8 +504,9 @@ public class AdmobManager {
             }
         });
     }
-    public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, int customNative){
-        if(nativeAd == null){
+
+    public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, int customNative) {
+        if (nativeAd == null) {
             placeHolder.setVisibility(View.GONE);
             return;
         }
@@ -520,7 +538,43 @@ public class AdmobManager {
         });
     }
 
-    public void loadNativeFullScreenWithCallback(Context context, String id, FrameLayout placeHolder, final AdCallback callback){
+    public void loadNative(Context context, String id, FrameLayout placeHolder, int customNative, AdCallback callback) {
+        log("Request NativeAd :" + id);
+        loadUnifiedNativeAd(context, id, new AdCallback() {
+            @Override
+            public void onNativeAds(NativeAd nativeAd) {
+                @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
+                onBindAdView(nativeAd, nativeAdView);
+                placeHolder.removeAllViews();
+                placeHolder.addView(nativeAdView);
+                nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError i) {
+                placeHolder.removeAllViews();
+                placeHolder.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                if (callback != null) {
+                    callback.onAdImpression();
+                }
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                if (callback != null) {
+                    callback.onAdClicked();
+                }
+            }
+        });
+    }
+
+    public void loadNativeFullScreenWithCallback(Context context, String id, FrameLayout placeHolder, final AdCallback callback) {
         loadFullScreenUnifiedNativeAd(context, id, new AdCallback() {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
@@ -536,6 +590,7 @@ public class AdmobManager {
                 placeHolder.removeAllViews();
                 placeHolder.setVisibility(View.GONE);
             }
+
             @Override
             public void onAdClicked() {
                 super.onAdClicked();
@@ -557,7 +612,7 @@ public class AdmobManager {
             return;
         }
         VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
-        NativeAdOptions adOptions = new NativeAdOptions.Builder() .setMediaAspectRatio(MediaAspectRatio.ANY).setVideoOptions(videoOptions).build();
+        NativeAdOptions adOptions = new NativeAdOptions.Builder().setMediaAspectRatio(MediaAspectRatio.ANY).setVideoOptions(videoOptions).build();
         AdLoader adLoader = new AdLoader.Builder(context, id).forNativeAd(nativeAd -> {
             if (callback != null) {
                 callback.onNativeAds(nativeAd);
@@ -570,6 +625,7 @@ public class AdmobManager {
                     callback.onAdFailedToLoad(loadAdError);
                 }
             }
+
             @Override
             public void onAdImpression() {
                 super.onAdImpression();
@@ -679,16 +735,21 @@ public class AdmobManager {
                     callback.onAdFailedToLoad(loadAdError);
                 }
             }
+
             @Override
             public void onAdImpression() {
                 super.onAdImpression();
-                callback.onAdImpression();
+                if (callback != null) {
+                    callback.onAdImpression();
+                }
             }
 
             @Override
             public void onAdClicked() {
                 super.onAdClicked();
-                callback.onAdClicked();
+                if (callback != null) {
+                    callback.onAdClicked();
+                }
             }
         }).withNativeAdOptions(adOptions).build();
         adLoader.loadAd(request);
@@ -975,6 +1036,7 @@ public class AdmobManager {
             }
         });
     }
+
     public void preloadFullScreenAlternateNative(Context context, List<String> idsInput, AdCallback callback) {
         List<String> ids = new ArrayList<>(idsInput);
         if (ids.isEmpty()) {
@@ -1030,6 +1092,47 @@ public class AdmobManager {
         });
     }
 
+    public void loadAlternateBanner(Activity act, List<String> idsInput, final FrameLayout adContainer, AdCallback callback) {
+        List<String> ids = new ArrayList<>(idsInput);
+        if (ids.isEmpty()) {
+            Log.d("AdmobLogger", "loadAlternateBanner: empty");
+            return;
+        }
+        loadBanner(act, ids.get(0), adContainer, new AdCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError i) {
+                super.onAdFailedToLoad(i);
+                Log.w("AdmobLogger", "loadAlternateBanner: " + "fail-" + ids.get(0));
+                ids.remove(0);
+                if (!ids.isEmpty()) {
+                    adContainer.setVisibility(View.VISIBLE);
+                    loadAlternateBanner(act, ids, adContainer, callback);
+                }
 
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                Log.i("AdmobLogger", "loadAlternateBanner: " + "success-" + ids.get(0));
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                if (callback != null) {
+                    callback.onAdClicked();
+                }
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                if (callback != null) {
+                    callback.onAdImpression();
+                }
+            }
+        });
+    }
 
 }

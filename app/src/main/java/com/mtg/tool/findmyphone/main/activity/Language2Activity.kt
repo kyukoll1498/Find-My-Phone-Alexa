@@ -34,6 +34,7 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
     private val lfo2NativeAdsReload = arrayListOf(AdIds.lfo2_native_high, AdIds.lfo2_native)
 
     override fun initView() {
+        logEvent("language2_setting_view")
         setStatusBarColor()
         initListLanguage()
         initRCLanguage()

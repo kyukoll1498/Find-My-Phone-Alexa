@@ -49,6 +49,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         }, 15000)
         AppSession.isCompletedInterSplash = false
         logEvent("view_splash")
+        logEvent("splash_view")
         ConsentDialogManager.instance?.showConsentDialogSplash(this) {
             AdIds.updateIdAdsWithRemoteConfig()
             handleAds()
@@ -137,7 +138,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             object : AdCallback() {
                 override fun onAdShowedFullScreenContent() {
                     super.onAdShowedFullScreenContent()
-                    logEvent("view_inter_splash")
+                    logEvent("splash_ad_inter_view")
                     if (!appPreferences.isChooseLanguage) {
                         if (AdCache.getInstance().lfo2NativeHigh == null) {
 //                                      1. preload lfo2_native_high1
