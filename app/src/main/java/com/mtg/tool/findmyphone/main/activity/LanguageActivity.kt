@@ -38,6 +38,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     private var step = 0
 
     override fun initView() {
+        logEvent("LFO1_view")
         AdCache.getInstance().lfo1Native.observe(
             this
         ) { value ->
@@ -90,7 +91,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 if (step == 0) {
                     step++
                     logEvent("complete_lfo1")
-                    logEvent("view_lfo2")
+                    logEvent("LFO2_view")
                     if (AdCache.getInstance().lfo2NativeHigh != null) {
                         AdmobManager.getInstance().showNative(
                             this@LanguageActivity,
@@ -153,11 +154,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         binding.btBack.setOnClickListener { finish() }
         binding.ivDone.setOnClickListener {
             logEvent("complete_lfo_flow")
-            if (step == 0) {
-                logEvent("complete_lfo1")
-            } else {
-                logEvent("complete_lfo2")
-            }
             EventLogger.getInstance()?.logEvent("click_language_tick")
             //Intent intent = new Intent(this, MainActivity.class);
             if (itemLanguage == null) {
