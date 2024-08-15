@@ -78,7 +78,7 @@ android {
 
             addConstantTo(owner, "APP_ID", "ca-app-pub-3940256099942544~3347511713")
 //            -----------------------------------------------------------------------------------
-            addConstantTo(owner, "app_reopen", "ca-app-pub-3940256099942544/3419835294")
+            addConstantTo(owner, "app_reopen", "ca-app-pub-3940256099942544/9257395921")
             addConstantTo(owner, "banner_splash_high", "ca-app-pub-3940256099942544/6300978111")
             addConstantTo(owner, "banner_splash", "ca-app-pub-3940256099942544/6300978111")
             addConstantTo(owner, "inter_splash_high", "ca-app-pub-3940256099942544/1033173712")
