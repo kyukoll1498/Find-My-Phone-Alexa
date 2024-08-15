@@ -118,7 +118,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 Glide.with(this).load(it.avatar).into(binding.ivAvatar)
             }
         }
-        binding.tvName.text = AppRepository.getAllSound(requireContext()).find { it.soundPath == currentSoundItem.soundPath }?.name
+        binding.tvName.text = AppRepository.getAllSound(requireContext()).find { it.soundPath == currentSoundItem.soundPath }?.name?:currentSoundItem.name
     }
 
     override fun addEvent() {
