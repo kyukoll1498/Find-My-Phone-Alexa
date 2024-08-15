@@ -294,11 +294,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             return;
         }
 
-        if (currentActivity != null && !PermissionUtils.isStoragePermissionGranted(currentActivity)) {
-            Log.d(TAG, "onResume: Permission Not Granted");
-            return;
-        }
-
         for (Class activity : disabledAppOpenList) {
             if (activity.getName().equals(currentActivity.getClass().getName())) {
                 Log.d(TAG, "onStart: activity is disabled");
@@ -307,7 +302,12 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
         }
 
         if (!currentActivity.getClass().getName().equals(AdActivity.class.getName())) {
-            showAdIfAvailable();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    showAdIfAvailable();
+                }
+            }, 300);
         }
     }
     public void hideNativeOrBannerWhenShowOpenApp(Activity activity, FrameLayout frAd) {

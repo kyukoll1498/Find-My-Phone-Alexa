@@ -14,6 +14,11 @@ import com.mbridge.msdk.out.MBridgeSDKFactory
 import com.mtg.tool.findmyphone.ads_executor.inter.InterSplashExecutor
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
+import com.mtg.tool.findmyphone.main.activity.InterestActivity
+import com.mtg.tool.findmyphone.main.activity.Language2Activity
+import com.mtg.tool.findmyphone.main.activity.LanguageActivity
+import com.mtg.tool.findmyphone.main.activity.OnBoardActivity
+import com.mtg.tool.findmyphone.main.activity.PermissionActivity
 import com.mtg.tool.findmyphone.main.activity.SplashActivity
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
@@ -44,6 +49,11 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 
         AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
         AppOpenManager.getInstance().disableAppResumeWithActivity(PermissionStorageDialog::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(LanguageActivity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(InterestActivity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(OnBoardActivity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(PermissionActivity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(Language2Activity::class.java)
 //        AppOpenManager.getInstance().disableAppResumeWithRewardActivity(HomeActivity::class.java)
 //        AppOpenManager.getInstance().specialAppResumeWithActivity(IncomingActivity::class.java)
         registerActivityLifecycleCallbacks(this)
