@@ -36,7 +36,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.SettingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
@@ -86,7 +87,8 @@
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:theme="@style/AdsAppTheme"
-            tools:replace="android:theme" />
+            tools:replace="android:theme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".main.activity.LanguageActivity"
             android:exported="true"
