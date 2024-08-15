@@ -39,6 +39,7 @@ class PermissionActivity :
         binding.llContinue.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
@@ -87,6 +88,7 @@ class PermissionActivity :
                 // Auto checked sbPermission when allow permission record micro
                 turnOnSwitchButton()
                 MainActivity.start(this)
+                finish()
 //                hasMicrophonePermission = true
 
                 // Change color button ll_continue

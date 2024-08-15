@@ -219,7 +219,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     }
 
 
-    private fun hideRate() {
+    public fun hideRate() {
         binding.btnRate.hide()
     }
 

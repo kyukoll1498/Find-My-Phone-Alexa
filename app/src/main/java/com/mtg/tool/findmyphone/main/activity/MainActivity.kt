@@ -53,6 +53,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private var homeFragment = HomeFragment()
+    private var settingFragment = SettingFragment()
 
 //    private fun setUpRate() {
 //        if (SharedPrefs.isRated(this)) {
@@ -187,7 +188,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 addFrag(homeFragment)
                 addFrag(SoundFragment())
                 addFrag(AddFragment())
-                addFrag(SettingFragment())
+                addFrag(settingFragment)
             }
         }
         binding.viewpagerMain.offscreenPageLimit = 2
@@ -270,7 +271,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         if (!SharedPrefs.isRated(this)) {
             ActionUtils.showRateDialog(this, true, callback = {
                 if (it) {
-//                    hideRate()
+                    settingFragment.hideRate()
                 }
             })
         } else {

@@ -64,6 +64,7 @@ object ActionUtils {
             override fun onSubmit(review: String) {
                 Toast.makeText(context, context.getString(R.string.thank_you), Toast.LENGTH_SHORT)
                     .show()
+                callback(true)
                 SharedPrefs.setRated(context)
                 if (isFinish) {
                     context.finishAffinity()
