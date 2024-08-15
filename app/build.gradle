@@ -74,6 +74,7 @@ android {
             def addConstantTo = { target, constantName, constantValue ->
                 target.manifestPlaceholders += [(constantName): constantValue]
                 target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
+
             }
 
             addConstantTo(owner, "APP_ID", "ca-app-pub-3940256099942544~3347511713")
