@@ -117,7 +117,7 @@ class OnBoardFragment(
         super.onResume()
         if (isFirstResume) {
             isFirstResume = false
-            logEvent("view_ob" + (position + 2))
+            logEvent("onboard" + (position + 2) + "_view")
             return
         }
         when (position) {
