@@ -37,7 +37,7 @@ class InterestActivity :
     }
 
     override fun initView() {
-        logEvent("view_onboard1")
+        logEvent("onboard1_view")
         AdmobManager.getInstance().showNative(
             this,
             AdCache.getInstance().ob1Native,
