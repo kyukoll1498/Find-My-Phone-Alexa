@@ -110,16 +110,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="@dimen/_15sdp"
-            android:layout_height="@dimen/_15sdp"
-            android:layout_gravity="end"
-            android:elevation="1dp"
-            android:visibility="gone"
-            android:src="@drawable/ic_ads_info_sound"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
