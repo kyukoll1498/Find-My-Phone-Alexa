@@ -161,9 +161,9 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.github.yangmbin:RatingBar:1.0.0'
 //    implementation 'com.github.guilhe:circular-progress-view:2.0.0'
-    implementation 'com.emredavarci:CircleProgressBar:1.0.8'
-    implementation 'org.wysaid:gpuimage-plus:2.6.3'
-    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
+//    implementation 'com.emredavarci:CircleProgressBar:1.0.8'
+//    implementation 'org.wysaid:gpuimage-plus:2.6.3'
+//    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
 
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
@@ -219,4 +219,8 @@ dependencies {
     // Optional - For showing previews in Android Studio
     debugImplementation "androidx.compose.ui:ui-tooling:1.6.0"
     debugImplementation "androidx.compose.ui:ui-test-manifest:1.6.0"
+
+    //SDK solar engine
+    implementation "com.reyun.solar.engine.oversea:solar-engine-core:1.2.7.8"
+    implementation "com.reyun.solar.engine:se-plugin-oaid:1.2.7.8"
 }

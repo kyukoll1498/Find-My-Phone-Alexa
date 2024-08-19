@@ -36,5 +36,15 @@ allprojects {
             url 'https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea'
         }
         maven { url 'https://jitpack.io' }
+        maven {
+            url "https://dl-maven-android.mintegral.com/repository/se_sdk_for_android/"
+        }
+        maven {
+            url "https://developer.huawei.com/repo/"
+        }
+        maven {
+            url 'https://developer.hihonor.com/repo'
+        }
+        maven { url 'https://maven.reyun.com/repository/solar-engine' }
     }
 }
