@@ -112,16 +112,20 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             }, timeLoad * 1000)
         }
     }
+
     private fun reloadBanner() {
-        AdmobManager.getInstance().loadBanner(this, bannerAds[0], binding.frAd)
-        val timeLoad = RemoteConfigManager.instance!!.time_load_banner
-        if (timeLoad != 0.toLong()) {
-            Handler().postDelayed(Runnable {
-                if (canRefreshBanner) {
-                    Log.d("AdmobRefresh: ", "splash")
-                    reloadBanner()
-                }
-            }, timeLoad * 1000)
+        if (bannerAds.isNotEmpty()) {
+            AdmobManager.getInstance()
+                .loadAlternateBanner(this, arrayListOf(bannerAds[0]), binding.frAd)
+            val timeLoad = RemoteConfigManager.instance!!.time_load_banner
+            if (timeLoad != 0.toLong()) {
+                Handler().postDelayed(Runnable {
+                    if (canRefreshBanner) {
+                        Log.d("AdmobRefresh: ", "splash")
+                        reloadBanner()
+                    }
+                }, timeLoad * 1000)
+            }
         }
     }
 
@@ -134,7 +138,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                         this@SplashActivity
                     ) {
                         if (it) {
-                            canRefreshBanner = false
                             showAdAndStartMain(interstitialAd)
                         }
                     }
@@ -146,7 +149,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                         this@SplashActivity
                     ) {
                         if (it) {
-                            canRefreshBanner = false
                             startMain()
                             Handler().postDelayed(Runnable {
                                 AppSession.isCompletedInterSplash = true
@@ -273,6 +275,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     override fun onResume() {
         super.onResume()
+        canRefreshBanner = true
+    }
 
+    override fun onPause() {
+        super.onPause()
+        canRefreshBanner = false
     }
 }

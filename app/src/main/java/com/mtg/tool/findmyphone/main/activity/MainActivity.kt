@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -17,6 +19,7 @@ import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_NOTIFICATION_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
+import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityMainBinding
 import com.mtg.tool.findmyphone.main.dialog.ExitDialog
@@ -43,13 +46,43 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
     }
 
+    private var canRefreshBanner = true
+    private var listBanner = mutableListOf(AdIds.banner_home)
+
     override fun initView() {
         changeStatusBar(Color.parseColor("#e7f4ff"))
 //        setUpRate()
         setupViewpager()
 //        setupDrawerNavigation()
-        AdmobManager.getInstance().loadBanner(this, AdIds.banner_home, binding.frAd)
+//        load banner---------------------------------------------------
+        AdmobManager.getInstance().loadAlternateBanner(this, listBanner, binding.frAd)
+        val timeLoad = RemoteConfigManager.instance!!.time_load_banner
+        if (timeLoad != 0.toLong()) {
+            Handler().postDelayed(Runnable {
+                if (canRefreshBanner) {
+                    Log.d("AdmobRefresh: ", "home")
+                    reloadBanner()
+                }
+            }, timeLoad * 1000)
+        }
+//        ---------------------------------------------------------
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
+    }
+
+    private fun reloadBanner() {
+        if(listBanner.isNotEmpty()){
+            AdmobManager.getInstance()
+                .loadAlternateBanner(this, arrayListOf(listBanner[0]), binding.frAd)
+            val timeLoad = RemoteConfigManager.instance!!.time_load_banner
+            if (timeLoad != 0.toLong()) {
+                Handler().postDelayed(Runnable {
+                    if (canRefreshBanner) {
+                        Log.d("AdmobRefresh: ", "splash")
+                        reloadBanner()
+                    }
+                }, timeLoad * 1000)
+            }
+        }
     }
 
     private var homeFragment = HomeFragment()
@@ -209,6 +242,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onResume() {
         super.onResume()
+        canRefreshBanner = true
         changeUITools(0, binding.viewpagerMain.currentItem)
     }
 
@@ -279,5 +313,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 super.onBackPressed()
             }.show()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        canRefreshBanner = false
     }
 }
