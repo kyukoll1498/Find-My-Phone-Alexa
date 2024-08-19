@@ -1065,8 +1065,7 @@ public class AdmobManager {
         });
     }
 
-    public void loadAlternateBanner(Activity act, List<String> idsInput, final FrameLayout adContainer) {
-        List<String> ids = new ArrayList<>(idsInput);
+    public void loadAlternateBanner(Activity act, List<String> ids, final FrameLayout adContainer) {
         if (ids.isEmpty()) {
             Log.d("AdmobLogger", "loadAlternateBanner: empty");
             return;
