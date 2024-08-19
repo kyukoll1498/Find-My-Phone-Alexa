@@ -127,4 +127,6 @@ public abstract class MyApplication extends Application {
 
     protected abstract List<PurchaseModel> getPurchaseListInApp();
 
+    public abstract Class getFirstActForOpenApp();
+
 }

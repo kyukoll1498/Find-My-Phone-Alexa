@@ -1,5 +1,6 @@
 package com.mtg.tool.findmyphone
 
+import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 
 object AdIds {
@@ -50,6 +51,7 @@ object AdIds {
             if (RemoteConfigManager.instance!!._306_ob6_n_native) BuildConfig.ob6_native else ""
         app_reopen =
             if (RemoteConfigManager.instance!!._401_app_o_reopen) BuildConfig.app_reopen else ""
+        AppOpenManager.getInstance().appResumeAdId = app_reopen
 
         native_home =  if (RemoteConfigManager.instance!!._501_home_o_native) BuildConfig.native_home else ""
         banner_home =  if (RemoteConfigManager.instance!!._502_home_o_banner) BuildConfig.banner_home else ""

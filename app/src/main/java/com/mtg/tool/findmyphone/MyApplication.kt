@@ -17,6 +17,7 @@ import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.main.activity.InterestActivity
 import com.mtg.tool.findmyphone.main.activity.Language2Activity
 import com.mtg.tool.findmyphone.main.activity.LanguageActivity
+import com.mtg.tool.findmyphone.main.activity.MainActivity
 import com.mtg.tool.findmyphone.main.activity.OnBoardActivity
 import com.mtg.tool.findmyphone.main.activity.PermissionActivity
 import com.mtg.tool.findmyphone.main.activity.SplashActivity
@@ -134,6 +135,11 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
     override fun getPurchaseListInApp(): List<PurchaseModel?>? {
         return listOf<PurchaseModel>(PurchaseModel(PRODUCT_LIFETIME, PurchaseModel.ProductType.INAPP))
     }
+
+    override fun getFirstActForOpenApp(): Class<*> {
+        return MainActivity::class.java
+    }
+
 
     override fun onActivityCreated(p0: Activity, p1: Bundle?) {
 

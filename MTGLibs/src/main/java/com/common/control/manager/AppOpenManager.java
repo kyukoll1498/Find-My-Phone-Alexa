@@ -16,6 +16,7 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
+import com.common.control.MyApplication;
 import com.common.control.dialog.WelcomeBackDialog;
 import com.common.control.interfaces.AdCallback;
 import com.common.control.utils.PermissionUtils;
@@ -53,6 +54,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     private long loadTime;
     private WelcomeBackDialog dialog;
     private long timeShowLoading = 100;
+    private boolean startLoading = false;
 
     public void setTimeShowLoading(long timeShowLoading) {
         this.timeShowLoading = timeShowLoading;
@@ -110,6 +112,10 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
         this.appResumeAdId = appOpenAdId;
     }
 
+    public void setAppResumeAdId(String appResumeAdId) {
+        this.appResumeAdId = appResumeAdId;
+    }
+
     public boolean isInitialized() {
         return isInitialized;
     }
@@ -135,6 +141,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
 
     public void fetchAd() {
+        Log.d("AppOpenLogger: ", "fetchAd:");
         fetchAd(null);
     }
 
@@ -162,6 +169,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             }
         };
         AdmobManager.getInstance().log("Request OpenAd :" + appResumeAdId);
+        Log.d("AppOpenLogger: ", "request: " + appResumeAdId);
         AppOpenAd.load(
                 myApplication, appResumeAdId, request,
                 AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
@@ -189,7 +197,16 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     @Override
     public void onActivityResumed(Activity activity) {
         currentActivity = activity;
-        fetchAd();
+        if (!startLoading) {
+            if (myApplication instanceof MyApplication) {
+                if (((MyApplication) myApplication).getFirstActForOpenApp().getName().equals(currentActivity.getClass().getName())) {
+                    startLoading = true;
+                }
+            }
+        }
+        if (startLoading) {
+            fetchAd();
+        }
     }
 
     @Override
@@ -310,6 +327,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             }, 300);
         }
     }
+
     public void hideNativeOrBannerWhenShowOpenApp(Activity activity, FrameLayout frAd) {
         //todo do nothing load old ads
 //        this.frAd = frAd;
