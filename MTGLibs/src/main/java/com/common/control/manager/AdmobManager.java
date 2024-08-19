@@ -471,11 +471,6 @@ public class AdmobManager {
 
     }
 
-    @Deprecated
-    public void loadNative(Context context, String id, FrameLayout placeHolder, NativeAdType type) {
-        loadNative(context, id, placeHolder, R.layout.custom_native, type);
-    }
-
     public void preloadNative(Context context, String id, AdCallback callback) {
         Log.d("AdmobLogger", "preloadNative: " + id);
         loadUnifiedNativeAd(context, id, new AdCallback() {
@@ -506,13 +501,9 @@ public class AdmobManager {
         });
     }
 
-    public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, int customNative, NativeAdType type) {
+    public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, NativeAdType type) {
         boolean isMeta = Objects.equals(Objects.requireNonNull(nativeAd.getResponseInfo()).getMediationAdapterClassName().toLowerCase(), "com.google.ads.mediation.facebook.facebookadapter".toLowerCase());
-        if (nativeAd == null) {
-            placeHolder.setVisibility(View.GONE);
-            return;
-        }
-        placeHolder.setVisibility(View.VISIBLE);
+        int customNative = getLayoutNative(isMeta, type);
         @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
         onBindAdView(nativeAd, nativeAdView);
         placeHolder.removeAllViews();
@@ -520,16 +511,38 @@ public class AdmobManager {
         nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
     }
 
-    public void loadNative(Context context, String id, FrameLayout placeHolder, int customNative, NativeAdType nativeAdType) {
+    private int getLayoutNative(Boolean isMeta, NativeAdType type) {
+        switch (type) {
+            case BIG:
+                if (isMeta) {
+                    return R.layout.custom_native_meta_big;
+                } else {
+                    return R.layout.custom_native_ads_2;
+                }
+            case SMALL:
+                if (isMeta) {
+                    return R.layout.custom_native_meta_small;
+
+                } else {
+                    return R.layout.custom_native_ads_1;
+                }
+            case MEDIUM:
+                if (isMeta) {
+                    return R.layout.custom_native_meta_regular;
+                } else {
+                    return R.layout.custom_native_ads_3;
+                }
+            default:
+                return R.layout.custom_native_ads_2;
+        }
+    }
+
+    public void loadNative(Context context, String id, FrameLayout placeHolder, NativeAdType nativeAdType) {
         log("Request NativeAd :" + id);
         loadUnifiedNativeAd(context, id, new AdCallback() {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
-                @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
-                onBindAdView(nativeAd, nativeAdView);
-                placeHolder.removeAllViews();
-                placeHolder.addView(nativeAdView);
-                nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
+                showNative(context, nativeAd, placeHolder, nativeAdType);
             }
 
             @Override
@@ -540,16 +553,12 @@ public class AdmobManager {
         });
     }
 
-    public void loadNative(Context context, String id, FrameLayout placeHolder, int customNative, NativeAdType nativeAdType, AdCallback callback) {
+    public void loadNative(Context context, String id, FrameLayout placeHolder, NativeAdType nativeAdType, AdCallback callback) {
         log("Request NativeAd :" + id);
         loadUnifiedNativeAd(context, id, new AdCallback() {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
-                @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
-                onBindAdView(nativeAd, nativeAdView);
-                placeHolder.removeAllViews();
-                placeHolder.addView(nativeAdView);
-                nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
+                showNative(context, nativeAd, placeHolder, nativeAdType);
             }
 
             @Override
@@ -572,37 +581,6 @@ public class AdmobManager {
                 if (callback != null) {
                     callback.onAdClicked();
                 }
-            }
-        });
-    }
-
-    public void loadNativeFullScreenWithCallback(Context context, String id, FrameLayout placeHolder, final AdCallback callback) {
-        loadFullScreenUnifiedNativeAd(context, id, new AdCallback() {
-            @Override
-            public void onNativeAds(NativeAd nativeAd) {
-                @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(R.layout.custom_full_screen_native_ads, null);
-                onBindAdView(nativeAd, nativeAdView);
-                placeHolder.removeAllViews();
-                placeHolder.addView(nativeAdView);
-                nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
-            }
-
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError i) {
-                placeHolder.removeAllViews();
-                placeHolder.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-                callback.onAdClicked();
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-                callback.onAdImpression();
             }
         });
     }
@@ -682,39 +660,6 @@ public class AdmobManager {
         intentFilter.addAction(ACTION_CLOSE_NATIVE_ADS);
         intentFilter.addAction(ACTION_OPEN_NATIVE_ADS);
         return intentFilter;
-    }
-
-    public void loadNativeWithCallback(Context context, String id, FrameLayout placeHolder, int customNative, final AdCallback callback) {
-        log("Request NativeAd :" + id);
-        registerDialogBehaviorReceiver(context, placeHolder);
-        loadUnifiedNativeAd(context, id, new AdCallback() {
-            @Override
-            public void onNativeAds(NativeAd nativeAd) {
-                @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
-                onBindAdView(nativeAd, nativeAdView);
-                placeHolder.removeAllViews();
-                placeHolder.addView(nativeAdView);
-                nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
-            }
-
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError i) {
-                placeHolder.removeAllViews();
-                placeHolder.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAdClicked() {
-                super.onAdClicked();
-                callback.onAdClicked();
-            }
-
-            @Override
-            public void onAdImpression() {
-                super.onAdImpression();
-                callback.onAdImpression();
-            }
-        });
     }
 
     private void loadUnifiedNativeAd(Context context, String id, final AdCallback callback) {
