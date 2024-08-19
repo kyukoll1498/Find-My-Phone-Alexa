@@ -532,6 +532,8 @@ public class AdmobManager {
                 } else {
                     return R.layout.custom_native_ads_3;
                 }
+            case FULLSCREEN:
+                return R.layout.custom_full_screen_native_ads;
             default:
                 return R.layout.custom_native_ads_2;
         }
@@ -1082,7 +1084,7 @@ public class AdmobManager {
     }
 
     public enum NativeAdType {
-        BIG, MEDIUM, SMALL
+        FULLSCREEN, BIG, MEDIUM, SMALL
     }
 
 }

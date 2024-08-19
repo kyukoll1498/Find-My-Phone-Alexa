@@ -42,7 +42,7 @@ class InterestActivity :
             this,
             AdCache.getInstance().ob1Native,
             binding.frAd,
-            com.common.control.R.layout.custom_native_ads_2
+            AdmobManager.NativeAdType.BIG
         )
         if (AdCache.getInstance().ob4NativeHigh == null) {
             AdmobManager.getInstance().preloadFullScreenNative(
@@ -129,7 +129,7 @@ class InterestActivity :
             AdmobManager.getInstance().preloadAlternateNative(this, onb1NativeAds, object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
-                    AdmobManager.getInstance().showNative(this@InterestActivity, nativeAd, binding.frAd, com.common.control.R.layout.custom_native_ads_2)
+                    AdmobManager.getInstance().showNative(this@InterestActivity, nativeAd, binding.frAd, AdmobManager.NativeAdType.BIG)
                 }
             })
         } else {

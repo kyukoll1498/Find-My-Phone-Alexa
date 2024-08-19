@@ -56,7 +56,7 @@ class CreateSoundActivity :
             this,
             AdIds.native_add,
             binding.frAd,
-            com.common.control.R.layout.custom_native_ads_2
+            AdmobManager.NativeAdType.BIG
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
 

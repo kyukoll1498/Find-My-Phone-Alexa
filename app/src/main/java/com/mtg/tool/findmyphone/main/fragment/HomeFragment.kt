@@ -61,7 +61,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             requireActivity(),
             AdIds.native_home,
             binding.frAd,
-            com.common.control.R.layout.custom_native_ads_1
+            AdmobManager.NativeAdType.SMALL
         )
         if (isMyServiceRunning()) {
             isCircleActiveVisible = !isCircleActiveVisible

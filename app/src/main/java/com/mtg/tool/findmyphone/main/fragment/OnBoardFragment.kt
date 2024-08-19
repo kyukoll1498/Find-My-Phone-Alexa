@@ -40,7 +40,7 @@ class OnBoardFragment(
                     context,
                     AdCache.getInstance().ob2NativeHigh,
                     binding.frAd,
-                    com.common.control.R.layout.custom_native_ads_2
+                    AdmobManager.NativeAdType.BIG
                 )
                 Log.d("nativeOB", "ob2NativeHigh")
             }
@@ -65,7 +65,7 @@ class OnBoardFragment(
                                 context,
                                 AdCache.getInstance().ob4NativeHigh,
                                 binding.adsContainer,
-                                com.common.control.R.layout.custom_full_screen_native_ads
+                                AdmobManager.NativeAdType.FULLSCREEN
                             )
                         } else if (AdCache.getInstance().ob4NativeHigh1 != null) {
                             Log.d("showFullNative", "ob4NativeHigh1")
@@ -73,7 +73,7 @@ class OnBoardFragment(
                                 context,
                                 AdCache.getInstance().ob4NativeHigh1,
                                 binding.adsContainer,
-                                com.common.control.R.layout.custom_full_screen_native_ads
+                                AdmobManager.NativeAdType.FULLSCREEN
                             )
                         } else if (AdCache.getInstance().ob4NativeHigh2AndNative != null) {
                             Log.d("showFullNative", "ob4NativeHigh2AndNative")
@@ -81,7 +81,7 @@ class OnBoardFragment(
                                 context,
                                 AdCache.getInstance().ob4NativeHigh2AndNative,
                                 binding.adsContainer,
-                                com.common.control.R.layout.custom_full_screen_native_ads
+                                AdmobManager.NativeAdType.FULLSCREEN
                             )
                         }
                     } else {
@@ -102,7 +102,7 @@ class OnBoardFragment(
                     context,
                     AdCache.getInstance().ob5NativeHigh,
                     binding.frAd,
-                    com.common.control.R.layout.custom_native_ads_2
+                    AdmobManager.NativeAdType.BIG
                 )
                 Log.d("nativeOB", "ob5NativeHigh")
             }
@@ -132,7 +132,7 @@ class OnBoardFragment(
                                 requireActivity(),
                                 nativeAd,
                                 binding.frAd,
-                                com.common.control.R.layout.custom_native_ads_2
+                                AdmobManager.NativeAdType.BIG
                             )
                         }
                     })
@@ -151,7 +151,7 @@ class OnBoardFragment(
                             super.onNativeAds(nativeAd)
                             AdmobManager.getInstance().showNative(
                                 requireActivity(), nativeAd, binding.adsContainer,
-                                com.common.control.R.layout.custom_full_screen_native_ads
+                                AdmobManager.NativeAdType.FULLSCREEN
                             )
                         }
                     })
@@ -168,7 +168,7 @@ class OnBoardFragment(
                                 requireActivity(),
                                 nativeAd,
                                 binding.frAd,
-                                com.common.control.R.layout.custom_native_ads_2
+                                AdmobManager.NativeAdType.BIG
                             )
                         }
                     })

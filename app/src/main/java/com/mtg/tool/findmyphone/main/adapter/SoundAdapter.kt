@@ -79,7 +79,7 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
                 context,
                 AdIds.native_sound,
                 binding.frAds,
-                R.layout.custom_native_ads_item
+                AdmobManager.NativeAdType.MEDIUM
             )
             AppOpenManager.getInstance()
                 .hideNativeOrBannerWhenShowOpenApp(context as Activity, binding.frAds)

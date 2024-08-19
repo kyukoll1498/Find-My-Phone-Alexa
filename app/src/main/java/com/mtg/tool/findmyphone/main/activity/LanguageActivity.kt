@@ -46,7 +46,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 this@LanguageActivity,
                 value,
                 binding.frAd,
-                com.common.control.R.layout.custom_native_ads_2
+                AdmobManager.NativeAdType.BIG
             )
         }
         if (AdCache.getInstance().lfo2NativeHigh == null && AdCache.getInstance().lfo2NativeHigh1 == null) {
@@ -97,21 +97,21 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                             this@LanguageActivity,
                             AdCache.getInstance().lfo2NativeHigh,
                             binding.frAd2,
-                            com.common.control.R.layout.custom_native_ads_2
+                            AdmobManager.NativeAdType.BIG
                         )
                     } else if (AdCache.getInstance().lfo2NativeHigh1 != null) {
                         AdmobManager.getInstance().showNative(
                             this@LanguageActivity,
                             AdCache.getInstance().lfo2NativeHigh1,
                             binding.frAd2,
-                            com.common.control.R.layout.custom_native_ads_2
+                            AdmobManager.NativeAdType.BIG
                         )
                     } else if (AdCache.getInstance().lfo2NativeHigh2 != null) {
                         AdmobManager.getInstance().showNative(
                             this@LanguageActivity,
                             AdCache.getInstance().lfo2NativeHigh2,
                             binding.frAd2,
-                            com.common.control.R.layout.custom_native_ads_2
+                            AdmobManager.NativeAdType.BIG
                         )
                     }
                     binding.frAd.visibility = View.GONE
@@ -188,7 +188,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                                 this@LanguageActivity,
                                 nativeAd,
                                 binding.frAd,
-                                com.common.control.R.layout.custom_native_ads_2
+                                AdmobManager.NativeAdType.BIG
                             )
                         }
                     })
@@ -201,7 +201,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                                 this@LanguageActivity,
                                 nativeAd,
                                 binding.frAd2,
-                                com.common.control.R.layout.custom_native_ads_2
+                                AdmobManager.NativeAdType.BIG
                             )
                         }
                     })

@@ -121,7 +121,7 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
                         this@Language2Activity,
                         nativeAd,
                         binding.frAd2,
-                        com.common.control.R.layout.custom_native_ads_2
+                        AdmobManager.NativeAdType.BIG
                     )
                 }
             })

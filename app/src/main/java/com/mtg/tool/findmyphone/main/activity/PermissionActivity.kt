@@ -103,7 +103,7 @@ class PermissionActivity :
             this@PermissionActivity,
             AdCache.getInstance().ob6NativeHigh,
             binding.frAd,
-            com.common.control.R.layout.custom_native_ads_2
+            AdmobManager.NativeAdType.BIG
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
@@ -116,7 +116,7 @@ class PermissionActivity :
             AdmobManager.getInstance().preloadAlternateNative(this, onb6NativeAds, object: AdCallback(){
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
-                    AdmobManager.getInstance().showNative(this@PermissionActivity, nativeAd, binding.frAd, com.common.control.R.layout.custom_native_ads_2)
+                    AdmobManager.getInstance().showNative(this@PermissionActivity, nativeAd, binding.frAd, AdmobManager.NativeAdType.BIG)
                 }
             })
         }

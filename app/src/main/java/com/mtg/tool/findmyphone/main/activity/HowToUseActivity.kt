@@ -24,7 +24,7 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
     }
 
     override fun initView() {
-        AdmobManager.getInstance().loadNative(this, AdIds.native_tutorial, binding.frAd, com.common.control.R.layout.custom_native_ads_1)
+        AdmobManager.getInstance().loadNative(this, AdIds.native_tutorial, binding.frAd,AdmobManager.NativeAdType.SMALL)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 

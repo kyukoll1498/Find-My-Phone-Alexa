@@ -54,7 +54,7 @@ class PlaySoundActivity :
         setSeekbarView()
         setDetailCommandView()
         AdmobManager.getInstance()
-            .loadNative(this, AdIds.native_effect, binding.frAd, com.common.control.R.layout.custom_native_ads_1)
+            .loadNative(this, AdIds.native_effect, binding.frAd, AdmobManager.NativeAdType.SMALL)
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
