@@ -506,7 +506,7 @@ public class AdmobManager {
         });
     }
 
-    public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, int customNative) {
+    public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, int customNative, NativeAdType type) {
         boolean isMeta = Objects.equals(Objects.requireNonNull(nativeAd.getResponseInfo()).getMediationAdapterClassName().toLowerCase(), "com.google.ads.mediation.facebook.facebookadapter".toLowerCase());
         if (nativeAd == null) {
             placeHolder.setVisibility(View.GONE);
@@ -1134,6 +1134,10 @@ public class AdmobManager {
                 }
             }
         });
+    }
+
+    public enum NativeAdType {
+        BIG, MEDIUM, SMALL
     }
 
 }
