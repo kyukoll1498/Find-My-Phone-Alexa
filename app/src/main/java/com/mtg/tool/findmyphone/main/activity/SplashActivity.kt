@@ -23,6 +23,8 @@ import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
+import java.util.Timer
+import java.util.TimerTask
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
@@ -104,28 +106,25 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         AdmobManager.getInstance().loadAlternateBanner(this, bannerAds, binding.frAd)
         val timeLoad = RemoteConfigManager.instance!!.time_load_banner
         if (timeLoad != 0.toLong()) {
-            Handler().postDelayed(Runnable {
-                if (canRefreshBanner) {
-                    Log.d("AdmobRefresh: ", "splash")
-                    reloadBanner()
+            val timer = Timer()
+            timer.schedule(object : TimerTask() {
+                override fun run() {
+                    runOnUiThread {
+                        if (canRefreshBanner) {
+                            reloadBanner()
+                        }
+                    }
+
                 }
-            }, timeLoad * 1000)
+            }, timeLoad * 1000, timeLoad * 1000)
         }
     }
 
     private fun reloadBanner() {
         if (bannerAds.isNotEmpty()) {
+            Log.d("AdmobRefresh: ", "splash" + bannerAds[0])
             AdmobManager.getInstance()
                 .loadAlternateBanner(this, arrayListOf(bannerAds[0]), binding.frAd)
-            val timeLoad = RemoteConfigManager.instance!!.time_load_banner
-            if (timeLoad != 0.toLong()) {
-                Handler().postDelayed(Runnable {
-                    if (canRefreshBanner) {
-                        Log.d("AdmobRefresh: ", "splash")
-                        reloadBanner()
-                    }
-                }, timeLoad * 1000)
-            }
         }
     }
 

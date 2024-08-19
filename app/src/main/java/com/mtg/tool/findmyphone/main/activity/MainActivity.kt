@@ -32,6 +32,8 @@ import com.mtg.tool.findmyphone.main.fragment.SoundFragment
 import com.mtg.tool.findmyphone.utils.ActionUtils
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.PermissionUtils
+import java.util.Timer
+import java.util.TimerTask
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun binding() {
@@ -58,30 +60,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         AdmobManager.getInstance().loadAlternateBanner(this, listBanner, binding.frAd)
         val timeLoad = RemoteConfigManager.instance!!.time_load_banner
         if (timeLoad != 0.toLong()) {
-            Handler().postDelayed(Runnable {
-                if (canRefreshBanner) {
-                    Log.d("AdmobRefresh: ", "home")
-                    reloadBanner()
+            val timer = Timer()
+            timer.schedule(object : TimerTask() {
+                override fun run() {
+                    runOnUiThread {
+                        if (canRefreshBanner) {
+                            reloadBanner()
+                        }
+                    }
+
                 }
-            }, timeLoad * 1000)
+            }, timeLoad * 1000, timeLoad * 1000)
         }
 //        ---------------------------------------------------------
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     private fun reloadBanner() {
-        if(listBanner.isNotEmpty()){
+        if (listBanner.isNotEmpty()) {
+            Log.d("AdmobRefresh: ", "home" + listBanner[0])
             AdmobManager.getInstance()
                 .loadAlternateBanner(this, arrayListOf(listBanner[0]), binding.frAd)
-            val timeLoad = RemoteConfigManager.instance!!.time_load_banner
-            if (timeLoad != 0.toLong()) {
-                Handler().postDelayed(Runnable {
-                    if (canRefreshBanner) {
-                        Log.d("AdmobRefresh: ", "splash")
-                        reloadBanner()
-                    }
-                }, timeLoad * 1000)
-            }
         }
     }
 
@@ -309,7 +308,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 }
             })
         } else {
-            ExitDialog(this){
+            ExitDialog(this) {
                 super.onBackPressed()
             }.show()
         }
