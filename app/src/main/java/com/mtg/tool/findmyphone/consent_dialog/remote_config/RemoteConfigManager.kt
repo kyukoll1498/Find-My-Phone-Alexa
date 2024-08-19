@@ -12,29 +12,29 @@ class RemoteConfigManager {
     private var isLoading = false
     var isShowNativeFullScreenOnboard: Boolean = true
 
-   var _101_splash_n_banner_high: Boolean = true
-   var _101_splash_n_banner: Boolean = true
-   var _102_splash_n_inter_high: Boolean = true
-   var _102_splash_n_inter: Boolean = true
-   var _201_lfo_n_native_high: Boolean = true
-   var _201_lfo_n_native: Boolean = true
-   var _202_lfo_n_native_high: Boolean = true
-   var _202_lfo_n_native_high_1: Boolean = true
-   var _202_lfo_n_native_high_2: Boolean = true
-   var _202_lfo_n_native: Boolean = true
-   var _301_ob1_n_native_high: Boolean = true
-   var _301_ob1_n_native: Boolean = true
-   var _302_ob2_n_native_high: Boolean = true
-   var _302_ob2_n_native: Boolean = true
-   var _304_ob4_n_native_high: Boolean = true
-   var _304_ob4_n_native_high_1: Boolean = true
-   var _304_ob4_n_native_high_2: Boolean = true
-   var _304_ob4_n_native: Boolean = true
-   var _305_ob5_n_native_high: Boolean = true
-   var _305_ob5_n_native: Boolean = true
-   var _306_ob6_n_native_high: Boolean = true
-   var _306_ob6_n_native: Boolean = true
-   var _401_app_o_reopen: Boolean = true
+    var _101_splash_n_banner_high: Boolean = true
+    var _101_splash_n_banner: Boolean = true
+    var _102_splash_n_inter_high: Boolean = true
+    var _102_splash_n_inter: Boolean = true
+    var _201_lfo_n_native_high: Boolean = true
+    var _201_lfo_n_native: Boolean = true
+    var _202_lfo_n_native_high: Boolean = true
+    var _202_lfo_n_native_high_1: Boolean = true
+    var _202_lfo_n_native_high_2: Boolean = true
+    var _202_lfo_n_native: Boolean = true
+    var _301_ob1_n_native_high: Boolean = true
+    var _301_ob1_n_native: Boolean = true
+    var _302_ob2_n_native_high: Boolean = true
+    var _302_ob2_n_native: Boolean = true
+    var _304_ob4_n_native_high: Boolean = true
+    var _304_ob4_n_native_high_1: Boolean = true
+    var _304_ob4_n_native_high_2: Boolean = true
+    var _304_ob4_n_native: Boolean = true
+    var _305_ob5_n_native_high: Boolean = true
+    var _305_ob5_n_native: Boolean = true
+    var _306_ob6_n_native_high: Boolean = true
+    var _306_ob6_n_native: Boolean = true
+    var _401_app_o_reopen: Boolean = true
 
     var _501_home_o_native: Boolean = true
     var _502_home_o_banner: Boolean = true
@@ -42,6 +42,8 @@ class RemoteConfigManager {
     var _602_sound_o_native: Boolean = true
     var _701_add_o_native: Boolean = true
     var _901_tutorial_o_native: Boolean = true
+
+    var time_load_banner: Long = 0
 
 
     fun loadRemote() {
@@ -88,8 +90,10 @@ class RemoteConfigManager {
                 _602_sound_o_native = config.getBoolean("native_effect")
                 _701_add_o_native = config.getBoolean("native_add")
                 _901_tutorial_o_native = config.getBoolean("native_tutorial")
+                time_load_banner = config.getLong("time_load_banner")
 
-                isShowNativeFullScreenOnboard = _304_ob4_n_native_high || _304_ob4_n_native_high_1 || _304_ob4_n_native_high_2 || _304_ob4_n_native
+                isShowNativeFullScreenOnboard =
+                    _304_ob4_n_native_high || _304_ob4_n_native_high_1 || _304_ob4_n_native_high_2 || _304_ob4_n_native
             } else {
                 loadRemote()
             }

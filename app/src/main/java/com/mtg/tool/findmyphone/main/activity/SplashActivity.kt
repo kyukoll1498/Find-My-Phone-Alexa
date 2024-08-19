@@ -3,6 +3,7 @@ package com.mtg.tool.findmyphone.main.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Handler
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.common.control.interfaces.AdCallback
@@ -15,12 +16,15 @@ import com.mtg.tool.findmyphone.AppSession
 import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
+import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivitySplashBinding
 import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
+import java.util.Timer
+import java.util.TimerTask
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
@@ -34,6 +38,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     private val lfo2NativeHighAds by lazy { AdIds.lfo2_native_high }
     private val lfo2NativeHigh1Ads by lazy { AdIds.lfo2_native_high1 }
     private val onb1NativeAds = arrayListOf(AdIds.ob1_native_high, AdIds.ob1_native)
+    private var canRefreshBanner = true
 
 
     private var canNextScreen = MutableLiveData<Boolean>(false)
@@ -99,6 +104,28 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     private fun loadAlternateBanner() {
         AdmobManager.getInstance().loadAlternateBanner(this, bannerAds, binding.frAd)
+        val timeLoad = RemoteConfigManager.instance!!.time_load_banner
+        if (timeLoad != 0.toLong()) {
+            val timer = Timer()
+            timer.schedule(object : TimerTask() {
+                override fun run() {
+                    runOnUiThread {
+                        if (canRefreshBanner) {
+                            reloadBanner()
+                        }
+                    }
+
+                }
+            }, timeLoad * 1000, timeLoad * 1000)
+        }
+    }
+
+    private fun reloadBanner() {
+        if (bannerAds.isNotEmpty()) {
+            Log.d("AdmobRefresh: ", "splash" + bannerAds[0])
+            AdmobManager.getInstance()
+                .loadAlternateBanner(this, arrayListOf(bannerAds[0]), binding.frAd)
+        }
     }
 
     private fun loadAlternateInter() {
@@ -165,7 +192,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                                     AdCache.getInstance().lfo1Native.value = nativeAd
                                 }
                             })
-                    } else if (!SharedPrefs.getBoolean(this@SplashActivity, Constants.SKIP_ONBOARD)) {
+                    } else if (!SharedPrefs.getBoolean(
+                            this@SplashActivity,
+                            Constants.SKIP_ONBOARD
+                        )
+                    ) {
                         preloadNativeOb4()
                     }
                 }
@@ -203,6 +234,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                 }
             })
     }
+
     private fun preloadNativeOb4() {
         AdmobManager.getInstance()
             .preloadFullScreenNative(this, AdIds.ob4_native_high, object : AdCallback() {
@@ -242,6 +274,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     override fun onResume() {
         super.onResume()
+        canRefreshBanner = true
+    }
 
+    override fun onPause() {
+        super.onPause()
+        canRefreshBanner = false
     }
 }

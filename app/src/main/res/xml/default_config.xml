@@ -146,4 +146,9 @@
         <key>native_tutorial</key>
         <value>true</value>
     </entry>
+<!--    refresh rate-->
+    <entry>
+        <key>time_load_banner</key>
+        <value>0</value>
+    </entry>
 </defaultsMap>

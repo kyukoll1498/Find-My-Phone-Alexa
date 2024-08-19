@@ -66,6 +66,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class AdmobManager {
     public static final String ACTION_CLOSE_NATIVE_ADS = "ACTION_CLOSE_NATIVE_ADS";
@@ -506,6 +507,7 @@ public class AdmobManager {
     }
 
     public void showNative(Context context, NativeAd nativeAd, FrameLayout placeHolder, int customNative) {
+        boolean isMeta = Objects.equals(Objects.requireNonNull(nativeAd.getResponseInfo()).getMediationAdapterClassName().toLowerCase(), "com.google.ads.mediation.facebook.facebookadapter".toLowerCase());
         if (nativeAd == null) {
             placeHolder.setVisibility(View.GONE);
             return;
@@ -1065,8 +1067,7 @@ public class AdmobManager {
         });
     }
 
-    public void loadAlternateBanner(Activity act, List<String> idsInput, final FrameLayout adContainer) {
-        List<String> ids = new ArrayList<>(idsInput);
+    public void loadAlternateBanner(Activity act, List<String> ids, final FrameLayout adContainer) {
         if (ids.isEmpty()) {
             Log.d("AdmobLogger", "loadAlternateBanner: empty");
             return;
