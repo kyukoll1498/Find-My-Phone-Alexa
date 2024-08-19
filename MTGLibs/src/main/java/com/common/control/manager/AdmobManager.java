@@ -472,8 +472,8 @@ public class AdmobManager {
     }
 
     @Deprecated
-    public void loadNative(Context context, String id, FrameLayout placeHolder) {
-        loadNative(context, id, placeHolder, R.layout.custom_native);
+    public void loadNative(Context context, String id, FrameLayout placeHolder, NativeAdType type) {
+        loadNative(context, id, placeHolder, R.layout.custom_native, type);
     }
 
     public void preloadNative(Context context, String id, AdCallback callback) {
@@ -520,7 +520,7 @@ public class AdmobManager {
         nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
     }
 
-    public void loadNative(Context context, String id, FrameLayout placeHolder, int customNative) {
+    public void loadNative(Context context, String id, FrameLayout placeHolder, int customNative, NativeAdType nativeAdType) {
         log("Request NativeAd :" + id);
         loadUnifiedNativeAd(context, id, new AdCallback() {
             @Override
@@ -540,7 +540,7 @@ public class AdmobManager {
         });
     }
 
-    public void loadNative(Context context, String id, FrameLayout placeHolder, int customNative, AdCallback callback) {
+    public void loadNative(Context context, String id, FrameLayout placeHolder, int customNative, NativeAdType nativeAdType, AdCallback callback) {
         log("Request NativeAd :" + id);
         loadUnifiedNativeAd(context, id, new AdCallback() {
             @Override
