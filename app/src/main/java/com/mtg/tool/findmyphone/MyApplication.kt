@@ -7,11 +7,9 @@ import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
-import com.facebook.FacebookSdk
 import com.mbridge.msdk.MBridgeConstans
 import com.mbridge.msdk.MBridgeSDK
 import com.mbridge.msdk.out.MBridgeSDKFactory
-import com.mtg.tool.findmyphone.ads_executor.inter.InterSplashExecutor
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.db.RoomDatabase
 import com.mtg.tool.findmyphone.main.activity.InterestActivity
@@ -22,6 +20,8 @@ import com.mtg.tool.findmyphone.main.activity.PermissionActivity
 import com.mtg.tool.findmyphone.main.activity.SplashActivity
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
+import com.reyun.solar.engine.SolarEngineConfig
+import com.reyun.solar.engine.SolarEngineManager
 import com.vungle.ads.VunglePrivacySettings.setCCPAStatus
 import com.vungle.ads.VunglePrivacySettings.setGDPRStatus
 
@@ -30,6 +30,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
     companion object{
         const val PRODUCT_SUBS = "subscription.clap.fullaccess"
         const val PRODUCT_LIFETIME = "com.clap.buyforever"
+        const val APP_KEY_SOLAR_ENGINE = ""
     }
     private val lsActivity = ArrayList<Activity>()
 
@@ -65,6 +66,25 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 //        Common.printHashKey(this)
 
 //        InterSplashExecutor.loadInterAds(applicationContext)
+        initSolarEngine()
+    }
+
+    private fun initSolarEngine() {
+        SolarEngineManager.getInstance()
+            .preInit(this, APP_KEY_SOLAR_ENGINE)
+        val config = SolarEngineConfig.Builder()
+            .logEnabled()
+            .build()
+        SolarEngineManager.getInstance().initialize(
+            this, APP_KEY_SOLAR_ENGINE, config
+        ) { code: Int ->
+            if (code == 0) {
+                //Init success
+            } else {
+                //Init failed
+            }
+        }
+        SolarEngineManager.getInstance().setGaid(BuildConfig.APP_ID)
     }
 
     override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
