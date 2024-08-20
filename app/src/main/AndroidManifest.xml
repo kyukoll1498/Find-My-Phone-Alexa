@@ -108,6 +108,11 @@
             android:screenOrientation="portrait"
             android:hardwareAccelerated="true" />
         <activity
+            android:name=".main.activity.LFO2Activity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:hardwareAccelerated="true" />
+        <activity
             android:name=".main.activity.Language2Activity"
             android:exported="true"
             android:screenOrientation="portrait"

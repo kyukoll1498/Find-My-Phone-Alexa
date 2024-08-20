@@ -2,6 +2,7 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,7 +27,7 @@ import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountryDefault
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
 
-class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBinding::inflate) {
+class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBinding::inflate) {
     private var mList: List<ItemLanguage> = ArrayList()
     private var languageAdapter: LanguageAdapter? = null
     private var itemLanguage: ItemLanguage? = null
@@ -35,36 +36,44 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     private val lfo2NativeAds = arrayListOf(AdIds.lfo2_native_high2, AdIds.lfo2_native)
     private val lfo2NativeAdsReload = arrayListOf(AdIds.lfo2_native_high, AdIds.lfo2_native)
     private val ob1NativeAds = arrayListOf(AdIds.ob1_native_high, AdIds.ob1_native)
-    private var step = 0
+    private var isFirstResume = true
 
     override fun initView() {
-        logEvent("LFO1_view")
-        AdCache.getInstance().lfo1Native.observe(
-            this
-        ) { value ->
+        logEvent("LFO2_view")
+        if (AdCache.getInstance().lfo2NativeHigh != null) {
             AdmobManager.getInstance().showNative(
-                this@LanguageActivity,
-                value,
-                binding.frAd,
+                this@LFO2Activity,
+                AdCache.getInstance().lfo2NativeHigh,
+                binding.frAd2,
+                AdmobManager.NativeAdType.BIG
+            )
+        } else if (AdCache.getInstance().lfo2NativeHigh1 != null) {
+            AdmobManager.getInstance().showNative(
+                this@LFO2Activity,
+                AdCache.getInstance().lfo2NativeHigh1,
+                binding.frAd2,
+                AdmobManager.NativeAdType.BIG
+            )
+        } else if (AdCache.getInstance().lfo2NativeHigh2 != null) {
+            AdmobManager.getInstance().showNative(
+                this@LFO2Activity,
+                AdCache.getInstance().lfo2NativeHigh2,
+                binding.frAd2,
                 AdmobManager.NativeAdType.BIG
             )
         }
-        if (AdCache.getInstance().lfo2NativeHigh == null && AdCache.getInstance().lfo2NativeHigh1 == null) {
-            AdmobManager.getInstance()
-                .preloadAlternateNative(this, lfo2NativeAds, object : AdCallback() {
-                    override fun onNativeAds(nativeAd: NativeAd?) {
-                        super.onNativeAds(nativeAd)
-                        AdCache.getInstance().lfo2NativeHigh2 = nativeAd
-                    }
-                })
-        }
-        AdmobManager.getInstance()
-            .preloadAlternateNative(this, ob1NativeAds, object : AdCallback() {
+        binding.frAd.visibility = View.GONE
+        AdmobManager.getInstance().preloadNative(
+            this@LFO2Activity,
+            AdIds.ob4_native_high,
+            object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob1Native = nativeAd
+                    AdCache.getInstance().ob4NativeHigh = nativeAd
                 }
-            })
+            }
+
+        )
         setStatusBarColor()
         initListLanguage()
         initRCLanguage()
@@ -98,22 +107,16 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                     itemLanguage?.colorBackground = "#ED6A40"
                     this.notifyDataSetChanged()
                 }
-                logEvent("complete_lfo1")
-                startActivity(Intent(this@LanguageActivity, LFO2Activity::class.java).apply {
-                    putExtra("pos", mList.indexOf(itemLanguage))
-                    putExtra("state", binding.rcLanguage.layoutManager!!.onSaveInstanceState())
-                })
-                finish()
-                overridePendingTransition(0, 0)
             }
         }
         binding.rcLanguage.layoutManager = LinearLayoutManager(this)
         binding.rcLanguage.adapter = languageAdapter
+        (binding.rcLanguage.layoutManager as LinearLayoutManager).onRestoreInstanceState(intent.getParcelableExtra("state"))
     }
 
     private fun initListLanguage() {
         mList = listCountry
-        itemLanguage = listCountryDefault[appPreferences.currentIndexLanguage]
+        itemLanguage = listCountryDefault[intent.getIntExtra("pos", 1)]
         itemLanguage?.colorBackground = "#ED6A40"
         itemLanguage?.imgSelect = (R.drawable.ic_checked)
     }
@@ -144,17 +147,23 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
+
     override fun onResume() {
         super.onResume()
-        if (AppSession.isCompletedInterSplash) {
+        if (isFirstResume) {
+            isFirstResume = false
+        } else {
             AdmobManager.getInstance()
-                .preloadAlternateNative(this, lfo1NativeAds, object : AdCallback() {
+                .preloadAlternateNative(this, lfo2NativeAdsReload, object : AdCallback() {
                     override fun onNativeAds(nativeAd: NativeAd?) {
                         super.onNativeAds(nativeAd)
                         AdmobManager.getInstance().showNative(
-                            this@LanguageActivity,
+                            this@LFO2Activity,
                             nativeAd,
-                            binding.frAd,
+                            binding.frAd2,
                             AdmobManager.NativeAdType.BIG
                         )
                     }
