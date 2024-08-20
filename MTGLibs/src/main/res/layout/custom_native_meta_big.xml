@@ -57,8 +57,8 @@
 
                     <TextView
                         android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_12sdp"
                         android:layout_marginStart="@dimen/_7sdp"
                         android:background="@drawable/ic_ads_full"
                         app:layout_constraintStart_toEndOf="@id/cardV"
