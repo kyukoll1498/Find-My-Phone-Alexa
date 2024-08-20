@@ -722,11 +722,6 @@ public class AdmobManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            adView.setAdChoicesView(adView.findViewById(R.id.ad_choices));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         try {
             adView.setBodyView(adView.findViewById(R.id.ad_body));
