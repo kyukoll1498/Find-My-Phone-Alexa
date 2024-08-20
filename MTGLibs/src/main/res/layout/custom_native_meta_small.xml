@@ -17,18 +17,20 @@
 
         <ImageView
             android:id="@+id/ad_choices"
-            android:layout_width="@dimen/_17sdp"
+            android:layout_width="@dimen/_27sdp"
             android:layout_height="@dimen/_12sdp"
             android:adjustViewBounds="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_if_meta"
-            android:layout_marginEnd="@dimen/_4sdp"/>
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_4sdp"/>
 
         <LinearLayout
             android:id="@+id/ll_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginEnd="@dimen/_35sdp"
             android:layout_marginVertical="@dimen/_5sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
