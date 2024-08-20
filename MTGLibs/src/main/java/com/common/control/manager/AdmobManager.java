@@ -326,6 +326,14 @@ public class AdmobManager {
                     callback.onAdShowedFullScreenContent();
                 }
             }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                if (callback != null) {
+                    callback.onAdClicked();
+                }
+            }
         });
 
         if (context != null && !context.isDestroyed() && ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
@@ -506,6 +514,7 @@ public class AdmobManager {
             placeHolder.setVisibility(View.GONE);
             return;
         }
+
         placeHolder.setVisibility(View.VISIBLE);
         boolean isMeta = Objects.equals(Objects.requireNonNull(nativeAd.getResponseInfo()).getMediationAdapterClassName().toLowerCase(), "com.google.ads.mediation.facebook.facebookmediationadapter".toLowerCase());
         int customNative = getLayoutNative(isMeta, type);
@@ -616,13 +625,17 @@ public class AdmobManager {
             @Override
             public void onAdImpression() {
                 super.onAdImpression();
-                callback.onAdImpression();
+                if (callback != null) {
+                    callback.onAdImpression();
+                }
             }
 
             @Override
             public void onAdClicked() {
                 super.onAdClicked();
-                callback.onAdClicked();
+                if (callback != null) {
+                    callback.onAdClicked();
+                }
             }
         }).withNativeAdOptions(adOptions).build();
         adLoader.loadAd(request);
@@ -988,6 +1001,21 @@ public class AdmobManager {
                 callback.onNativeAds(nativeAd);
                 Log.i("AdmobLogger", "loadAlternateNative: " + "success-" + ids.get(0));
             }
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                if (callback != null) {
+                    callback.onAdClicked();
+                }
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                if (callback != null) {
+                    callback.onAdImpression();
+                }
+            }
         });
     }
 
@@ -1015,6 +1043,21 @@ public class AdmobManager {
                 super.onNativeAds(nativeAd);
                 callback.onNativeAds(nativeAd);
                 Log.i("AdmobLogger", "loadAlternatefsNative: " + "success-" + ids.get(0));
+            }
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                if (callback != null) {
+                    callback.onAdClicked();
+                }
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                if (callback != null) {
+                    callback.onAdImpression();
+                }
             }
         });
     }
@@ -1045,8 +1088,7 @@ public class AdmobManager {
         });
     }
 
-    public void loadAlternateBanner(Activity act, List<String> idsInput, final FrameLayout adContainer, AdCallback callback) {
-        List<String> ids = new ArrayList<>(idsInput);
+    public void loadAlternateBanner(Activity act, List<String> ids, final FrameLayout adContainer, AdCallback callback) {
         if (ids.isEmpty()) {
             Log.d("AdmobLogger", "loadAlternateBanner: empty");
             return;
