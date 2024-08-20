@@ -28,6 +28,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    bundle {
+        language {
+
+            enableSplit = false
+        }
+    }
+
+
     signingConfigs {
         release {
             storeFile file('key/release.jks')
