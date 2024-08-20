@@ -31,7 +31,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
     companion object{
         const val PRODUCT_SUBS = "subscription.clap.fullaccess"
         const val PRODUCT_LIFETIME = "com.clap.buyforever"
-        const val APP_KEY_SOLAR_ENGINE = ""
+        const val APP_KEY_SOLAR_ENGINE = "7de59d5c8d57e2f5"
     }
     private val lsActivity = ArrayList<Activity>()
 
