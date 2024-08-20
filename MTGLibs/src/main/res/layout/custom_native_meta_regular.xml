@@ -109,6 +109,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/ad_choices"
             android:layout_width="@dimen/_27sdp"
             android:layout_height="@dimen/_12sdp"
             android:layout_gravity="end"
