@@ -15,15 +15,15 @@
             android:adjustViewBounds="true"
             android:src="@drawable/ic_native_ads_2" />
 
-        <ImageView
-            android:id="@+id/ad_choices"
-            android:layout_width="@dimen/_27sdp"
-            android:layout_height="@dimen/_12sdp"
-            android:adjustViewBounds="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_if_meta"
-            android:layout_marginEnd="@dimen/_4sdp"
-            android:layout_marginTop="@dimen/_4sdp"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/ad_choices"-->
+<!--            android:layout_width="@dimen/_27sdp"-->
+<!--            android:layout_height="@dimen/_12sdp"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:src="@drawable/ic_if_meta"-->
+<!--            android:layout_marginEnd="@dimen/_4sdp"-->
+<!--            android:layout_marginTop="@dimen/_4sdp"/>-->
 
         <LinearLayout
             android:id="@+id/ll_content"
@@ -106,8 +106,8 @@
             </LinearLayout>
             <TextView
                 android:id="@+id/ad_call_to_action"
-                android:layout_width="@dimen/_78sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_68sdp"
+                android:layout_height="@dimen/_27sdp"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_action_native_1"
                 android:backgroundTint="#1380FF"
