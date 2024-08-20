@@ -85,7 +85,7 @@
                         android:fontFamily="@font/poppins_semibold"
                         android:singleLine="true"
                         android:text="My tilte"
-                        android:textSize="@dimen/_11sdp" />
+                        android:textSize="@dimen/_9sdp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                             android:text="Loremipsum.com"
                             android:textColor="#979797"
                             android:includeFontPadding="false"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_9sdp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -121,7 +121,7 @@
                 android:includeFontPadding="false"
                 android:text="Learn More"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_10sdp"/>
         </LinearLayout>
 
         <ImageView

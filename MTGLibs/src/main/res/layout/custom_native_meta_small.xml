@@ -71,7 +71,7 @@
                     android:text="My tilte"
                     android:includeFontPadding="false"
                     android:textColor="#3C3C3C"
-                    android:textSize="@dimen/_11sdp" />
+                    android:textSize="@dimen/_9sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                             android:includeFontPadding="false"
                             android:text="dsa sd sad dsa sa sad ád a\ndsaddsa  dsa dsa"
                             android:textColor="#80303030"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_9sdp" />
 
 
                     </LinearLayout>
@@ -118,7 +118,7 @@
                 android:textAllCaps="false"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_10sdp" />
+                android:textSize="@dimen/_9sdp" />
         </LinearLayout>
 
     </RelativeLayout>
