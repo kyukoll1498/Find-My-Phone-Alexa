@@ -37,8 +37,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     private val lfo1NativeAds by lazy { arrayListOf(AdIds.lfo1_native_high, AdIds.lfo1_native) }
     private val lfo2NativeHighAds by lazy { AdIds.lfo2_native_high }
     private val lfo2NativeHigh1Ads by lazy { AdIds.lfo2_native_high1 }
-    private val onb1NativeAds = arrayListOf(AdIds.ob1_native_high, AdIds.ob1_native)
+    private val onb1NativeAds by lazy { arrayListOf(AdIds.ob1_native_high, AdIds.ob1_native) }
     private var canRefreshBanner = true
+    private var isShowedInter = false
 
 
     private var canNextScreen = MutableLiveData<Boolean>(false)
@@ -110,7 +111,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             timer.schedule(object : TimerTask() {
                 override fun run() {
                     runOnUiThread {
-                        if (canRefreshBanner) {
+                        Log.d("devLogger: canRefreshBanner", canRefreshBanner.toString())
+                        Log.d("devLogger: isShowedInter",  isShowedInter.toString())
+                        if (canRefreshBanner && !isShowedInter) {
                             reloadBanner()
                         }
                     }
@@ -159,6 +162,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun showAdAndStartMain(interstitialAd: InterstitialAd?) {
+        isShowedInter = true
         AdmobManager.getInstance().showInterstitial(
             this@SplashActivity,
             interstitialAd,
