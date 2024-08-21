@@ -540,6 +540,7 @@ public class AdmobManager {
         }
 
         placeHolder.setVisibility(View.VISIBLE);
+        Log.d("AdTestSource: ", nativeAd.getResponseInfo().getMediationAdapterClassName());
         boolean isMeta = Objects.equals(Objects.requireNonNull(nativeAd.getResponseInfo()).getMediationAdapterClassName().toLowerCase(), "com.google.ads.mediation.facebook.facebookmediationadapter".toLowerCase());
         int customNative = getLayoutNative(isMeta, type);
         @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
