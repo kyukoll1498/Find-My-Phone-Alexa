@@ -135,6 +135,16 @@ class OnBoardFragment(
                                 AdmobManager.NativeAdType.BIG
                             )
                         }
+                        override fun onAdImpression() {
+                            super.onAdImpression()
+                            logEvent("onboard2_native_view")
+                        }
+
+                        override fun onAdClicked() {
+                            super.onAdClicked()
+                            logEvent("onboard2_native_click")
+
+                        }
                     })
             }
 
@@ -154,6 +164,16 @@ class OnBoardFragment(
                                 AdmobManager.NativeAdType.FULLSCREEN
                             )
                         }
+                        override fun onAdImpression() {
+                            super.onAdImpression()
+                            logEvent("onboard4_native_view")
+                        }
+
+                        override fun onAdClicked() {
+                            super.onAdClicked()
+                            logEvent("onboard4_native_click")
+
+                        }
                     })
             }
 
@@ -171,6 +191,16 @@ class OnBoardFragment(
                                 AdmobManager.NativeAdType.BIG
                             )
                         }
+                        override fun onAdImpression() {
+                            super.onAdImpression()
+                            logEvent("onboard5_native_view")
+                        }
+
+                        override fun onAdClicked() {
+                            super.onAdClicked()
+                            logEvent("onboard5_native_click")
+
+                        }
                     })
             }
         }
@@ -180,7 +210,6 @@ class OnBoardFragment(
         super.onPause()
         if (isFirstPause) {
             isFirstPause = false
-            logEvent("complete_onb" + (position + 2))
         }
     }
 

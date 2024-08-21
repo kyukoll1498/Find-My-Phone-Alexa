@@ -71,6 +71,16 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
                     super.onNativeAds(nativeAd)
                     AdCache.getInstance().ob4NativeHigh = nativeAd
                 }
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("onboard4_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("onboard4_native_click")
+
+                }
             }
 
         )
