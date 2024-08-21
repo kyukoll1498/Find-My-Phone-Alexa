@@ -72,7 +72,6 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
 //    }
 
     override fun initView() {
-        logEvent("add_view")
         createSoundItem.name = requireActivity().getString(R.string.create_new)
         loadSoundList()
         registerBroadcast()

@@ -54,7 +54,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             canNextScreen.value = true
         }, 15000)
         AppSession.isCompletedInterSplash = false
-        logEvent("view_splash")
         logEvent("splash_view")
         ConsentDialogManager.instance?.showConsentDialogSplash(this) {
             AdIds.updateIdAdsWithRemoteConfig()

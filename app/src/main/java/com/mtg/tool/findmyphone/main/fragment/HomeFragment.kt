@@ -201,7 +201,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 PermissionUtils.checkNotificationPermission(requireContext())
             ) {
                 if (!isCircleActiveVisible) {
-                    logEvent("click_home_activate")
+                    logEvent("home_activate_click")
                     isCircleActiveVisible = !isCircleActiveVisible
                     binding.apply {
                         ivCircleActive.visibility = visible
@@ -223,7 +223,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
 //                        Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()
                     }
                 } else {
-                    logEvent("click_home_deactivate")
+                    logEvent("home_deactivate_click")
                     turnOffDetective()
                 }
             }

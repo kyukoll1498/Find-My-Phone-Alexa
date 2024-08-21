@@ -38,6 +38,7 @@ class PermissionActivity :
 //        updateLLContinueBackground()
 
         binding.llContinue.setOnClickListener {
+            logEvent("permission_skip_click")
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -46,6 +47,7 @@ class PermissionActivity :
 
     override fun addEvent() {
         binding.llCreateSound.setOnClickListener {
+            logEvent("permission_accept_click")
             checkPermissionMicro()
         }
     }

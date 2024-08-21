@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
@@ -118,7 +119,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             EventLogger.getInstance()?.logEvent("click_main_setting")
         }
         binding.btnHowToUse.setOnClickListener {
-            logEvent("click_guide")
+            if (binding.viewpagerMain.currentItem == 0) {
+                logEvent("home_tutorial_click")
+            } else if (binding.viewpagerMain.currentItem == 1) {
+                logEvent("sound_tutorial_click")
+            }
             startActivity(Intent(this, HowToUseActivity::class.java))
         }
         binding.btnDrawer.setOnClickListener {
@@ -227,6 +232,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
+                when(position){
+                    0 -> logEvent("home_view")
+                    1 -> logEvent("sound_view")
+                    2 -> logEvent("add_view")
+                    3 -> logEvent("setting_view")
+                }
                 binding.ivHome.isSelected = position == 0
                 binding.ivSound.isSelected = position == 1
                 binding.ivAdd.isSelected = position == 2
