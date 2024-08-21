@@ -87,6 +87,7 @@ class OnBoardActivity :
         })
 
         binding.tvNext.setOnClickListener {
+            logEvent("onboard" + (binding.viewpagerOnboard.currentItem + 2) + "_next_click")
             if (binding.viewpagerOnboard.currentItem == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
                 startActivity(Intent(this@OnBoardActivity, PermissionActivity::class.java))
                 finish()
@@ -116,6 +117,17 @@ class OnBoardActivity :
                             AdCache.getInstance().ob4NativeHigh2AndNative =
                                 nativeAd
                         }
+
+                        override fun onAdImpression() {
+                            super.onAdImpression()
+                            logEvent("onboard4_native_view")
+                        }
+
+                        override fun onAdClicked() {
+                            super.onAdClicked()
+                            logEvent("onboard4_native_click")
+
+                        }
                     })
             }
             AdmobManager.getInstance()
@@ -125,7 +137,19 @@ class OnBoardActivity :
                         AdCache.getInstance().ob5NativeHigh =
                             nativeAd
                     }
+
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("onboard5_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("onboard5_native_click")
+
+                    }
                 })
+
         }
     }
 

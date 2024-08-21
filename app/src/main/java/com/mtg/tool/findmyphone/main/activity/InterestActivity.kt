@@ -54,6 +54,16 @@ class InterestActivity :
                         AdCache.getInstance().ob4NativeHigh1 =
                             nativeAd
                     }
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("onboard4_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("onboard4_native_click")
+
+                    }
                 })
         }
 
@@ -63,6 +73,16 @@ class InterestActivity :
                     super.onNativeAds(nativeAd)
                     AdCache.getInstance().ob2NativeHigh =
                         nativeAd
+                }
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("onboard2_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("onboard2_native_click")
+
                 }
             })
 
