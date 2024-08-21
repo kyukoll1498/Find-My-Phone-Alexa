@@ -111,6 +111,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             timer.schedule(object : TimerTask() {
                 override fun run() {
                     runOnUiThread {
+                        Log.d("devLogger: canRefreshBanner", canRefreshBanner.toString())
+                        Log.d("devLogger: isShowedInter",  isShowedInter.toString())
                         if (canRefreshBanner && !isShowedInter) {
                             reloadBanner()
                         }
