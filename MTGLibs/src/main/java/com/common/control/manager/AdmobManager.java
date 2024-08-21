@@ -300,6 +300,7 @@ public class AdmobManager {
                 if (callback != null) {
                     callback.onAdClosed();
                     callback.onNextScreen();
+                    callback.onClickClose();
                 }
             }
 

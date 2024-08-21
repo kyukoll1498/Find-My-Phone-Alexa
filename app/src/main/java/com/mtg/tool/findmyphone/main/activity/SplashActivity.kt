@@ -41,6 +41,18 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     private var canRefreshBanner = true
     private var isShowedInter = false
 
+    private val adCallbackBanner = object: AdCallback(){
+        override fun onAdImpression() {
+            super.onAdImpression()
+            logEvent("splash_ad_banner_view")
+        }
+
+        override fun onAdClicked() {
+            super.onAdClicked()
+            logEvent("splash_ad_banner_click")
+        }
+    }
+
 
     private var canNextScreen = MutableLiveData<Boolean>(false)
 
@@ -103,7 +115,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun loadAlternateBanner() {
-        AdmobManager.getInstance().loadAlternateBanner(this, bannerAds, binding.frAd)
+        AdmobManager.getInstance().loadAlternateBanner(this, bannerAds, binding.frAd, adCallbackBanner)
         val timeLoad = RemoteConfigManager.instance!!.time_load_banner
         if (timeLoad != 0.toLong()) {
             val timer = Timer()
@@ -126,7 +138,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         if (bannerAds.isNotEmpty()) {
             Log.d("AdmobRefresh: ", "splash" + bannerAds[0])
             AdmobManager.getInstance()
-                .loadAlternateBanner(this, arrayListOf(bannerAds[0]), binding.frAd)
+                .loadAlternateBanner(this, arrayListOf(bannerAds[0]), binding.frAd, adCallbackBanner)
         }
     }
 
@@ -211,6 +223,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                         AppSession.isCompletedInterSplash = true
                     }, 300)
 
+                }
+
+                override fun onClickClose() {
+                    super.onClickClose()
+                    logEvent("splash_ad_inter_close_click")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("splash_ad_inter_click")
                 }
             })
 
