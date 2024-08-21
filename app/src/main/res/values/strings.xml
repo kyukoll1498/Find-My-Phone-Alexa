@@ -12,6 +12,8 @@
     <string name="clap_to_find" translatable="false">Clap to Find</string>
     <string name="my_phone" translatable="false">My Phone</string>
     <string name="app_name_setting" translatable="false">Find my phone</string>
+    <string name="facebook_app_id" translatable="false">518877330805347</string>
+    <string name="facebook_client_token" translatable="false">e0134412dc1864847171d0de4cb77400</string>
 
     <string name="text_on_boarding_1">Easily find your lost phone by clapping</string>
     <string name="text_on_boarding_2">Various sound effects to choose</string>
@@ -148,7 +150,4 @@
     <string name="txt_rate_us">Rate us</string>
     <string name="save_successfully">Save successfully!</string>
 
-    <string name="facebook_app_id">1234</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">56789</string>
 </resources>
