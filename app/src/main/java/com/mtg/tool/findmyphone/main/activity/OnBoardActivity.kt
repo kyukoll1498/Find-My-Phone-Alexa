@@ -162,6 +162,16 @@ class OnBoardActivity :
                         AdCache.getInstance().ob6NativeHigh =
                             nativeAd
                     }
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("onboard6_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("onboard6_native_click")
+
+                    }
                 })
             isHandleAds3 = true
         }

@@ -120,6 +120,16 @@ class PermissionActivity :
                     super.onNativeAds(nativeAd)
                     AdmobManager.getInstance().showNative(this@PermissionActivity, nativeAd, binding.frAd, AdmobManager.NativeAdType.BIG)
                 }
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("onboard6_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("onboard6_native_click")
+
+                }
             })
         }
     }
