@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.startForegroundService
 import com.bumptech.glide.Glide
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.utils.BroadcastUtils
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
@@ -61,7 +62,18 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             requireActivity(),
             AdIds.native_home,
             binding.frAd,
-            AdmobManager.NativeAdType.SMALL
+            AdmobManager.NativeAdType.SMALL,
+            object : AdCallback(){
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(context, "home_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(context, "home_native_click")
+                }
+            }
         )
         if (isMyServiceRunning()) {
             isCircleActiveVisible = !isCircleActiveVisible
