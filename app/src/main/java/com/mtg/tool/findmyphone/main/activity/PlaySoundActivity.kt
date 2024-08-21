@@ -43,6 +43,7 @@ class PlaySoundActivity :
 
 
     override fun initView() {
+        logEvent("effect_view")
         registerVolumeReceiver()
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
         currentSoundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as SoundItem
@@ -89,7 +90,7 @@ class PlaySoundActivity :
         binding.llController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
                 if (currentSoundItem.type == IMPORT_SOUND_TYPE) {
-                    logEvent("click_add_audio_play")
+                    logEvent("effect_play_click")
                 }
                 logEvent("click_detail_play")
                 sendBroadcast(Intent(ACTION_FINISH_DETECT))
@@ -100,7 +101,7 @@ class PlaySoundActivity :
                 binding.animationView.playAnimation()
                 binding.animationView.speed = 2f
             } else if (binding.tvPlayerController.text == getString(R.string.pause)) {
-                logEvent("click_detail_pause")
+                logEvent("effect_pause_click")
                 pauseAudio()
                 binding.tvPlayerController.text = getString(R.string.play)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
@@ -109,19 +110,19 @@ class PlaySoundActivity :
             }
         }
         binding.tvDuration15s.setOnClickListener {
-            logEvent("click_detail_15s")
+            logEvent("effect_duration_15s_click")
             updateDuration(15)
         }
         binding.tvDuration30s.setOnClickListener {
-            logEvent("click_detail_30s")
+            logEvent("effect_duration_30s_click")
             updateDuration(30)
         }
         binding.tvDuration1m.setOnClickListener {
-            logEvent("click_detail_1m")
+            logEvent("effect_duration_1m_click")
             updateDuration(60)
         }
         binding.tvDuration2m.setOnClickListener {
-            logEvent("click_detail_2m")
+            logEvent("effect_duratiion_2m_click")
             updateDuration(120)
         }
 
@@ -155,7 +156,7 @@ class PlaySoundActivity :
 //            }
 //        }
         binding.btnVolumeDown.setOnClickListener {
-            logEvent("click_detail_volume_down")
+            logEvent("effect_volume_minus_click")
             val am = getSystemService(Context.AUDIO_SERVICE) as AudioManager
             var currentVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC)
             currentVolume--
@@ -163,7 +164,7 @@ class PlaySoundActivity :
             binding.seekBar.setProgress(currentVolume)
         }
         binding.btnVolumeUp.setOnClickListener {
-            logEvent("click_detail_volume_up")
+            logEvent("effect_volume_add_click")
             val am = getSystemService(Context.AUDIO_SERVICE) as AudioManager
             var currentVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC)
             currentVolume++
@@ -175,7 +176,7 @@ class PlaySoundActivity :
             if (currentSoundItem.type == IMPORT_SOUND_TYPE) {
                 logEvent("click_add_audio_apply")
             }
-            logEvent("click_detail_apply")
+            logEvent("effect_apply_click")
             saveSoundAndDuration()
             Toast.makeText(this, getString(R.string.save_successfully), Toast.LENGTH_SHORT).show()
 

@@ -72,6 +72,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
 //    }
 
     override fun initView() {
+        logEvent("add_view")
         createSoundItem.name = requireActivity().getString(R.string.create_new)
         loadSoundList()
         registerBroadcast()
@@ -107,6 +108,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
             }
             soundAdapter?.mCallback = OnActionCallback { key, data ->
                 if (key.equals(KEY_SOUND)) {
+                    logEvent("add_sound_click")
                     var soundItem = data[0] as SoundItem
                     if (soundItem.type == CREATE_SOUND_TYPE) {
                         logEvent("click_add_create_new")
@@ -133,7 +135,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
 
     override fun addEvent() {
         binding.llCreateSound.setOnClickListener {
-            logEvent("click_add_create_sound")
+            logEvent("add_create_click")
             startActivity(Intent(activity, CreateSoundActivity::class.java))
         }
     }

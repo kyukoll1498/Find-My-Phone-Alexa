@@ -6,6 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import com.common.control.manager.AdmobManager
@@ -47,6 +50,7 @@ class CreateSoundActivity :
 
 
     override fun initView() {
+        logEvent("create_view")
         BroadcastUtils.registerReceiver(this,finishReceiver, IntentFilter(ACTION_FINISH_CREATE_SOUND_SCREEN))
     }
 
@@ -62,9 +66,11 @@ class CreateSoundActivity :
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun addEvent() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.llRecordAudio.setOnClickListener {
+            logEvent("create_record_click")
             binding.llImportAudio.isEnabled = false
             binding.llImportAudio.isClickable = false
             binding.llRecordAudio.isEnabled = false
@@ -85,6 +91,7 @@ class CreateSoundActivity :
 
         }
         binding.llImportAudio.setOnClickListener {
+            logEvent("create_import_click")
             binding.llImportAudio.isEnabled = false
             binding.llImportAudio.isClickable = false
             binding.llRecordAudio.isEnabled = false
@@ -103,10 +110,12 @@ class CreateSoundActivity :
                 startImportAudio()
             }
         }
-        binding.btnSave.setOnClickListener { saveSoundItem() }
+        binding.btnSave.setOnClickListener {
+            saveSoundItem()
+            logEvent("import_save_click")
+        }
         binding.llAudioController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
-                logEvent("click_add_play")
                 sendBroadcast(Intent(ACTION_FINISH_DETECT))
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
@@ -117,6 +126,23 @@ class CreateSoundActivity :
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
             }
         }
+        binding.edtName.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                logEvent("import_edit_click")
+            }
+            false
+        }
+        binding.edtName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                s?.let {
+                    logEvent("import_name_enter")
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
     }
 
     private fun saveSoundItem() {
@@ -148,6 +174,7 @@ class CreateSoundActivity :
     }
 
     private fun startAudio() {
+        logEvent("import_play_click")
         MediaPlayerAppUtil.playAudio(this, currentSoundItem) {
 //            onComplete
             try {
@@ -161,6 +188,7 @@ class CreateSoundActivity :
     }
 
     private fun pauseAudio() {
+        logEvent("import_pause_click")
         MediaPlayerAppUtil.stopAudio()
     }
 
@@ -249,6 +277,7 @@ class CreateSoundActivity :
     }
 
     private fun gotoSave() {
+        logEvent("import_view")
         binding.ctOptions.visibility = View.GONE
         binding.ctSaveRecord.visibility = View.VISIBLE
         binding.btnSave.visibility = View.VISIBLE
@@ -273,6 +302,7 @@ class CreateSoundActivity :
     }
 
     override fun onBackPressed() {
+        logEvent("import_back_click")
         if (binding.ctSaveRecord.visibility == View.VISIBLE) {
 //            binding.frAd.visibility = View.VISIBLE
 //            binding.frAd2.visibility = View.GONE

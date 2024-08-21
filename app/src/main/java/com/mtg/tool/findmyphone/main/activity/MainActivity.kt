@@ -5,9 +5,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.manager.AdmobManager
@@ -105,7 +103,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             binding.viewpagerMain.setCurrentItem(1, false)
         }
         binding.btnAdd.setOnClickListener {
-            logEvent("click_add")
+            logEvent("add_click")
             changeUITools(binding.viewpagerMain.currentItem, 2)
             binding.viewpagerMain.setCurrentItem(2, false)
         }

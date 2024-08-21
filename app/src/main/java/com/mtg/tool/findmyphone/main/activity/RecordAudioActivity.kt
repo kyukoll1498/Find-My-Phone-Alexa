@@ -2,6 +2,9 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Intent
 import android.os.CountDownTimer
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import com.common.control.manager.AdmobManager
@@ -40,6 +43,7 @@ class RecordAudioActivity :
     private var currentTime = 0
     private var timer: CountDownTimer? = null
     override fun initView() {
+        logEvent("record_view")
         binding.tvNext.isSelected = true
     }
 
@@ -60,25 +64,33 @@ class RecordAudioActivity :
             when (mode) {
                 MODE_PREPARE_START -> {
                     startRecord()
+                    logEvent("record_start_click")
                 }
 
                 MODE_PREPARE_PAUSE -> {
                     pauseRecord()
+                    logEvent("record_pause_click")
                 }
 
                 MODE_PREPARE_RESUME -> {
                     resumeRecord()
+                    logEvent("record_play_click")
                 }
             }
         }
         binding.ivRestartRecord.setOnClickListener {
             restartRecord()
         }
-        binding.tvNext.setOnClickListener { stopRecord() }
-        binding.btnSave.setOnClickListener { saveSoundItem() }
+        binding.tvNext.setOnClickListener {
+            logEvent("record_next_click")
+            stopRecord()
+        }
+        binding.btnSave.setOnClickListener {
+            logEvent("record_sound_save_click")
+            saveSoundItem()
+        }
         binding.llAudioController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
-                logEvent("click_add_record_play_sound")
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
@@ -88,9 +100,28 @@ class RecordAudioActivity :
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
             }
         }
+        binding.edtName.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                logEvent("record_sound_edit_click")
+            }
+            false
+        }
+        binding.edtName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                s?.let {
+                    logEvent("record_sound_name_enter")
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+
     }
 
     private fun startAudio() {
+        logEvent("record_sound_play_click")
         MediaPlayerAppUtil.playAudio(this, currentSoundItem) {
 //            onComplete
             try {
@@ -104,7 +135,7 @@ class RecordAudioActivity :
     }
 
     private fun pauseAudio() {
-        logEvent("click_add_record_stop")
+        logEvent("record_sound_pause_click")
         MediaPlayerAppUtil.stopAudio()
     }
 
@@ -281,6 +312,7 @@ class RecordAudioActivity :
     }
 
     override fun onBackPressed() {
+        logEvent("User click back in record sound screen")
         if (binding.ctSaveRecord.visibility == View.VISIBLE) {
 //            binding.frAd.visibility = View.VISIBLE
 //            binding.frAd2.visibility = View.GONE
