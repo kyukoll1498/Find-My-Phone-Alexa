@@ -7,11 +7,13 @@ import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
+import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
 import com.mtg.tool.findmyphone.KEY_SOUND
@@ -53,13 +55,27 @@ class RecordAudioActivity :
             this,
             AdIds.native_add,
             binding.frAd,
-            AdmobManager.NativeAdType.BIG
+            AdmobManager.NativeAdType.BIG,
+            object : AdCallback(){
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("record_sound_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("record_sound_native_click")
+                }
+            }
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     override fun addEvent() {
-        binding.btnBack.setOnClickListener { onBackPressed() }
+        binding.btnBack.setOnClickListener {
+            logEvent("record_sound_back_click")
+            onBackPressed()
+        }
         binding.ivRecordController.setOnClickListener {
             when (mode) {
                 MODE_PREPARE_START -> {
@@ -94,7 +110,9 @@ class RecordAudioActivity :
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
+                logEvent("record_sound_play_click")
             } else if (binding.tvPlayerController.text == getString(R.string.pause)) {
+                logEvent("record_sound_pause_click")
                 pauseAudio()
                 binding.tvPlayerController.text = getString(R.string.play)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
@@ -121,7 +139,6 @@ class RecordAudioActivity :
     }
 
     private fun startAudio() {
-        logEvent("record_sound_play_click")
         MediaPlayerAppUtil.playAudio(this, currentSoundItem) {
 //            onComplete
             try {
@@ -135,7 +152,6 @@ class RecordAudioActivity :
     }
 
     private fun pauseAudio() {
-        logEvent("record_sound_pause_click")
         MediaPlayerAppUtil.stopAudio()
     }
 

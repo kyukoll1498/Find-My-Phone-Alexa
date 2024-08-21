@@ -123,6 +123,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 logEvent("home_tutorial_click")
             } else if (binding.viewpagerMain.currentItem == 1) {
                 logEvent("sound_tutorial_click")
+            } else if(binding.viewpagerMain.currentItem == 3) {
+                logEvent("add_tutorial_click")
             }
             startActivity(Intent(this, HowToUseActivity::class.java))
         }

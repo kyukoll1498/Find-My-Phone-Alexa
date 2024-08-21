@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.common.control.utils.BroadcastUtils
@@ -43,7 +44,6 @@ class PlaySoundActivity :
 
 
     override fun initView() {
-        logEvent("effect_view")
         registerVolumeReceiver()
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
         currentSoundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as SoundItem
@@ -55,8 +55,25 @@ class PlaySoundActivity :
         setSeekbarView()
         setDetailCommandView()
         AdmobManager.getInstance()
-            .loadNative(this, AdIds.native_effect, binding.frAd, AdmobManager.NativeAdType.SMALL)
+            .loadNative(this, AdIds.native_effect, binding.frAd, AdmobManager.NativeAdType.SMALL,
+                object : AdCallback(){
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("effect_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("effect_native_click")
+                    }
+                }
+            )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        logEvent("effect_view")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,9 +107,9 @@ class PlaySoundActivity :
         binding.llController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
                 if (currentSoundItem.type == IMPORT_SOUND_TYPE) {
-                    logEvent("effect_play_click")
+//                    logEvent("effect_play_click")
                 }
-                logEvent("click_detail_play")
+                logEvent("effect_play_click")
                 sendBroadcast(Intent(ACTION_FINISH_DETECT))
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)

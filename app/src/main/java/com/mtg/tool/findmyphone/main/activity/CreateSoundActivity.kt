@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.common.control.utils.BroadcastUtils
@@ -50,8 +51,11 @@ class CreateSoundActivity :
 
 
     override fun initView() {
-        logEvent("create_view")
-        BroadcastUtils.registerReceiver(this,finishReceiver, IntentFilter(ACTION_FINISH_CREATE_SOUND_SCREEN))
+        BroadcastUtils.registerReceiver(
+            this,
+            finishReceiver,
+            IntentFilter(ACTION_FINISH_CREATE_SOUND_SCREEN)
+        )
     }
 
     override fun loadAds() {
@@ -60,10 +64,30 @@ class CreateSoundActivity :
             this,
             AdIds.native_add,
             binding.frAd,
-            AdmobManager.NativeAdType.BIG
+            AdmobManager.NativeAdType.BIG,
+            object : AdCallback() {
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("import_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("import_native_click")
+                }
+            }
         )
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (binding.tvAppName.text == getString(R.string.import_audio)) {
+            logEvent("import_view")
+        } else{
+            logEvent("create_view")
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -116,11 +140,13 @@ class CreateSoundActivity :
         }
         binding.llAudioController.setOnClickListener {
             if (binding.tvPlayerController.text == getString(R.string.play)) {
+                logEvent("import_play_click")
                 sendBroadcast(Intent(ACTION_FINISH_DETECT))
                 startAudio()
                 binding.tvPlayerController.text = getString(R.string.pause)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_resume))
             } else if (binding.tvPlayerController.text == getString(R.string.pause)) {
+                logEvent("import_pause_click")
                 pauseAudio()
                 binding.tvPlayerController.text = getString(R.string.play)
                 binding.ivPlayerController.setImageDrawable(getDrawable(R.drawable.ic_pause))
@@ -135,11 +161,13 @@ class CreateSoundActivity :
         binding.edtName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 s?.let {
                     logEvent("import_name_enter")
                 }
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
@@ -151,7 +179,8 @@ class CreateSoundActivity :
         if (currentSoundItem.name!!.isEmpty()) {
             Toast.makeText(this, getString(R.string.name_sound_is_empty), Toast.LENGTH_SHORT).show()
         } else if (AppRepository.checkHasSound(currentSoundItem.name!!)) {
-            Toast.makeText(this, getString(R.string.name_sound_already_exists), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.name_sound_already_exists), Toast.LENGTH_SHORT)
+                .show()
         } else {
             AppRepository.insertSound(currentSoundItem)
             var intent = Intent(ACTION_UPDATE_AUDIO_IMPORT)
@@ -169,12 +198,13 @@ class CreateSoundActivity :
             R.drawable.avatar_audio_default,
             R.drawable.ic_default_audio_avatar,
             CacheUtils.getLastFilePathAudio(),
-            0, 15000, FileUtils.getDurationFromAudioFile( CacheUtils.getLastFilePathAudio())!! <= 15000.toLong()
+            0,
+            15000,
+            FileUtils.getDurationFromAudioFile(CacheUtils.getLastFilePathAudio())!! <= 15000.toLong()
         )
     }
 
     private fun startAudio() {
-        logEvent("import_play_click")
         MediaPlayerAppUtil.playAudio(this, currentSoundItem) {
 //            onComplete
             try {
@@ -188,7 +218,6 @@ class CreateSoundActivity :
     }
 
     private fun pauseAudio() {
-        logEvent("import_pause_click")
         MediaPlayerAppUtil.stopAudio()
     }
 
@@ -257,18 +286,19 @@ class CreateSoundActivity :
         if (requestCode == REQUEST_FILE_AUDIO_CODE) {
             var uri = data?.data
             try {
-            if (uri != null) {
-                var file = FileUtils.saveFileFromUri(uri, CacheUtils.getNewNameFileAudio(this), this)
+                if (uri != null) {
+                    var file =
+                        FileUtils.saveFileFromUri(uri, CacheUtils.getNewNameFileAudio(this), this)
 
-                binding.tvPath.text = FileUtils.getFileNameAudioFromUri(uri, this, 12)
-                binding.edtName.setText(FileUtils.getFileNameAudioFromUri(uri, this, 100))
-                var duration = file?.let { FileUtils.getDurationFromAudioFile(it.path) }
+                    binding.tvPath.text = FileUtils.getFileNameAudioFromUri(uri, this, 12)
+                    binding.edtName.setText(FileUtils.getFileNameAudioFromUri(uri, this, 100))
+                    var duration = file?.let { FileUtils.getDurationFromAudioFile(it.path) }
 //                if (duration != null && duration > 15000) {
 //                    file?.path?.let { AudioUtil.cutAudio(this, 0, 15*1000, duration, it, true){} }
 //                }
-                updateCurrentSound()
-                gotoSave()
-            }
+                    updateCurrentSound()
+                    gotoSave()
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(this, "The audio file is error!", Toast.LENGTH_SHORT).show()
@@ -277,7 +307,6 @@ class CreateSoundActivity :
     }
 
     private fun gotoSave() {
-        logEvent("import_view")
         binding.ctOptions.visibility = View.GONE
         binding.ctSaveRecord.visibility = View.VISIBLE
         binding.btnSave.visibility = View.VISIBLE
