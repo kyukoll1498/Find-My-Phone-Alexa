@@ -75,6 +75,16 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                     super.onNativeAds(nativeAd)
                     AdCache.getInstance().ob1Native = nativeAd
                 }
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("onboard1_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("onboard1_native_click")
+
+                }
             })
         setStatusBarColor()
         initListLanguage()

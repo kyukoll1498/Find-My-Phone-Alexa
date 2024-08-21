@@ -97,6 +97,7 @@ class InterestActivity :
 
     override fun addEvent() {
         binding.tvNext.setOnClickListener {
+            logEvent("onboard1_next_click")
             saveSelectedInterests()
         }
     }
@@ -118,7 +119,6 @@ class InterestActivity :
 //        val intent = Intent(this, OnBoardActivity::class.java)
 //        intent.putStringArrayListExtra("selectedInterests", ArrayList(selectedInterests))
 //        startActivity(intent)
-        logEvent("complete_onb1")
         OnBoardActivity.start(this)
         finish()
     }
@@ -130,6 +130,16 @@ class InterestActivity :
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
                     AdmobManager.getInstance().showNative(this@InterestActivity, nativeAd, binding.frAd, AdmobManager.NativeAdType.BIG)
+                }
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("onboard1_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("onboard1_native_click")
+
                 }
             })
         } else {
