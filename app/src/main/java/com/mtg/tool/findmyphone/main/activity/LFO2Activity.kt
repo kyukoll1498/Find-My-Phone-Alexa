@@ -167,6 +167,16 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
                             AdmobManager.NativeAdType.BIG
                         )
                     }
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("language2_ad_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("language2_ad_native_click")
+
+                    }
                 })
         }
     }

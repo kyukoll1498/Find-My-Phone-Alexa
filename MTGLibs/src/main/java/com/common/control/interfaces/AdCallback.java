@@ -53,4 +53,8 @@ abstract public class AdCallback {
 
     }
 
+    public void onClickClose(){
+
+    }
+
 }

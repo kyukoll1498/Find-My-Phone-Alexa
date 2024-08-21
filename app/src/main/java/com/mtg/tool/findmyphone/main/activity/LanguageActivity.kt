@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.control.base.OnActionCallback
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.google.android.datatransport.cct.internal.LogEvent
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AppSession
@@ -56,6 +57,16 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                         super.onNativeAds(nativeAd)
                         AdCache.getInstance().lfo2NativeHigh2 = nativeAd
                     }
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("language2_ad_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("language2_ad_native_click")
+
+                    }
                 })
         }
         AdmobManager.getInstance()
@@ -63,6 +74,16 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
                     AdCache.getInstance().ob1Native = nativeAd
+                }
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("onboard1_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("onboard1_native_click")
+
                 }
             })
         setStatusBarColor()
@@ -98,6 +119,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                     itemLanguage?.colorBackground = "#ED6A40"
                     this.notifyDataSetChanged()
                 }
+                logEvent("language_choose_" + itemLanguage?.name + "_click")
                 logEvent("complete_lfo1")
                 startActivity(Intent(this@LanguageActivity, LFO2Activity::class.java).apply {
                     putExtra("pos", mList.indexOf(itemLanguage))
@@ -121,8 +143,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     override fun addEvent() {
         binding.btBack.setOnClickListener { finish() }
         binding.ivDone.setOnClickListener {
-            logEvent("complete_lfo_flow")
-            EventLogger.getInstance()?.logEvent("click_language_tick")
+            logEvent("complete_lfo")
             //Intent intent = new Intent(this, MainActivity.class);
             if (itemLanguage == null) {
                 itemLanguage = LanguageUtils.getDefaultItemLanguage()
@@ -157,6 +178,17 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                             binding.frAd,
                             AdmobManager.NativeAdType.BIG
                         )
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("language_ad_native_click")
+                    }
+
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("language_ad_native_view")
+
                     }
                 })
         }
