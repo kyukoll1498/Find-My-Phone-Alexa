@@ -41,7 +41,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     private var canRefreshBanner = true
     private var isShowedInter = false
 
-    private val adCallbackBanner = object: AdCallback(){
+    private val adCallbackBanner = object : AdCallback() {
         override fun onAdImpression() {
             super.onAdImpression()
             logEvent("splash_ad_banner_view")
@@ -115,7 +115,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun loadAlternateBanner() {
-        AdmobManager.getInstance().loadAlternateBanner(this, bannerAds, binding.frAd, adCallbackBanner)
+        AdmobManager.getInstance()
+            .loadAlternateBanner(this, bannerAds, binding.frAd, adCallbackBanner)
         val timeLoad = RemoteConfigManager.instance!!.time_load_banner
         if (timeLoad != 0.toLong()) {
             val timer = Timer()
@@ -123,7 +124,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                 override fun run() {
                     runOnUiThread {
                         Log.d("devLogger: canRefreshBanner", canRefreshBanner.toString())
-                        Log.d("devLogger: isShowedInter",  isShowedInter.toString())
+                        Log.d("devLogger: isShowedInter", isShowedInter.toString())
                         if (canRefreshBanner && !isShowedInter) {
                             reloadBanner()
                         }
@@ -138,7 +139,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         if (bannerAds.isNotEmpty()) {
             Log.d("AdmobRefresh: ", "splash" + bannerAds[0])
             AdmobManager.getInstance()
-                .loadAlternateBanner(this, arrayListOf(bannerAds[0]), binding.frAd, adCallbackBanner)
+                .loadAlternateBanner(
+                    this,
+                    arrayListOf(bannerAds[0]),
+                    binding.frAd,
+                    adCallbackBanner
+                )
         }
     }
 
@@ -194,6 +200,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                                             AdCache.getInstance().lfo2NativeHigh1 =
                                                 nativeAd
                                         }
+                                        override fun onAdImpression() {
+                                            super.onAdImpression()
+                                            logEvent("language2_ad_native_view")
+                                        }
+
+                                        override fun onAdClicked() {
+                                            super.onAdClicked()
+                                            logEvent("language2_ad_native_click")
+
+                                        }
                                     })
                             }
                         }
@@ -205,6 +221,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                                 override fun onNativeAds(nativeAd: NativeAd?) {
                                     super.onNativeAds(nativeAd)
                                     AdCache.getInstance().lfo1Native.value = nativeAd
+                                }
+
+                                override fun onAdClicked() {
+                                    super.onAdClicked()
+                                    logEvent("language_ad_native_click")
+                                }
+
+                                override fun onAdImpression() {
+                                    super.onAdImpression()
+                                    logEvent("language_ad_native_view")
+
                                 }
                             })
                     } else if (!SharedPrefs.getBoolean(
@@ -245,6 +272,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                     override fun onNativeAds(nativeAd: NativeAd?) {
                         super.onNativeAds(nativeAd)
                         AdCache.getInstance().lfo2NativeHigh = nativeAd
+                    }
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("language2_ad_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("language2_ad_native_click")
+
                     }
                 })
         }

@@ -124,6 +124,17 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
                         AdmobManager.NativeAdType.BIG
                     )
                 }
+
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("language2_setting_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("language2_setting_native_click")
+
+                }
             })
     }
 }

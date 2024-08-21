@@ -492,6 +492,17 @@ public class AdmobManager {
             public void onAdFailedToLoad(@NonNull LoadAdError i) {
                 callback.onAdFailedToLoad(i);
             }
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                callback.onAdImpression();
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                callback.onAdClicked();
+            }
         });
     }
 
