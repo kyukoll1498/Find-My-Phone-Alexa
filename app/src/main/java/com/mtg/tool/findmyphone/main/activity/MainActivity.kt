@@ -9,6 +9,7 @@ import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
@@ -56,7 +57,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         setupViewpager()
 //        setupDrawerNavigation()
 //        load banner---------------------------------------------------
-        AdmobManager.getInstance().loadAlternateBanner(this, listBanner, binding.frAd)
+        AdmobManager.getInstance().loadAlternateBanner(this, listBanner, binding.frAd,
+            object : AdCallback() {
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("home_banner_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("home_banner_click")
+                }
+            }
+        )
         val timeLoad = RemoteConfigManager.instance!!.time_load_banner
         if (timeLoad != 0.toLong()) {
             val timer = Timer()
@@ -79,7 +92,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         if (listBanner.isNotEmpty()) {
             Log.d("AdmobRefresh: ", "home" + listBanner[0])
             AdmobManager.getInstance()
-                .loadAlternateBanner(this, arrayListOf(listBanner[0]), binding.frAd)
+                .loadAlternateBanner(this, arrayListOf(listBanner[0]), binding.frAd,
+                    object : AdCallback() {
+                        override fun onAdImpression() {
+                            super.onAdImpression()
+                            logEvent("home_banner_view")
+                        }
+
+                        override fun onAdClicked() {
+                            super.onAdClicked()
+                            logEvent("home_banner_click")
+                        }
+                    }
+                )
         }
     }
 
@@ -123,7 +148,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 logEvent("home_tutorial_click")
             } else if (binding.viewpagerMain.currentItem == 1) {
                 logEvent("sound_tutorial_click")
-            } else if(binding.viewpagerMain.currentItem == 3) {
+            } else if (binding.viewpagerMain.currentItem == 3) {
                 logEvent("add_tutorial_click")
             }
             startActivity(Intent(this, HowToUseActivity::class.java))
@@ -234,7 +259,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                when(position){
+                when (position) {
                     0 -> logEvent("home_view")
                     1 -> logEvent("sound_view")
                     2 -> logEvent("add_view")

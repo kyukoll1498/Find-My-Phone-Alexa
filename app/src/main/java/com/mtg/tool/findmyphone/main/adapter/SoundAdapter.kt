@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.mtg.tool.findmyphone.ADAPTER_ADS_TYPE
@@ -18,6 +19,7 @@ import com.mtg.tool.findmyphone.base.BaseAdapter
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ItemNativeHolderBinding
 import com.mtg.tool.findmyphone.databinding.ItemSoundBinding
+import com.mtg.tool.findmyphone.utils.EventLogger
 
 class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
     BaseAdapter<SoundItem?>(mList!!, activity) {
@@ -79,7 +81,18 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
                 context,
                 AdIds.native_sound,
                 binding.frAds,
-                AdmobManager.NativeAdType.MEDIUM
+                AdmobManager.NativeAdType.MEDIUM,
+                object : AdCallback(){
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(context, "sound_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(context, "sound_native_click")
+                    }
+                }
             )
             AppOpenManager.getInstance()
                 .hideNativeOrBannerWhenShowOpenApp(context as Activity, binding.frAds)

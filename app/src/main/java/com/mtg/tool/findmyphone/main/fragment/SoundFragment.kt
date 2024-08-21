@@ -36,9 +36,8 @@ class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::i
         }
         soundAdapter.mCallback = OnActionCallback { key, data ->
             if (key.equals(KEY_SOUND)) {
-                logEvent("click_sound_play")
                 val soundItem = data[0] as SoundItem
-                logEvent("sound_choose_" + soundItem.name?.replace(" ", "_") + "_click")
+                logEvent("click_detail_play_" + soundItem.name?.replace(" ", "_")?.lowercase())
                 val intent = Intent(activity, PlaySoundActivity::class.java)
                 intent.putExtra(KEY_SOUND_ITEM_DATA, soundItem)
                 startActivity(intent)
