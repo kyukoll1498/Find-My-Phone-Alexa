@@ -33,6 +33,7 @@ import com.adjust.sdk.AdjustConfig;
 import com.common.control.R;
 import com.common.control.dialog.PrepareLoadingAdsDialog;
 import com.common.control.interfaces.AdCallback;
+import com.common.control.model.AdType;
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.ads.mediation.admob.AdMobAdapter;
@@ -44,6 +45,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdValue;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdapterResponseInfo;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MediaAspectRatio;
@@ -67,6 +69,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import com.reyun.solar.engine.SolarEngineManager;
+import com.reyun.solar.engine.infos.SEAdImpEventModel;
 
 public class AdmobManager {
     public static final String ACTION_CLOSE_NATIVE_ADS = "ACTION_CLOSE_NATIVE_ADS";
@@ -164,6 +168,39 @@ public class AdmobManager {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void trackRevenueNativeSolar(AdValue adValue, NativeAd nativeAd, String adUnitId) {
+        // Extract the impression-level ad revenue data.
+        double valueMicros = adValue.getValueMicros();
+        String currencyCode = adValue.getCurrencyCode();
+        int precision = adValue.getPrecisionType();
+
+        AdapterResponseInfo loadedAdapterResponseInfo = nativeAd.getResponseInfo().getLoadedAdapterResponseInfo();
+        String adSourceName = loadedAdapterResponseInfo.getAdSourceName();
+        String adSourceId = loadedAdapterResponseInfo.getAdSourceId();
+        String adSourceInstanceName = loadedAdapterResponseInfo.getAdSourceInstanceName();
+        String adSourceInstanceId = loadedAdapterResponseInfo.getAdSourceInstanceId();
+        //SE SDK processing logic
+        SEAdImpEventModel seAdImpEventModel = new SEAdImpEventModel();
+        //Monetization Platform Name
+        seAdImpEventModel.setAdNetworkPlatform(adSourceName);
+        //Mediation Platform Name (e.g. admob SDK as "admob")
+        seAdImpEventModel.setMediationPlatform("admob");
+        //Displayed Ad Type (Taking Rewarded Ad as an example, adType = 1)
+        seAdImpEventModel.setAdType(AdType.NATIVE);
+        //Monetization Platform App ID
+        seAdImpEventModel.setAdNetworkAppID(adSourceId);
+        //Monetization Platform Ad Unit ID
+        seAdImpEventModel.setAdNetworkADID(adUnitId);
+        //Ad eCPM
+        seAdImpEventModel.setEcpm(valueMicros / 1000);
+        //Monetization Platform Currency Type
+        seAdImpEventModel.setCurrencyType(currencyCode);
+        //True: rendered success
+        seAdImpEventModel.setRenderSuccess(true);
+        //You can add custom properties as needed. Here we do not give examples.
+        SolarEngineManager.getInstance().trackAdImpression(seAdImpEventModel);
     }
 
     public AdRequest getAdRequest() {
@@ -1025,6 +1062,9 @@ public class AdmobManager {
                 super.onNativeAds(nativeAd);
                 callback.onNativeAds(nativeAd);
                 Log.i("AdmobLogger", "loadAlternateNative: " + "success-" + ids.get(0));
+                for (String adUnitId : ids) {
+                    nativeAd.setOnPaidEventListener(adValue -> trackRevenueNativeSolar(adValue, nativeAd, adUnitId));
+                }
             }
             @Override
             public void onAdClicked() {

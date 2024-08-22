@@ -85,7 +85,6 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
                 //Init failed
             }
         }
-        SolarEngineManager.getInstance().setGaid(BuildConfig.APP_ID)
     }
 
     override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
