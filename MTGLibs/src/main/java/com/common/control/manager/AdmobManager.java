@@ -50,6 +50,7 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MediaAspectRatio;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnPaidEventListener;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.appopen.AppOpenAd;
@@ -69,8 +70,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
 import com.reyun.solar.engine.SolarEngineManager;
 import com.reyun.solar.engine.infos.SEAdImpEventModel;
+
+import org.json.JSONObject;
 
 public class AdmobManager {
     public static final String ACTION_CLOSE_NATIVE_ADS = "ACTION_CLOSE_NATIVE_ADS";
@@ -82,6 +87,7 @@ public class AdmobManager {
     private long customTimeLoadingDialog = 1500;
     private boolean hasAdjust;
     private boolean hasLog;
+    TrackRevenueSolar trackRevenueSolar = new TrackRevenueSolar();
 
     private AdmobManager() {
 
@@ -170,39 +176,6 @@ public class AdmobManager {
         }
     }
 
-    public void trackRevenueNativeSolar(AdValue adValue, NativeAd nativeAd, String adUnitId) {
-        // Extract the impression-level ad revenue data.
-        double valueMicros = adValue.getValueMicros();
-        String currencyCode = adValue.getCurrencyCode();
-        int precision = adValue.getPrecisionType();
-
-        AdapterResponseInfo loadedAdapterResponseInfo = nativeAd.getResponseInfo().getLoadedAdapterResponseInfo();
-        String adSourceName = loadedAdapterResponseInfo.getAdSourceName();
-        String adSourceId = loadedAdapterResponseInfo.getAdSourceId();
-        String adSourceInstanceName = loadedAdapterResponseInfo.getAdSourceInstanceName();
-        String adSourceInstanceId = loadedAdapterResponseInfo.getAdSourceInstanceId();
-        //SE SDK processing logic
-        SEAdImpEventModel seAdImpEventModel = new SEAdImpEventModel();
-        //Monetization Platform Name
-        seAdImpEventModel.setAdNetworkPlatform(adSourceName);
-        //Mediation Platform Name (e.g. admob SDK as "admob")
-        seAdImpEventModel.setMediationPlatform("admob");
-        //Displayed Ad Type (Taking Rewarded Ad as an example, adType = 1)
-        seAdImpEventModel.setAdType(AdType.NATIVE);
-        //Monetization Platform App ID
-        seAdImpEventModel.setAdNetworkAppID(adSourceId);
-        //Monetization Platform Ad Unit ID
-        seAdImpEventModel.setAdNetworkADID(adUnitId);
-        //Ad eCPM
-        seAdImpEventModel.setEcpm(valueMicros / 1000);
-        //Monetization Platform Currency Type
-        seAdImpEventModel.setCurrencyType(currencyCode);
-        //True: rendered success
-        seAdImpEventModel.setRenderSuccess(true);
-        //You can add custom properties as needed. Here we do not give examples.
-        SolarEngineManager.getInstance().trackAdImpression(seAdImpEventModel);
-    }
-
     public AdRequest getAdRequest() {
         if (!hasAds || PurchaseManager.getInstance().isPurchased() || PurchaseManagerInApp.getInstance().isPurchased()) {
             return null;
@@ -233,6 +206,7 @@ public class AdmobManager {
                 if (callback != null) {
                     callback.onResultInterstitialAd(interstitialAd);
                 }
+                interstitialAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueInterSolar(adValue,interstitialAd));
             }
         });
     }
@@ -259,6 +233,7 @@ public class AdmobManager {
                 if (callback != null) {
                     callback.onResultInterstitialAd(interstitialAd);
                 }
+                interstitialAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueInterSolar(adValue, interstitialAd));
             }
         });
     }
@@ -395,7 +370,6 @@ public class AdmobManager {
         }
     }
 
-
     @Deprecated
     public void loadBanner(final Activity mActivity, String id) {
         final FrameLayout adContainer = mActivity.findViewById(R.id.banner_container);
@@ -436,6 +410,7 @@ public class AdmobManager {
                     adView.setOnPaidEventListener(adValue -> {
                         trackRevenue(adValue);
                     });
+                    adView.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueBannerSolar(adValue, adView, id));
                 }
 
             });
@@ -479,6 +454,7 @@ public class AdmobManager {
                     adView.setOnPaidEventListener(adValue -> {
                         trackRevenue(adValue);
                     });
+                    adView.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueBannerSolar(adValue, adView, id));
                 }
 
                 @Override
@@ -621,6 +597,7 @@ public class AdmobManager {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
                 showNative(context, nativeAd, placeHolder, nativeAdType);
+                nativeAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueNativeSolar(adValue,nativeAd, id));
             }
 
             @Override
@@ -637,6 +614,7 @@ public class AdmobManager {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
                 showNative(context, nativeAd, placeHolder, nativeAdType);
+                nativeAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueNativeSolar(adValue,nativeAd, id));
             }
 
             @Override
@@ -896,7 +874,7 @@ public class AdmobManager {
         RewardedAd.load(context, id, request, adLoadCallback);
     }
 
-    public void showRewardAd(Activity activity, RewardedAd rewardedAd, AdCallback callback) {
+    public void showRewardAdInterstitial(Activity activity, RewardedInterstitialAd rewardedAd, AdCallback callback) {
         if (!hasAds || rewardedAd == null || PurchaseManager.getInstance().isPurchased()) {
             callback.onAdFailedToShowFullScreenContent(errAd);
             return;
@@ -904,6 +882,7 @@ public class AdmobManager {
         log("Show RewardAd :" + rewardedAd.getAdUnitId());
 
         rewardedAd.setOnPaidEventListener(this::trackRevenue);
+        rewardedAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueRewardAd(adValue, rewardedAd));
         rewardedAd.show(activity, callback::onUserEarnedReward);
     }
 
@@ -987,6 +966,9 @@ public class AdmobManager {
                     adView.setOnPaidEventListener(adValue -> {
                         trackRevenue(adValue);
                     });
+                    adView.setOnPaidEventListener(adValue -> {
+                        trackRevenueSolar.trackRevenueBannerSolar(adValue,adView,id);
+                    });
                 }
 
             });
@@ -1062,9 +1044,6 @@ public class AdmobManager {
                 super.onNativeAds(nativeAd);
                 callback.onNativeAds(nativeAd);
                 Log.i("AdmobLogger", "loadAlternateNative: " + "success-" + ids.get(0));
-                for (String adUnitId : ids) {
-                    nativeAd.setOnPaidEventListener(adValue -> trackRevenueNativeSolar(adValue, nativeAd, adUnitId));
-                }
             }
             @Override
             public void onAdClicked() {

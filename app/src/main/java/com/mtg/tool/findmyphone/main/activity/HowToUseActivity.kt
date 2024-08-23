@@ -1,8 +1,11 @@
 package com.mtg.tool.findmyphone.main.activity
 
 import android.os.Bundle
+import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.common.control.manager.TrackRevenueSolar
+import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity

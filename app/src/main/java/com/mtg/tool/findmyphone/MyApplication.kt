@@ -75,6 +75,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
             .preInit(this, APP_KEY_SOLAR_ENGINE)
         val config = SolarEngineConfig.Builder()
             .logEnabled()
+            .isDebugModel(true)
             .build()
         SolarEngineManager.getInstance().initialize(
             this, APP_KEY_SOLAR_ENGINE, config
@@ -91,14 +92,14 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         super.onActivityPreCreated(activity, savedInstanceState)
         val removableActivities = ArrayList<Activity>()
         if (activity is SplashActivity) {
-            if (!lsActivity.isEmpty()) {
+            if (lsActivity.isNotEmpty()) {
                 for (a in lsActivity) {
                     a.finish()
                     removableActivities.add(a)
                 }
             }
         }
-        lsActivity.removeAll(removableActivities)
+        lsActivity.removeAll(removableActivities.toSet())
         lsActivity.add(activity)
     }
 
