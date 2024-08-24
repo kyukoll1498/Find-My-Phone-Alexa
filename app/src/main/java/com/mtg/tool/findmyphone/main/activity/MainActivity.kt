@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.facebook.appevents.AppEventsLogger
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
@@ -36,6 +36,10 @@ import java.util.Timer
 import java.util.TimerTask
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+    private val logger by lazy {
+        AppEventsLogger.newLogger(this)
+    }
+
     override fun binding() {
         isFullScreen = false
         super.binding()
@@ -52,6 +56,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     private var listBanner = mutableListOf(AdIds.banner_home)
 
     override fun initView() {
+        logSentFriendRequestEvent()
         changeStatusBar(Color.parseColor("#e7f4ff"))
 //        setUpRate()
         setupViewpager()
@@ -86,6 +91,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
 //        ---------------------------------------------------------
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
+    }
+
+    private fun logSentFriendRequestEvent() {
+        logger.logEvent("sentFriendRequest")
     }
 
     private fun reloadBanner() {
