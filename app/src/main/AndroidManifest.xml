@@ -27,7 +27,6 @@
         android:maxSdkVersion="32" />
     <!--Phone state permissions, not necessary -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
 
     <application
         android:name=".MyApplication"
