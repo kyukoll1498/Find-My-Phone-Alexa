@@ -499,6 +499,7 @@ public class AdmobManager {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
                 callback.onNativeAds(nativeAd);
+                nativeAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueNativeSolar(adValue, nativeAd, id));
             }
 
             @Override
@@ -525,6 +526,7 @@ public class AdmobManager {
             @Override
             public void onNativeAds(NativeAd nativeAd) {
                 callback.onNativeAds(nativeAd);
+                nativeAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueNativeSolar(adValue, nativeAd, id));
             }
 
             @Override
