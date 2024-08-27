@@ -112,12 +112,18 @@ android {
             addConstantTo(owner, "ob6_native_high", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "ob6_native", "ca-app-pub-3940256099942544/2247696110")
 //            -----------------------------------------------------------------------------------
-            addConstantTo(owner, "banner_home", "ca-app-pub-3940256099942544/6300978111")
-            addConstantTo(owner, "native_sound", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "native_effect", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "native_add", "ca-app-pub-3940256099942544/2247696110")
-            addConstantTo(owner, "native_tutorial", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_home", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_home_high", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "banner_home", "ca-app-pub-3940256099942544/6300978111")
+            addConstantTo(owner, "banner_home_high", "ca-app-pub-3940256099942544/6300978111")
+            addConstantTo(owner, "native_sound", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_sound_high", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_effect", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_effect_high", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_add", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_add_high", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_tutorial", "ca-app-pub-3940256099942544/2247696110")
+            addConstantTo(owner, "native_tutorial_high", "ca-app-pub-3940256099942544/2247696110")
         }
     }
 

@@ -53,7 +53,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private var canRefreshBanner = true
-    private var listBanner = mutableListOf(AdIds.banner_home)
+    private val listBanner by lazy { arrayListOf(AdIds.banner_home_high, AdIds.banner_home) }
 
     override fun initView() {
         logSentFriendRequestEvent()
@@ -61,7 +61,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 //        setUpRate()
         setupViewpager()
 //        setupDrawerNavigation()
-//        load banner---------------------------------------------------
+        loadAlternateBanner()
+    }
+
+    private fun loadAlternateBanner() {
         AdmobManager.getInstance().loadAlternateBanner(this, listBanner, binding.frAd,
             object : AdCallback() {
                 override fun onAdImpression() {
@@ -89,7 +92,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 }
             }, timeLoad * 1000, timeLoad * 1000)
         }
-//        ---------------------------------------------------------
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 

@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.utils.BroadcastUtils
+import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.AdIds
@@ -42,6 +43,9 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     private var isCircleActiveVisible = false
     private var showTxtContent = true
     private var isClapActive = false
+    private val nativeAds by lazy {
+        arrayListOf(AdIds.native_home_high, AdIds.native_home)
+    }
 
     private val finishDetectReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @SuppressLint("NotifyDataSetChanged")
@@ -57,23 +61,6 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             context,
             finishDetectReceiver,
             IntentFilter(ACTION_FINISH_DETECT)
-        )
-        AdmobManager.getInstance().loadNative(
-            requireActivity(),
-            AdIds.native_home,
-            binding.frAd,
-            AdmobManager.NativeAdType.SMALL,
-            object : AdCallback(){
-                override fun onAdImpression() {
-                    super.onAdImpression()
-                    com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(context, "home_native_view")
-                }
-
-                override fun onAdClicked() {
-                    super.onAdClicked()
-                    com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(context, "home_native_click")
-                }
-            }
         )
         if (isMyServiceRunning()) {
             isCircleActiveVisible = !isCircleActiveVisible
@@ -99,6 +86,30 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         settingSound()
     }
 
+    private fun loadNative(){
+        Log.d("Refresh","Refresh")
+        AdmobManager.getInstance().preloadAlternateNative(
+            requireActivity(),
+            nativeAds,
+            object : AdCallback(){
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdmobManager.getInstance().showNative(requireContext(), nativeAd, binding.frAd, AdmobManager.NativeAdType.SMALL)
+                }
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("home_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("home_native_click")
+                }
+            }
+        )
+    }
+
+
     override fun onResume() {
         super.onResume()
         setUpWidthData()
@@ -109,6 +120,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 e.printStackTrace()
             }
         }, 500)
+        loadNative()
     }
 
     private fun setUpResponsive() {
@@ -161,7 +173,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         initVolume()
         object : CountDownTimer(5000, 500) {
             override fun onTick(j: Long) {
-                this@HomeFragment.intOnTick = this@HomeFragment.intOnTick + 1
+                this@HomeFragment.intOnTick += 1
             }
 
             override fun onFinish() {

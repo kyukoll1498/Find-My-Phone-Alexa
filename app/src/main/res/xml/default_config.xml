@@ -127,7 +127,15 @@
         <value>true</value>
     </entry>
     <entry>
+        <key>native_home_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
         <key>banner_home</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>banner_home_high</key>
         <value>true</value>
     </entry>
     <entry>
@@ -135,7 +143,15 @@
         <value>true</value>
     </entry>
     <entry>
+        <key>native_sound_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
         <key>native_effect</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>native_effect_high</key>
         <value>true</value>
     </entry>
     <entry>
@@ -143,7 +159,15 @@
         <value>true</value>
     </entry>
     <entry>
+        <key>native_add_high</key>
+        <value>true</value>
+    </entry>
+    <entry>
         <key>native_tutorial</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>native_tutorial_high</key>
         <value>true</value>
     </entry>
 <!--    refresh rate-->

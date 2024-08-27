@@ -87,10 +87,16 @@ object AdIds {
     var ob6_native = BuildConfig.ob6_native
 
     var native_home = BuildConfig.native_home
+    var native_home_high = BuildConfig.native_home_high
     var banner_home = BuildConfig.banner_home
+    var banner_home_high = BuildConfig.banner_home_high
     var native_sound = BuildConfig.native_sound
+    var native_sound_high = BuildConfig.native_sound_high
     var native_effect = BuildConfig.native_effect
+    var native_effect_high = BuildConfig.native_effect_high
     var native_add = BuildConfig.native_add
+    var native_add_high = BuildConfig.native_add_high
     var native_tutorial = BuildConfig.native_tutorial
+    var native_tutorial_high = BuildConfig.native_tutorial_high
 
 }
