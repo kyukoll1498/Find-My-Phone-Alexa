@@ -60,7 +60,7 @@ class PlaySoundActivity :
         setDetailCommandView()
     }
 
-    private fun loadNative() {
+    private fun loadAlternateNative() {
         Log.d("Refresh","Play Refresh")
         AdmobManager.getInstance()
             .preloadAlternateNative(this,
@@ -92,7 +92,9 @@ class PlaySoundActivity :
     override fun onResume() {
         super.onResume()
         logEvent("effect_view")
-        loadNative()
+        if (!AppOpenManager.getInstance().isShowingAd){
+            loadAlternateNative()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

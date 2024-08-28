@@ -54,7 +54,7 @@ class RecordAudioActivity :
         binding.tvNext.isSelected = true
     }
 
-    private fun loadNative() {
+    private fun loadAlternateNative() {
         Log.d("Refresh","Record Refresh")
         AdmobManager.getInstance().preloadAlternateNative(
             this,
@@ -314,7 +314,9 @@ class RecordAudioActivity :
 
     override fun onResume() {
         super.onResume()
-        loadNative()
+        if (!AppOpenManager.getInstance().isShowingAd){
+            loadAlternateNative()
+        }
         if (!PermissionUtils.checkMicroPermission(this)) {
             showRecordPermissionDialog()
         }

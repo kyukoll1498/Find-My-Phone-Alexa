@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat.startForegroundService
 import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.manager.AppOpenManager
 import com.common.control.utils.BroadcastUtils
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
@@ -86,7 +87,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         settingSound()
     }
 
-    private fun loadNative(){
+    private fun loadAlternateNative(){
         Log.d("Refresh","Refresh")
         AdmobManager.getInstance().preloadAlternateNative(
             requireActivity(),
@@ -120,7 +121,9 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 e.printStackTrace()
             }
         }, 500)
-        loadNative()
+        if (!AppOpenManager.getInstance().isShowingAd){
+            loadAlternateNative()
+        }
     }
 
     private fun setUpResponsive() {

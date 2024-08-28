@@ -62,7 +62,7 @@ class CreateSoundActivity :
         )
     }
 
-    private fun loadNative() {
+    private fun loadAlternateNative() {
         Log.d("Refresh","Create Refresh")
         AdmobManager.getInstance().preloadAlternateNative(
             this,
@@ -93,7 +93,9 @@ class CreateSoundActivity :
 
     override fun onResume() {
         super.onResume()
-        loadNative()
+        if (!AppOpenManager.getInstance().isShowingAd){
+            loadAlternateNative()
+        }
         if (binding.tvAppName.text == getString(R.string.import_audio)) {
             logEvent("import_view")
         } else{

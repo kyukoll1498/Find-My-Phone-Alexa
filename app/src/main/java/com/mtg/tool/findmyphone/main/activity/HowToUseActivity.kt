@@ -3,6 +3,7 @@ package com.mtg.tool.findmyphone.main.activity
 import android.util.Log
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.manager.AppOpenManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.base.BaseActivity
@@ -20,7 +21,7 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
         }
     }
 
-    private fun loadNative() {
+    private fun loadAlternateNative() {
         Log.d("Refresh","RefreshHowToUse")
         AdmobManager.getInstance().preloadAlternateNative(
             this,
@@ -54,6 +55,8 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
 
     override fun onResume() {
         super.onResume()
-        loadNative()
+        if (!AppOpenManager.getInstance().isShowingAd){
+            loadAlternateNative()
+        }
     }
 }

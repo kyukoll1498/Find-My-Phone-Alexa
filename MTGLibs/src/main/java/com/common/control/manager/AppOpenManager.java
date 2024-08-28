@@ -44,7 +44,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     private Application myApplication;
 
-    private boolean isShowingAd = false;
+    public boolean isShowingAd = false;
 
     private boolean isInitialized = false;
     private boolean isAppResumeEnabled = true;
@@ -245,7 +245,9 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         public void onAdDismissedFullScreenContent() {
                             // Set the reference to null so isAdAvailable() returns false.
                             AppOpenManager.this.appResumeAd = null;
-                            isShowingAd = false;
+                            new Handler().postDelayed(()->{
+                                isShowingAd = false;
+                            },1000);
 //                            fetchAd();
                             dismissDialogLoading();
                         }
