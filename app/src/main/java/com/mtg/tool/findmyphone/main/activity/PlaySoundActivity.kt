@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
 import com.common.control.utils.BroadcastUtils
+import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
@@ -38,7 +40,9 @@ class PlaySoundActivity :
     private var max = 100
     private var volume = 70
     private var appPreferences = AppPreferences.instance
-
+    private val listNative by lazy {
+        arrayListOf(AdIds.native_effect_high, AdIds.native_effect)
+    }
     private lateinit var receiver: VolumeChangeReceiver
     private lateinit var audioManager: AudioManager
 
@@ -54,9 +58,23 @@ class PlaySoundActivity :
         setUpWithFileSound()
         setSeekbarView()
         setDetailCommandView()
+    }
+
+    private fun loadNative() {
+        Log.d("Refresh","Play Refresh")
         AdmobManager.getInstance()
-            .loadNative(this, AdIds.native_effect, binding.frAd, AdmobManager.NativeAdType.SMALL,
-                object : AdCallback(){
+            .preloadAlternateNative(this,
+                listNative,
+                object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdmobManager.getInstance().showNative(
+                            this@PlaySoundActivity,
+                            nativeAd,
+                            binding.frAd,
+                            AdmobManager.NativeAdType.SMALL
+                        )
+                    }
                     override fun onAdImpression() {
                         super.onAdImpression()
                         logEvent("effect_native_view")
@@ -74,6 +92,7 @@ class PlaySoundActivity :
     override fun onResume() {
         super.onResume()
         logEvent("effect_view")
+        loadNative()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

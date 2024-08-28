@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.ACTION_FINISH_CREATE_SOUND_SCREEN
 import com.mtg.tool.findmyphone.ACTION_FINISH_DETECT
 import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
@@ -44,19 +46,30 @@ class RecordAudioActivity :
     private var mode = MODE_PREPARE_START
     private var currentTime = 0
     private var timer: CountDownTimer? = null
+    private val listNative by lazy {
+        arrayListOf(AdIds.native_add_high,AdIds.native_add_high)
+    }
     override fun initView() {
         logEvent("record_view")
         binding.tvNext.isSelected = true
     }
 
-    override fun loadAds() {
-        super.loadAds()
-        AdmobManager.getInstance().loadNative(
+    private fun loadNative() {
+        Log.d("Refresh","Record Refresh")
+        AdmobManager.getInstance().preloadAlternateNative(
             this,
-            AdIds.native_add,
-            binding.frAd,
-            AdmobManager.NativeAdType.BIG,
+            listNative,
             object : AdCallback(){
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdmobManager.getInstance().showNative(
+                        this@RecordAudioActivity,
+                        nativeAd,
+                        binding.frAd,
+                        AdmobManager.NativeAdType.BIG
+                    )
+                    Log.d("Refresh","ShowRefreshHowToUse")
+                }
                 override fun onAdImpression() {
                     super.onAdImpression()
                     logEvent("record_sound_native_view")
@@ -68,7 +81,6 @@ class RecordAudioActivity :
                 }
             }
         )
-        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     override fun addEvent() {
@@ -302,6 +314,7 @@ class RecordAudioActivity :
 
     override fun onResume() {
         super.onResume()
+        loadNative()
         if (!PermissionUtils.checkMicroPermission(this)) {
             showRecordPermissionDialog()
         }
