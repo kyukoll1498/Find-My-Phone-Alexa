@@ -24,7 +24,7 @@ class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::i
 
     private fun setupList() {
         soundAdapter = SoundAdapter(AppRepository.getAllSound(requireContext()), requireActivity())
-        var gridLayoutManager = GridLayoutManager(context, 3)
+        val gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return when (soundAdapter.getItemViewType(position)) {
@@ -35,7 +35,7 @@ class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::i
             }
         }
         soundAdapter.mCallback = OnActionCallback { key, data ->
-            if (key.equals(KEY_SOUND)) {
+            if (key == KEY_SOUND) {
                 val soundItem = data[0] as SoundItem
                 logEvent("click_detail_play_" + soundItem.name?.replace(" ", "_")?.lowercase())
                 val intent = Intent(activity, PlaySoundActivity::class.java)
@@ -54,6 +54,7 @@ class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::i
     override fun onResume() {
         super.onResume()
         loadInter()
+        soundAdapter.reloadNativeAd()
     }
 
     private fun loadInter() {

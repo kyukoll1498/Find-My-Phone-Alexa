@@ -1,9 +1,11 @@
 package com.mtg.tool.findmyphone.main.adapter
 
 import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
@@ -19,11 +21,10 @@ import com.mtg.tool.findmyphone.base.BaseAdapter
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ItemNativeHolderBinding
 import com.mtg.tool.findmyphone.databinding.ItemSoundBinding
-import com.mtg.tool.findmyphone.utils.EventLogger
 
 class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
     BaseAdapter<SoundItem?>(mList!!, activity) {
-
+    private var adContainer: FrameLayout? = null
 
     override fun viewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ADAPTER_ADS_TYPE) {
@@ -33,13 +34,49 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
                     parent,
                     false
                 )
+            adContainer = binding.frAds
             NativeViewHolder(binding)
         } else {
             val binding =
                 ItemSoundBinding.inflate(LayoutInflater.from(parent!!.context), parent, false)
             SoundViewHolder(binding)
         }
+    }
 
+    fun reloadNativeAd() {
+        adContainer?.let { container: FrameLayout ->
+            Log.d("Refresh", "Refresh Sound Adapter Refresh")
+            AdmobManager.getInstance().loadNative(
+                context,
+                AdIds.native_sound,
+                container,
+                AdmobManager.NativeAdType.MEDIUM,
+                object : AdCallback() {
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
+                            context,
+                            "sound_native_view"
+                        )
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
+                            context,
+                            "sound_native_click"
+                        )
+                    }
+                }
+            )
+        }
+    }
+
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        super.onViewRecycled(holder)
+        if (holder is NativeViewHolder) {
+            adContainer = null
+        }
     }
 
     override fun onBindView(viewHolder: RecyclerView.ViewHolder?, position: Int) {
@@ -77,32 +114,35 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
     inner class NativeViewHolder(binding: ItemNativeHolderBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         init {
+            Log.d("Refresh", "Sound Adapter Refresh")
             AdmobManager.getInstance().loadNative(
                 context,
                 AdIds.native_sound,
                 binding.frAds,
                 AdmobManager.NativeAdType.MEDIUM,
-                object : AdCallback(){
+                object : AdCallback() {
                     override fun onAdImpression() {
                         super.onAdImpression()
-                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(context, "sound_native_view")
+                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
+                            context,
+                            "sound_native_view"
+                        )
                     }
 
                     override fun onAdClicked() {
                         super.onAdClicked()
-                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(context, "sound_native_click")
+                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
+                            context,
+                            "sound_native_click"
+                        )
                     }
                 }
             )
             AppOpenManager.getInstance()
                 .hideNativeOrBannerWhenShowOpenApp(context as Activity, binding.frAds)
-
         }
 
-        override fun onClick(v: View?) {
-
-        }
-
+        override fun onClick(v: View?) {}
     }
 
 
