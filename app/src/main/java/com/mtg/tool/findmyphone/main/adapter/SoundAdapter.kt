@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
+import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.ADAPTER_ADS_TYPE
 import com.mtg.tool.findmyphone.ADAPTER_ITEM_TYPE
 import com.mtg.tool.findmyphone.ADS_SOUND_TYPE
@@ -25,6 +26,9 @@ import com.mtg.tool.findmyphone.databinding.ItemSoundBinding
 class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
     BaseAdapter<SoundItem?>(mList!!, activity) {
     private var adContainer: FrameLayout? = null
+    private val nativeAds by lazy {
+        arrayListOf(AdIds.native_sound_high, AdIds.native_sound)
+    }
 
     override fun viewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ADAPTER_ADS_TYPE) {
@@ -46,12 +50,14 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
     fun reloadNativeAd() {
         adContainer?.let { container: FrameLayout ->
             Log.d("Refresh", "Refresh Sound Adapter Refresh")
-            AdmobManager.getInstance().loadNative(
+            AdmobManager.getInstance().preloadAlternateNative(
                 context,
-                AdIds.native_sound,
-                container,
-                AdmobManager.NativeAdType.MEDIUM,
+                nativeAds,
                 object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdmobManager.getInstance().showNative(context, nativeAd, container, AdmobManager.NativeAdType.MEDIUM)
+                    }
                     override fun onAdImpression() {
                         super.onAdImpression()
                         com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
