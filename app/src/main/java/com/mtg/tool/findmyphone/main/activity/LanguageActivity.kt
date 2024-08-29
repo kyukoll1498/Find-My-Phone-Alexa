@@ -57,6 +57,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                         super.onNativeAds(nativeAd)
                         AdCache.getInstance().lfo2NativeHigh2 = nativeAd
                     }
+
                     override fun onAdImpression() {
                         super.onAdImpression()
                         logEvent("language2_ad_native_view")
@@ -75,6 +76,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                     super.onNativeAds(nativeAd)
                     AdCache.getInstance().ob1Native = nativeAd
                 }
+
                 override fun onAdImpression() {
                     super.onAdImpression()
                     logEvent("onboard1_native_view")
@@ -86,10 +88,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
 
                 }
             })
-        setStatusBarColor()
-        initListLanguage()
-        initRCLanguage()
-        handleButtonBack()
+        RemoteConfigManager.instance!!.fetchAndActivate {
+            setStatusBarColor()
+            initListLanguage()
+            initRCLanguage()
+            handleButtonBack()
+        }
     }
 
 
@@ -134,7 +138,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     }
 
     private fun initListLanguage() {
-        mList = listCountry
+        mList = LanguageUtils.getRemoteConfigListCountry()
         itemLanguage = listCountryDefault[appPreferences.currentIndexLanguage]
         itemLanguage?.colorBackground = "#ED6A40"
         itemLanguage?.imgSelect = (R.drawable.ic_checked)

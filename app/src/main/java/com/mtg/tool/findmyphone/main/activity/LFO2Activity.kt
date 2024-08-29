@@ -71,6 +71,7 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
                     super.onNativeAds(nativeAd)
                     AdCache.getInstance().ob4NativeHigh = nativeAd
                 }
+
                 override fun onAdImpression() {
                     super.onAdImpression()
                     logEvent("onboard4_native_view")
@@ -84,10 +85,12 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
             }
 
         )
-        setStatusBarColor()
-        initListLanguage()
-        initRCLanguage()
-        handleButtonBack()
+        RemoteConfigManager.instance!!.fetchAndActivate {
+            setStatusBarColor()
+            initListLanguage()
+            initRCLanguage()
+            handleButtonBack()
+        }
     }
 
 
@@ -121,11 +124,15 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
         }
         binding.rcLanguage.layoutManager = LinearLayoutManager(this)
         binding.rcLanguage.adapter = languageAdapter
-        (binding.rcLanguage.layoutManager as LinearLayoutManager).onRestoreInstanceState(intent.getParcelableExtra("state"))
+        (binding.rcLanguage.layoutManager as LinearLayoutManager).onRestoreInstanceState(
+            intent.getParcelableExtra(
+                "state"
+            )
+        )
     }
 
     private fun initListLanguage() {
-        mList = listCountry
+        mList = LanguageUtils.getRemoteConfigListCountry()
         itemLanguage = listCountryDefault[intent.getIntExtra("pos", 1)]
         itemLanguage?.colorBackground = "#ED6A40"
         itemLanguage?.imgSelect = (R.drawable.ic_checked)
@@ -177,6 +184,7 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
                             AdmobManager.NativeAdType.BIG
                         )
                     }
+
                     override fun onAdImpression() {
                         super.onAdImpression()
                         logEvent("language2_ad_native_view")
