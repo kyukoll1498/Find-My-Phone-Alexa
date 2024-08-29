@@ -38,11 +38,17 @@ class RemoteConfigManager {
     var _401_app_o_reopen: Boolean = true
 
     var _501_home_o_native: Boolean = true
+    var _501_home_o_native_high: Boolean = true
     var _502_home_o_banner: Boolean = true
+    var _502_home_o_banner_high: Boolean = true
     var _601_sound_o_native: Boolean = true
+    var _601_sound_o_native_high: Boolean = true
     var _602_sound_o_native: Boolean = true
+    var _602_sound_o_native_high: Boolean = true
     var _701_add_o_native: Boolean = true
+    var _701_add_o_native_high: Boolean = true
     var _901_tutorial_o_native: Boolean = true
+    var _901_tutorial_o_native_high: Boolean = true
 
     var time_load_banner: Long = 0
 
@@ -109,17 +115,17 @@ class RemoteConfigManager {
                 Log.d("remotconfigLogger: ", "app_reopen - $_401_app_o_reopen")
 
                 _501_home_o_native = config.getBoolean("native_home")
-                Log.d("remotconfigLogger: ", "native_home - $_501_home_o_native")
+                _501_home_o_native_high = config.getBoolean("native_home_high")
                 _502_home_o_banner = config.getBoolean("banner_home")
-                Log.d("remotconfigLogger: ", "banner_home - $_502_home_o_banner")
+                _502_home_o_banner_high = config.getBoolean("banner_home_high")
                 _601_sound_o_native = config.getBoolean("native_sound")
-                Log.d("remotconfigLogger: ", "native_sound - $_601_sound_o_native")
+                _601_sound_o_native_high = config.getBoolean("native_sound_high")
                 _602_sound_o_native = config.getBoolean("native_effect")
-                Log.d("remotconfigLogger: ", "native_effect - $_602_sound_o_native")
+                _602_sound_o_native_high = config.getBoolean("native_effect_high")
                 _701_add_o_native = config.getBoolean("native_add")
-                Log.d("remotconfigLogger: ", "native_add - $_701_add_o_native")
+                _701_add_o_native_high = config.getBoolean("native_add_high")
                 _901_tutorial_o_native = config.getBoolean("native_tutorial")
-                Log.d("remotconfigLogger: ", "native_tutorial - $_901_tutorial_o_native")
+                _901_tutorial_o_native_high = config.getBoolean("native_tutorial_high")
                 time_load_banner = config.getLong("time_load_banner")
                 Log.d("remotconfigLogger: ", "time_load_banner - $time_load_banner")
 
