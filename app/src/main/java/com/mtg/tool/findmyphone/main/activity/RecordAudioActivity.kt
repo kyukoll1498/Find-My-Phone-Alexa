@@ -47,7 +47,7 @@ class RecordAudioActivity :
     private var currentTime = 0
     private var timer: CountDownTimer? = null
     private val listNative by lazy {
-        arrayListOf(AdIds.native_add_high,AdIds.native_add_high)
+        arrayListOf(AdIds.native_add_high,AdIds.native_add)
     }
     override fun initView() {
         logEvent("record_view")

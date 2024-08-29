@@ -51,7 +51,7 @@ class CreateSoundActivity :
     }
     private lateinit var currentSoundItem: SoundItem
     private val listNative by lazy {
-        arrayListOf(AdIds.native_add_high,AdIds.native_add_high)
+        arrayListOf(AdIds.native_add_high,AdIds.native_add)
     }
 
     override fun initView() {
