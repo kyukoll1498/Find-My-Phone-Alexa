@@ -36,10 +36,12 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
     override fun initView() {
         logEvent("language2_setting_view")
         setStatusBarColor()
-        initListLanguage()
-        initRCLanguage()
-        handleButtonBack()
-        binding.ivDone.setImageResource(R.drawable.ic_tick_done)
+        RemoteConfigManager.instance!!.fetchAndActivate {
+            initListLanguage()
+            initRCLanguage()
+            handleButtonBack()
+            binding.ivDone.setImageResource(R.drawable.ic_tick_done)
+        }
     }
 
 
@@ -76,7 +78,7 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
     }
 
     private fun initListLanguage() {
-        mList = listCountry
+        mList = LanguageUtils.getRemoteConfigListCountry()
         itemLanguage = listCountryDefault[appPreferences.currentIndexLanguage]
         itemLanguage?.colorBackground = "#ED6A40"
         itemLanguage?.imgSelect = (R.drawable.ic_checked)

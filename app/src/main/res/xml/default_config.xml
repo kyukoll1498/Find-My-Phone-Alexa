@@ -175,4 +175,9 @@
         <key>time_load_banner</key>
         <value>0</value>
     </entry>
+<!--    list language-->
+    <entry>
+        <key>language_order</key>
+        <value>fr,en,hi,ur,pt,eses,ru,bn,esmx</value>
+    </entry>
 </defaultsMap>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.text.TextUtils
 import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
@@ -40,19 +41,32 @@ object LanguageUtils {
                 R.drawable.flag_fr,
                 "Français",
                 R.drawable.ic_disable,
+                "fr",
                 "fr"
             )
         )
-        mList.add(ItemLanguage(R.drawable.flag_en, "English", R.drawable.ic_disable, "en"))
-        mList.add(ItemLanguage(R.drawable.flag_hi, "हिंदी", R.drawable.ic_disable, "hi"))
-        mList.add(ItemLanguage(R.drawable.flag_pk, "پاکستان", R.drawable.ic_disable, "ur"))
-        mList.add(ItemLanguage(R.drawable.flag_br, "Brasil", R.drawable.ic_disable, "pt"))
-        mList.add(ItemLanguage(R.drawable.flag_es, "España", R.drawable.ic_disable, "es"))
-        mList.add(ItemLanguage(R.drawable.flag_ru, "Pусский", R.drawable.ic_disable, "ru"))
-        mList.add(ItemLanguage(R.drawable.flag_hi, "ভারত", R.drawable.ic_disable, "bn"))
-        mList.add(ItemLanguage(R.drawable.flag_mxc, "México", R.drawable.ic_disable, "es"))
+        mList.add(ItemLanguage(R.drawable.flag_en, "English", R.drawable.ic_disable, "en", "en"))
+        mList.add(ItemLanguage(R.drawable.flag_hi, "हिंदी", R.drawable.ic_disable, "hi", "hi"))
+        mList.add(ItemLanguage(R.drawable.flag_pk, "پاکستان", R.drawable.ic_disable, "ur", "ur"))
+        mList.add(ItemLanguage(R.drawable.flag_br, "Brasil", R.drawable.ic_disable, "pt", "pt"))
+        mList.add(ItemLanguage(R.drawable.flag_es, "España", R.drawable.ic_disable, "es", "eses"))
+        mList.add(ItemLanguage(R.drawable.flag_ru, "Pусский", R.drawable.ic_disable, "ru", "ru"))
+        mList.add(ItemLanguage(R.drawable.flag_hi, "ভারত", R.drawable.ic_disable, "bn", "bn"))
+        mList.add(ItemLanguage(R.drawable.flag_mxc, "México", R.drawable.ic_disable, "es", "esmx"))
         return@lazy mList
     }
+
+    fun getRemoteConfigListCountry(): List<ItemLanguage> {
+        val languageOrder = RemoteConfigManager.instance?.getLanguageOrder()
+        val orderedLanguages = languageOrder?.split(",")
+        val sortedList = listCountryDefault.sortedWith(
+            compareBy { item ->
+                orderedLanguages!!.indexOf(item.languageConfig).takeIf { it >= 0 } ?: Int.MAX_VALUE
+            }
+        )
+        return sortedList
+    }
+
 
 
     fun getFlagResourceID(context: Context): Int {

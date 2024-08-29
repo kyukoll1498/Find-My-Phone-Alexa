@@ -223,6 +223,19 @@ class RemoteConfigManager {
         fun onResult(value: String?)
     }
 
+    fun fetchAndActivate(callback: () -> Unit) {
+        remoteConfig!!.fetchAndActivate()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback.invoke()
+                }
+            }
+    }
+
+    fun getLanguageOrder(): String {
+        return remoteConfig!!.getString("language_order")
+    }
+
     companion object {
         private const val IS_SHOW_CONSENT = "is_show_consent"
         private const val LIMIT_FUNCTION_IN_APP = "limit_function_in_app"
