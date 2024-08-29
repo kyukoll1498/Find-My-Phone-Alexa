@@ -103,6 +103,8 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
                 finish()
             } else {
                 val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
                 finish()
             }
