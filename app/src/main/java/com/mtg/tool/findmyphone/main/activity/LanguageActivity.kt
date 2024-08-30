@@ -126,7 +126,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 logEvent("language_choose_" + itemLanguage?.name + "_click")
                 logEvent("complete_lfo1")
                 startActivity(Intent(this@LanguageActivity, LFO2Activity::class.java).apply {
-                    putExtra("pos", mList.indexOf(itemLanguage))
+                    putExtra("pos", listCountryDefault.indexOf(itemLanguage))
                     putExtra("state", binding.rcLanguage.layoutManager!!.onSaveInstanceState())
                 })
                 finish()
