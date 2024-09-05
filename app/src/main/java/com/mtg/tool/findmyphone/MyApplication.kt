@@ -7,6 +7,8 @@ import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.mbridge.msdk.MBridgeConstans
 import com.mbridge.msdk.MBridgeSDK
 import com.mbridge.msdk.out.MBridgeSDKFactory
@@ -62,7 +64,8 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         EventLogger.init(applicationContext)
         //todo facebook sdk
 //        AudienceNetworkInitializeHelper.initialize(this)
-//        FacebookSdk.sdkInitialize(this)
+        FacebookSdk.sdkInitialize(this)
+        AppEventsLogger.activateApp(this);
 
 //        Common.printHashKey(this)
 

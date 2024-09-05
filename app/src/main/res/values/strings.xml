@@ -13,7 +13,7 @@
     <string name="my_phone" translatable="false">My Phone</string>
     <string name="app_name_setting" translatable="false">Find my phone</string>
     <string name="facebook_app_id" translatable="false">7972717049505979</string>
-    <string name="facebook_client_token" translatable="false">e0134412dc1864847171d0de4cb77400</string>
+    <string name="facebook_client_token" translatable="false">d60d6122f2f767c77c250041594d6487</string>
 
     <string name="text_on_boarding_1">Easily find your lost phone by clapping</string>
     <string name="text_on_boarding_2">Various sound effects to choose</string>
