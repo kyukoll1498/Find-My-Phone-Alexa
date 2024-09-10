@@ -15,8 +15,8 @@ android {
         applicationId "com.yugi.fmf"
         minSdk 24
         targetSdk 34
-        versionCode 107
-        versionName "1.0.7"
+        versionCode 108
+        versionName "1.0.8"
 
         def formattedDate = new Date().format('MMM.dd.yyyy.hh.mm.ss')
         archivesBaseName = "${namespace}_V${versionName}_${formattedDate}"
