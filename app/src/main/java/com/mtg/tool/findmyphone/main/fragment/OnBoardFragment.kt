@@ -129,7 +129,7 @@ class OnBoardFragment(
                         override fun onNativeAds(nativeAd: NativeAd?) {
                             super.onNativeAds(nativeAd)
                             AdmobManager.getInstance().showNative(
-                                requireActivity(),
+                                context,
                                 nativeAd,
                                 binding.frAd,
                                 AdmobManager.NativeAdType.BIG
@@ -160,7 +160,7 @@ class OnBoardFragment(
                         override fun onNativeAds(nativeAd: NativeAd?) {
                             super.onNativeAds(nativeAd)
                             AdmobManager.getInstance().showNative(
-                                requireActivity(), nativeAd, binding.adsContainer,
+                                context, nativeAd, binding.adsContainer,
                                 AdmobManager.NativeAdType.FULLSCREEN
                             )
                         }
@@ -185,7 +185,7 @@ class OnBoardFragment(
                         override fun onNativeAds(nativeAd: NativeAd?) {
                             super.onNativeAds(nativeAd)
                             AdmobManager.getInstance().showNative(
-                                requireActivity(),
+                                context,
                                 nativeAd,
                                 binding.frAd,
                                 AdmobManager.NativeAdType.BIG
