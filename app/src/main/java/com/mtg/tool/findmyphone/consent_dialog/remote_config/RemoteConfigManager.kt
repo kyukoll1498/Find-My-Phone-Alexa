@@ -230,12 +230,16 @@ class RemoteConfigManager {
     }
 
     fun fetchAndActivate(callback: () -> Unit) {
-        remoteConfig!!.fetchAndActivate()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    callback.invoke()
+        remoteConfig?.let { config ->
+            config.fetchAndActivate()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        callback.invoke()
+                    }
                 }
-            }
+        } ?: run {
+            Log.e("RemoteConfig", "FirebaseRemoteConfig is not initialized.")
+        }
     }
 
     fun getLanguageOrder(): String {
