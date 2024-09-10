@@ -53,6 +53,8 @@ object LanguageUtils {
         mList.add(ItemLanguage(R.drawable.flag_ru, "Pусский", R.drawable.ic_disable, "ru", "ru"))
         mList.add(ItemLanguage(R.drawable.flag_hi, "ভারত", R.drawable.ic_disable, "bn", "bn"))
         mList.add(ItemLanguage(R.drawable.flag_mxc, "México", R.drawable.ic_disable, "es", "esmx"))
+        mList.add(ItemLanguage(R.drawable.flag_sa, "المملكة العربية السعودية", R.drawable.ic_disable, "ar", "arsa"))
+        mList.add(ItemLanguage(R.drawable.flag_uae, "الامارات العربية المتحدة", R.drawable.ic_disable, "ar", "arae"))
         return@lazy mList
     }
 
