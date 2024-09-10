@@ -122,89 +122,100 @@ class OnBoardFragment(
         }
         when (position) {
             0 -> {
-                AdmobManager.getInstance().preloadAlternateNative(
-                    requireActivity(),
-                    onb2NativeAds,
-                    object : AdCallback() {
-                        override fun onNativeAds(nativeAd: NativeAd?) {
-                            super.onNativeAds(nativeAd)
-                            AdmobManager.getInstance().showNative(
-                                context,
-                                nativeAd,
-                                binding.frAd,
-                                AdmobManager.NativeAdType.BIG
-                            )
-                        }
-                        override fun onAdImpression() {
-                            super.onAdImpression()
-                            logEvent("onboard2_native_view")
-                        }
+                context?.let { safeContext ->
+                    AdmobManager.getInstance().preloadAlternateNative(
+                        safeContext,
+                        onb2NativeAds,
+                        object : AdCallback() {
+                            override fun onNativeAds(nativeAd: NativeAd?) {
+                                super.onNativeAds(nativeAd)
+                                if (isAdded) {
+                                    AdmobManager.getInstance().showNative(
+                                        safeContext,
+                                        nativeAd,
+                                        binding.frAd,
+                                        AdmobManager.NativeAdType.BIG
+                                    )
+                                }
+                            }
 
-                        override fun onAdClicked() {
-                            super.onAdClicked()
-                            logEvent("onboard2_native_click")
+                            override fun onAdImpression() {
+                                super.onAdImpression()
+                                logEvent("onboard2_native_view")
+                            }
 
-                        }
-                    })
-            }
-
-            1 -> {
-
+                            override fun onAdClicked() {
+                                super.onAdClicked()
+                                logEvent("onboard2_native_click")
+                            }
+                        })
+                }
             }
 
             2 -> {
-                AdmobManager.getInstance().preloadFullScreenAlternateNative(
-                    requireActivity(),
-                    onb4NativeAds,
-                    object : AdCallback() {
-                        override fun onNativeAds(nativeAd: NativeAd?) {
-                            super.onNativeAds(nativeAd)
-                            AdmobManager.getInstance().showNative(
-                                context, nativeAd, binding.adsContainer,
-                                AdmobManager.NativeAdType.FULLSCREEN
-                            )
-                        }
-                        override fun onAdImpression() {
-                            super.onAdImpression()
-                            logEvent("onboard4_native_view")
-                        }
+                context?.let { safeContext ->
+                    AdmobManager.getInstance().preloadFullScreenAlternateNative(
+                        safeContext,
+                        onb4NativeAds,
+                        object : AdCallback() {
+                            override fun onNativeAds(nativeAd: NativeAd?) {
+                                super.onNativeAds(nativeAd)
+                                if (isAdded) {
+                                    AdmobManager.getInstance().showNative(
+                                        safeContext,
+                                        nativeAd,
+                                        binding.adsContainer,
+                                        AdmobManager.NativeAdType.FULLSCREEN
+                                    )
+                                }
+                            }
 
-                        override fun onAdClicked() {
-                            super.onAdClicked()
-                            logEvent("onboard4_native_click")
+                            override fun onAdImpression() {
+                                super.onAdImpression()
+                                logEvent("onboard4_native_view")
+                            }
 
-                        }
-                    })
+                            override fun onAdClicked() {
+                                super.onAdClicked()
+                                logEvent("onboard4_native_click")
+                            }
+                        })
+                }
             }
 
             3 -> {
-                AdmobManager.getInstance().preloadAlternateNative(
-                    requireActivity(),
-                    onb5NativeAds,
-                    object : AdCallback() {
-                        override fun onNativeAds(nativeAd: NativeAd?) {
-                            super.onNativeAds(nativeAd)
-                            AdmobManager.getInstance().showNative(
-                                context,
-                                nativeAd,
-                                binding.frAd,
-                                AdmobManager.NativeAdType.BIG
-                            )
-                        }
-                        override fun onAdImpression() {
-                            super.onAdImpression()
-                            logEvent("onboard5_native_view")
-                        }
+                context?.let { safeContext ->
+                    AdmobManager.getInstance().preloadAlternateNative(
+                        safeContext,
+                        onb5NativeAds,
+                        object : AdCallback() {
+                            override fun onNativeAds(nativeAd: NativeAd?) {
+                                super.onNativeAds(nativeAd)
+                                if (isAdded) {
+                                    AdmobManager.getInstance().showNative(
+                                        safeContext,
+                                        nativeAd,
+                                        binding.frAd,
+                                        AdmobManager.NativeAdType.BIG
+                                    )
+                                }
+                            }
 
-                        override fun onAdClicked() {
-                            super.onAdClicked()
-                            logEvent("onboard5_native_click")
+                            override fun onAdImpression() {
+                                super.onAdImpression()
+                                logEvent("onboard5_native_view")
+                            }
 
-                        }
-                    })
+                            override fun onAdClicked() {
+                                super.onAdClicked()
+                                logEvent("onboard5_native_click")
+                            }
+                        })
+                }
             }
         }
     }
+
 
     override fun onPause() {
         super.onPause()
