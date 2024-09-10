@@ -3,6 +3,7 @@ package com.mtg.tool.findmyphone
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import com.common.control.MyApplication
 import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
@@ -76,17 +77,17 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
     private fun initSolarEngine() {
         SolarEngineManager.getInstance()
             .preInit(this, APP_KEY_SOLAR_ENGINE)
-        val config = SolarEngineConfig.Builder()
-            .logEnabled()
-            .isDebugModel(true)
-            .build()
+        val config = SolarEngineConfig.Builder().build()
+        config.isDebugModel = true
         SolarEngineManager.getInstance().initialize(
             this, APP_KEY_SOLAR_ENGINE, config
         ) { code: Int ->
             if (code == 0) {
                 //Init success
+
             } else {
                 //Init failed
+
             }
         }
     }

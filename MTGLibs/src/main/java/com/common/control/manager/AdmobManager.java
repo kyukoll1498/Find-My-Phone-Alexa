@@ -164,18 +164,6 @@ public class AdmobManager {
         }
     }
 
-    public void trackRevenue(AdValue adValue) {
-        if (hasAdjust) {
-            try {
-                AdjustAdRevenue adRevenue = new AdjustAdRevenue(AdjustConfig.AD_REVENUE_ADMOB);
-                adRevenue.setRevenue((double) (adValue.getValueMicros() / 1000000f), adValue.getCurrencyCode());
-                Adjust.trackAdRevenue(adRevenue);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public AdRequest getAdRequest() {
         if (!hasAds || PurchaseManager.getInstance().isPurchased() || PurchaseManagerInApp.getInstance().isPurchased()) {
             return null;
@@ -300,8 +288,6 @@ public class AdmobManager {
             return;
         }
 
-        mInterstitialAd.setOnPaidEventListener(this::trackRevenue);
-
         mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override
             public void onAdDismissedFullScreenContent() {
@@ -407,9 +393,6 @@ public class AdmobManager {
                     adContainer.removeAllViews();
                     adContainer.setVisibility(View.VISIBLE);
                     adContainer.addView(adView);
-                    adView.setOnPaidEventListener(adValue -> {
-                        trackRevenue(adValue);
-                    });
                     adView.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueBannerSolar(adValue, adView, id));
                 }
 
@@ -451,9 +434,6 @@ public class AdmobManager {
                     adContainer.removeAllViews();
                     adContainer.setVisibility(View.VISIBLE);
                     adContainer.addView(adView);
-                    adView.setOnPaidEventListener(adValue -> {
-                        trackRevenue(adValue);
-                    });
                     adView.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueBannerSolar(adValue, adView, id));
                 }
 
@@ -562,7 +542,6 @@ public class AdmobManager {
         onBindAdView(nativeAd, nativeAdView);
         placeHolder.removeAllViews();
         placeHolder.addView(nativeAdView);
-        nativeAd.setOnPaidEventListener(adValue -> trackRevenue(adValue));
     }
 
     private int getLayoutNative(Boolean isMeta, NativeAdType type) {
@@ -873,7 +852,14 @@ public class AdmobManager {
             return;
         }
 
-        RewardedAd.load(context, id, request, adLoadCallback);
+        RewardedAd.load(context, id, request, new RewardedAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                super.onAdLoaded(rewardedAd);
+                // Listener to get AD value
+                rewardedAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueRewardAd(adValue, rewardedAd));
+            }
+        });
     }
 
     public void showRewardAdInterstitial(Activity activity, RewardedInterstitialAd rewardedAd, AdCallback callback) {
@@ -883,8 +869,6 @@ public class AdmobManager {
         }
         log("Show RewardAd :" + rewardedAd.getAdUnitId());
 
-        rewardedAd.setOnPaidEventListener(this::trackRevenue);
-        rewardedAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueRewardAd(adValue, rewardedAd));
         rewardedAd.show(activity, callback::onUserEarnedReward);
     }
 
@@ -965,9 +949,6 @@ public class AdmobManager {
                     adContainer.removeAllViews();
                     adContainer.setVisibility(View.VISIBLE);
                     adContainer.addView(adView);
-                    adView.setOnPaidEventListener(adValue -> {
-                        trackRevenue(adValue);
-                    });
                     adView.setOnPaidEventListener(adValue -> {
                         trackRevenueSolar.trackRevenueBannerSolar(adValue,adView,id);
                     });

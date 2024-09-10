@@ -95,6 +95,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     private AppOpenManager() {
         disabledAppOpenList = new ArrayList<>();
     }
+    TrackRevenueSolar trackRevenueSolar = new TrackRevenueSolar();
 
 
     public static synchronized AppOpenManager getInstance() {
@@ -161,6 +162,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             public void onAdLoaded(@NonNull AppOpenAd ad) {
                 AppOpenManager.this.appResumeAd = ad;
                 AppOpenManager.this.loadTime = (new Date()).getTime();
+                appResumeAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueOpenAppAd(adValue, ad));
             }
 
             @Override
@@ -294,7 +296,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             if (fullScreenContentCallback != null) {
                 appResumeAd.setFullScreenContentCallback(fullScreenContentCallback);
             }
-            appResumeAd.setOnPaidEventListener(adValue -> AdmobManager.getInstance().trackRevenue(adValue));
 
             new Handler().postDelayed(() -> {
                 if (dialog != null && dialog.isShowing()) {
