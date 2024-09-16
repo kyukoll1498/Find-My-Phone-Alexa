@@ -257,6 +257,7 @@ public class AdmobManager {
                     }
                 });
                 appResumeAd.show((Activity) context);
+                appResumeAd.setOnPaidEventListener(adValue -> trackRevenueSolar.trackRevenueOpenAppAd(adValue, appResumeAd));
             }
 
             @Override
