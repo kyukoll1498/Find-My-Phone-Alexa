@@ -37,6 +37,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         const val PRODUCT_LIFETIME = "com.clap.buyforever"
         const val APP_KEY_SOLAR_ENGINE = "7de59d5c8d57e2f5"
     }
+    val TAG = "FindMyPhone"
     private val lsActivity = ArrayList<Activity>()
 
 
@@ -48,6 +49,7 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
         setGDPRStatus(true, "v2.2.0")
         setCCPAStatus(true)
 
+        initSolarEngine()
 
         RoomDatabase.initDatabase(this)
         AppPreferences(this)
@@ -75,23 +77,21 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 //        Common.printHashKey(this)
 
 //        InterSplashExecutor.loadInterAds(applicationContext)
-        initSolarEngine()
     }
 
     private fun initSolarEngine() {
-        SolarEngineManager.getInstance()
-            .preInit(this, APP_KEY_SOLAR_ENGINE)
+        SolarEngineManager.getInstance().preInit(this, APP_KEY_SOLAR_ENGINE)
         val config = SolarEngineConfig.Builder().build()
-        config.isDebugModel = true
+        config.isDebugModel = false
         SolarEngineManager.getInstance().initialize(
             this, APP_KEY_SOLAR_ENGINE, config
         ) { code: Int ->
             if (code == 0) {
                 //Init success
-
+                Log.i(TAG, "initSolarEngineSuccess: $code")
             } else {
                 //Init failed
-
+                Log.i(TAG, "initSolarEngineSuccess: $code")
             }
         }
     }
