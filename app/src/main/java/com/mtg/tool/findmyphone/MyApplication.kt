@@ -9,6 +9,7 @@ import com.common.control.dialog.PermissionStorageDialog
 import com.common.control.manager.AppOpenManager
 import com.common.control.model.PurchaseModel
 import com.facebook.FacebookSdk
+import com.facebook.ads.AudienceNetworkAds
 import com.facebook.appevents.AppEventsLogger
 import com.mbridge.msdk.MBridgeConstans
 import com.mbridge.msdk.MBridgeSDK
@@ -63,9 +64,12 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 //        AppOpenManager.getInstance().specialAppResumeWithActivity(IncomingActivity::class.java)
         registerActivityLifecycleCallbacks(this)
         EventLogger.init(applicationContext)
-        //todo facebook sdk
-//        AudienceNetworkInitializeHelper.initialize(this)
+
+        //Facebook SDK
         FacebookSdk.sdkInitialize(this)
+        AudienceNetworkAds.initialize(applicationContext);
+        AudienceNetworkInitializeHelper.initialize(this)
+
         AppEventsLogger.activateApp(this);
 
 //        Common.printHashKey(this)
