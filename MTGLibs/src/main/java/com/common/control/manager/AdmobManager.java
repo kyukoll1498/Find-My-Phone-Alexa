@@ -537,35 +537,35 @@ public class AdmobManager {
 
         placeHolder.setVisibility(View.VISIBLE);
         Log.d("AdTestSource: ", nativeAd.getResponseInfo().getMediationAdapterClassName());
-        boolean isMeta = Objects.equals(Objects.requireNonNull(nativeAd.getResponseInfo()).getMediationAdapterClassName().toLowerCase(), "com.google.ads.mediation.facebook.facebookmediationadapter".toLowerCase());
-        int customNative = getLayoutNative(isMeta, type);
+//        boolean isMeta = Objects.equals(Objects.requireNonNull(nativeAd.getResponseInfo()).getMediationAdapterClassName().toLowerCase(), "com.google.ads.mediation.facebook.facebookmediationadapter".toLowerCase());
+        int customNative = getLayoutNative(type);
         @SuppressLint("InflateParams") NativeAdView nativeAdView = (NativeAdView) LayoutInflater.from(context).inflate(customNative, null);
         onBindAdView(nativeAd, nativeAdView);
         placeHolder.removeAllViews();
         placeHolder.addView(nativeAdView);
     }
 
-    private int getLayoutNative(Boolean isMeta, NativeAdType type) {
+    private int getLayoutNative(NativeAdType type) {
         switch (type) {
             case BIG:
-                if (isMeta) {
+//                if (isMeta) {
                     return R.layout.custom_native_meta_big;
-                } else {
-                    return R.layout.custom_native_ads_2;
-                }
+//                } else {
+//                    return R.layout.custom_native_ads_2;
+//                }
             case SMALL:
-                if (isMeta) {
+//                if (isMeta) {
                     return R.layout.custom_native_meta_small;
-
-                } else {
-                    return R.layout.custom_native_ads_1;
-                }
+//
+//                } else {
+//                    return R.layout.custom_native_ads_1;
+//                }
             case MEDIUM:
-                if (isMeta) {
+//                if (isMeta) {
                     return R.layout.custom_native_meta_regular;
-                } else {
-                    return R.layout.custom_native_ads_3;
-                }
+//                } else {
+//                    return R.layout.custom_native_ads_3;
+//                }
             case FULLSCREEN:
                 return R.layout.custom_full_screen_native_ads;
             default:

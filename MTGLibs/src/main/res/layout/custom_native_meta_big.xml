@@ -34,6 +34,7 @@
                     android:id="@+id/constraintLayout4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:padding="8dp"
                     android:layout_weight="19">
 
                     <androidx.cardview.widget.CardView
@@ -47,8 +48,8 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/ad_app_icon"
-                            android:layout_width="@dimen/_37sdp"
-                            android:layout_height="@dimen/_37sdp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:adjustViewBounds="true"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -119,7 +120,7 @@
             <com.google.android.gms.ads.nativead.MediaView
                 android:id="@+id/ad_media"
                 android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
