@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.control.base.OnActionCallback
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.utils.InternetUtil
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AppSession
@@ -85,6 +86,7 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
             }
 
         )
+        initRemoteConfig()
         RemoteConfigManager.instance!!.fetchAndActivate {
             setStatusBarColor()
             initListLanguage()
@@ -93,6 +95,21 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
         }
     }
 
+    private fun initRemoteConfig() {
+        if (InternetUtil.isNetworkAvailable(this)) {
+            RemoteConfigManager.instance!!.fetchAndActivate {
+                setStatusBarColor()
+                initListLanguage()
+                initRCLanguage()
+                handleButtonBack()
+            }
+        } else {
+            setStatusBarColor()
+            initListLanguage()
+            initRCLanguage()
+            handleButtonBack()
+        }
+    }
 
     private fun setStatusBarColor() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.color_1D1C21)

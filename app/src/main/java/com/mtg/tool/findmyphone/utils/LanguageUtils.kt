@@ -59,15 +59,18 @@ object LanguageUtils {
     }
 
     fun getRemoteConfigListCountry(): List<ItemLanguage> {
-        val languageOrder = RemoteConfigManager.instance?.getLanguageOrder()
-        val orderedLanguages = languageOrder?.split(",")
+        val languageOrder = RemoteConfigManager.instance?.getLanguageOrder() ?: "fr,en,hi,arae,arsa,ur,pt,eses,ru,bn,esmx"
+        val orderedLanguages = languageOrder.split(",")
+
         val sortedList = listCountry.sortedWith(
             compareBy { item ->
-                orderedLanguages!!.indexOf(item.languageConfig).takeIf { it >= 0 } ?: Int.MAX_VALUE
+                orderedLanguages.indexOf(item.languageConfig).takeIf { it >= 0 } ?: Int.MAX_VALUE
             }
         )
+
         return sortedList
     }
+
 
 
 

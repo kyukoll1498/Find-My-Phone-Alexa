@@ -243,7 +243,7 @@ class RemoteConfigManager {
     }
 
     fun getLanguageOrder(): String {
-        return remoteConfig!!.getString("language_order")
+        return remoteConfig?.getString("language_order") ?: ""
     }
 
     companion object {

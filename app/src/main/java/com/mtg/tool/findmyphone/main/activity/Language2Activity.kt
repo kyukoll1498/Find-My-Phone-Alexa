@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.control.base.OnActionCallback
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.utils.InternetUtil
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AppSession
@@ -36,7 +37,18 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
     override fun initView() {
         logEvent("language2_setting_view")
         setStatusBarColor()
-        RemoteConfigManager.instance!!.fetchAndActivate {
+        initRemoteConfig()
+    }
+
+    private fun initRemoteConfig() {
+        if (InternetUtil.isNetworkAvailable(this)) {
+            RemoteConfigManager.instance!!.fetchAndActivate {
+                initListLanguage()
+                initRCLanguage()
+                handleButtonBack()
+                binding.ivDone.setImageResource(R.drawable.ic_tick_done)
+            }
+        } else {
             initListLanguage()
             initRCLanguage()
             handleButtonBack()

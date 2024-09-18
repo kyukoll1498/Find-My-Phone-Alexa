@@ -2,12 +2,15 @@ package com.mtg.tool.findmyphone.main.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.control.base.OnActionCallback
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.utils.InternetUtil
 import com.google.android.datatransport.cct.internal.LogEvent
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
@@ -88,7 +91,24 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
 
                 }
             })
-        RemoteConfigManager.instance!!.fetchAndActivate {
+//        RemoteConfigManager.instance!!.fetchAndActivate {
+//            setStatusBarColor()
+//            initListLanguage()
+//            initRCLanguage()
+//            handleButtonBack()
+//        }
+        initRemoteConfig()
+    }
+
+    private fun initRemoteConfig() {
+        if (InternetUtil.isNetworkAvailable(this)) {
+            RemoteConfigManager.instance!!.fetchAndActivate {
+                setStatusBarColor()
+                initListLanguage()
+                initRCLanguage()
+                handleButtonBack()
+            }
+        } else {
             setStatusBarColor()
             initListLanguage()
             initRCLanguage()
@@ -96,6 +116,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
         }
     }
 
+    @Suppress("DEPRECATION")
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
+    }
 
     private fun setStatusBarColor() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.color_1D1C21)
