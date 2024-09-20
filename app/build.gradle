@@ -238,7 +238,7 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:1.6.0"
 
     //SDK solar engine
-    implementation "com.reyun.solar.engine.oversea:solar-engine-core:1.2.7.8"
+    implementation "com.reyun.solar.engine.oversea:solar-engine-core:1.2.8.2"
 
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 }

@@ -81,7 +81,9 @@ class MyApplication : MyApplication(), Application.ActivityLifecycleCallbacks {
 
     private fun initSolarEngine() {
         SolarEngineManager.getInstance().preInit(this, APP_KEY_SOLAR_ENGINE)
-        val config = SolarEngineConfig.Builder().build()
+        val config = SolarEngineConfig.Builder()
+            .setFbAppID(getString(R.string.facebook_app_id))
+            .build()
         config.isDebugModel = false
         SolarEngineManager.getInstance().initialize(
             this, APP_KEY_SOLAR_ENGINE, config

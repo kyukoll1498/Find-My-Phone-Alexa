@@ -71,5 +71,5 @@ dependencies {
     implementation 'com.google.android.ads:mediation-test-suite:3.0.0'
 
     //SDK solar engine
-    implementation 'com.reyun.solar.engine.oversea:solar-engine-core:1.2.7.8'
+    implementation 'com.reyun.solar.engine.oversea:solar-engine-core:1.2.8.2'
 }
