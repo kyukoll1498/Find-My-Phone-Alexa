@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.utils.InternetUtil
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
@@ -115,23 +116,27 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun loadAlternateBanner() {
-        AdmobManager.getInstance()
-            .loadAlternateBanner(this, bannerAds, binding.frAd, adCallbackBanner)
-        val timeLoad = RemoteConfigManager.instance!!.time_load_banner
-        if (timeLoad != 0.toLong()) {
-            val timer = Timer()
-            timer.schedule(object : TimerTask() {
-                override fun run() {
-                    runOnUiThread {
-                        Log.d("devLogger: canRefreshBanner", canRefreshBanner.toString())
-                        Log.d("devLogger: isShowedInter", isShowedInter.toString())
-                        if (canRefreshBanner && !isShowedInter) {
-                            reloadBanner()
+        if (InternetUtil.isNetworkAvailable(this)) {
+            AdmobManager.getInstance()
+                .loadAlternateBanner(this, bannerAds, binding.frAd, adCallbackBanner)
+
+            val timeLoad = RemoteConfigManager.instance!!.time_load_banner
+            if (timeLoad != 0L) {
+                val timer = Timer()
+                timer.schedule(object : TimerTask() {
+                    override fun run() {
+                        runOnUiThread {
+                            Log.d("devLogger: canRefreshBanner", canRefreshBanner.toString())
+                            Log.d("devLogger: isShowedInter", isShowedInter.toString())
+                            if (canRefreshBanner && !isShowedInter) {
+                                reloadBanner()
+                            }
                         }
                     }
-
-                }
-            }, timeLoad * 1000, timeLoad * 1000)
+                }, timeLoad * 1000, timeLoad * 1000)
+            }
+        } else {
+            Log.d("devLogger: loadAlternateBanner", "No network available, skipping banner load.")
         }
     }
 
@@ -149,33 +154,41 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun loadAlternateInter() {
-        AdmobManager.getInstance()
-            .loadAlternateInter(this, interAds, object : AdCallback() {
-                override fun onResultInterstitialAd(interstitialAd: InterstitialAd?) {
-                    super.onResultInterstitialAd(interstitialAd)
-                    canNextScreen.observe(
-                        this@SplashActivity
-                    ) {
-                        if (it) {
-                            showAdAndStartMain(interstitialAd)
+        if (InternetUtil.isNetworkAvailable(this)) {
+            AdmobManager.getInstance()
+                .loadAlternateInter(this, interAds, object : AdCallback() {
+                    override fun onResultInterstitialAd(interstitialAd: InterstitialAd?) {
+                        super.onResultInterstitialAd(interstitialAd)
+                        canNextScreen.observe(this@SplashActivity) {
+                            if (it) {
+                                showAdAndStartMain(interstitialAd)
+                            }
                         }
                     }
-                }
 
-                override fun onAdFailedToLoad(i: LoadAdError) {
-                    super.onAdFailedToLoad(i)
-                    canNextScreen.observe(
-                        this@SplashActivity
-                    ) {
-                        if (it) {
-                            startMain()
-                            Handler().postDelayed(Runnable {
-                                AppSession.isCompletedInterSplash = true
-                            }, 300)
+                    override fun onAdFailedToLoad(i: LoadAdError) {
+                        super.onAdFailedToLoad(i)
+                        canNextScreen.observe(this@SplashActivity) {
+                            if (it) {
+                                startMain()
+                                Handler().postDelayed({
+                                    AppSession.isCompletedInterSplash = true
+                                }, 300)
+                            }
                         }
                     }
+                })
+        } else {
+            Log.d("devLogger: loadAlternateInter", "No network available, skipping interstitial load.")
+            canNextScreen.observe(this@SplashActivity) {
+                if (it) {
+                    startMain()
+                    Handler().postDelayed({
+                        AppSession.isCompletedInterSplash = true
+                    }, 300)
                 }
-            })
+            }
+        }
     }
 
     private fun showAdAndStartMain(interstitialAd: InterstitialAd?) {
