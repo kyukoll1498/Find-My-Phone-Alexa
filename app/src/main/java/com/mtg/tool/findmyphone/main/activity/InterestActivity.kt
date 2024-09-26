@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.widget.Button
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.utils.InternetUtil
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AdIds
@@ -45,47 +46,51 @@ class InterestActivity :
             AdmobManager.NativeAdType.BIG
         )
         if (AdCache.getInstance().ob4NativeHigh == null) {
-            AdmobManager.getInstance().preloadFullScreenNative(
-                this@InterestActivity,
-                AdIds.ob4_native_high1,
-                object : AdCallback() {
+            if (InternetUtil.isNetworkAvailable(this)) {
+                AdmobManager.getInstance().preloadFullScreenNative(
+                    this@InterestActivity,
+                    AdIds.ob4_native_high1,
+                    object : AdCallback() {
+                        override fun onNativeAds(nativeAd: NativeAd?) {
+                            super.onNativeAds(nativeAd)
+                            AdCache.getInstance().ob4NativeHigh1 =
+                                nativeAd
+                        }
+
+                        override fun onAdImpression() {
+                            super.onAdImpression()
+                            logEvent("onboard4_native_view")
+                        }
+
+                        override fun onAdClicked() {
+                            super.onAdClicked()
+                            logEvent("onboard4_native_click")
+
+                        }
+                    })
+            }
+        }
+        if (InternetUtil.isNetworkAvailable(this)) {
+            AdmobManager.getInstance()
+                .preloadAlternateNative(this, onb2NativeAds, object : AdCallback() {
                     override fun onNativeAds(nativeAd: NativeAd?) {
                         super.onNativeAds(nativeAd)
-                        AdCache.getInstance().ob4NativeHigh1 =
+                        AdCache.getInstance().ob2NativeHigh =
                             nativeAd
                     }
+
                     override fun onAdImpression() {
                         super.onAdImpression()
-                        logEvent("onboard4_native_view")
+                        logEvent("onboard2_native_view")
                     }
 
                     override fun onAdClicked() {
                         super.onAdClicked()
-                        logEvent("onboard4_native_click")
+                        logEvent("onboard2_native_click")
 
                     }
                 })
         }
-
-        AdmobManager.getInstance()
-            .preloadAlternateNative(this, onb2NativeAds, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob2NativeHigh =
-                        nativeAd
-                }
-                override fun onAdImpression() {
-                    super.onAdImpression()
-                    logEvent("onboard2_native_view")
-                }
-
-                override fun onAdClicked() {
-                    super.onAdClicked()
-                    logEvent("onboard2_native_click")
-
-                }
-            })
-
         selectedInterests = mutableListOf()
 
         // Initialize buttons
@@ -145,23 +150,30 @@ class InterestActivity :
 
     override fun onResume() {
         super.onResume()
-        if(!isFirstResume){
-            AdmobManager.getInstance().preloadAlternateNative(this, onb1NativeAds, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdmobManager.getInstance().showNative(this@InterestActivity, nativeAd, binding.frAd, AdmobManager.NativeAdType.BIG)
-                }
-                override fun onAdImpression() {
-                    super.onAdImpression()
-                    logEvent("onboard1_native_view")
-                }
+        if (!isFirstResume) {
+            AdmobManager.getInstance()
+                .preloadAlternateNative(this, onb1NativeAds, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdmobManager.getInstance().showNative(
+                            this@InterestActivity,
+                            nativeAd,
+                            binding.frAd,
+                            AdmobManager.NativeAdType.BIG
+                        )
+                    }
 
-                override fun onAdClicked() {
-                    super.onAdClicked()
-                    logEvent("onboard1_native_click")
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("onboard1_native_view")
+                    }
 
-                }
-            })
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("onboard1_native_click")
+
+                    }
+                })
         } else {
             isFirstResume = false
         }

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.utils.InternetUtil
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AdIds
@@ -110,69 +111,78 @@ class OnBoardActivity :
         if (!isHandleAds2) {
             isHandleAds2 = true
             if (AdCache.getInstance().ob4NativeHigh == null && AdCache.getInstance().ob4NativeHigh1 == null) {
+                if (InternetUtil.isNetworkAvailable(this)) {
+                    AdmobManager.getInstance()
+                        .preloadFullScreenAlternateNative(
+                            this,
+                            onb4NativeAds,
+                            object : AdCallback() {
+                                override fun onNativeAds(nativeAd: NativeAd?) {
+                                    super.onNativeAds(nativeAd)
+                                    AdCache.getInstance().ob4NativeHigh2AndNative =
+                                        nativeAd
+                                }
+
+                                override fun onAdImpression() {
+                                    super.onAdImpression()
+                                    logEvent("onboard4_native_view")
+                                }
+
+                                override fun onAdClicked() {
+                                    super.onAdClicked()
+                                    logEvent("onboard4_native_click")
+
+                                }
+                            })
+                }
+            }
+            if (InternetUtil.isNetworkAvailable(this)) {
                 AdmobManager.getInstance()
-                    .preloadFullScreenAlternateNative(this, onb4NativeAds, object : AdCallback() {
+                    .preloadAlternateNative(this, onb5NativeAds, object : AdCallback() {
                         override fun onNativeAds(nativeAd: NativeAd?) {
                             super.onNativeAds(nativeAd)
-                            AdCache.getInstance().ob4NativeHigh2AndNative =
+                            AdCache.getInstance().ob5NativeHigh =
                                 nativeAd
                         }
 
                         override fun onAdImpression() {
                             super.onAdImpression()
-                            logEvent("onboard4_native_view")
+                            logEvent("onboard5_native_view")
                         }
 
                         override fun onAdClicked() {
                             super.onAdClicked()
-                            logEvent("onboard4_native_click")
+                            logEvent("onboard5_native_click")
 
                         }
                     })
             }
-            AdmobManager.getInstance()
-                .preloadAlternateNative(this, onb5NativeAds, object : AdCallback() {
-                    override fun onNativeAds(nativeAd: NativeAd?) {
-                        super.onNativeAds(nativeAd)
-                        AdCache.getInstance().ob5NativeHigh =
-                            nativeAd
-                    }
-
-                    override fun onAdImpression() {
-                        super.onAdImpression()
-                        logEvent("onboard5_native_view")
-                    }
-
-                    override fun onAdClicked() {
-                        super.onAdClicked()
-                        logEvent("onboard5_native_click")
-
-                    }
-                })
-
         }
     }
 
     fun handleAds3() {
         if (!isHandleAds3) {
-            AdmobManager.getInstance()
-                .preloadAlternateNative(this, onb6NativeAds, object : AdCallback() {
-                    override fun onNativeAds(nativeAd: NativeAd?) {
-                        super.onNativeAds(nativeAd)
-                        AdCache.getInstance().ob6NativeHigh =
-                            nativeAd
-                    }
-                    override fun onAdImpression() {
-                        super.onAdImpression()
-                        logEvent("onboard6_native_view")
-                    }
+            if (InternetUtil.isNetworkAvailable(this)) {
+                AdmobManager.getInstance()
+                    .preloadAlternateNative(this, onb6NativeAds, object : AdCallback() {
+                        override fun onNativeAds(nativeAd: NativeAd?) {
+                            super.onNativeAds(nativeAd)
+                            AdCache.getInstance().ob6NativeHigh =
+                                nativeAd
+                        }
 
-                    override fun onAdClicked() {
-                        super.onAdClicked()
-                        logEvent("onboard6_native_click")
+                        override fun onAdImpression() {
+                            super.onAdImpression()
+                            logEvent("onboard6_native_view")
+                        }
 
-                    }
-                })
+                        override fun onAdClicked() {
+                            super.onAdClicked()
+                            logEvent("onboard6_native_click")
+
+                        }
+                    })
+            }
             isHandleAds3 = true
         }
     }

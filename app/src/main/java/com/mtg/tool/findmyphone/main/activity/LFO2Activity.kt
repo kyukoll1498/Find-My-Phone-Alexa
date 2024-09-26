@@ -64,28 +64,30 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
             )
         }
         binding.frAd.visibility = View.GONE
-        AdmobManager.getInstance().preloadNative(
-            this@LFO2Activity,
-            AdIds.ob4_native_high,
-            object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob4NativeHigh = nativeAd
+        if (InternetUtil.isNetworkAvailable(this)) {
+            AdmobManager.getInstance().preloadNative(
+                this@LFO2Activity,
+                AdIds.ob4_native_high,
+                object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().ob4NativeHigh = nativeAd
+                    }
+
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("onboard4_native_view")
+                    }
+
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("onboard4_native_click")
+
+                    }
                 }
 
-                override fun onAdImpression() {
-                    super.onAdImpression()
-                    logEvent("onboard4_native_view")
-                }
-
-                override fun onAdClicked() {
-                    super.onAdClicked()
-                    logEvent("onboard4_native_click")
-
-                }
-            }
-
-        )
+            )
+        }
         initRemoteConfig()
         RemoteConfigManager.instance!!.fetchAndActivate {
             setStatusBarColor()

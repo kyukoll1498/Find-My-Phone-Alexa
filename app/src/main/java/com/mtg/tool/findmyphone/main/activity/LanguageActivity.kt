@@ -53,50 +53,48 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
                 AdmobManager.NativeAdType.BIG
             )
         }
-        if (AdCache.getInstance().lfo2NativeHigh == null && AdCache.getInstance().lfo2NativeHigh1 == null) {
+        if (InternetUtil.isNetworkAvailable(this)) {
+            if (AdCache.getInstance().lfo2NativeHigh == null && AdCache.getInstance().lfo2NativeHigh1 == null) {
+                AdmobManager.getInstance()
+                    .preloadAlternateNative(this, lfo2NativeAds, object : AdCallback() {
+                        override fun onNativeAds(nativeAd: NativeAd?) {
+                            super.onNativeAds(nativeAd)
+                            AdCache.getInstance().lfo2NativeHigh2 = nativeAd
+                        }
+
+                        override fun onAdImpression() {
+                            super.onAdImpression()
+                            logEvent("language2_ad_native_view")
+                        }
+
+                        override fun onAdClicked() {
+                            super.onAdClicked()
+                            logEvent("language2_ad_native_click")
+
+                        }
+                    })
+            }
+        }
+        if (InternetUtil.isNetworkAvailable(this)) {
             AdmobManager.getInstance()
-                .preloadAlternateNative(this, lfo2NativeAds, object : AdCallback() {
+                .preloadAlternateNative(this, ob1NativeAds, object : AdCallback() {
                     override fun onNativeAds(nativeAd: NativeAd?) {
                         super.onNativeAds(nativeAd)
-                        AdCache.getInstance().lfo2NativeHigh2 = nativeAd
+                        AdCache.getInstance().ob1Native = nativeAd
                     }
 
                     override fun onAdImpression() {
                         super.onAdImpression()
-                        logEvent("language2_ad_native_view")
+                        logEvent("onboard1_native_view")
                     }
 
                     override fun onAdClicked() {
                         super.onAdClicked()
-                        logEvent("language2_ad_native_click")
+                        logEvent("onboard1_native_click")
 
                     }
                 })
         }
-        AdmobManager.getInstance()
-            .preloadAlternateNative(this, ob1NativeAds, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob1Native = nativeAd
-                }
-
-                override fun onAdImpression() {
-                    super.onAdImpression()
-                    logEvent("onboard1_native_view")
-                }
-
-                override fun onAdClicked() {
-                    super.onAdClicked()
-                    logEvent("onboard1_native_click")
-
-                }
-            })
-//        RemoteConfigManager.instance!!.fetchAndActivate {
-//            setStatusBarColor()
-//            initListLanguage()
-//            initRCLanguage()
-//            handleButtonBack()
-//        }
         initRemoteConfig()
     }
 
@@ -114,13 +112,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             initRCLanguage()
             handleButtonBack()
         }
-    }
-
-    @Suppress("DEPRECATION")
-    private fun isNetworkAvailable(): Boolean {
-        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        return networkInfo != null && networkInfo.isConnected
     }
 
     private fun setStatusBarColor() {

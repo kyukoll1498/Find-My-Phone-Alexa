@@ -179,7 +179,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                     }
                 })
         } else {
-            Log.d("devLogger: loadAlternateInter", "No network available, skipping interstitial load.")
+            Log.d(
+                "devLogger: loadAlternateInter",
+                "No network available, skipping interstitial load."
+            )
             canNextScreen.observe(this@SplashActivity) {
                 if (it) {
                     startMain()
@@ -204,49 +207,54 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                         if (AdCache.getInstance().lfo2NativeHigh == null) {
 //                                      1. preload lfo2_native_high1
                             if (lfo2NativeHigh1Ads.isNotBlank()) {
-                                AdmobManager.getInstance().preloadNative(
-                                    this@SplashActivity,
-                                    lfo2NativeHigh1Ads,
-                                    object : AdCallback() {
-                                        override fun onNativeAds(nativeAd: NativeAd?) {
-                                            super.onNativeAds(nativeAd)
-                                            AdCache.getInstance().lfo2NativeHigh1 =
-                                                nativeAd
-                                        }
-                                        override fun onAdImpression() {
-                                            super.onAdImpression()
-                                            logEvent("language2_ad_native_view")
-                                        }
+                                if (InternetUtil.isNetworkAvailable(mContext)){
+                                    AdmobManager.getInstance().preloadNative(
+                                        this@SplashActivity,
+                                        lfo2NativeHigh1Ads,
+                                        object : AdCallback() {
+                                            override fun onNativeAds(nativeAd: NativeAd?) {
+                                                super.onNativeAds(nativeAd)
+                                                AdCache.getInstance().lfo2NativeHigh1 =
+                                                    nativeAd
+                                            }
 
-                                        override fun onAdClicked() {
-                                            super.onAdClicked()
-                                            logEvent("language2_ad_native_click")
+                                            override fun onAdImpression() {
+                                                super.onAdImpression()
+                                                logEvent("language2_ad_native_view")
+                                            }
 
-                                        }
-                                    })
+                                            override fun onAdClicked() {
+                                                super.onAdClicked()
+                                                logEvent("language2_ad_native_click")
+
+                                            }
+                                        })
+                                }
                             }
                         }
 //                                    2. preload alternate lfo1_native_high, lfo1_native
-                        AdmobManager.getInstance().preloadAlternateNative(
-                            this@SplashActivity,
-                            lfo1NativeAds,
-                            object : AdCallback() {
-                                override fun onNativeAds(nativeAd: NativeAd?) {
-                                    super.onNativeAds(nativeAd)
-                                    AdCache.getInstance().lfo1Native.value = nativeAd
-                                }
+                        if (InternetUtil.isNetworkAvailable(mContext)){
+                            AdmobManager.getInstance().preloadAlternateNative(
+                                this@SplashActivity,
+                                lfo1NativeAds,
+                                object : AdCallback() {
+                                    override fun onNativeAds(nativeAd: NativeAd?) {
+                                        super.onNativeAds(nativeAd)
+                                        AdCache.getInstance().lfo1Native.value = nativeAd
+                                    }
 
-                                override fun onAdClicked() {
-                                    super.onAdClicked()
-                                    logEvent("language_ad_native_click")
-                                }
+                                    override fun onAdClicked() {
+                                        super.onAdClicked()
+                                        logEvent("language_ad_native_click")
+                                    }
 
-                                override fun onAdImpression() {
-                                    super.onAdImpression()
-                                    logEvent("language_ad_native_view")
+                                    override fun onAdImpression() {
+                                        super.onAdImpression()
+                                        logEvent("language_ad_native_view")
 
-                                }
-                            })
+                                    }
+                                })
+                        }
                     } else if (!SharedPrefs.getBoolean(
                             this@SplashActivity,
                             Constants.SKIP_ONBOARD
@@ -279,13 +287,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun preloadNativeLanguage2() {
-        if (lfo2NativeHighAds.isNotBlank()) {
+        if (InternetUtil.isNetworkAvailable(this) && lfo2NativeHighAds.isNotBlank()) {
             AdmobManager.getInstance()
                 .preloadNative(this, AdIds.lfo2_native_high, object : AdCallback() {
                     override fun onNativeAds(nativeAd: NativeAd?) {
                         super.onNativeAds(nativeAd)
                         AdCache.getInstance().lfo2NativeHigh = nativeAd
                     }
+
                     override fun onAdImpression() {
                         super.onAdImpression()
                         logEvent("language2_ad_native_view")
@@ -301,33 +310,38 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun preloadNativeOb1() {
-        AdmobManager.getInstance()
-            .preloadAlternateNative(this, onb1NativeAds, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob1Native = nativeAd
-                }
-                override fun onAdImpression() {
-                    super.onAdImpression()
-                    logEvent("onboard1_native_view")
-                }
+        if (InternetUtil.isNetworkAvailable(this)) {
+            AdmobManager.getInstance()
+                .preloadAlternateNative(this, onb1NativeAds, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().ob1Native = nativeAd
+                    }
 
-                override fun onAdClicked() {
-                    super.onAdClicked()
-                    logEvent("onboard1_native_click")
+                    override fun onAdImpression() {
+                        super.onAdImpression()
+                        logEvent("onboard1_native_view")
+                    }
 
-                }
-            })
+                    override fun onAdClicked() {
+                        super.onAdClicked()
+                        logEvent("onboard1_native_click")
+
+                    }
+                })
+        }
     }
 
     private fun preloadNativeOb4() {
-        AdmobManager.getInstance()
-            .preloadFullScreenNative(this, AdIds.ob4_native_high, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdCache.getInstance().ob4NativeHigh = nativeAd
-                }
-            })
+        if (InternetUtil.isNetworkAvailable(this)) {
+            AdmobManager.getInstance()
+                .preloadFullScreenNative(this, AdIds.ob4_native_high, object : AdCallback() {
+                    override fun onNativeAds(nativeAd: NativeAd?) {
+                        super.onNativeAds(nativeAd)
+                        AdCache.getInstance().ob4NativeHigh = nativeAd
+                    }
+                })
+        }
     }
 
 

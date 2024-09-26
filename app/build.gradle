@@ -144,7 +144,6 @@ dependencies {
 
     implementation 'com.google.android.play:review-ktx:2.0.1'
     implementation "com.google.android.gms:play-services-ads:$admob_version"
-    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation 'com.github.bumptech.glide:glide:4.14.2'
