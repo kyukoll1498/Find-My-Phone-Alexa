@@ -209,11 +209,11 @@ dependencies {
     implementation files('libs/TarsosDSP-1.7.jar')
 
     //SDK Network
-    implementation 'com.google.ads.mediation:facebook:6.17.0.0'
-    implementation 'com.google.ads.mediation:applovin:12.6.0.0'
-    implementation 'com.google.ads.mediation:vungle:7.4.0.0'
-    implementation 'com.google.ads.mediation:pangle:6.1.0.7.0'
-    implementation 'com.google.ads.mediation:mintegral:16.8.11.0'
+    implementation 'com.google.ads.mediation:facebook:6.18.0.0'
+    implementation 'com.google.ads.mediation:applovin:13.0.0.1'
+    implementation 'com.google.ads.mediation:vungle:7.4.1.0'
+    implementation 'com.google.ads.mediation:pangle:6.2.0.6.0'
+    implementation 'com.google.ads.mediation:mintegral:16.8.51.0'
 
     // Compose UI
     implementation "androidx.compose.ui:ui:1.6.0"

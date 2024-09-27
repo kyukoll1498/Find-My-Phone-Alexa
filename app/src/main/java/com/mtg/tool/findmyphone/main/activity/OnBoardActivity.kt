@@ -46,13 +46,13 @@ class OnBoardActivity :
 
     private fun initViewPager() {
         val adapter = ViewPagerAddFragmentsAdapter(
-            supportFragmentManager, lifecycle
+            mContext, supportFragmentManager, lifecycle
         )
         binding.viewpagerOnboard.adapter =
             adapter.apply {
                 addFrag(OnBoardFragment(0, R.drawable.img_inside_1, R.string.text_on_boarding_1))
                 addFrag(OnBoardFragment(1, R.drawable.img_inside_2, R.string.text_on_boarding_2))
-                addFrag(OnBoardFragment(2, R.drawable.img_inside_2, R.string.text_on_boarding_2))
+                addFrag(OnBoardFragment(2, R.drawable.img_inside_3, R.string.text_on_boarding_3))
                 addFrag(OnBoardFragment(3, R.drawable.img_inside_3, R.string.text_on_boarding_3))
             }
         binding.viewpagerOnboard.registerOnPageChangeCallback(object :

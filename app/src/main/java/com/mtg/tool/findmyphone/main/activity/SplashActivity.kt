@@ -141,7 +141,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun reloadBanner() {
-        if (bannerAds.isNotEmpty()) {
+        if (bannerAds.isNotEmpty() && InternetUtil.isNetworkAvailable(this)) {
             Log.d("AdmobRefresh: ", "splash" + bannerAds[0])
             AdmobManager.getInstance()
                 .loadAlternateBanner(

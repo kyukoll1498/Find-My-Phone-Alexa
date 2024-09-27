@@ -1,27 +1,45 @@
 package com.mtg.tool.findmyphone.base
 
+import android.content.Context
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.common.control.utils.InternetUtil
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 
-class ViewPagerAddFragmentsAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
+class ViewPagerAddFragmentsAdapter(
+    private val context: Context,
+    fragmentManager: FragmentManager,
+    lifecycle: Lifecycle
+) : FragmentStateAdapter(fragmentManager, lifecycle) {
+
     private var pageSize = 4
     val mFragmentList: MutableList<Fragment> = ArrayList()
 
     init {
-        if (!RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard) {
-            pageSize = 3
+        updatePageSize()
+    }
+
+    private fun updatePageSize() {
+        val isNetworkAvailable = InternetUtil.isNetworkAvailable(context)
+        val isShowNativeFullScreenOnboard = RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard
+
+        pageSize = if (!isShowNativeFullScreenOnboard || !isNetworkAvailable) {
+            3
+        } else {
+            4
         }
     }
+
 
     override fun createFragment(position: Int): Fragment {
         return mFragmentList[position]
     }
 
     override fun getItemCount(): Int {
+        updatePageSize()
         return pageSize
     }
 
@@ -39,7 +57,7 @@ class ViewPagerAddFragmentsAdapter(fragmentManager: FragmentManager, lifecycle: 
     }
 
     override fun getItemId(position: Int): Long {
-        return mFragmentList[position].hashCode().toLong() // make sure notifyDataSetChanged() works
+        return mFragmentList[position].hashCode().toLong()
     }
 
     override fun containsItem(itemId: Long): Boolean {

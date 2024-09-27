@@ -5,6 +5,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
+import com.common.control.utils.InternetUtil
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AdIds
@@ -53,7 +54,7 @@ class OnBoardFragment(
             2 -> {
                 run {
                     if (Objects.requireNonNull(RemoteConfigManager.instance)
-                        !!.isShowNativeFullScreenOnboard
+                        !!.isShowNativeFullScreenOnboard && InternetUtil.isNetworkAvailable(requireContext())
                     ) {
                         binding.llMain.visibility = View.GONE
                         binding.adsContainer.visibility = View.VISIBLE
@@ -88,6 +89,7 @@ class OnBoardFragment(
                         Glide.with(requireContext()).load(idImage)
                             .into(binding.imgInside)
                         binding.tvInside.text = getString(idText)
+                        binding.frAd.visibility = View.INVISIBLE
                     }
                 }
                 run {
