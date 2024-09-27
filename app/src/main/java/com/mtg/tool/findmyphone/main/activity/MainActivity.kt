@@ -19,6 +19,7 @@ import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_NOTIFICATION_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
+import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsMainAdapter
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityMainBinding
@@ -257,7 +258,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     private fun setupViewpager() {
         binding.viewpagerMain.apply {
-            adapter = ViewPagerAddFragmentsAdapter(context, supportFragmentManager, lifecycle).apply {
+            adapter = ViewPagerAddFragmentsMainAdapter(context, supportFragmentManager, lifecycle).apply {
                 addFrag(homeFragment)
                 addFrag(SoundFragment())
                 addFrag(AddFragment())
