@@ -12,7 +12,9 @@ import com.google.firebase.analytics.FirebaseAnalytics
 
 abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
     Fragment() {
-    val binding: B by lazy { bindingFactory(layoutInflater) }
+
+    private var _binding: B? = null
+    val binding: B get() = _binding ?: throw IllegalStateException("Binding is not initialized")
 
     open fun loadAds() {}
 
@@ -25,7 +27,8 @@ abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return binding.root
+        _binding = bindingFactory(layoutInflater)
+        return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,6 +36,11 @@ abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater
         initView()
         addEvent()
         loadAds()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     open fun logEvent(value: String) {
@@ -44,7 +52,6 @@ abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater
             firebaseAnalytics.logEvent(value, bundle)
         } catch (e: Exception) {
             e.printStackTrace()
-
         }
     }
 }
