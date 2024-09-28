@@ -18,7 +18,6 @@ import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.REQUEST_NOTIFICATION_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
-import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsMainAdapter
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
