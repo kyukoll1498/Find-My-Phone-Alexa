@@ -95,7 +95,11 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
             object : AdCallback(){
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
-                    AdmobManager.getInstance().showNative(requireContext(), nativeAd, binding.frAd, AdmobManager.NativeAdType.SMALL)
+                    if (isAdded) {
+                        AdmobManager.getInstance().showNative(requireContext(), nativeAd, binding.frAd, AdmobManager.NativeAdType.SMALL)
+                    } else {
+                        Log.e("HomeFragment", "Fragment not attached to context")
+                    }
                 }
                 override fun onAdImpression() {
                     super.onAdImpression()
