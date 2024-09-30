@@ -22,12 +22,6 @@
         <key>reshow_gdpr_splash</key>
         <value>2</value>
     </entry>
-<!--    remote ads-->
-    <entry>
-        <key>native_ads_full_screen_intro</key>
-        <value>true</value>
-    </entry>
-
     <entry>
         <key>banner_splash_high</key>
         <value>true</value>

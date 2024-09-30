@@ -53,8 +53,8 @@ class OnBoardFragment(
 
             2 -> {
                 run {
-                    if (Objects.requireNonNull(RemoteConfigManager.instance)
-                        !!.isShowNativeFullScreenOnboard && InternetUtil.isNetworkAvailable(requireContext())
+                    if (RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard &&
+                        InternetUtil.isNetworkAvailable(requireContext())
                     ) {
                         binding.llMain.visibility = View.GONE
                         binding.adsContainer.visibility = View.VISIBLE

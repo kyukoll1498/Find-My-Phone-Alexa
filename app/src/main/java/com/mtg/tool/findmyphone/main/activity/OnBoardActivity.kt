@@ -13,9 +13,11 @@ import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
+import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.databinding.ActivityOnboardingBinding
 import com.mtg.tool.findmyphone.main.fragment.OnBoardFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
+import java.util.Objects
 
 class OnBoardActivity :
     BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
@@ -44,6 +46,11 @@ class OnBoardActivity :
         initViewPager()
     }
 
+    override fun onResume() {
+        super.onResume()
+        initViewPager()
+    }
+
     private fun initViewPager() {
         val adapter = ViewPagerAddFragmentsAdapter(
             mContext, supportFragmentManager, lifecycle
@@ -52,9 +59,10 @@ class OnBoardActivity :
             adapter.apply {
                 addFrag(OnBoardFragment(0, R.drawable.img_inside_1, R.string.text_on_boarding_1))
                 addFrag(OnBoardFragment(1, R.drawable.img_inside_2, R.string.text_on_boarding_2))
-                addFrag(OnBoardFragment(2, R.drawable.img_inside_3, R.string.text_on_boarding_3))
+                addFrag(OnBoardFragment(2, R.drawable.img_inside_df_fullscreen, R.string.text_on_boarding_df_fullscreen))
                 addFrag(OnBoardFragment(3, R.drawable.img_inside_3, R.string.text_on_boarding_3))
             }
+
         binding.viewpagerOnboard.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -67,16 +75,26 @@ class OnBoardActivity :
                     2 -> handleAds4()
                     3 -> handleAds5()
                 }
-
+                if (position == 0 || position == adapter.itemCount - 1) {
+                    binding.indicatorView.visibility = View.VISIBLE
+                    binding.tvNext.visibility = View.VISIBLE
+                }
                 if (position == 1) {
                     binding.indicatorView.visibility = View.VISIBLE
                     binding.tvNext.visibility = View.VISIBLE
                 }
                 if (position == 2) {
-                    binding.indicatorView.visibility = View.GONE
-                    binding.tvNext.visibility = View.GONE
+                    if (!RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard
+                        || !InternetUtil.isNetworkAvailable(this@OnBoardActivity)
+                    ) {
+                        binding.indicatorView.visibility = View.VISIBLE
+                        binding.tvNext.visibility = View.VISIBLE
+                    } else{
+                        binding.indicatorView.visibility = View.GONE
+                        binding.tvNext.visibility = View.GONE
+                    }
                 }
-                if (position == 0 || position == adapter.itemCount - 1) {
+                if (position == 3) {
                     binding.indicatorView.visibility = View.VISIBLE
                     binding.tvNext.visibility = View.VISIBLE
                 }

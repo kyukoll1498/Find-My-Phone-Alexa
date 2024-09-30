@@ -23,14 +23,14 @@ class ViewPagerAddFragmentsAdapter(
     }
 
     private fun updatePageSize() {
-        val isNetworkAvailable = InternetUtil.isNetworkAvailable(context)
-        val isShowNativeFullScreenOnboard = RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard
-
-        pageSize = if (!isShowNativeFullScreenOnboard || !isNetworkAvailable) {
-            3
-        } else {
-            4
-        }
+//        val isNetworkAvailable = InternetUtil.isNetworkAvailable(context)
+//        val isShowNativeFullScreenOnboard = RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard
+//
+//        pageSize = if (!isShowNativeFullScreenOnboard || !isNetworkAvailable) {
+//            3
+//        } else {
+//            4
+//        }
     }
 
 

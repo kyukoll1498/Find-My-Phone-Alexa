@@ -107,9 +107,6 @@ class InterestActivity :
             binding.btnCar,
             binding.btnHotel,
             binding.btnEvents,
-            binding.btnShoppingMall,
-            binding.btnPark,
-            binding.btnOthers,
         )
 
         buttons.forEach { button ->

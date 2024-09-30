@@ -33,7 +33,7 @@
             android:layout_marginHorizontal="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:scaleType="fitXY"
-            android:src="@drawable/img_inside_1"
+            android:src="@drawable/img_inside_df_fullscreen"
             app:layout_constraintDimensionRatio="328:246"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".52"
