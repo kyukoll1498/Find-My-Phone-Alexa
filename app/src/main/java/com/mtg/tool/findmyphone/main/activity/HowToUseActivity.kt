@@ -14,10 +14,19 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
     private val listNative by lazy {
         arrayListOf(AdIds.native_tutorial_high, AdIds.native_tutorial)
     }
+    private var isFirstLoad = true;
 
     override fun initView() {
+        firstLoad()
         binding.composeView.setContent {
             HowToUseScreen()
+        }
+    }
+
+    private fun firstLoad() {
+        if (isFirstLoad){
+            loadAlternateNative()
+            Log.d("Tutorial Refresh", "Tutorial Init")
         }
     }
 
@@ -56,7 +65,11 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
     override fun onResume() {
         super.onResume()
         if (!AppOpenManager.getInstance().isShowingAd){
-            loadAlternateNative()
+            if (!isFirstLoad){
+                loadAlternateNative()
+                Log.d("Tutorial Refresh", "Tutorial Resume")
+            }
         }
+        isFirstLoad = false
     }
 }
