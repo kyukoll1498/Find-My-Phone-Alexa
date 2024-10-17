@@ -44,6 +44,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     private var isCircleActiveVisible = false
     private var showTxtContent = true
     private var isClapActive = false
+    private var isFirstLoad = true
     private val nativeAds by lazy {
         arrayListOf(AdIds.native_home_high, AdIds.native_home)
     }
@@ -56,6 +57,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     override fun initView() {
+        firstLoad()
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
         BroadcastUtils.registerReceiver(
@@ -87,20 +89,31 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         settingSound()
     }
 
-    private fun loadAlternateNative(){
-        Log.d("Refresh","Refresh")
+    private fun firstLoad() {
+        if (isFirstLoad) {
+            loadAlternateNative()
+            Log.d("Hoho Refresh", "Hoho Init")
+        }
+    }
+
+    private fun loadAlternateNative() {
         AdmobManager.getInstance().preloadAlternateNative(
             requireActivity(),
             nativeAds,
-            object : AdCallback(){
+            object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
-                    if (isAdded) {
-                        AdmobManager.getInstance().showNative(requireContext(), nativeAd, binding.frAd, AdmobManager.NativeAdType.SMALL)
-                    } else {
-                        Log.e("HomeFragment", "Fragment not attached to context")
+                    if (isAdded && activity != null) {
+                        AdmobManager.getInstance().showNative(
+                            requireContext(),
+                            nativeAd,
+                            binding.frAd,
+                            AdmobManager.NativeAdType.SMALL
+                        )
                     }
+                    Log.e("HomeFragment", "Fragment not attached to context")
                 }
+
                 override fun onAdImpression() {
                     super.onAdImpression()
                     logEvent("home_native_view")
@@ -118,6 +131,13 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     override fun onResume() {
         super.onResume()
         setUpWidthData()
+        if (!AppOpenManager.getInstance().isShowingAd) {
+            if (!isFirstLoad) {
+                loadAlternateNative()
+                Log.d("Hoho Refresh", "Hoho Resume")
+            }
+        }
+        isFirstLoad = false
         Handler().postDelayed(Runnable {
             try {
                 setUpResponsive()
@@ -125,9 +145,6 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 e.printStackTrace()
             }
         }, 500)
-        if (!AppOpenManager.getInstance().isShowingAd){
-            loadAlternateNative()
-        }
     }
 
     private fun setUpResponsive() {
@@ -149,7 +166,8 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 Glide.with(this).load(it.avatar).into(binding.ivAvatar)
             }
         }
-        binding.tvName.text = AppRepository.getAllSound(requireContext()).find { it.soundPath == currentSoundItem.soundPath }?.name?:currentSoundItem.name
+        binding.tvName.text = AppRepository.getAllSound(requireContext())
+            .find { it.soundPath == currentSoundItem.soundPath }?.name ?: currentSoundItem.name
     }
 
     override fun addEvent() {
