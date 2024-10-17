@@ -45,9 +45,11 @@ class PlaySoundActivity :
     }
     private lateinit var receiver: VolumeChangeReceiver
     private lateinit var audioManager: AudioManager
+    private var isFirstLoad = true;
 
 
     override fun initView() {
+        firstLoad()
         registerVolumeReceiver()
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
         currentSoundItem = intent.getSerializableExtra(KEY_SOUND_ITEM_DATA) as SoundItem
@@ -58,6 +60,13 @@ class PlaySoundActivity :
         setUpWithFileSound()
         setSeekbarView()
         setDetailCommandView()
+    }
+
+    private fun firstLoad() {
+        if (isFirstLoad){
+            loadAlternateNative()
+            Log.d("Effect Refresh", "Effect Init")
+        }
     }
 
     private fun loadAlternateNative() {
@@ -93,7 +102,11 @@ class PlaySoundActivity :
         super.onResume()
         logEvent("effect_view")
         if (!AppOpenManager.getInstance().isShowingAd){
-            loadAlternateNative()
+            if (!isFirstLoad){
+                loadAlternateNative()
+                Log.d("Effect Refresh", "Effect Resume")
+            }
+            isFirstLoad = false
         }
     }
 

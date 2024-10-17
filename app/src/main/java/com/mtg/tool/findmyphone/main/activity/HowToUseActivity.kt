@@ -26,7 +26,6 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
     private fun firstLoad() {
         if (isFirstLoad){
             loadAlternateNative()
-            Log.d("Tutorial Refresh", "Tutorial Init")
         }
     }
 
@@ -67,7 +66,6 @@ class HowToUseActivity : BaseActivity<ActivityHowToUseBinding>(ActivityHowToUseB
         if (!AppOpenManager.getInstance().isShowingAd){
             if (!isFirstLoad){
                 loadAlternateNative()
-                Log.d("Tutorial Refresh", "Tutorial Resume")
             }
         }
         isFirstLoad = false
