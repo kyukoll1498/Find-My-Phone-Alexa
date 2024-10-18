@@ -17,10 +17,10 @@ import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.databinding.ActivityOnboardingBinding
 import com.mtg.tool.findmyphone.main.fragment.OnBoardFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
-import java.util.Objects
 
 class OnBoardActivity :
     BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
+    private var currentPageShowed: Int = 0
     private val onb4NativeAds = arrayListOf(AdIds.ob4_native_high2, AdIds.ob4_native)
     private val onb5NativeAds = arrayListOf(AdIds.ob5_native_high, AdIds.ob5_native)
     private val onb6NativeAds = arrayListOf(AdIds.ob6_native_high, AdIds.ob6_native)
@@ -63,6 +63,8 @@ class OnBoardActivity :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
+                currentPageShowed = position
+
                 binding.indicatorView.selection = position
 
                 if (position == 0 || position == adapter.itemCount - 1) {
@@ -109,6 +111,8 @@ class OnBoardActivity :
                 2 -> EventLogger.getInstance()?.logEvent("click_guide_3")
             }
         }
+
+        binding.viewpagerOnboard.setCurrentItem(currentPageShowed, false)
     }
 
     private fun initViewPager() {
