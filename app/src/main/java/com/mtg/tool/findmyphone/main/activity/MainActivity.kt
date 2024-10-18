@@ -226,7 +226,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 addFrag(settingFragment)
             }
         }
-        binding.viewpagerMain.offscreenPageLimit = 2
+//        binding.viewpagerMain.offscreenPageLimit = 2
         binding.viewpagerMain.isUserInputEnabled = false
         binding.viewpagerMain.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
