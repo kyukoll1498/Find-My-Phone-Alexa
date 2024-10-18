@@ -99,19 +99,10 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     }
 
     private fun initRemoteConfig() {
-        if (InternetUtil.isNetworkAvailable(this)) {
-            RemoteConfigManager.instance!!.fetchAndActivate {
-                setStatusBarColor()
-                initListLanguage()
-                initRCLanguage()
-                handleButtonBack()
-            }
-        } else {
-            setStatusBarColor()
-            initListLanguage()
-            initRCLanguage()
-            handleButtonBack()
-        }
+        setStatusBarColor()
+        initListLanguage()
+        initRCLanguage()
+        handleButtonBack()
     }
 
     private fun setStatusBarColor() {

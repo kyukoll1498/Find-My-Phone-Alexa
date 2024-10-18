@@ -41,19 +41,10 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
     }
 
     private fun initRemoteConfig() {
-        if (InternetUtil.isNetworkAvailable(this)) {
-            RemoteConfigManager.instance!!.fetchAndActivate {
-                initListLanguage()
-                initRCLanguage()
-                handleButtonBack()
-                binding.ivDone.setImageResource(R.drawable.ic_tick_done)
-            }
-        } else {
-            initListLanguage()
-            initRCLanguage()
-            handleButtonBack()
-            binding.ivDone.setImageResource(R.drawable.ic_tick_done)
-        }
+        initListLanguage()
+        initRCLanguage()
+        handleButtonBack()
+        binding.ivDone.setImageResource(R.drawable.ic_tick_done)
     }
 
 

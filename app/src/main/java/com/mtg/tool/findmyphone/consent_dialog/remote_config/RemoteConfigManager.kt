@@ -51,7 +51,7 @@ class RemoteConfigManager {
     var _901_tutorial_o_native_high: Boolean = true
 
     var time_load_banner: Long = 0
-
+    var language_order: String = ""
 
     fun loadRemote() {
         if (isLoading) {
@@ -128,7 +128,7 @@ class RemoteConfigManager {
                 _901_tutorial_o_native_high = config.getBoolean("native_tutorial_high")
                 time_load_banner = config.getLong("time_load_banner")
                 Log.d("remotconfigLogger: ", "time_load_banner - $time_load_banner")
-
+                language_order = config.getString("language_order")
                 isShowNativeFullScreenOnboard =
                     _304_ob4_n_native_high || _304_ob4_n_native_high_1 || _304_ob4_n_native_high_2 || _304_ob4_n_native
             } else {
@@ -227,23 +227,6 @@ class RemoteConfigManager {
 
     interface StringCallback {
         fun onResult(value: String?)
-    }
-
-    fun fetchAndActivate(callback: () -> Unit) {
-        remoteConfig?.let { config ->
-            config.fetchAndActivate()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        callback.invoke()
-                    }
-                }
-        } ?: run {
-            Log.e("RemoteConfig", "FirebaseRemoteConfig is not initialized.")
-        }
-    }
-
-    fun getLanguageOrder(): String {
-        return remoteConfig?.getString("language_order") ?: ""
     }
 
     companion object {

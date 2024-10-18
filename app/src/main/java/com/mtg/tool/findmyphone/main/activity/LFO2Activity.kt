@@ -89,28 +89,13 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
             )
         }
         initRemoteConfig()
-        RemoteConfigManager.instance!!.fetchAndActivate {
-            setStatusBarColor()
-            initListLanguage()
-            initRCLanguage()
-            handleButtonBack()
-        }
     }
 
     private fun initRemoteConfig() {
-        if (InternetUtil.isNetworkAvailable(this)) {
-            RemoteConfigManager.instance!!.fetchAndActivate {
-                setStatusBarColor()
-                initListLanguage()
-                initRCLanguage()
-                handleButtonBack()
-            }
-        } else {
-            setStatusBarColor()
-            initListLanguage()
-            initRCLanguage()
-            handleButtonBack()
-        }
+        setStatusBarColor()
+        initListLanguage()
+        initRCLanguage()
+        handleButtonBack()
     }
 
     private fun setStatusBarColor() {
