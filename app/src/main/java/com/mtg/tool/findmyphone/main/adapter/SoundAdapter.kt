@@ -23,7 +23,7 @@ import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ItemNativeHolderBinding
 import com.mtg.tool.findmyphone.databinding.ItemSoundBinding
 
-class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
+class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?, private val isFirstLoad: Boolean? = null) :
     BaseAdapter<SoundItem?>(mList!!, activity) {
     private var adContainer: FrameLayout? = null
     private val nativeAds by lazy {
@@ -49,7 +49,6 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
 
     fun reloadNativeAd() {
         adContainer?.let { container: FrameLayout ->
-            Log.d("Refresh", "Refresh Sound Adapter Refresh")
             AdmobManager.getInstance().preloadAlternateNative(
                 context,
                 nativeAds,
@@ -120,32 +119,9 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?) :
     inner class NativeViewHolder(binding: ItemNativeHolderBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         init {
-            Log.d("Refresh", "Sound Adapter Refresh")
-            AdmobManager.getInstance().loadNative(
-                context,
-                AdIds.native_sound,
-                binding.frAds,
-                AdmobManager.NativeAdType.MEDIUM,
-                object : AdCallback() {
-                    override fun onAdImpression() {
-                        super.onAdImpression()
-                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
-                            context,
-                            "sound_native_view"
-                        )
-                    }
-
-                    override fun onAdClicked() {
-                        super.onAdClicked()
-                        com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
-                            context,
-                            "sound_native_click"
-                        )
-                    }
-                }
-            )
-            AppOpenManager.getInstance()
-                .hideNativeOrBannerWhenShowOpenApp(context as Activity, binding.frAds)
+            if (isFirstLoad == true) {
+                reloadNativeAd()
+            }
         }
 
         override fun onClick(v: View?) {}

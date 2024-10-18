@@ -43,8 +43,8 @@ class RemoteConfigManager {
     var _502_home_o_banner_high: Boolean = true
     var _601_sound_o_native: Boolean = true
     var _601_sound_o_native_high: Boolean = true
-    var _602_sound_o_native: Boolean = true
-    var _602_sound_o_native_high: Boolean = true
+    var _602_effect_o_native: Boolean = true
+    var _602_effect_o_native_high: Boolean = true
     var _701_add_o_native: Boolean = true
     var _701_add_o_native_high: Boolean = true
     var _901_tutorial_o_native: Boolean = true
@@ -120,8 +120,8 @@ class RemoteConfigManager {
                 _502_home_o_banner_high = config.getBoolean("banner_home_high")
                 _601_sound_o_native = config.getBoolean("native_sound")
                 _601_sound_o_native_high = config.getBoolean("native_sound_high")
-                _602_sound_o_native = config.getBoolean("native_effect")
-                _602_sound_o_native_high = config.getBoolean("native_effect_high")
+                _602_effect_o_native = config.getBoolean("native_effect")
+                _602_effect_o_native_high = config.getBoolean("native_effect_high")
                 _701_add_o_native = config.getBoolean("native_add")
                 _701_add_o_native_high = config.getBoolean("native_add_high")
                 _901_tutorial_o_native = config.getBoolean("native_tutorial")
