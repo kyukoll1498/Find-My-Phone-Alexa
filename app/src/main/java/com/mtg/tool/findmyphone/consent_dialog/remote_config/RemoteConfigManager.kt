@@ -63,9 +63,9 @@ class RemoteConfigManager {
             FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(0).build()
         config.setConfigSettingsAsync(configSettings)
         config.setDefaultsAsync(R.xml.default_config)
-        config.fetchAndActivate().addOnCompleteListener { task ->
-            isLoading = false
-            if (task.isSuccessful) {
+        config.fetch().addOnCompleteListener {
+            FirebaseRemoteConfig.getInstance().activate().addOnCompleteListener {
+                isLoading = false
                 remoteConfig = FirebaseRemoteConfig.getInstance()
                 _101_splash_n_banner_high = config.getBoolean("banner_splash_high")
                 Log.d("remotconfigLogger: ", "banner_splash_high - $_101_splash_n_banner_high")
@@ -131,8 +131,7 @@ class RemoteConfigManager {
                 language_order = config.getString("language_order")
                 isShowNativeFullScreenOnboard =
                     _304_ob4_n_native_high || _304_ob4_n_native_high_1 || _304_ob4_n_native_high_2 || _304_ob4_n_native
-            } else {
-                loadRemote()
+
             }
         }
     }
