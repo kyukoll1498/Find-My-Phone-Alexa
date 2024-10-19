@@ -100,12 +100,16 @@ class OnBoardFragment(
             }
 
             3 -> {
-                AdmobManager.getInstance().showNative(
-                    context,
-                    AdCache.getInstance().ob5NativeHigh,
-                    binding.frAd,
-                    AdmobManager.NativeAdType.BIG
-                )
+                AdCache.getInstance().ob5NativeHigh.observe(
+                    this
+                ) { value ->
+                    AdmobManager.getInstance().showNative(
+                        context,
+                        value,
+                        binding.frAd,
+                        AdmobManager.NativeAdType.BIG
+                    )
+                }
                 Log.d("nativeOB", "ob5NativeHigh")
             }
         }

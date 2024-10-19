@@ -101,12 +101,16 @@ class PermissionActivity :
     }
 
     private fun showNative() {
-        AdmobManager.getInstance().showNative(
-            this@PermissionActivity,
-            AdCache.getInstance().ob6NativeHigh,
-            binding.frAd,
-            AdmobManager.NativeAdType.BIG
-        )
+        AdCache.getInstance().ob6NativeHigh.observe(
+            this
+        ) { value ->
+            AdmobManager.getInstance().showNative(
+                this@PermissionActivity,
+                value,
+                binding.frAd,
+                AdmobManager.NativeAdType.BIG
+            )
+        }
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 

@@ -223,7 +223,7 @@ class OnBoardActivity :
                     .preloadAlternateNative(this, onb5NativeAds, object : AdCallback() {
                         override fun onNativeAds(nativeAd: NativeAd?) {
                             super.onNativeAds(nativeAd)
-                            AdCache.getInstance().ob5NativeHigh =
+                            AdCache.getInstance().ob5NativeHigh.value =
                                 nativeAd
                         }
 
@@ -249,7 +249,7 @@ class OnBoardActivity :
                     .preloadAlternateNative(this, onb6NativeAds, object : AdCallback() {
                         override fun onNativeAds(nativeAd: NativeAd?) {
                             super.onNativeAds(nativeAd)
-                            AdCache.getInstance().ob6NativeHigh =
+                            AdCache.getInstance().ob6NativeHigh.value =
                                 nativeAd
                         }
 
