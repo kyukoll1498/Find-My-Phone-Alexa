@@ -149,14 +149,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             EventLogger.getInstance()?.logEvent("click_main_setting")
         }
         binding.btnHowToUse.setOnClickListener {
-            if (binding.viewpagerMain.currentItem == 0) {
-                logEvent("home_tutorial_click")
-            } else if (binding.viewpagerMain.currentItem == 1) {
-                logEvent("sound_tutorial_click")
-            } else if (binding.viewpagerMain.currentItem == 3) {
-                logEvent("add_tutorial_click")
+            binding.btnHowToUse.isEnabled = false
+            Log.d("<><>", "Inactive")
+            when(binding.viewpagerMain.currentItem){
+                0 -> logEvent("home_tutorial_click")
+                1 -> logEvent("sound_tutorial_click")
+                3 -> logEvent("add_tutorial_click")
             }
+
             startActivity(Intent(this, HowToUseActivity::class.java))
+
+            binding.btnHowToUse.postDelayed({
+                binding.btnHowToUse.isEnabled = true
+                Log.d("<><>", "Aactive")
+            }, 200)
         }
         binding.btnDrawer.setOnClickListener {
             logEvent("click_setting")
