@@ -32,23 +32,23 @@ class OnBoardFragment(
 
 
     override fun initView() {
-        binding.imgInside.setImageResource(idImage)
-        binding.tvInside.text = getString(idText)
+        binding?.imgInside?.setImageResource(idImage)
+        binding?.tvInside?.text = getString(idText)
 
         when (position) {
             0 -> {
                 AdmobManager.getInstance().showNative(
                     context,
                     AdCache.getInstance().ob2NativeHigh,
-                    binding.frAd,
+                    binding?.frAd,
                     AdmobManager.NativeAdType.BIG
                 )
                 Log.d("nativeOB", "ob2NativeHigh")
             }
 
             1 -> {
-                binding.lottie.setVisibility(View.VISIBLE)
-                binding.frAd.visibility = View.GONE
+                binding?.lottie?.setVisibility(View.VISIBLE)
+                binding?.frAd?.visibility = View.GONE
             }
 
             2 -> {
@@ -56,8 +56,8 @@ class OnBoardFragment(
                     if (RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard &&
                         InternetUtil.isNetworkAvailable(requireContext())
                     ) {
-                        binding.llMain.visibility = View.GONE
-                        binding.adsContainer.visibility = View.VISIBLE
+                        binding?.llMain?.visibility = View.GONE
+                        binding?.adsContainer?.visibility = View.VISIBLE
                         logEvent("complete_lfo1")
                         logEvent("view_lfo2")
                         if (AdCache.getInstance().ob4NativeHigh != null) {
@@ -65,7 +65,7 @@ class OnBoardFragment(
                             AdmobManager.getInstance().showNative(
                                 context,
                                 AdCache.getInstance().ob4NativeHigh,
-                                binding.adsContainer,
+                                binding?.adsContainer,
                                 AdmobManager.NativeAdType.FULLSCREEN
                             )
                         } else if (AdCache.getInstance().ob4NativeHigh1 != null) {
@@ -73,7 +73,7 @@ class OnBoardFragment(
                             AdmobManager.getInstance().showNative(
                                 context,
                                 AdCache.getInstance().ob4NativeHigh1,
-                                binding.adsContainer,
+                                binding?.adsContainer,
                                 AdmobManager.NativeAdType.FULLSCREEN
                             )
                         } else if (AdCache.getInstance().ob4NativeHigh2AndNative != null) {
@@ -81,21 +81,25 @@ class OnBoardFragment(
                             AdmobManager.getInstance().showNative(
                                 context,
                                 AdCache.getInstance().ob4NativeHigh2AndNative,
-                                binding.adsContainer,
+                                binding?.adsContainer,
                                 AdmobManager.NativeAdType.FULLSCREEN
                             )
                         }
                     } else {
-                        Glide.with(requireContext()).load(idImage)
-                            .into(binding.imgInside)
-                        binding.tvInside.text = getString(idText)
-                        binding.frAd.visibility = View.INVISIBLE
+                        binding?.let {
+                            Glide.with(requireContext()).load(idImage)
+                                .into(it.imgInside)
+                        }
+                        binding?.tvInside?.text = getString(idText)
+                        binding?.frAd?.visibility = View.INVISIBLE
                     }
                 }
                 run {
-                    Glide.with(requireContext()).load(idImage)
-                        .into(binding.imgInside)
-                    binding.tvInside.text = getString(idText)
+                    binding?.let {
+                        Glide.with(requireContext()).load(idImage)
+                            .into(it.imgInside)
+                    }
+                    binding?.tvInside?.text = getString(idText)
                 }
             }
 
@@ -106,7 +110,7 @@ class OnBoardFragment(
                     AdmobManager.getInstance().showNative(
                         context,
                         value,
-                        binding.frAd,
+                        binding?.frAd,
                         AdmobManager.NativeAdType.BIG
                     )
                 }
@@ -139,7 +143,7 @@ class OnBoardFragment(
                                     AdmobManager.getInstance().showNative(
                                         safeContext,
                                         nativeAd,
-                                        binding.frAd,
+                                        binding?.frAd,
                                         AdmobManager.NativeAdType.BIG
                                     )
                                 }
@@ -170,7 +174,7 @@ class OnBoardFragment(
                                     AdmobManager.getInstance().showNative(
                                         safeContext,
                                         nativeAd,
-                                        binding.adsContainer,
+                                        binding?.adsContainer,
                                         AdmobManager.NativeAdType.FULLSCREEN
                                     )
                                 }
@@ -201,7 +205,7 @@ class OnBoardFragment(
                                     AdmobManager.getInstance().showNative(
                                         safeContext,
                                         nativeAd,
-                                        binding.frAd,
+                                        binding?.frAd,
                                         AdmobManager.NativeAdType.BIG
                                     )
                                 }

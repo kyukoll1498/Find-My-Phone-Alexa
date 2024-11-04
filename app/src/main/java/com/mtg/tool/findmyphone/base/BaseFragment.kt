@@ -14,7 +14,7 @@ abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater
     Fragment() {
 
     private var _binding: B? = null
-    val binding: B get() = _binding ?: throw IllegalStateException("Binding is not initialized")
+    val binding: B? get() = _binding
 
     open fun loadAds() {}
 

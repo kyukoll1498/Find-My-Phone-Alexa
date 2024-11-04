@@ -27,7 +27,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     private var soundList = mutableListOf<SoundItem>()
     private var soundAdapter: SoundAdapter? = null
 
-    companion object{
+    companion object {
         private var createSoundItem = SoundItem(
             CREATE_SOUND_TYPE,
             "",
@@ -45,8 +45,8 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
             if (data == null) {
                 if (soundList.size == 1) {
                     soundList.removeAt(0)
-                    binding.ctEmpty.visibility = View.VISIBLE
-                    binding.rcvSoundImport.visibility = View.GONE
+                    binding?.ctEmpty?.visibility = View.VISIBLE
+                    binding?.rcvSoundImport?.visibility = View.GONE
                 }
                 soundAdapter?.notifyDataSetChanged()
             } else {
@@ -78,7 +78,11 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     }
 
     private fun registerBroadcast() {
-        BroadcastUtils.registerReceiver(context,soundReceiver, IntentFilter(ACTION_UPDATE_AUDIO_IMPORT))
+        BroadcastUtils.registerReceiver(
+            context,
+            soundReceiver,
+            IntentFilter(ACTION_UPDATE_AUDIO_IMPORT)
+        )
     }
 
     private fun loadSoundList() {
@@ -92,11 +96,11 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
 
     private fun initContent() {
         if (soundList.isEmpty()) {
-            binding.ctEmpty.visibility = View.VISIBLE
-            binding.rcvSoundImport.visibility = View.GONE
+            binding?.ctEmpty?.visibility = View.VISIBLE
+            binding?.rcvSoundImport?.visibility = View.GONE
         } else {
-            binding.ctEmpty.visibility = View.GONE
-            binding.rcvSoundImport.visibility = View.VISIBLE
+            binding?.ctEmpty?.visibility = View.GONE
+            binding?.rcvSoundImport?.visibility = View.VISIBLE
             if (!soundList.contains(createSoundItem)) {
                 soundList.add(
                     0, createSoundItem
@@ -121,19 +125,21 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
 
                 }
             }
-            binding.rcvSoundImport.layoutManager = GridLayoutManager(context, 3)
-            binding.rcvSoundImport.adapter = soundAdapter
+            binding?.rcvSoundImport?.layoutManager = GridLayoutManager(context, 3)
+            binding?.rcvSoundImport?.adapter = soundAdapter
         }
     }
 
     private fun setUpResponsive() {
-        if (binding.tvEmpty.y + binding.tvEmpty.height > binding.ivGuideCreate.y) {
-            binding.ivGuideCreate.visibility = View.GONE
+        binding?.let { binding ->
+            if (binding.tvEmpty.y + binding.tvEmpty.height > binding.ivGuideCreate.y) {
+                binding.ivGuideCreate.visibility = View.GONE
+            }
         }
     }
 
     override fun addEvent() {
-        binding.llCreateSound.setOnClickListener {
+        binding?.llCreateSound?.setOnClickListener {
             logEvent("add_create_click")
             startActivity(Intent(activity, CreateSoundActivity::class.java))
         }

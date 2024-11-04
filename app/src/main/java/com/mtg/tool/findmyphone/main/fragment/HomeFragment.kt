@@ -67,7 +67,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         )
         if (isMyServiceRunning()) {
             isCircleActiveVisible = !isCircleActiveVisible
-            binding.apply {
+            binding?.apply {
                 ivCircleActive.visibility = visible
                 txtActive.visibility = visible
                 txtInactive.visibility = invisible
@@ -107,7 +107,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                         AdmobManager.getInstance().showNative(
                             requireContext(),
                             nativeAd,
-                            binding.frAd,
+                            binding?.frAd,
                             AdmobManager.NativeAdType.SMALL
                         )
                     }
@@ -148,12 +148,14 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     private fun setUpResponsive() {
-        if (binding.txtActive.y + binding.txtActive.height > binding.tvInactive.y) {
-            binding.tvInactive.visibility = View.GONE
+        binding?.apply {
+            if (txtActive.y + txtActive.height > tvInactive.y) {
+                tvInactive.visibility = View.GONE
 //            binding.txtInactive.visibility = View.GONE
 //            binding.txtActive.visibility = View.GONE
-            binding.llTvInactive.visibility = View.GONE
-            showTxtContent = false
+                llTvInactive.visibility = View.GONE
+                showTxtContent = false
+            }
         }
     }
 
@@ -161,12 +163,15 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         currentSoundItem = AppPreferences.instance.currentSound
         currentSoundItem.let {
             if (it.avatar == R.drawable.ic_default_audio_avatar) {
-                Glide.with(this).load(R.drawable.ic_main_default_audio).into(binding.ivAvatar)
+                binding?.let { it1 ->
+                    Glide.with(this).load(R.drawable.ic_main_default_audio).into(
+                        it1.ivAvatar)
+                }
             } else {
-                Glide.with(this).load(it.avatar).into(binding.ivAvatar)
+                binding?.let { it1 -> Glide.with(this).load(it.avatar).into(it1.ivAvatar) }
             }
         }
-        binding.tvName.text = AppRepository.getAllSound(requireContext())
+        binding?.tvName?.text = AppRepository.getAllSound(requireContext())
             .find { it.soundPath == currentSoundItem.soundPath }?.name ?: currentSoundItem.name
     }
 
@@ -241,7 +246,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
     private fun initializePlayerAndStartRecording() {
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
-        binding.clClickTab.setOnClickListener {
+        binding?.clClickTab?.setOnClickListener {
             checkPermissionMicro()
             if (PermissionUtils.checkMicroPermission(requireContext())) {
                 checkPermissionNotification()
@@ -252,7 +257,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
                 if (!isCircleActiveVisible) {
                     logEvent("home_activate_click")
                     isCircleActiveVisible = !isCircleActiveVisible
-                    binding.apply {
+                    binding?.apply {
                         ivCircleActive.visibility = visible
                         txtActive.visibility = visible
                         txtInactive.visibility = invisible
@@ -283,7 +288,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding:
         isCircleActiveVisible = !isCircleActiveVisible
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
-        binding.apply {
+        binding?.apply {
             ivCircleActive.visibility = invisible
             txtActive.visibility = invisible
             txtInactive.visibility = visible

@@ -45,8 +45,8 @@ class SoundFragment : BaseFragment<FragmentSoundBinding>(FragmentSoundBinding::i
                 startActivity(intent)
             }
         }
-        binding.rcvSound.layoutManager = gridLayoutManager
-        binding.rcvSound.adapter = soundAdapter
+        binding?.rcvSound?.layoutManager = gridLayoutManager
+        binding?.rcvSound?.adapter = soundAdapter
     }
 
     override fun addEvent() {

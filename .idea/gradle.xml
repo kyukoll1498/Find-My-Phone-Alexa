@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/MTGLibs" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/custom_seekbar" />
+            <option value="$PROJECT_DIR$/pageindicatorview" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
