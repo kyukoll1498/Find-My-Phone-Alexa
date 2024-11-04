@@ -46,74 +46,74 @@ class OnBoardActivity :
         initViewPager()
     }
 
-    override fun onResume() {
-        super.onResume()
-        val adapter = ViewPagerAddFragmentsAdapter(
-            mContext, supportFragmentManager, lifecycle
-        )
-        binding.viewpagerOnboard.adapter =
-            adapter.apply {
-                addFrag(OnBoardFragment(0, R.drawable.img_inside_1, R.string.text_on_boarding_1))
-                addFrag(OnBoardFragment(1, R.drawable.img_inside_2, R.string.text_on_boarding_2))
-                addFrag(OnBoardFragment(2, R.drawable.img_inside_df_fullscreen, R.string.text_on_boarding_df_fullscreen))
-                addFrag(OnBoardFragment(3, R.drawable.img_inside_3, R.string.text_on_boarding_3))
-            }
-
-        binding.viewpagerOnboard.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                currentPageShowed = position
-
-                binding.indicatorView.selection = position
-
-                if (position == 0 || position == adapter.itemCount - 1) {
-                    binding.indicatorView.visibility = View.VISIBLE
-                    binding.tvNext.visibility = View.VISIBLE
-                }
-                if (position == 1) {
-                    binding.indicatorView.visibility = View.VISIBLE
-                    binding.tvNext.visibility = View.VISIBLE
-                }
-                if (position == 2) {
-                    if (!RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard
-                        || !InternetUtil.isNetworkAvailable(this@OnBoardActivity)
-                    ) {
-                        binding.indicatorView.visibility = View.VISIBLE
-                        binding.tvNext.visibility = View.VISIBLE
-                    } else{
-                        binding.indicatorView.visibility = View.GONE
-                        binding.tvNext.visibility = View.GONE
-                    }
-                }
-                if (position == 3) {
-                    binding.indicatorView.visibility = View.VISIBLE
-                    binding.tvNext.visibility = View.VISIBLE
-                }
-                if (position == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
-                    binding.tvNext.text = getString(R.string.get_started)
-                } else
-                    binding.tvNext.text = getString(R.string.next)
-            }
-        })
-
-        binding.tvNext.setOnClickListener {
-            logEvent("onboard" + (binding.viewpagerOnboard.currentItem + 2) + "_next_click")
-            if (binding.viewpagerOnboard.currentItem == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
-                startActivity(Intent(this@OnBoardActivity, PermissionActivity::class.java))
-                finish()
-            } else {
-                binding.viewpagerOnboard.currentItem++
-            }
-            when (binding.viewpagerOnboard.currentItem) {
-                0 -> EventLogger.getInstance()?.logEvent("click_guide_1")
-                1 -> EventLogger.getInstance()?.logEvent("click_guide_2")
-                2 -> EventLogger.getInstance()?.logEvent("click_guide_3")
-            }
-        }
-
-        binding.viewpagerOnboard.setCurrentItem(currentPageShowed, false)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        val adapter = ViewPagerAddFragmentsAdapter(
+//            mContext, supportFragmentManager, lifecycle
+//        )
+//        binding.viewpagerOnboard.adapter =
+//            adapter.apply {
+//                addFrag(OnBoardFragment(0, R.drawable.img_inside_1, R.string.text_on_boarding_1))
+//                addFrag(OnBoardFragment(1, R.drawable.img_inside_2, R.string.text_on_boarding_2))
+//                addFrag(OnBoardFragment(2, R.drawable.img_inside_df_fullscreen, R.string.text_on_boarding_df_fullscreen))
+//                addFrag(OnBoardFragment(3, R.drawable.img_inside_3, R.string.text_on_boarding_3))
+//            }
+//
+//        binding.viewpagerOnboard.registerOnPageChangeCallback(object :
+//            ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                currentPageShowed = position
+//
+//                binding.indicatorView.selection = position
+//
+//                if (position == 0 || position == adapter.itemCount - 1) {
+//                    binding.indicatorView.visibility = View.VISIBLE
+//                    binding.tvNext.visibility = View.VISIBLE
+//                }
+//                if (position == 1) {
+//                    binding.indicatorView.visibility = View.VISIBLE
+//                    binding.tvNext.visibility = View.VISIBLE
+//                }
+//                if (position == 2) {
+//                    if (!RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard
+//                        || !InternetUtil.isNetworkAvailable(this@OnBoardActivity)
+//                    ) {
+//                        binding.indicatorView.visibility = View.VISIBLE
+//                        binding.tvNext.visibility = View.VISIBLE
+//                    } else{
+//                        binding.indicatorView.visibility = View.GONE
+//                        binding.tvNext.visibility = View.GONE
+//                    }
+//                }
+//                if (position == 3) {
+//                    binding.indicatorView.visibility = View.VISIBLE
+//                    binding.tvNext.visibility = View.VISIBLE
+//                }
+//                if (position == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
+//                    binding.tvNext.text = getString(R.string.get_started)
+//                } else
+//                    binding.tvNext.text = getString(R.string.next)
+//            }
+//        })
+//
+//        binding.tvNext.setOnClickListener {
+//            logEvent("onboard" + (binding.viewpagerOnboard.currentItem + 2) + "_next_click")
+//            if (binding.viewpagerOnboard.currentItem == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
+//                startActivity(Intent(this@OnBoardActivity, PermissionActivity::class.java))
+//                finish()
+//            } else {
+//                binding.viewpagerOnboard.currentItem++
+//            }
+//            when (binding.viewpagerOnboard.currentItem) {
+//                0 -> EventLogger.getInstance()?.logEvent("click_guide_1")
+//                1 -> EventLogger.getInstance()?.logEvent("click_guide_2")
+//                2 -> EventLogger.getInstance()?.logEvent("click_guide_3")
+//            }
+//        }
+//
+//        binding.viewpagerOnboard.setCurrentItem(currentPageShowed, false)
+//    }
 
     private fun initViewPager() {
         val adapter = ViewPagerAddFragmentsAdapter(
