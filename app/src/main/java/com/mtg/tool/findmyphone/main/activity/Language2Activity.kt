@@ -13,6 +13,7 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
 import com.mtg.tool.findmyphone.AppSession
 import com.mtg.tool.findmyphone.AdIds
+import com.mtg.tool.findmyphone.BuildConfig
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
@@ -32,7 +33,6 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
     private var languageAdapter: LanguageAdapter? = null
     private var itemLanguage: ItemLanguage? = null
     private var appPreferences = AppPreferences.instance
-    private val lfo2NativeAdsReload = arrayListOf(AdIds.lfo2_native_high, AdIds.lfo2_native)
 
     override fun initView() {
         logEvent("language2_setting_view")
@@ -120,28 +120,6 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
     }
 
     private fun loadNative() {
-        AdmobManager.getInstance()
-            .preloadAlternateNative(this, lfo2NativeAdsReload, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdmobManager.getInstance().showNative(
-                        this@Language2Activity,
-                        nativeAd,
-                        binding.frAd2,
-                        AdmobManager.NativeAdType.BIG
-                    )
-                }
-
-                override fun onAdImpression() {
-                    super.onAdImpression()
-                    logEvent("language2_setting_native_view")
-                }
-
-                override fun onAdClicked() {
-                    super.onAdClicked()
-                    logEvent("language2_setting_native_click")
-
-                }
-            })
+        AdmobManager.getInstance().loadNative(this, BuildConfig.native_language_setting, binding.frAd2, AdmobManager.NativeAdType.BIG)
     }
 }
