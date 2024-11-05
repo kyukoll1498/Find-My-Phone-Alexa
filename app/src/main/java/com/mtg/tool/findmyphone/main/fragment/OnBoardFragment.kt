@@ -13,7 +13,10 @@ import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseFragment
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.databinding.FragmentOnboadingBinding
+import com.mtg.tool.findmyphone.main.activity.OnBoardActivity
+import com.mtg.tool.findmyphone.utils.hide
 import com.mtg.tool.findmyphone.utils.setSize
+import com.mtg.tool.findmyphone.utils.show
 import java.util.Objects
 
 
@@ -86,12 +89,7 @@ class OnBoardFragment(
                             )
                         }
                     } else {
-                        binding?.let {
-                            Glide.with(requireContext()).load(idImage)
-                                .into(it.imgInside)
-                        }
-                        binding?.tvInside?.text = getString(idText)
-                        binding?.frAd?.visibility = View.INVISIBLE
+                        showDefaultScreen()
                     }
                 }
                 run {
@@ -164,6 +162,13 @@ class OnBoardFragment(
 
             2 -> {
                 context?.let { safeContext ->
+                    if (!RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard ||
+                        !InternetUtil.isNetworkAvailable(requireContext())
+                    ){
+                        showDefaultScreen()
+                        return
+                    }
+
                     AdmobManager.getInstance().preloadFullScreenAlternateNative(
                         safeContext,
                         onb4NativeAds,
@@ -224,6 +229,22 @@ class OnBoardFragment(
                 }
             }
         }
+    }
+
+    private fun showDefaultScreen() {
+        binding?.imgInside?.show()
+        binding?.imgInside?.setImageResource(idImage)
+        binding?.tvInside?.text = getString(idText)
+
+        binding?.let {
+            Glide.with(requireContext()).load(idImage)
+                .into(it.imgInside)
+        }
+        binding?.tvInside?.text = getString(idText)
+        binding?.frAd?.visibility = View.INVISIBLE
+
+        binding?.adsContainer?.visibility = View.INVISIBLE
+        (requireActivity() as OnBoardActivity).showIndicatorView()
     }
 
 

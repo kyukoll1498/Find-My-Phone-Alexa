@@ -17,6 +17,7 @@ import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.databinding.ActivityOnboardingBinding
 import com.mtg.tool.findmyphone.main.fragment.OnBoardFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
+import com.mtg.tool.findmyphone.utils.show
 
 class OnBoardActivity :
     BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
@@ -274,5 +275,10 @@ class OnBoardActivity :
     }
 
     fun handleAds5() {
+    }
+
+    fun showIndicatorView(){
+        binding.indicatorView.show()
+        binding.tvNext.show()
     }
 }
