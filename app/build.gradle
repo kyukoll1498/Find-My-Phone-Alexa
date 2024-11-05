@@ -124,6 +124,8 @@ android {
             addConstantTo(owner, "native_add_high", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_tutorial", "ca-app-pub-3940256099942544/2247696110")
             addConstantTo(owner, "native_tutorial_high", "ca-app-pub-3940256099942544/2247696110")
+
+            addConstantTo(owner, "native_language_setting", "ca-app-pub-3940256099942544/2247696110")
         }
     }
 
@@ -155,7 +157,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-database'
     implementation project(path: ':MTGLibs')
     implementation project(path: ':custom_seekbar')
-    implementation project(path: ':pageindicatorview')
 
     implementation('com.akexorcist:localization:1.2.10') {
         exclude group: 'androidx.core', module: 'core'
@@ -181,7 +182,7 @@ dependencies {
 //    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
 
-//    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
 
     //fb sdk
 //    implementation 'com.facebook.android:facebook-android-sdk:[4,5]'

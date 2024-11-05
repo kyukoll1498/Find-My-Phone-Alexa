@@ -33,10 +33,7 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
     private var languageAdapter: LanguageAdapter? = null
     private var itemLanguage: ItemLanguage? = null
     private var appPreferences = AppPreferences.instance
-    private val lfo1NativeAds = arrayListOf(AdIds.lfo1_native_high, AdIds.lfo1_native)
-    private val lfo2NativeAds = arrayListOf(AdIds.lfo2_native_high2, AdIds.lfo2_native)
     private val lfo2NativeAdsReload = arrayListOf(AdIds.lfo2_native_high, AdIds.lfo2_native)
-    private val ob1NativeAds = arrayListOf(AdIds.ob1_native_high, AdIds.ob1_native)
     private var isFirstResume = true
 
     override fun initView() {

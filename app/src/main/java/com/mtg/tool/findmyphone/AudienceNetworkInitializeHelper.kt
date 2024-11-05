@@ -1,39 +1,37 @@
-package com.mtg.tool.findmyphone;
+package com.mtg.tool.findmyphone
+
+import android.content.Context
+import android.util.Log
+import com.facebook.ads.AdSettings
+import com.facebook.ads.AudienceNetworkAds
 
 
-import static com.mtg.tool.findmyphone.BuildConfig.DEBUG;
+class AudienceNetworkInitializeHelper
 
-import android.content.Context;
-import android.util.Log;
-
-import com.facebook.ads.AdSettings;
-import com.facebook.ads.AudienceNetworkAds;
-
-public class AudienceNetworkInitializeHelper
-        implements AudienceNetworkAds.InitListener {
-
-    /**
-     * It's recommended to call this method from Application.onCreate().
-     * Otherwise you can call it from all Activity.onCreate()
-     * methods for Activities that contain ads.
-     *
-     * @param context Application or Activity.
-     */
-    static void initialize(Context context) {
-        if (!AudienceNetworkAds.isInitialized(context)) {
-            if (DEBUG) {
-                AdSettings.turnOnSDKDebugger(context);
-            }
-
-            AudienceNetworkAds
-                    .buildInitSettings(context)
-                    .withInitListener(new AudienceNetworkInitializeHelper())
-                    .initialize();
-        }
+    : AudienceNetworkAds.InitListener {
+    override fun onInitialized(result: AudienceNetworkAds.InitResult) {
+        Log.d(AudienceNetworkAds.TAG, result.message)
     }
 
-    @Override
-    public void onInitialized(AudienceNetworkAds.InitResult result) {
-        Log.d(AudienceNetworkAds.TAG, result.getMessage());
+    companion object {
+        /**
+         * It's recommended to call this method from Application.onCreate().
+         * Otherwise you can call it from all Activity.onCreate()
+         * methods for Activities that contain ads.
+         *
+         * @param context Application or Activity.
+         */
+        fun initialize(context: Context?) {
+            if (!AudienceNetworkAds.isInitialized(context)) {
+                if (BuildConfig.DEBUG) {
+                    AdSettings.turnOnSDKDebugger(context)
+                }
+
+                AudienceNetworkAds
+                    .buildInitSettings(context)
+                    .withInitListener(AudienceNetworkInitializeHelper())
+                    .initialize()
+            }
+        }
     }
 }
