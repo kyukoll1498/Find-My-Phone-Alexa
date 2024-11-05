@@ -153,7 +153,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
-    implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.firebase:firebase-config:21.1.1'
     implementation 'com.google.firebase:firebase-database'
     implementation project(path: ':MTGLibs')
     implementation project(path: ':custom_seekbar')
