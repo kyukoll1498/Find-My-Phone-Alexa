@@ -176,6 +176,9 @@ class OnBoardFragment(
                             override fun onNativeAds(nativeAd: NativeAd?) {
                                 super.onNativeAds(nativeAd)
                                 if (isAdded) {
+
+                                    (requireActivity() as OnBoardActivity).hideIndicatorView()
+
                                     AdmobManager.getInstance().showNative(
                                         safeContext,
                                         nativeAd,
@@ -232,6 +235,7 @@ class OnBoardFragment(
     }
 
     private fun showDefaultScreen() {
+        binding?.llMain?.show()
         binding?.imgInside?.show()
         binding?.imgInside?.setImageResource(idImage)
         binding?.tvInside?.text = getString(idText)
