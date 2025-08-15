@@ -15,6 +15,7 @@ import com.mtg.tool.findmyphone.REQUEST_MICRO_PERMISSION_CODE
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityPermissionBinding
+import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.constant.Constants
 
@@ -39,7 +40,7 @@ class PermissionActivity :
 
         binding.llContinue.setOnClickListener {
             logEvent("permission_skip_click")
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HomeFragment::class.java)
             startActivity(intent)
             finish()
         }
@@ -90,7 +91,7 @@ class PermissionActivity :
             } else {
                 // Auto checked sbPermission when allow permission record micro
                 turnOnSwitchButton()
-                MainActivity.start(this)
+                HomeFragment.start(this)
                 finish()
 //                hasMicrophonePermission = true
 
@@ -119,11 +120,12 @@ class PermissionActivity :
         if (isFirstResume) {
             isFirstResume = false
         } else {
-            AdmobManager.getInstance().preloadAlternateNative(this, onb6NativeAds, object: AdCallback(){
+            AdmobManager.getInstance().preloadAlternateNative(this, onb6NativeAds, object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
                     AdmobManager.getInstance().showNative(this@PermissionActivity, nativeAd, binding.frAd, AdmobManager.NativeAdType.BIG)
                 }
+
                 override fun onAdImpression() {
                     super.onAdImpression()
                     logEvent("onboard6_native_view")

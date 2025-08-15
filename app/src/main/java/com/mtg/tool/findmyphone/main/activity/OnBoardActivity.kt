@@ -15,6 +15,7 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.base.ViewPagerAddFragmentsAdapter
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.databinding.ActivityOnboardingBinding
+import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 import com.mtg.tool.findmyphone.main.fragment.OnBoardFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.hide
@@ -125,7 +126,7 @@ class OnBoardActivity :
             adapter.apply {
                 addFrag(OnBoardFragment(0, R.drawable.img_inside_1, R.string.text_on_boarding_1))
                 addFrag(OnBoardFragment(1, R.drawable.img_inside_2, R.string.text_on_boarding_2))
-                addFrag(OnBoardFragment(2, R.drawable.img_inside_df_fullscreen, R.string.text_on_boarding_df_fullscreen))
+//                addFrag(OnBoardFragment(2, R.drawable.img_inside_df_fullscreen, R.string.text_on_boarding_df_fullscreen))
                 addFrag(OnBoardFragment(3, R.drawable.img_inside_3, R.string.text_on_boarding_3))
             }
 
@@ -149,18 +150,18 @@ class OnBoardActivity :
                     binding.indicatorView.visibility = View.VISIBLE
                     binding.tvNext.visibility = View.VISIBLE
                 }
+//                if (position == 2) {
+//                    if (!RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard
+//                        || !InternetUtil.isNetworkAvailable(this@OnBoardActivity)
+//                    ) {
+//                        binding.indicatorView.visibility = View.VISIBLE
+//                        binding.tvNext.visibility = View.VISIBLE
+//                    } else{
+//                        binding.indicatorView.visibility = View.GONE
+//                        binding.tvNext.visibility = View.GONE
+//                    }
+//                }
                 if (position == 2) {
-                    if (!RemoteConfigManager.instance!!.isShowNativeFullScreenOnboard
-                        || !InternetUtil.isNetworkAvailable(this@OnBoardActivity)
-                    ) {
-                        binding.indicatorView.visibility = View.VISIBLE
-                        binding.tvNext.visibility = View.VISIBLE
-                    } else{
-                        binding.indicatorView.visibility = View.GONE
-                        binding.tvNext.visibility = View.GONE
-                    }
-                }
-                if (position == 3) {
                     binding.indicatorView.visibility = View.VISIBLE
                     binding.tvNext.visibility = View.VISIBLE
                 }
@@ -174,7 +175,7 @@ class OnBoardActivity :
         binding.tvNext.setOnClickListener {
             logEvent("onboard" + (binding.viewpagerOnboard.currentItem + 2) + "_next_click")
             if (binding.viewpagerOnboard.currentItem == (binding.viewpagerOnboard.adapter as ViewPagerAddFragmentsAdapter).itemCount - 1) {
-                startActivity(Intent(this@OnBoardActivity, PermissionActivity::class.java))
+                startActivity(Intent(this@OnBoardActivity, HomeFragment::class.java))
                 finish()
             } else {
                 binding.viewpagerOnboard.currentItem++

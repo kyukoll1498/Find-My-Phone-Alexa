@@ -37,8 +37,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/rb_check"
-        android:layout_width="@dimen/_16sdp"
-        android:layout_height="@dimen/_16sdp"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_checked"

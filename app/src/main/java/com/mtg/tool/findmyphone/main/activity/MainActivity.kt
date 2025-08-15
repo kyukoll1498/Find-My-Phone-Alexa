@@ -226,7 +226,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     private fun setupViewpager() {
         binding.viewpagerMain.apply {
             adapter = ViewPagerAddFragmentsMainAdapter(context, supportFragmentManager, lifecycle).apply {
-                addFrag(homeFragment)
+//                addFrag(homeFragment)
                 addFrag(SoundFragment())
                 addFrag(AddFragment())
                 addFrag(settingFragment)

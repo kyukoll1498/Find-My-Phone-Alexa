@@ -15,7 +15,7 @@ class ViewPagerAddFragmentsAdapter(
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    private var pageSize = 4
+    private var pageSize = 3
     val mFragmentList: MutableList<Fragment> = ArrayList()
 
     init {

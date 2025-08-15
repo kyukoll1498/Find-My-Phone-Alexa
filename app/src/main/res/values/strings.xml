@@ -16,9 +16,9 @@
     <string name="facebook_client_token" translatable="false">d60d6122f2f767c77c250041594d6487</string>
     <string name="text_on_boarding_df_fullscreen" translatable="false"></string>
 
-    <string name="text_on_boarding_1">Easily find your lost phone by clapping</string>
-    <string name="text_on_boarding_2">Various sound effects to choose</string>
-    <string name="text_on_boarding_3">Clap to turn on flashlight in the dark</string>
+    <string name="text_on_boarding_1">Find your phone quickly</string>
+    <string name="text_on_boarding_2">Looking for your phone just clap</string>
+    <string name="text_on_boarding_3">Very easy for use</string>
     <string name="get_started">Get Started</string>
     <string name="this_action_can_contain_ads">This action can contain ads…</string>
     <string name="do_you_like_our_app">Do you like our App?</string>
@@ -150,4 +150,19 @@
     <string name="exit">Exit</string>
     <string name="txt_rate_us">Rate us</string>
     <string name="save_successfully">Save successfully!</string>
+    <string name="ai_clap_finder">AI Clap Finder</string>
+    <string name="police_1">Police 1</string>
+    <string name="alarm_1">Alarm 1</string>
+    <string name="dog">Dog</string>
+    <string name="laughing">Laughing</string>
+    <string name="ghost_1">Ghost 1</string>
+    <string name="lion">Lion</string>
+    <string name="air_horn">Air horn</string>
+    <string name="devil">Devil</string>
+    <string name="fire_alarm">Fire Alarm</string>
+    <string name="grenade">Granade</string>
+    <string name="gun">Gun</string>
+    <string name="ambulance">Ambulance</string>
+    <string name="create_your_own_sounds">Create your own sounds</string>
+    <string name="see_more_sounds">See more sounds</string>
 </resources>

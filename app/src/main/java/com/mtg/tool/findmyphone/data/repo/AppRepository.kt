@@ -4,7 +4,7 @@ import android.content.Context
 import com.mtg.tool.findmyphone.ADS_SOUND_TYPE
 import com.mtg.tool.findmyphone.DEFAULT_SOUND_TYPE
 import com.mtg.tool.findmyphone.R
-import com.mtg.tool.findmyphone.data.db.RoomDatabase
+import com.mtg.tool.findmyphone.data.db.RoomSoundDB
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import java.io.File
 
@@ -25,7 +25,7 @@ object AppRepository {
                 context.getString(R.string.dog_barking),
                 0,
                 R.drawable.image_dog_barking,
-                R.drawable.avatar_dog_barking,
+                R.drawable.avt_dog,
                 "file:///android_asset/dog_barking.mp3"
             ),
             SoundItem(
@@ -82,7 +82,7 @@ object AppRepository {
                 context.getString(R.string.police_whistle),
                 0,
                 R.drawable.image_police_whistle,
-                R.drawable.avatar_police_whistle,
+                R.drawable.avt_police_1,
                 "file:///android_asset/police_whistle.mp3"
             ),
             SoundItem(
@@ -96,15 +96,118 @@ object AppRepository {
         )
     }
 
+    fun getSoundMain(context: Context): List<SoundItem> {
+        val listItem = arrayListOf(
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.police_1),
+                0,
+                R.drawable.avt_police_1,
+                R.drawable.avt_police_1,
+                "file:///android_asset/police_1.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.alarm_1),
+                0,
+                R.drawable.avt_alarm_1,
+                R.drawable.avt_alarm_1,
+                "file:///android_asset/alarm_1.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.dog),
+                0,
+                R.drawable.avt_dog,
+                R.drawable.avt_dog,
+                "file:///android_asset/dog.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.laughing),
+                0,
+                R.drawable.avt_laughing,
+                R.drawable.avt_laughing,
+                "file:///android_asset/whistle.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.ghost_1),
+                0,
+                R.drawable.avt_ghost_1,
+                R.drawable.avt_ghost_1,
+                "file:///android_asset/ghost_1.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.lion),
+                0,
+                R.drawable.avt_lion,
+                R.drawable.avt_lion,
+                "file:///android_asset/lion.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.air_horn),
+                0,
+                R.drawable.avt_air_horn,
+                R.drawable.avt_air_horn,
+                "file:///android_asset/air_horn.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.devil),
+                0,
+                R.drawable.avt_devil,
+                R.drawable.avt_devil,
+                "file:///android_asset/devil.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.fire_alarm),
+                0,
+                R.drawable.avt_fire_alarm,
+                R.drawable.avt_fire_alarm,
+                "file:///android_asset/fire_alarm.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.grenade),
+                0,
+                R.drawable.avt_grenade,
+                R.drawable.avt_grenade,
+                "file:///android_asset/grenade.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.gun),
+                0,
+                R.drawable.avt_gun,
+                R.drawable.avt_gun,
+                "file:///android_asset/gun.mp3"
+            ),
+            SoundItem(
+                DEFAULT_SOUND_TYPE,
+                context.getString(R.string.ambulance),
+                0,
+                R.drawable.avt_ambulance,
+                R.drawable.avt_ambulance,
+                "file:///android_asset/ambulance.mp3"
+            )
+        )
+
+        return listItem
+    }
+
     fun getAllSoundImport(): MutableList<SoundItem> {
         if (listAllSoundImport.isEmpty()) {
-            RoomDatabase.getDatabase()?.soundDao()?.getAllSound()
+            RoomSoundDB.getDatabase()?.soundDao()?.getAllSound()
                 ?.let { listAllSoundImport.addAll(it) }
         }
         return listAllSoundImport
     }
 
-    fun checkHasSound(name: String): Boolean{
+    fun checkHasSound(name: String): Boolean {
         for (soundItem in listAllSoundImport) {
             if (soundItem.name == name) {
                 return true
@@ -115,18 +218,19 @@ object AppRepository {
 
     fun insertSound(soundItem: SoundItem) {
         listAllSoundImport.add(soundItem)
-        RoomDatabase.getDatabase()?.soundDao()?.insert(soundItem)
+        RoomSoundDB.getDatabase()?.soundDao()?.insert(soundItem)
     }
 
     fun updateName(path: String, newName: String) {
         val soundItem = listAllSoundImport.find { soundItem -> soundItem.soundPath == path }
         soundItem?.name = newName
-        RoomDatabase.getDatabase()?.soundDao()?.updateName(path, newName)
+        RoomSoundDB.getDatabase()?.soundDao()?.updateName(path, newName)
     }
+
     fun deleteSound(path: String) {
         val soundItem = listAllSoundImport.find { soundItem -> soundItem.soundPath == path }
         File(path).delete()
         listAllSoundImport.remove(soundItem)
-        RoomDatabase.getDatabase()?.soundDao()?.delete(path)
+        RoomSoundDB.getDatabase()?.soundDao()?.delete(path)
     }
 }

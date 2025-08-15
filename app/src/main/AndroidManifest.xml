@@ -23,32 +23,33 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!--SD card read/write permissions, not necessary -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <!--Phone state permissions, not necessary -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_icon_app"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/ic_icon_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindMyPhone"
-        tools:targetApi="31"
-        android:requestLegacyExternalStorage="true">
+        tools:targetApi="31">
         <activity
             android:name=".main.activity.InterestActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:hardwareAccelerated="true"/>
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.SettingActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
@@ -64,8 +65,8 @@
         <activity
             android:name=".main.activity.PermissionActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:hardwareAccelerated="true"/>
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".main.clap.VocalService"
@@ -79,17 +80,16 @@
         <activity
             android:name=".main.activity.MainActivity"
             android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
             android:hardwareAccelerated="true"
-            />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.OnBoardActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activity.SplashActivity"
+            android:name=".main.fragment.HomeFragment"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -100,46 +100,47 @@
         </activity>
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AdsAppTheme"
-            tools:replace="android:theme"
-            android:screenOrientation="portrait"/>
+            tools:replace="android:theme" />
         <activity
             android:name=".main.activity.LanguageActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.LFO2Activity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.Language2Activity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.PlaySoundActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.activity.CreateSoundActivity"
             android:exported="true"
+            android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-            android:hardwareAccelerated="true" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".main.activity.RecordAudioActivity"
             android:exported="true"
+            android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-            android:hardwareAccelerated="true" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".main.activity.HowToUseActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="${APP_ID}"
@@ -150,13 +151,19 @@
         <meta-data
             android:name="com.google.android.gms.ads.flag.NATIVE_AD_DEBUGGER_ENABLED"
             android:value="false" />
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+        <activity android:name="com.mtg.tool.findmyphone.main.activity.SplashActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

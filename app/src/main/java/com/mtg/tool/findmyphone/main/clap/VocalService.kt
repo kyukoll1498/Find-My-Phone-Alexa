@@ -18,8 +18,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.R
-import com.mtg.tool.findmyphone.main.activity.MainActivity
-import java.util.Locale
+import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 
 
 @Suppress("DEPRECATION")
@@ -128,7 +127,7 @@ class VocalService : Service() {
             val notificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-            val intentNotificationAction = Intent(this, MainActivity::class.java)
+            val intentNotificationAction = Intent(this, HomeFragment::class.java)
             intentNotificationAction.action = ACTION_NOTIFICATION_CLICKED_SERVICE
             val pendingIntentNotificationAction = PendingIntent.getActivity(
                 this,

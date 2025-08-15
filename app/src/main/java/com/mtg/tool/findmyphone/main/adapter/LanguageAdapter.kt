@@ -12,6 +12,7 @@ import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.databinding.ItemLanguageBinding
 import com.mtg.tool.findmyphone.utils.constant.Constants
 import com.mtg.tool.findmyphone.utils.setSize
+import androidx.core.graphics.toColorInt
 
 class LanguageAdapter(mList: List<ItemLanguage?>?, context: Context?) :
     BaseAdapter<ItemLanguage?>(mList!!, context) {
@@ -44,13 +45,13 @@ class LanguageAdapter(mList: List<ItemLanguage?>?, context: Context?) :
             binding.tvLanguage.text = itemLanguage.name
             binding.rbCheck.setImageResource(itemLanguage.imgSelect)
             binding.tvLanguage.setSize(16)
-//            if (itemLanguage.colorBackground?.isNotEmpty() == true) {
+            if (itemLanguage.colorBackground?.isNotEmpty() == true) {
 //                itemView.backgroundTintList = ColorStateList.valueOf(Color.parseColor(itemLanguage.colorBackground))
-//                binding.tvLanguage.setTextColor(Color.parseColor("#FFFFFF"))
-//            } else {
+//                binding.tvLanguage.setTextColor("#FFFFFF".toColorInt())
+            } else {
 //                itemView.backgroundTintList = null
-//                binding.tvLanguage.setTextColor(Color.parseColor("#221F29"))
-//            }
+//                binding.tvLanguage.setTextColor("#221F29".toColorInt())
+            }
         }
 
         override fun onClick(v: View) {

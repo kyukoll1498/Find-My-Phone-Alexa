@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <androidx.compose.ui.platform.ComposeView
-        android:id="@+id/compose_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/fr_ad"
-        app:layout_constraintTop_toBottomOf="@+id/layout_top" />
+<!--    <androidx.compose.ui.platform.ComposeView-->
+<!--        android:id="@+id/compose_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/fr_ad"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/layout_top" />-->
 
     <FrameLayout
         android:id="@+id/fr_ad"

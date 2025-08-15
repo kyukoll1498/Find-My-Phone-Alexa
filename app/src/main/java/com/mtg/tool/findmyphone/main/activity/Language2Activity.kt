@@ -21,6 +21,7 @@ import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityLanguageBinding
 import com.mtg.tool.findmyphone.main.adapter.LanguageAdapter
+import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountry
@@ -102,10 +103,11 @@ class Language2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguage
             setLanguageWithoutNotification(itemLanguage!!.languageToLoad)
 
             if (!SharedPrefs.getBoolean(this, Constants.SKIP_ONBOARD)) {
-                InterestActivity.start(this)
+//                InterestActivity.start(this)
+                OnBoardActivity.start(this)
                 finish()
             } else {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, HomeFragment::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)

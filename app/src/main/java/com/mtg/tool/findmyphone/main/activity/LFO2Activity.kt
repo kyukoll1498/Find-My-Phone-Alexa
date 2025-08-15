@@ -21,12 +21,14 @@ import com.mtg.tool.findmyphone.data.model.ItemLanguage
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivityLanguageBinding
 import com.mtg.tool.findmyphone.main.adapter.LanguageAdapter
+import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.LanguageUtils
 import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountry
 import com.mtg.tool.findmyphone.utils.LanguageUtils.listCountryDefault
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
+import com.mtg.tool.findmyphone.utils.show
 
 class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBinding::inflate) {
     private var mList: List<ItemLanguage> = ArrayList()
@@ -37,6 +39,7 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
     private var isFirstResume = true
 
     override fun initView() {
+        binding.ivDone.show()
         logEvent("LFO2_view")
         if (AdCache.getInstance().lfo2NativeHigh != null) {
             AdmobManager.getInstance().showNative(
@@ -155,10 +158,11 @@ class LFO2Activity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageBindi
             setLanguageWithoutNotification(itemLanguage!!.languageToLoad)
 
             if (!SharedPrefs.getBoolean(this, Constants.SKIP_ONBOARD)) {
-                InterestActivity.start(this)
+//                InterestActivity.start(this)
+                OnBoardActivity.start(this)
                 finish()
             } else {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, HomeFragment::class.java)
                 startActivity(intent)
                 finish()
             }

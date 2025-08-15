@@ -5,31 +5,57 @@
     android:id="@+id/vuive"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <FrameLayout
         android:id="@+id/fr_ad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_1sdp"
         android:layout_marginBottom="0dp"
         android:visibility="invisible"
-        android:layout_margin="@dimen/_1sdp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/layout_banner_control" />
-    </FrameLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_mono_semibold"
+            android:paddingStart="@dimen/_12sdp"
+            android:text="@string/ai_clap_finder"
+            android:textColor="#15508F"
+            android:textSize="@dimen/_18sdp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:src="@drawable/ic_settings" />
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/fr_ad"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        app:layout_constraintBottom_toTopOf="@id/ll_more_sound"
+        app:layout_constraintTop_toBottomOf="@+id/ll_toolbar">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layoutDirection="ltr"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -75,7 +101,7 @@
                         android:id="@+id/iv_avatar"
                         android:layout_width="@dimen/_65sdp"
                         android:layout_height="@dimen/_65sdp"
-                        android:src="@drawable/avatar_cat_meowing"
+                        android:src="@drawable/avatar_turn_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +153,7 @@
                 android:text="audio1"
                 android:textColor="#979797"
                 android:textSize="@dimen/_14sdp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_center" />
@@ -136,23 +163,23 @@
                 android:id="@+id/txt_inactive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/roboto_mono_semibold"
                 android:text="@string/tap_to_inactive"
-                android:textColor="#404040"
+                android:textColor="#212121"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+                app:layout_constraintTop_toBottomOf="@+id/cl_center" />
 
             <TextView
                 android:id="@+id/txt_active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/roboto_mono_semibold"
                 android:text="@string/tap_to_active"
-                android:textColor="#404040"
+                android:textColor="@color/color_212121"
                 android:textSize="@dimen/_16sdp"
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/txt_inactive"
                 app:layout_constraintEnd_toEndOf="@id/txt_inactive"
                 app:layout_constraintStart_toStartOf="@id/txt_inactive"
@@ -173,7 +200,7 @@
                 android:textColor="#7E7E7E"
                 android:textSize="@dimen/_12sdp"
                 android:translationY="-2.52sp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_active" />
@@ -186,7 +213,7 @@
                 android:background="@drawable/frame_guide"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/tv_inactive"
                 app:layout_constraintEnd_toEndOf="@id/tv_inactive"
                 app:layout_constraintStart_toStartOf="@id/tv_inactive"
@@ -204,9 +231,83 @@
                     android:textColor="#7E7E7E"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_sound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/txt_inactive"
+                app:spanCount="3"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_sound" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <LinearLayout
+        android:id="@+id/ll_more_sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:background="@drawable/bg_create_sound"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_12sdp"
+        app:layout_constraintBottom_toTopOf="@id/ll_create_sound">
 
+        <ImageView
+            android:layout_width="@dimen/_88sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:src="@drawable/ic_img_more" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_mono_semibold"
+            android:text="@string/see_more_sounds"
+            android:textColor="@color/color_212121"
+            android:textSize="@dimen/_14sdp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next_home" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_create_sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:background="@drawable/bg_create_sound"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_head_phone" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_mono_semibold"
+            android:text="@string/create_your_own_sounds"
+            android:textColor="@color/color_212121"
+            android:textSize="@dimen/_14sdp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next_home" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,3 +2,4 @@ rootProject.name = "FindMyPhone3"
 include ':app'
 include ':custom_seekbar'
 include ':MTGLibs'
+include ':pageindicatorview'

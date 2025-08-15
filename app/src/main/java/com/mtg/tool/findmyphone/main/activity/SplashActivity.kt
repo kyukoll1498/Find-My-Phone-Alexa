@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.utils.InternetUtil
@@ -13,13 +13,14 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.AdCache
-import com.mtg.tool.findmyphone.AppSession
 import com.mtg.tool.findmyphone.AdIds
+import com.mtg.tool.findmyphone.AppSession
+import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
-import com.mtg.tool.findmyphone.consent_dialog.ConsentDialogManager
 import com.mtg.tool.findmyphone.consent_dialog.remote_config.RemoteConfigManager
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.ActivitySplashBinding
+import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 import com.mtg.tool.findmyphone.utils.Common
 import com.mtg.tool.findmyphone.utils.EventLogger
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
@@ -63,15 +64,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     override fun initView() {
-        Handler().postDelayed(Runnable {
-            canNextScreen.value = true
-        }, 15000)
+        Glide.with(this).load(R.drawable.img_bg_spash).into(binding.imgBackground)
+//        Handler().postDelayed(Runnable {
+//            canNextScreen.value = true
+//        }, 10000)
         AppSession.isCompletedInterSplash = false
         logEvent("splash_view")
-        ConsentDialogManager.instance?.showConsentDialogSplash(this) {
-            AdIds.updateIdAdsWithRemoteConfig()
-            handleAds()
-        }
+//        ConsentDialogManager.instance?.showConsentDialogSplash(this) {
+//            AdIds.updateIdAdsWithRemoteConfig()
+//            handleAds()
+//        }
+        handleAds()
         setImageBackground()
 //        Handler(Looper.getMainLooper()).postDelayed({ handleAds() }, 2000)
         EventLogger.getInstance()?.logEvent("open_splash")
@@ -87,32 +90,33 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     }
 
     private fun handleAds() {
-        try {
-            if (!appPreferences.isChooseLanguage) {
-//            1. preload lfo2_native_high
-                preloadNativeLanguage2()
-//            2 - 3. load alternate inter_splash_high, inter_splash
-                loadAlternateInter()
-//            4 - 5. load alternate banner_splash_high, banner_splash
-                loadAlternateBanner()
-            } else {
-                if (SharedPrefs.getBoolean(this, Constants.SKIP_ONBOARD)) {
-//            1 - 2. load alternate banner_splash_high, banner_splash
-                    loadAlternateBanner()
-//            3 - 4. load alternate inter_splash_high, inter_splash
-                    loadAlternateInter()
-                } else {
-//            1 - 2. preload onb1_native_high, onb1_native
-                    preloadNativeOb1()
-//            3 - 4. load alternate inter_splash_high, inter_splash
-                    loadAlternateInter()
-//            5 - 6. load alternate banner_splash_high, banner_splash
-                    loadAlternateBanner()
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+//        try {
+//            if (!appPreferences.isChooseLanguage) {
+////            1. preload lfo2_native_high
+//                preloadNativeLanguage2()
+////            2 - 3. load alternate inter_splash_high, inter_splash
+//                loadAlternateInter()
+////            4 - 5. load alternate banner_splash_high, banner_splash
+//                loadAlternateBanner()
+//            } else {
+//                if (SharedPrefs.getBoolean(this, Constants.SKIP_ONBOARD)) {
+////            1 - 2. load alternate banner_splash_high, banner_splash
+//                    loadAlternateBanner()
+////            3 - 4. load alternate inter_splash_high, inter_splash
+//                    loadAlternateInter()
+//                } else {
+////            1 - 2. preload onb1_native_high, onb1_native
+//                    preloadNativeOb1()
+////            3 - 4. load alternate inter_splash_high, inter_splash
+//                    loadAlternateInter()
+////            5 - 6. load alternate banner_splash_high, banner_splash
+//                    loadAlternateBanner()
+//                }
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+        Handler(mainLooper).postDelayed({ startMain() }, 4000)
     }
 
     private fun loadAlternateBanner() {
@@ -207,7 +211,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                         if (AdCache.getInstance().lfo2NativeHigh == null) {
 //                                      1. preload lfo2_native_high1
                             if (lfo2NativeHigh1Ads.isNotBlank()) {
-                                if (InternetUtil.isNetworkAvailable(mContext)){
+                                if (InternetUtil.isNetworkAvailable(mContext)) {
                                     AdmobManager.getInstance().preloadNative(
                                         this@SplashActivity,
                                         lfo2NativeHigh1Ads,
@@ -233,7 +237,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
                             }
                         }
 //                                    2. preload alternate lfo1_native_high, lfo1_native
-                        if (InternetUtil.isNetworkAvailable(mContext)){
+                        if (InternetUtil.isNetworkAvailable(mContext)) {
                             AdmobManager.getInstance().preloadAlternateNative(
                                 this@SplashActivity,
                                 lfo1NativeAds,
@@ -353,13 +357,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         } else if (!SharedPrefs.getBoolean(this, Constants.SKIP_ONBOARD)) {
-            val intent = Intent(this, InterestActivity::class.java)
+            val intent = Intent(this, OnBoardActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         } else {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HomeFragment::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

@@ -35,7 +35,8 @@ class OnBoardFragment(
 
 
     override fun initView() {
-        binding?.imgInside?.setImageResource(idImage)
+//        binding?.imgInside?.setImageResource(idImage)
+        Glide.with(requireContext()).load(idImage).into(binding!!.imgInside)
         binding?.tvInside?.text = getString(idText)
 
         when (position) {

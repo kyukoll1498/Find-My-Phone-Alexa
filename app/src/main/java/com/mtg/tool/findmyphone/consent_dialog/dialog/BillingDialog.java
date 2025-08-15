@@ -1,8 +1,8 @@
 package com.mtg.tool.findmyphone.consent_dialog.dialog;
 
 
-import static com.mtg.tool.findmyphone.MyApplication.PRODUCT_LIFETIME;
-import static com.mtg.tool.findmyphone.MyApplication.PRODUCT_SUBS;
+import static com.mtg.tool.findmyphone.App.PRODUCT_LIFETIME;
+import static com.mtg.tool.findmyphone.App.PRODUCT_SUBS;
 import static com.mtg.tool.findmyphone.utils.constant.Constants.KEY_CANCEL;
 
 import android.app.ProgressDialog;
