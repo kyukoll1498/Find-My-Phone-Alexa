@@ -229,7 +229,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 //                addFrag(homeFragment)
 //                addFrag(SoundFragment())
                 addFrag(AddFragment())
-                addFrag(settingFragment)
+//                addFrag(settingFragment)
             }
         }
 //        binding.viewpagerMain.offscreenPageLimit = 2
