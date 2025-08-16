@@ -49,9 +49,18 @@ class CreateSoundActivity :
             finish()
         }
     }
+
+    companion object {
+        @JvmStatic
+        fun start(context: Context) {
+            val starter = Intent(context, CreateSoundActivity::class.java)
+            context.startActivity(starter)
+        }
+    }
+
     private lateinit var currentSoundItem: SoundItem
     private val listNative by lazy {
-        arrayListOf(AdIds.native_add_high,AdIds.native_add)
+        arrayListOf(AdIds.native_add_high, AdIds.native_add)
     }
 
     override fun initView() {
@@ -63,11 +72,11 @@ class CreateSoundActivity :
     }
 
     private fun loadAlternateNative() {
-        Log.d("Refresh","Create Refresh")
+        Log.d("Refresh", "Create Refresh")
         AdmobManager.getInstance().preloadAlternateNative(
             this,
             listNative,
-            object : AdCallback(){
+            object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
                     AdmobManager.getInstance().showNative(
@@ -76,8 +85,9 @@ class CreateSoundActivity :
                         binding.frAd,
                         AdmobManager.NativeAdType.BIG
                     )
-                    Log.d("Refresh","ShowRefreshHowToUse")
+                    Log.d("Refresh", "ShowRefreshHowToUse")
                 }
+
                 override fun onAdImpression() {
                     super.onAdImpression()
                     logEvent("record_sound_native_view")
@@ -93,12 +103,12 @@ class CreateSoundActivity :
 
     override fun onResume() {
         super.onResume()
-        if (!AppOpenManager.getInstance().isShowingAd){
+        if (!AppOpenManager.getInstance().isShowingAd) {
             loadAlternateNative()
         }
         if (binding.tvAppName.text == getString(R.string.import_audio)) {
             logEvent("import_view")
-        } else{
+        } else {
             logEvent("create_view")
         }
     }

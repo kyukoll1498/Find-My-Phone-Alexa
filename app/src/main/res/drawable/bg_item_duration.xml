@@ -3,6 +3,7 @@
     <item android:state_selected="false">
         <shape>
             <solid android:color="@color/white" />
+            <stroke android:width="@dimen/_1sdp" android:color="#aaaaaa" />
             <corners android:radius="@dimen/_8sdp" />
         </shape>
     </item>
@@ -10,7 +11,7 @@
         <shape>
             <solid android:color="@color/white" />
             <corners android:radius="@dimen/_8sdp" />
-            <gradient android:startColor="#3CBAE3" android:endColor="#25D9C0"/>
+            <stroke android:width="@dimen/_1sdp" android:color="@color/color_005eff" />
         </shape>
     </item>
 </selector>

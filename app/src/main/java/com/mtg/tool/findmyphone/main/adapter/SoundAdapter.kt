@@ -1,7 +1,6 @@
 package com.mtg.tool.findmyphone.main.adapter
 
 import android.app.Activity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
-import com.common.control.manager.AppOpenManager
 import com.google.android.gms.ads.nativead.NativeAd
 import com.mtg.tool.findmyphone.ADAPTER_ADS_TYPE
 import com.mtg.tool.findmyphone.ADAPTER_ITEM_TYPE
@@ -22,9 +20,12 @@ import com.mtg.tool.findmyphone.base.BaseAdapter
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.databinding.ItemNativeHolderBinding
 import com.mtg.tool.findmyphone.databinding.ItemSoundBinding
+import com.mtg.tool.findmyphone.utils.hide
+import com.mtg.tool.findmyphone.utils.show
 
-class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?, private val isFirstLoad: Boolean? = null) :
-    BaseAdapter<SoundItem?>(mList!!, activity) {
+class SoundAdapter(
+    mList: List<SoundItem?>?, activity: Activity?, private val isFirstLoad: Boolean? = null, private val showItemName: Boolean = true, private var itemWidth: Int = -1
+) : BaseAdapter<SoundItem?>(mList!!, activity) {
     private var adContainer: FrameLayout? = null
     private val nativeAds by lazy {
         arrayListOf(AdIds.native_sound_high, AdIds.native_sound)
@@ -32,17 +33,13 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?, private val is
 
     override fun viewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ADAPTER_ADS_TYPE) {
-            val binding =
-                ItemNativeHolderBinding.inflate(
-                    LayoutInflater.from(parent!!.context),
-                    parent,
-                    false
-                )
+            val binding = ItemNativeHolderBinding.inflate(
+                LayoutInflater.from(parent!!.context), parent, false
+            )
             adContainer = binding.frAds
             NativeViewHolder(binding)
         } else {
-            val binding =
-                ItemSoundBinding.inflate(LayoutInflater.from(parent!!.context), parent, false)
+            val binding = ItemSoundBinding.inflate(LayoutInflater.from(parent!!.context), parent, false)
             SoundViewHolder(binding)
         }
     }
@@ -50,30 +47,26 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?, private val is
     fun reloadNativeAd() {
         adContainer?.let { container: FrameLayout ->
             AdmobManager.getInstance().preloadAlternateNative(
-                context,
-                nativeAds,
-                object : AdCallback() {
+                context, nativeAds, object : AdCallback() {
                     override fun onNativeAds(nativeAd: NativeAd?) {
                         super.onNativeAds(nativeAd)
                         AdmobManager.getInstance().showNative(context, nativeAd, container, AdmobManager.NativeAdType.MEDIUM)
                     }
+
                     override fun onAdImpression() {
                         super.onAdImpression()
                         com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
-                            context,
-                            "sound_native_view"
+                            context, "sound_native_view"
                         )
                     }
 
                     override fun onAdClicked() {
                         super.onAdClicked()
                         com.mtg.tool.findmyphone.consent_dialog.base.EventLogger.firebaseLog(
-                            context,
-                            "sound_native_click"
+                            context, "sound_native_click"
                         )
                     }
-                }
-            )
+                })
         }
     }
 
@@ -91,8 +84,7 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?, private val is
         }
     }
 
-    private inner class SoundViewHolder(private val binding: ItemSoundBinding) :
-        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    private inner class SoundViewHolder(private val binding: ItemSoundBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         init {
             itemView.setOnClickListener(this)
         }
@@ -108,6 +100,27 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?, private val is
                 binding.cardImage.visibility = View.GONE
                 binding.ivImage.visibility = View.VISIBLE
             }
+            if (soundItem.isSelected) {
+                binding.ctlContainer.setBackgroundResource(R.drawable.bg_selected_sound)
+                binding.ivChecked.show()
+            } else {
+                binding.ctlContainer.setBackgroundResource(R.drawable.bg_unselected_sound)
+                binding.ivChecked.hide()
+            }
+
+            if (showItemName) {
+                binding.tvName.visibility = View.VISIBLE
+                binding.tvName.text = soundItem.name
+            } else {
+                binding.tvName.visibility = View.GONE
+            }
+
+            if (itemWidth > 0) {
+                val layoutParams = itemView.layoutParams
+                layoutParams.width = itemWidth
+                itemView.layoutParams = layoutParams
+            }
+
             binding.tvName.text = soundItem.name
         }
 
@@ -116,8 +129,7 @@ class SoundAdapter(mList: List<SoundItem?>?, activity: Activity?, private val is
         }
     }
 
-    inner class NativeViewHolder(binding: ItemNativeHolderBinding) :
-        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    inner class NativeViewHolder(binding: ItemNativeHolderBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         init {
             if (isFirstLoad == true) {
                 reloadNativeAd()

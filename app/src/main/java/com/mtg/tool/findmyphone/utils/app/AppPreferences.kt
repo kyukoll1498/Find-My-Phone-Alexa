@@ -102,9 +102,11 @@ class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
         }
     inline var currentIndexLanguage: Int
         get() {
-            return getInt(KEY_CURRENT_IDX_LANGUAGE, LanguageUtils.listCountryDefault.indexOf(
-                LanguageUtils.getRemoteConfigListCountry()[1]
-            ))
+            return getInt(
+                KEY_CURRENT_IDX_LANGUAGE, LanguageUtils.listCountryDefault.indexOf(
+                    LanguageUtils.getRemoteConfigListCountry()[1]
+                )
+            )
         }
         set(value) {
             putInt(KEY_CURRENT_IDX_LANGUAGE, value)

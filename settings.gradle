@@ -1,4 +1,4 @@
-rootProject.name = "FindMyPhone3"
+rootProject.name = "FindMyPhoneAlexa"
 include ':app'
 include ':custom_seekbar'
 include ':MTGLibs'

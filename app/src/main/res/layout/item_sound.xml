@@ -21,6 +21,7 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="@dimen/_4sdp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -63,6 +64,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/roboto_mono"
         android:gravity="center"
+        android:layout_marginTop="@dimen/_minus8sdp"
         android:paddingBottom="@dimen/_4sdp"
         android:singleLine="true"
         android:text="Cat Meowing"
@@ -72,10 +74,11 @@
         tools:layout_editor_absoluteX="7dp" />
 
     <ImageView
+        android:id="@+id/iv_checked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
         android:src="@drawable/ic_selected_sound"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

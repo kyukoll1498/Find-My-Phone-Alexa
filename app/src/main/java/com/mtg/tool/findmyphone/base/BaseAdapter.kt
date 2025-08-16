@@ -35,4 +35,8 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mList.size
     }
 
+    fun submitList(mList: List<T>) {
+        this.mList = mList
+        notifyDataSetChanged()
+    }
 }

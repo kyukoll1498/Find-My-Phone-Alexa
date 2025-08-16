@@ -31,6 +31,7 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
+import com.mtg.tool.findmyphone.main.activity.CreateSoundActivity
 import com.mtg.tool.findmyphone.main.activity.PlaySoundActivity
 import com.mtg.tool.findmyphone.main.adapter.SoundAdapter
 import com.mtg.tool.findmyphone.main.clap.ClassesApp
@@ -74,9 +75,7 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
         BroadcastUtils.registerReceiver(
-            this,
-            finishDetectReceiver,
-            IntentFilter(ACTION_FINISH_DETECT)
+            this, finishDetectReceiver, IntentFilter(ACTION_FINISH_DETECT)
         )
         if (isMyServiceRunning()) {
             isCircleActiveVisible = !isCircleActiveVisible
@@ -104,9 +103,7 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     private fun setupList() {
-        val list = AppRepository.getSoundMain(this)
-        Log.d("SetupList", "list size = ${list.size}")
-        soundAdapter = SoundAdapter(list, this, isFirstLoad)
+        soundAdapter = SoundAdapter(AppRepository.getSoundMain(this), this, isFirstLoad)
         val gridLayoutManager = GridLayoutManager(this, 3)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
@@ -139,16 +136,11 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
 
     private fun loadAlternateNative() {
         AdmobManager.getInstance().preloadAlternateNative(
-            this@HomeFragment,
-            nativeAds,
-            object : AdCallback() {
+            this@HomeFragment, nativeAds, object : AdCallback() {
                 override fun onNativeAds(nativeAd: NativeAd?) {
                     super.onNativeAds(nativeAd)
                     AdmobManager.getInstance().showNative(
-                        this@HomeFragment,
-                        nativeAd,
-                        binding?.frAd,
-                        AdmobManager.NativeAdType.SMALL
+                        this@HomeFragment, nativeAd, binding?.frAd, AdmobManager.NativeAdType.SMALL
                     )
                     Log.e("HomeFragment", "Fragment not attached to context")
                 }
@@ -162,8 +154,7 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
                     super.onAdClicked()
                     logEvent("home_native_click")
                 }
-            }
-        )
+            })
     }
 
 
@@ -184,6 +175,13 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
                 e.printStackTrace()
             }
         }, 500)
+
+        val currentSound = AppPreferences.instance.currentSound
+        val sounds = AppRepository.getSoundMain(this)
+        for (item in sounds) {
+            item.isSelected = (item.soundPath == currentSound.soundPath)
+        }
+        soundAdapter.submitList(sounds)
     }
 
     private fun setUpResponsive() {
@@ -218,6 +216,12 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
     override fun addEvent() {
         initializePlayerAndStartRecording()
         checkCamFlash()
+        binding.llMoreSound.setOnClickListener {
+            SoundFragment.start(this)
+        }
+        binding.llCreateSound.setOnClickListener {
+            CreateSoundActivity.start(this)
+        }
     }
 
 //    override fun loadAds() {
@@ -231,11 +235,7 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
         val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager?
         audioManager!!.getStreamVolume(3)
         audioManager.setStreamVolume(
-            3,
-            (audioManager.getStreamMaxVolume(3)
-                .toFloat() * (classesApp!!.read(NotificationCompat.CATEGORY_PROGRESS, "50")!!
-                .toFloat() / 100.0f)).toInt(),
-            0
+            3, (audioManager.getStreamMaxVolume(3).toFloat() * (classesApp!!.read(NotificationCompat.CATEGORY_PROGRESS, "50")!!.toFloat() / 100.0f)).toInt(), 0
         )
     }
 
@@ -291,9 +291,7 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
             if (PermissionUtils.checkMicroPermission(this)) {
                 checkPermissionNotification()
             }
-            if (PermissionUtils.checkMicroPermission(this) &&
-                PermissionUtils.checkNotificationPermission(this)
-            ) {
+            if (PermissionUtils.checkMicroPermission(this) && PermissionUtils.checkNotificationPermission(this)) {
                 if (!isCircleActiveVisible) {
                     logEvent("home_activate_click")
                     isCircleActiveVisible = !isCircleActiveVisible
@@ -310,8 +308,7 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
                         classesApp!!.save("StopService", "0")
                         this@HomeFragment.let {
                             startForegroundService(
-                                it,
-                                Intent(this@HomeFragment, VocalService::class.java)
+                                it, Intent(this@HomeFragment, VocalService::class.java)
                             )
                         }
 //                        Toast.makeText(requireContext(), "Detection started", Toast.LENGTH_LONG).show()

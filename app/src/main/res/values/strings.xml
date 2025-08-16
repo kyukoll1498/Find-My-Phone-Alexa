@@ -55,8 +55,8 @@
     <string name="txt_inactive">Click to activate button and clap to find your phone</string>
     <string name="play">Play</string>
     <string name="pause">Pause</string>
-    <string name="volume">Volume</string>
-    <string name="duration">Duration</string>
+    <string name="volume">Volume:</string>
+    <string name="duration">Duration:</string>
     <string name="apply">Apply</string>
     <string name="flashlight">Flashlight</string>
     <string name="txt_default">Default</string>
@@ -165,4 +165,15 @@
     <string name="ambulance">Ambulance</string>
     <string name="create_your_own_sounds">Create your own sounds</string>
     <string name="see_more_sounds">See more sounds</string>
+    <string name="police_2">Police 2</string>
+    <string name="ghost_2">Ghost 2</string>
+    <string name="alarm_3">Alarm 3</string>
+    <string name="halloween">Halloween</string>
+    <string name="ghost_3">Ghost 3</string>
+    <string name="cat">Cat</string>
+    <string name="alarm_4">Alarm 4</string>
+    <string name="alarm_2">Alarm 2</string>
+    <string name="truck">Truck</string>
+    <string name="fart">Fart</string>
+    <string name="piano">Piano</string>
 </resources>

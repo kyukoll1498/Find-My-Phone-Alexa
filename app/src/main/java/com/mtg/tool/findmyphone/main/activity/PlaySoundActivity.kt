@@ -9,7 +9,10 @@ import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.common.control.base.OnActionCallback
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
@@ -20,21 +23,21 @@ import com.mtg.tool.findmyphone.ACTION_UPDATE_AUDIO_IMPORT
 import com.mtg.tool.findmyphone.ACTION_VOLUME_CHANGED
 import com.mtg.tool.findmyphone.AdIds
 import com.mtg.tool.findmyphone.IMPORT_SOUND_TYPE
+import com.mtg.tool.findmyphone.KEY_SOUND
 import com.mtg.tool.findmyphone.KEY_SOUND_ITEM_DATA
 import com.mtg.tool.findmyphone.R
 import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.ActivityPlaySoundBinding
+import com.mtg.tool.findmyphone.main.adapter.SoundAdapter
 import com.mtg.tool.findmyphone.main.dialog.DeleteDialog
 import com.mtg.tool.findmyphone.main.dialog.RenameDialog
 import com.mtg.tool.findmyphone.receiver.VolumeChangeReceiver
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.MediaPlayerAppUtil
 
-class PlaySoundActivity :
-    BaseActivity<ActivityPlaySoundBinding>(ActivityPlaySoundBinding::inflate),
-    VolumeChangeReceiver.VolumeChangeListener {
+class PlaySoundActivity : BaseActivity<ActivityPlaySoundBinding>(ActivityPlaySoundBinding::inflate), VolumeChangeReceiver.VolumeChangeListener {
     private lateinit var currentSoundItem: SoundItem
     private var currentDuration = 15
     private var max = 100
@@ -46,6 +49,7 @@ class PlaySoundActivity :
     private lateinit var receiver: VolumeChangeReceiver
     private lateinit var audioManager: AudioManager
     private var isFirstLoad = true;
+    private lateinit var soundAdapter: SoundAdapter
 
 
     override fun initView() {
@@ -60,49 +64,111 @@ class PlaySoundActivity :
         setUpWithFileSound()
         setSeekbarView()
         setDetailCommandView()
+        setupList()
+        setupSelection()
+    }
+
+    private fun setupSelection() {
+        binding.sbSound.isChecked = appPreferences.hasSound
+        binding.sbFlash.isChecked = appPreferences.hasFlash
+        binding.sbVibrate.isChecked = appPreferences.hasVibrate
+        binding.apply {
+            llFlashController.setOnClickListener {
+                sbFlash.isChecked = !sbFlash.isChecked
+            }
+            llVibrateController.setOnClickListener {
+                sbVibrate.isChecked = !sbVibrate.isChecked
+            }
+            llSoundController.setOnClickListener {
+                sbSound.isChecked = !sbVibrate.isChecked
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.apply {
+            appPreferences.hasSound = sbSound.isChecked
+            appPreferences.hasFlash = sbFlash.isChecked
+            appPreferences.hasVibrate = sbVibrate.isChecked
+        }
+    }
+
+    private fun setupList() {
+        soundAdapter = SoundAdapter(AppRepository.getAllSound(this), this, isFirstLoad, false, dpAsPixels(this, 100f))
+        val layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        soundAdapter.mCallback = OnActionCallback { key, data ->
+            if (key == KEY_SOUND) {
+                val soundItem = data[0] as SoundItem
+                changeSoundItem(soundItem)
+            }
+        }
+        changeSoundItem(currentSoundItem)
+        binding.rcvSound.layoutManager = layoutManager
+        binding.rcvSound.adapter = soundAdapter
+    }
+
+    private fun changeSoundItem(soundItem: SoundItem) {
+        currentSoundItem = soundItem
+        setUpWithFileSound()
+        binding.tvName.text = currentSoundItem.name
+        for (item in soundAdapter.mList) {
+            item?.isSelected = item == currentSoundItem
+        }
+        soundAdapter.notifyDataSetChanged()
+        val selectedIndex = soundAdapter.mList.indexOfFirst { it?.isSelected == true }
+        if (selectedIndex != -1) {
+            binding.rcvSound.scrollToPosition(selectedIndex)
+            binding.rcvSound.post {
+                binding.rcvSound.smoothScrollToPosition(selectedIndex)
+            }
+        }
+    }
+
+    fun dpAsPixels(context: Context, sizeInDp: Float): Int {
+        return dpAsPixels(sizeInDp, context.resources.displayMetrics.density)
+    }
+
+    fun dpAsPixels(sizeInDp: Float, density: Float): Int {
+        return (sizeInDp * density + 0.5f).toInt()
     }
 
     private fun firstLoad() {
-        if (isFirstLoad){
+        if (isFirstLoad) {
             loadAlternateNative()
             Log.d("Effect Refresh", "Effect Init")
         }
     }
 
     private fun loadAlternateNative() {
-        Log.d("Refresh","Play Refresh")
-        AdmobManager.getInstance()
-            .preloadAlternateNative(this,
-                listNative,
-                object : AdCallback() {
-                    override fun onNativeAds(nativeAd: NativeAd?) {
-                        super.onNativeAds(nativeAd)
-                        AdmobManager.getInstance().showNative(
-                            this@PlaySoundActivity,
-                            nativeAd,
-                            binding.frAd,
-                            AdmobManager.NativeAdType.SMALL
-                        )
-                    }
-                    override fun onAdImpression() {
-                        super.onAdImpression()
-                        logEvent("effect_native_view")
-                    }
-
-                    override fun onAdClicked() {
-                        super.onAdClicked()
-                        logEvent("effect_native_click")
-                    }
+        Log.d("Refresh", "Play Refresh")
+        AdmobManager.getInstance().preloadAlternateNative(
+            this, listNative, object : AdCallback() {
+                override fun onNativeAds(nativeAd: NativeAd?) {
+                    super.onNativeAds(nativeAd)
+                    AdmobManager.getInstance().showNative(
+                        this@PlaySoundActivity, nativeAd, binding.frAd, AdmobManager.NativeAdType.SMALL
+                    )
                 }
-            )
+
+                override fun onAdImpression() {
+                    super.onAdImpression()
+                    logEvent("effect_native_view")
+                }
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    logEvent("effect_native_click")
+                }
+            })
         AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     override fun onResume() {
         super.onResume()
         logEvent("effect_view")
-        if (!AppOpenManager.getInstance().isShowingAd){
-            if (!isFirstLoad){
+        if (!AppOpenManager.getInstance().isShowingAd) {
+            if (!isFirstLoad) {
                 loadAlternateNative()
                 Log.d("Effect Refresh", "Effect Resume")
             }
@@ -240,8 +306,7 @@ class PlaySoundActivity :
                         binding.tvName.text = name
                         currentSoundItem.soundPath?.let { it1 ->
                             AppRepository.updateName(
-                                it1,
-                                name
+                                it1, name
                             )
                         }
                         sendBroadcast(Intent(ACTION_UPDATE_AUDIO_IMPORT))

@@ -10,7 +10,7 @@ import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
 import com.mtg.tool.findmyphone.MODE_VIBRATE_HEART
 import com.mtg.tool.findmyphone.MODE_VIBRATE_STRONG
 import com.mtg.tool.findmyphone.MODE_VIBRATE_TICKTOCK
-import com.mtg.tool.findmyphone.base.BaseFragment
+import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.preferences.SharedPrefs
 import com.mtg.tool.findmyphone.databinding.FragmentSettingBinding
 import com.mtg.tool.findmyphone.main.activity.Language2Activity
@@ -22,7 +22,7 @@ import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.app.VibrateFlashThread
 import com.mtg.tool.findmyphone.utils.hide
 
-class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
+class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
     private var appPreferences = AppPreferences.instance
 
     override fun initView() {
@@ -154,23 +154,23 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
 
             btnLanguage.setOnClickListener {
                 EventLogger.getInstance()?.logEvent("click_set_language")
-                startActivity(Intent(requireActivity(), Language2Activity::class.java))
+                startActivity(Intent(this@SettingFragment, Language2Activity::class.java))
             }
             btnRate.setOnClickListener {
                 EventLogger.getInstance()?.logEvent("click_set_rate")
-                ActionUtils.showRateDialog(requireActivity(), false, callback = {
+                ActionUtils.showRateDialog(this@SettingFragment, false, callback = {
                     if (it) hideRate()
                 })
             }
             btnShare.setOnClickListener {
                 EventLogger.getInstance()?.logEvent("click_set_share")
-                ActionUtils.shareApp(requireActivity())
+                ActionUtils.shareApp(this@SettingFragment)
             }
             btnFeedback.setOnClickListener {
-                ActionUtils.sendFeedback(requireActivity())
+                ActionUtils.sendFeedback(this@SettingFragment)
             }
             btnPrivacy.setOnClickListener {
-                PolicyWebViewActivity.start(requireActivity())
+                PolicyWebViewActivity.start(this@SettingFragment)
             }
         }
     }
@@ -178,8 +178,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     private fun runVibrateFlashThread(mode: Int) {
         if (VibrateFlashThread.isCancellable) {
             VibrateFlashThread(
-                requireContext(),
-                mode
+                this@SettingFragment, mode
             ).start()
         } else {
             when (mode) {
@@ -226,7 +225,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     }
 
     private fun setUpRate() {
-        if (SharedPrefs.isRated(requireActivity())) {
+        if (SharedPrefs.isRated(this)) {
             hideRate()
         }
     }
