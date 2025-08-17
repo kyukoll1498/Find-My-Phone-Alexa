@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_trash"
+        android:shortcutId="sc_id_uninstall"
+        android:shortcutLongLabel="@string/label_uninstall"
+        android:shortcutShortLabel="@string/label_uninstall">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="shortcut_uninstall"
+            android:targetClass="com.mtg.tool.findmyphone.main.activity.SplashActivity"
+            android:targetPackage="com.mtg.tool.findmyphone.main.activity" />
+    </shortcut>
+</shortcuts>

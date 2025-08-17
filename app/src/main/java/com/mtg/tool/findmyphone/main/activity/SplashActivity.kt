@@ -27,6 +27,7 @@ import com.mtg.tool.findmyphone.utils.app.AppPreferences
 import com.mtg.tool.findmyphone.utils.constant.Constants
 import java.util.Timer
 import java.util.TimerTask
+import kotlin.toString
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
@@ -350,6 +351,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
 
     private fun startMain() {
+        if (shouldShowShortcut()) {
+            val intent = HomeFragment.newIntent(this)
+            if (this.intent.data != null) {
+                intent.putExtra(Constants.key_shortcut, this.intent.data?.toString())
+            }
+            startActivity(intent)
+            finish()
+            return
+        }
+
         if (!appPreferences.isChooseLanguage) {
             val intent = Intent(this, LanguageActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -383,5 +394,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     override fun onPause() {
         super.onPause()
         canRefreshBanner = false
+    }
+
+    private fun shouldShowShortcut(): Boolean {
+        val shortcut = intent.data?.toString()
+        return shortcut in arrayOf(
+            Constants.shortcut_uninstall,
+        )
     }
 }

@@ -228,7 +228,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             adapter = ViewPagerAddFragmentsMainAdapter(context, supportFragmentManager, lifecycle).apply {
 //                addFrag(homeFragment)
 //                addFrag(SoundFragment())
-                addFrag(AddFragment())
+//                addFrag(AddFragment())
 //                addFrag(settingFragment)
             }
         }

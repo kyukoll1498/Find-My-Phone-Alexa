@@ -1,6 +1,7 @@
 package com.mtg.tool.findmyphone.main.fragment
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.ActivityManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -31,14 +32,15 @@ import com.mtg.tool.findmyphone.base.BaseActivity
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
-import com.mtg.tool.findmyphone.main.activity.CreateSoundActivity
 import com.mtg.tool.findmyphone.main.activity.PlaySoundActivity
+import com.mtg.tool.findmyphone.main.activity.UninstallActivity
 import com.mtg.tool.findmyphone.main.adapter.SoundAdapter
 import com.mtg.tool.findmyphone.main.clap.ClassesApp
 import com.mtg.tool.findmyphone.main.clap.FeatureClapManager
 import com.mtg.tool.findmyphone.main.clap.VocalService
 import com.mtg.tool.findmyphone.utils.PermissionUtils
 import com.mtg.tool.findmyphone.utils.app.AppPreferences
+import com.mtg.tool.findmyphone.utils.constant.Constants
 
 
 open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -57,8 +59,15 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
 
     companion object {
         @JvmStatic
-        fun start(context: Context) {
+        fun newIntent(context: Activity): Intent {
             val starter = Intent(context, HomeFragment::class.java)
+            starter.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            return starter
+        }
+
+        @JvmStatic
+        fun start(context: Activity) {
+            val starter = newIntent(context)
             context.startActivity(starter)
         }
     }
@@ -71,6 +80,12 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
     }
 
     override fun initView() {
+        val data = intent.getStringExtra(Constants.key_shortcut)
+        when (data) {
+            Constants.shortcut_uninstall -> {
+                UninstallActivity.start(this)
+            }
+        }
         firstLoad()
         val visible = View.VISIBLE
         val invisible = View.INVISIBLE
@@ -220,7 +235,7 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
             SoundFragment.start(this)
         }
         binding.llCreateSound.setOnClickListener {
-            CreateSoundActivity.start(this)
+            AddFragment.start(this)
         }
         binding.ivSettings.setOnClickListener {
             SettingFragment.start(this)

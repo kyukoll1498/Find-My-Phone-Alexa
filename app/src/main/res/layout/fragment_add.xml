@@ -1,49 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/color_f0f6ff">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_toolbar"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_mono_semibold"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:text="@string/create_sound"
+            android:textColor="@color/color_212121"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_back"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ct_empty"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_top">
 
         <ImageView
             android:id="@+id/iv_empty"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_empty"
-            app:layout_constraintVertical_bias="0.05"
-            app:layout_constraintWidth_percent="0.5"
-            app:layout_constraintHeight_percent="0.2"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintWidth_percent="0.5" />
 
         <TextView
             android:id="@+id/tv_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/frame_guide"
             android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:elevation="5dp"
             android:layout_marginBottom="@dimen/_8sdp"
+            android:elevation="5dp"
+            android:fontFamily="@font/roboto_mono_semibold"
+            android:gravity="center"
             android:paddingHorizontal="@dimen/_16sdp"
             android:paddingVertical="@dimen/_8sdp"
             android:text="@string/there_are_no_files_n_let_s_try_to_create_new_files_now"
             android:textAlignment="center"
             android:textColor="#7E7E7E"
-            android:fontFamily="@font/poppins_medium"
             app:layout_constraintEnd_toEndOf="@+id/iv_empty"
             app:layout_constraintStart_toStartOf="@+id/iv_empty"
-            app:layout_constraintTop_toBottomOf="@+id/iv_empty"/>
+            app:layout_constraintTop_toBottomOf="@+id/iv_empty" />
 
         <ImageView
             android:id="@+id/iv_guide_create"
@@ -52,22 +86,24 @@
             android:layout_marginEnd="@dimen/_28sdp"
             android:layout_marginBottom="@dimen/_6sdp"
             android:src="@drawable/ic_guide_create_new"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/ll_create_sound"
             app:layout_constraintEnd_toEndOf="@+id/ll_create_sound" />
+
         <LinearLayout
             android:id="@+id/ll_create_sound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_48sdp"
-            app:layout_constraintVertical_bias="0.2"
             android:background="@drawable/bg_radius_gradient"
-            app:layout_constraintTop_toBottomOf="@+id/tv_empty"
-            app:layout_constraintStart_toStartOf="@+id/tv_empty"
-            app:layout_constraintEnd_toEndOf="@+id/tv_empty"
-            android:gravity="center"
             android:elevation="5dp"
+            android:gravity="center"
             android:paddingVertical="@dimen/_8sdp"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_empty"
+            app:layout_constraintStart_toStartOf="@+id/tv_empty"
+            app:layout_constraintTop_toBottomOf="@+id/tv_empty"
+            app:layout_constraintVertical_bias="0.2">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -79,28 +115,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="@string/create_sound"
                 android:includeFontPadding="false"
-                android:textColor="@color/white"
+                android:text="@string/create_sound"
+                android:textColor="@color/color_005eff"
                 android:textSize="@dimen/_16sdp" />
         </LinearLayout>
-            
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView 
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_sound_import"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_16sdp"
-        app:layout_constraintTop_toTopOf="parent"/>
-<!--    <FrameLayout-->
-<!--        android:id="@+id/fr_ad"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginBottom="@dimen/_12sdp"-->
-<!--        app:layout_constraintHeight_percent="0.4"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent">-->
-<!--        <include layout="@layout/fake_loading" />-->
-<!--    </FrameLayout>-->
+        app:layout_constraintTop_toBottomOf="@id/layout_top" />
+    <!--    <FrameLayout-->
+    <!--        android:id="@+id/fr_ad"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginBottom="@dimen/_12sdp"-->
+    <!--        app:layout_constraintHeight_percent="0.4"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent">-->
+    <!--        <include layout="@layout/fake_loading" />-->
+    <!--    </FrameLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

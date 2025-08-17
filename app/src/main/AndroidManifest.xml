@@ -97,6 +97,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
@@ -168,8 +172,18 @@
         <activity
             android:name="com.mtg.tool.findmyphone.main.fragment.SoundFragment"
             android:screenOrientation="portrait" />
-        <activity android:name="com.mtg.tool.findmyphone.main.fragment.SettingFragment"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.fragment.SettingFragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.fragment.AddFragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.activity.UninstallActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.IssueUninstallActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

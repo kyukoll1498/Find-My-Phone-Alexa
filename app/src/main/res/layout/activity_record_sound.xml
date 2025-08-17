@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,18 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@color/white" />
+        android:src="@color/color_f0f6ff" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_toolbar"
+        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/btn_back"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:layout_marginStart="@dimen/_8sdp"
             android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -49,44 +49,44 @@
         android:id="@+id/ct_record_controller"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:elevation="@dimen/_5sdp"
-        android:visibility="visible"
         android:layout_marginHorizontal="@dimen/_16sdp"
+        android:elevation="@dimen/_5sdp"
         app:layout_constraintBottom_toTopOf="@+id/container_ads"
         app:layout_constraintTop_toBottomOf="@id/layout_top">
+
         <ImageView
             android:id="@+id/iv_bg_record"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="fitXY"
             android:alpha=".7"
+            android:scaleType="fitXY"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_next"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:background="@drawable/bg_radius_gradient"
             android:elevation="1dp"
+            android:ellipsize="marquee"
             android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
             android:includeFontPadding="false"
+            android:marqueeRepeatLimit="marquee_forever"
             android:paddingHorizontal="@dimen/_12sdp"
             android:paddingVertical="@dimen/_4sdp"
-            android:text="@string/next"
-            android:gravity="center"
             android:singleLine="true"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:text="@string/next"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
             android:textSize="@dimen/_11sdp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/iv_record_controller"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_record_controller"
             app:layout_constraintTop_toTopOf="@+id/iv_record_controller" />
 
@@ -95,22 +95,22 @@
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_130sdp"
             android:src="@drawable/ic_micro_start"
-            app:layout_constraintVertical_bias="0.25"
             app:layout_constraintBottom_toBottomOf="@+id/iv_bg_record"
             app:layout_constraintEnd_toEndOf="@+id/iv_bg_record"
             app:layout_constraintStart_toStartOf="@+id/iv_bg_record"
-            app:layout_constraintTop_toTopOf="@+id/iv_bg_record" />
+            app:layout_constraintTop_toTopOf="@+id/iv_bg_record"
+            app:layout_constraintVertical_bias="0.25" />
 
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_18sdp"
-            android:text="00:00"
-            android:textSize="@dimen/_32sdp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="#404040"
+            android:fontFamily="@font/roboto_mono"
             android:includeFontPadding="false"
+            android:text="00:00"
+            android:textColor="@color/color_6c6c6c"
+            android:textSize="@dimen/_32sdp"
             app:layout_constraintEnd_toEndOf="@+id/iv_bg_record"
             app:layout_constraintStart_toStartOf="@+id/iv_bg_record"
             app:layout_constraintTop_toBottomOf="@+id/iv_record_controller" />
@@ -154,13 +154,13 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_minus30sdp"
             android:backgroundTint="#ACACAC"
-            android:maxWidth="@dimen/_120sdp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/roboto_mono"
             android:hint="@string/enter_name_sound"
             android:imeOptions="actionDone"
+            android:maxWidth="@dimen/_120sdp"
             android:maxLength="50"
             android:singleLine="true"
-            android:textColor="#404040"
+            android:textColor="@color/color_212121"
             android:textColorHint="#ACACAC"
             android:textSize="@dimen/_11sdp"
             app:layout_constraintEnd_toEndOf="@+id/iv_sound_avatar"
@@ -179,12 +179,12 @@
             android:id="@+id/ll_audio_controller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:background="@drawable/bg_action_primary"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/_12sdp"
-            android:paddingVertical="@dimen/_8sdp"
+            android:paddingHorizontal="@dimen/_24sdp"
+            android:paddingVertical="@dimen/_6sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/tv_path"
@@ -192,9 +192,10 @@
 
             <ImageView
                 android:id="@+id/iv_player_controller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_pause" />
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_pause"
+                app:tint="@color/color_005eff" />
 
             <TextView
                 android:id="@+id/tv_player_controller"
@@ -204,8 +205,9 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:includeFontPadding="false"
                 android:text="@string/play"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp" />
+                android:textColor="@color/color_005eff"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="gone" />
         </LinearLayout>
 
         <TextView
@@ -215,11 +217,11 @@
             android:layout_marginEnd="@dimen/_12sdp"
             android:drawableStart="@drawable/ic_music"
             android:drawablePadding="@dimen/_6sdp"
-            android:visibility="gone"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/roboto_mono_semibold"
             android:text="hay.mp3"
-            android:textColor="#404040"
+            android:textColor="@color/color_212121"
             android:textSize="@dimen/_13sdp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/ll_audio_controller"
             app:layout_constraintEnd_toStartOf="@+id/ll_audio_controller"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -232,23 +234,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_48sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
         android:background="@drawable/bg_radius_gradient"
         android:elevation="5dp"
-        android:fontFamily="@font/poppins_bold"
+        android:fontFamily="@font/roboto_mono_semibold"
         android:gravity="center"
-        android:paddingVertical="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_12sdp"
         android:text="@string/save_sound"
-        android:textColor="@color/white"
+        android:textColor="@color/color_005eff"
         android:textSize="@dimen/_16sdp"
         android:visibility="gone"
-        android:layout_marginBottom="@dimen/_8sdp"
         app:layout_constraintBottom_toTopOf="@+id/container_ads" />
+
     <FrameLayout
         android:id="@+id/container_ads"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="@dimen/_1sdp"
         app:layout_constraintBottom_toBottomOf="parent">
+
         <FrameLayout
             android:id="@+id/fr_ad"
             android:layout_width="match_parent"

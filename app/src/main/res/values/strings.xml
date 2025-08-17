@@ -70,7 +70,7 @@
     <string name="txt_touch_here_notify">Touch Here to deactivate</string>
     <string name="touch_here_to_deactivate">Touch here to deactivate</string>
     <string name="clap_to_find_your_phone_is_running">Clap to find your phone is running</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">There are no files.\n Let’s try to <font color="#1380FF">create new files</font> now.</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">There are no files.\n Let’s try to create new files now.</string>
     <string name="create_sound">Create Sound</string>
     <string name="import_audio">Import Audio</string>
     <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Allow <b>Clap To Find Your Phone</b> to access the Microphone</string>
@@ -184,4 +184,14 @@
     <string name="rate_app">Rate App</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="share_the_app">Share the app</string>
+    <string name="note">Note</string>
+    <string name="txt_title_uninstall">If you encounter instability while using the application.</string>
+    <string name="txt_sub_title_install">Please adjusting the sensitivity settings to enhance its performance and ensure smoother operation.</string>
+    <string name="txt_adjust_sensitivity">Adjust Sensitivity</string>
+    <string name="txt_still_want_to_uninstall">Still want to uninstall</string>
+    <string name="title_issue_uninstall">Issues you encountered during use</string>
+    <string name="feature_does_not_work">Feature does not work</string>
+    <string name="too_many_ads">Too many ads</string>
+    <string name="i_do_not_need_it_anymore">I do not need it</string>
+    <string name="label_uninstall">Uninstall</string>
 </resources>

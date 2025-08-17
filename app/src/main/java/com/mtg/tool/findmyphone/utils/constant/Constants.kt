@@ -35,5 +35,6 @@ object Constants {
     const val SKIP_ONBOARD: String = "IS_SKIP_ONBOARD"
     const val REQUEST_POPUP_PMS_MICRO: String = "REQUEST_POPUP_PMS_MICRO"
     const val REQUEST_POPUP_PMS_ACCESS: String = "REQUEST_POPUP_PMS_ACCESS"
-
+    const val key_shortcut: String = "key_shortcut"
+    const val shortcut_uninstall: String = "shortcut_uninstall"
 }
