@@ -222,6 +222,10 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
         binding.llCreateSound.setOnClickListener {
             CreateSoundActivity.start(this)
         }
+        binding.ivSettings.setOnClickListener {
+            SettingFragment.start(this)
+            logEvent("home_setting_click")
+        }
     }
 
 //    override fun loadAds() {

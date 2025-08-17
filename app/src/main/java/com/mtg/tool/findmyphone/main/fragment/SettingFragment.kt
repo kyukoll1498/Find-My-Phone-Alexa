@@ -1,5 +1,6 @@
 package com.mtg.tool.findmyphone.main.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -24,6 +25,14 @@ import com.mtg.tool.findmyphone.utils.hide
 
 class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
     private var appPreferences = AppPreferences.instance
+
+    companion object {
+        @JvmStatic
+        fun start(context: Context) {
+            val starter = Intent(context, SettingFragment::class.java)
+            context.startActivity(starter)
+        }
+    }
 
     override fun initView() {
         setUpSelection()
@@ -171,6 +180,9 @@ class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBind
             }
             btnPrivacy.setOnClickListener {
                 PolicyWebViewActivity.start(this@SettingFragment)
+            }
+            ivBack.setOnClickListener {
+                finish()
             }
         }
     }
