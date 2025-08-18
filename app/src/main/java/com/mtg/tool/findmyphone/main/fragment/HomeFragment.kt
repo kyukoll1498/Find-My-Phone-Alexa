@@ -33,6 +33,7 @@ import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.databinding.FragmentHomeBinding
 import com.mtg.tool.findmyphone.main.activity.PlaySoundActivity
+import com.mtg.tool.findmyphone.main.activity.ScreenAlertActivity
 import com.mtg.tool.findmyphone.main.activity.UninstallActivity
 import com.mtg.tool.findmyphone.main.adapter.SoundAdapter
 import com.mtg.tool.findmyphone.main.clap.ClassesApp
@@ -79,7 +80,19 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
         }
     }
 
+    private val handleTurnOnClap: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            binding.clClickTab.performClick()
+        }
+    }
+
     override fun initView() {
+        BroadcastUtils.registerReceiver(
+            this, finishDetectReceiver, IntentFilter(ACTION_FINISH_DETECT)
+        )
+        BroadcastUtils.registerReceiver(
+            this, handleTurnOnClap, IntentFilter(Constants.APPLY_ACTIVE_CLAP)
+        )
         val data = intent.getStringExtra(Constants.key_shortcut)
         when (data) {
             Constants.shortcut_uninstall -> {
@@ -240,6 +253,9 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
         binding.ivSettings.setOnClickListener {
             SettingFragment.start(this)
             logEvent("home_setting_click")
+        }
+        binding.tvScAlert.setOnClickListener {
+            ScreenAlertActivity.start(this)
         }
     }
 

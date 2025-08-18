@@ -1,12 +1,17 @@
 package com.mtg.tool.findmyphone.utils.constant
 
 object Constants {
+    val ACTION_FINISH_DETECT: String = "ACTION_FINISH_DETECT"
+    val KEY_ITEM_ALERT: String = "KEY_ITEM_ALERT"
+    const val APPLY_ACTIVE_CLAP: String = "apply_active_clap"
+    val KEY_DATA: String = "KEY_DATA"
     val TAG: String = javaClass.name
     const val EMAIL = "verifiedapps.help@gmail.com"
     const val SUBJECT = "Find my phone by Clap, Whistle"
     const val TIP_URL = "https://sites.google.com/view/readfaster/home"
     const val ISSUES_URL = " https://sites.google.com/view/all-doc-common-issues"
-    const val POLICY_URL = "https://firebasestorage.googleapis.com/v0/b/all-documents-55e23.appspot.com/o/Policy_Find_Phone_new.html?alt=media&token=6cb57b01-a7ea-41f1-b998-8b5b512509ba"
+    const val POLICY_URL =
+        "https://firebasestorage.googleapis.com/v0/b/all-documents-55e23.appspot.com/o/Policy_Find_Phone_new.html?alt=media&token=6cb57b01-a7ea-41f1-b998-8b5b512509ba"
     const val PUBLISH_NAME = ""
 
     const val SHARE_PREF_NAME = "SHARE_PREF_NAME"

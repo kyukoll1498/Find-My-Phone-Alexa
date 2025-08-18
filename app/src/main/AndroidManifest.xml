@@ -182,9 +182,30 @@
             android:name="com.mtg.tool.findmyphone.main.activity.UninstallActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.IssueUninstallActivity"
+            android:name="com.mtg.tool.findmyphone.main.activity.IssueUninstallActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.activity.AlertTutorialActivity"
+            android:theme="@style/Transparent" />
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.activity.AlertApplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.activity.AlertPermissionActivity"
+            android:theme="@style/Transparent" />
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.activity.AlertEnableActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.activity.ScreenAlertActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mtg.tool.findmyphone.main.activity.LockScreenActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true" />
     </application>
 
 </manifest>

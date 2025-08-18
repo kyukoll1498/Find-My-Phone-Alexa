@@ -1,4 +1,4 @@
-package com.mtg.tool.findmyphone.main
+package com.mtg.tool.findmyphone.main.activity
 
 import android.content.Context
 import android.content.Intent

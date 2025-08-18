@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.mtg.tool.findmyphone.ACTION_NOTIFICATION_CLICKED_SERVICE
 import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.main.activity.LockScreenActivity
 import com.mtg.tool.findmyphone.main.fragment.HomeFragment
 
 
@@ -44,8 +45,7 @@ class VocalService : Service() {
         }
 
         // Cancel notification
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.cancel(1234)
 
         val notification = buildNotification()
@@ -89,7 +89,7 @@ class VocalService : Service() {
                 override fun onDetected() {
                     Log.d("ClapCount", "1")
                     FeatureClapManager.getInstance(applicationContext).playAll()
-
+                    LockScreenActivity.start(context = applicationContext)
                 }
             })
             detectClapClap.listen()
@@ -124,24 +124,19 @@ class VocalService : Service() {
     @SuppressLint("LaunchActivityFromNotification")
     private fun buildNotification(): Notification {
         try {
-            val notificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             val intentNotificationAction = Intent(this, HomeFragment::class.java)
             intentNotificationAction.action = ACTION_NOTIFICATION_CLICKED_SERVICE
             val pendingIntentNotificationAction = PendingIntent.getActivity(
-                this,
-                0,
-                intentNotificationAction,
-                PendingIntent.FLAG_IMMUTABLE
+                this, 0, intentNotificationAction, PendingIntent.FLAG_IMMUTABLE
             )
 
             val contentView = RemoteViews(this.packageName, R.layout.popup_notification)
 
             val notificationBuilder: NotificationCompat.Builder
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                notificationChannel =
-                    NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+                notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
                 notificationChannel?.enableLights(true)
                 notificationChannel?.lightColor = Color.GREEN
                 notificationChannel?.enableVibration(false)
@@ -152,25 +147,17 @@ class VocalService : Service() {
             }
 
             contentView.setOnClickPendingIntent(
-                R.id.notification_layout,
-                pendingIntentNotificationAction
+                R.id.notification_layout, pendingIntentNotificationAction
             )
 
-            val smallIcon = if (Build.BRAND.equals("Google", ignoreCase = true) &&
-                (Build.MODEL.startsWith("Pixel") || Build.DEVICE.startsWith("pixel"))
-            ) {
+            val smallIcon = if (Build.BRAND.equals("Google", ignoreCase = true) && (Build.MODEL.startsWith("Pixel") || Build.DEVICE.startsWith("pixel"))) {
                 R.drawable.ic_icon_noti_pixel
             } else {
                 R.drawable.ic_icon_app_small
             }
 
-            notificationBuilder.setContent(contentView)
-                .setCustomContentView(contentView)
-                .setSmallIcon(smallIcon)
-                .setCustomBigContentView(contentView)
-                .setCustomHeadsUpContentView(contentView)
-                .setContentIntent(pendingIntentNotificationAction)
-                .setAutoCancel(true)
+            notificationBuilder.setContent(contentView).setCustomContentView(contentView).setSmallIcon(smallIcon).setCustomBigContentView(contentView)
+                .setCustomHeadsUpContentView(contentView).setContentIntent(pendingIntentNotificationAction).setAutoCancel(true)
 
             val notification = notificationBuilder.build()
             try {
@@ -185,11 +172,8 @@ class VocalService : Service() {
         }
 
         // Return a default notification in case of failure
-        return NotificationCompat.Builder(this.applicationContext, channelId)
-            .setContentTitle("Notification Error")
-            .setContentText("An error occurred while creating the notification.")
-            .setSmallIcon(R.drawable.ic_icon_app_small)
-            .build()
+        return NotificationCompat.Builder(this.applicationContext, channelId).setContentTitle("Notification Error")
+            .setContentText("An error occurred while creating the notification.").setSmallIcon(R.drawable.ic_icon_app_small).build()
     }
 
     companion object {

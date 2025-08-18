@@ -13,13 +13,16 @@ import com.mtg.tool.findmyphone.KEY_HAS_VIBRATE
 import com.mtg.tool.findmyphone.KEY_SOUND_APPLY
 import com.mtg.tool.findmyphone.MODE_FLASH_DEFAULT
 import com.mtg.tool.findmyphone.MODE_VIBRATE_DEFAULT
+import com.mtg.tool.findmyphone.R
+import com.mtg.tool.findmyphone.data.model.ItemAlert
 import com.mtg.tool.findmyphone.data.model.SoundItem
 import com.mtg.tool.findmyphone.data.repo.AppRepository
 import com.mtg.tool.findmyphone.utils.AudioMangerUtils
 import com.mtg.tool.findmyphone.utils.LanguageUtils
+import com.mtg.tool.findmyphone.utils.constant.Constants
+import com.mtg.tool.findmyphone.utils.constant.Constants.KEY_ITEM_ALERT
 
-class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
-    BasePreferences(context, context.packageName) {
+class AppPreferences(val context: Context, val mGson: Gson = Gson()) : BasePreferences(context, context.packageName) {
     init {
         instance = this
     }
@@ -67,6 +70,18 @@ class AppPreferences(val context: Context, val mGson: Gson = Gson()) :
         set(value) {
             putBoolean(KEY_HAS_VIBRATE, value)
         }
+
+    fun setCurrentItemAlert(value: ItemAlert) {
+        putString(KEY_ITEM_ALERT, mGson.toJson(value))
+    }
+
+    fun getCurrentItemAlert(): ItemAlert {
+        val currentItem = getString(Constants.KEY_ITEM_ALERT, "")
+        if (currentItem.isEmpty()) {
+            return ItemAlert(R.drawable.sc_alert1, R.drawable.sc_alert1, R.drawable.bt_turnoff1, R.color.black, false)
+        }
+        return mGson.fromJson(currentItem, ItemAlert::class.java)
+    }
 
     inline var currentSound: SoundItem
         get() {

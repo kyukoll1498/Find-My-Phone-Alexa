@@ -194,4 +194,14 @@
     <string name="too_many_ads">Too many ads</string>
     <string name="i_do_not_need_it_anymore">I do not need it</string>
     <string name="label_uninstall">Uninstall</string>
+    <string name="screen_alert">Screen Alert</string>
+    <string name="screen_alert_tutorial">Screen Alert Tutorial</string>
+    <string name="descript_tutorial">Smart Alert Feature – Automatically activates when clapping sounds are detected, with a beautiful and impressive interface. You can dismiss the alert right from your lock screen, quickly and conveniently.</string>
+    <string name="ok">ok</string>
+    <string name="screen_alert_enabled">Screen Alert Enabled</string>
+    <string name="descript_alert_enable">The “Screen Alert” interface is now applied. Please clap your hands to try it out!</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="description_permission">Please allow Screen Alert to be shown on your lock screen to use this feature.</string>
+    <string name="apply_screen">Apply Screen</string>
+    <string name="title_sc_alert">Tap the button to turn off the alert.</string>
 </resources>
