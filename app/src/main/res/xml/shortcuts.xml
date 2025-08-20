@@ -9,7 +9,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:data="shortcut_uninstall"
-            android:targetClass="com.mtg.tool.findmyphone.main.activity.SplashActivity"
-            android:targetPackage="com.mtg.tool.findmyphone.main.activity" />
+            android:targetClass="com.alx.findphone.claptofind.flashalert.main.activity.SplashActivity"
+            android:targetPackage="com.alx.findphone.claptofind.flashalert.main.activity" />
     </shortcut>
 </shortcuts>

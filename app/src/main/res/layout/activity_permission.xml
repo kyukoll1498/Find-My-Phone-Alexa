@@ -129,7 +129,7 @@
                 app:layout_constraintStart_toEndOf="@+id/cvIm"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.mtg.tool.findmyphone.main.widget.SwitchButton
+            <com.alx.findphone.claptofind.flashalert.main.widget.SwitchButton
                 android:id="@+id/sb_permission"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

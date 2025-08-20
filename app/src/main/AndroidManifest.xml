@@ -30,7 +30,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name=".App"
+        android:name="com.alx.findphone.claptofind.flashalert.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -42,12 +42,12 @@
         android:theme="@style/Theme.FindMyPhone"
         tools:targetApi="31">
         <activity
-            android:name=".main.activity.InterestActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.InterestActivity"
             android:exported="false"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activity.SettingActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -59,17 +59,17 @@
             android:value="true" />
 
         <activity
-            android:name=".main.activity.PolicyWebViewActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.PolicyWebViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activity.PermissionActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.PermissionActivity"
             android:exported="false"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".main.clap.VocalService"
+            android:name="com.alx.findphone.claptofind.flashalert.main.clap.VocalService"
             android:exported="true"
             android:foregroundServiceType="microphone">
             <intent-filter>
@@ -78,18 +78,18 @@
         </service>
 
         <activity
-            android:name=".main.activity.MainActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.MainActivity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activity.OnBoardActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.OnBoardActivity"
             android:exported="false"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.fragment.HomeFragment"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -108,39 +108,39 @@
             android:theme="@style/AdsAppTheme"
             tools:replace="android:theme" />
         <activity
-            android:name=".main.activity.LanguageActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.LanguageActivity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activity.LFO2Activity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.LFO2Activity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activity.Language2Activity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.Language2Activity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activity.PlaySoundActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.PlaySoundActivity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activity.CreateSoundActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.CreateSoundActivity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".main.activity.RecordAudioActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.RecordAudioActivity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".main.activity.HowToUseActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.HowToUseActivity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
@@ -167,40 +167,40 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.SplashActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.fragment.HomeFragment"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.fragment.SoundFragment"
+            android:name="com.alx.findphone.claptofind.flashalert.main.fragment.SoundFragment"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.fragment.SettingFragment"
+            android:name="com.alx.findphone.claptofind.flashalert.main.fragment.SettingFragment"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.fragment.AddFragment"
+            android:name="com.alx.findphone.claptofind.flashalert.main.fragment.AddFragment"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.UninstallActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.UninstallActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.IssueUninstallActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.IssueUninstallActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.AlertTutorialActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.AlertTutorialActivity"
             android:theme="@style/Transparent" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.AlertApplyActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.AlertApplyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.AlertPermissionActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.AlertPermissionActivity"
             android:theme="@style/Transparent" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.AlertEnableActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.AlertEnableActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.ScreenAlertActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.ScreenAlertActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtg.tool.findmyphone.main.activity.LockScreenActivity"
+            android:name="com.alx.findphone.claptofind.flashalert.main.activity.LockScreenActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

@@ -382,7 +382,7 @@
                         android:textColor="@color/color_212121"
                         android:textSize="@dimen/_14sdp" />
 
-                    <com.mtg.tool.findmyphone.main.widget.SwitchButton
+                    <com.alx.findphone.claptofind.flashalert.main.widget.SwitchButton
                         android:id="@+id/sb_sound"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_24sdp"
@@ -414,7 +414,7 @@
                         android:textColor="@color/color_212121"
                         android:textSize="@dimen/_14sdp" />
 
-                    <com.mtg.tool.findmyphone.main.widget.SwitchButton
+                    <com.alx.findphone.claptofind.flashalert.main.widget.SwitchButton
                         android:id="@+id/sb_flash"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_24sdp"
@@ -446,7 +446,7 @@
                         android:textColor="@color/color_212121"
                         android:textSize="@dimen/_14sdp" />
 
-                    <com.mtg.tool.findmyphone.main.widget.SwitchButton
+                    <com.alx.findphone.claptofind.flashalert.main.widget.SwitchButton
                         android:id="@+id/sb_vibrate"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_24sdp"

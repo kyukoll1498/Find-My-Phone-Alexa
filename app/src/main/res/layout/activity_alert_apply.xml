@@ -54,7 +54,7 @@
         android:id="@+id/bt_turnoff"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_200sdp"
-        android:layout_marginBottom="@dimen/_minus48sdp"
+        android:layout_marginBottom="@dimen/_minus16sdp"
         android:src="@drawable/bt_turnoff1"
         app:layout_constraintBottom_toTopOf="@id/ll_apply"
         app:layout_constraintEnd_toEndOf="parent"

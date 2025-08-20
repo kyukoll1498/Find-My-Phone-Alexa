@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "610699114041",
+    "project_id": "fmp-alex-test",
+    "storage_bucket": "fmp-alex-test.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610699114041:android:63fcbc75d63d526cd87fe8",
+        "android_client_info": {
+          "package_name": "com.alx.fmp.test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-AdPKdRYBIOiNrfbwYdqIC2AGpOXRcXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

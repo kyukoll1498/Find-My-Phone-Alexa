@@ -22,7 +22,7 @@
             android:textColor="@color/color_212121"
             android:textSize="@dimen/_16sdp" />
 
-        <com.mtg.tool.findmyphone.main.widget.CustomRenameEditText
+        <com.alx.findphone.claptofind.flashalert.main.widget.CustomRenameEditText
             android:id="@+id/edt_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
@@ -42,7 +42,7 @@
             android:textSize="@dimen/_14sdp">
 
             <requestFocus />
-        </com.mtg.tool.findmyphone.main.widget.CustomRenameEditText>
+        </com.alx.findphone.claptofind.flashalert.main.widget.CustomRenameEditText>
 
         <LinearLayout
             android:layout_width="match_parent"

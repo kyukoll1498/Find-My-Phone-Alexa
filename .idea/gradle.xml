@@ -10,13 +10,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/MTGLibs" />
+            <option value="$PROJECT_DIR$/LibsAdAlex" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/custom_seekbar" />
             <option value="$PROJECT_DIR$/pageindicatorview" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

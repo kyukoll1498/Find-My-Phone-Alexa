@@ -16,9 +16,8 @@
             android:layout_height="0dp"
             android:scaleType="centerCrop"
             android:src="@drawable/img_inside_df_fullscreen"
-            app:layout_constraintDimensionRatio="328:280"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".52"
+            app:layout_constraintHeight_percent=".48"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,11 +26,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:text="@string/text_on_boarding_1"
             android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_18sdp"
             app:layout_constraintBottom_toBottomOf="@id/img_inside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
