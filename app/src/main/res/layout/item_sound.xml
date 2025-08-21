@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_6sdp"
         android:ellipsize="end"
-        android:fontFamily="@font/roboto_mono"
+        android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:layout_marginTop="@dimen/_minus8sdp"
         android:paddingBottom="@dimen/_4sdp"

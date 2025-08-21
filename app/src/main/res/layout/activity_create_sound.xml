@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
             android:ellipsize="end"
-            android:fontFamily="@font/roboto_mono_semibold"
+            android:fontFamily="@font/roboto_semibold"
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/create_sound"
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_mono_semibold"
+                android:fontFamily="@font/roboto_semibold"
                 android:includeFontPadding="false"
                 android:text="@string/record_sound"
                 android:textColor="@color/color_005eff"

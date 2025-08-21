@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_weight="1"
-            android:fontFamily="@font/roboto_mono_semibold"
+            android:fontFamily="@font/roboto_semibold"
             android:text="@string/sound"
             android:textColor="@color/color_212121"
             android:textSize="@dimen/_14sdp" />
