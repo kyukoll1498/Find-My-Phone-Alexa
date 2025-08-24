@@ -112,8 +112,8 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
                 txtActive.visibility = visible
                 txtInactive.visibility = invisible
                 if (showTxtContent) {
-                    llTvInactive.visibility = visible
-                    tvInactive.visibility = invisible
+//                    llTvInactive.visibility = visible
+//                    tvInactive.visibility = invisible
                 }
                 lavClickInactive.visibility = invisible
                 lavClickActive.visibility = visible
@@ -215,10 +215,10 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
     private fun setUpResponsive() {
         binding?.apply {
             if (txtActive.y + txtActive.height > tvInactive.y) {
-                tvInactive.visibility = View.GONE
+//                tvInactive.visibility = View.GONE
 //            binding.txtInactive.visibility = View.GONE
 //            binding.txtActive.visibility = View.GONE
-                llTvInactive.visibility = View.GONE
+//                llTvInactive.visibility = View.GONE
                 showTxtContent = false
             }
         }
@@ -335,8 +335,8 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
                         txtActive.visibility = visible
                         txtInactive.visibility = invisible
                         if (showTxtContent) {
-                            llTvInactive.visibility = visible
-                            tvInactive.visibility = invisible
+//                            llTvInactive.visibility = visible
+//                            tvInactive.visibility = invisible
                         }
                         lavClickInactive.visibility = invisible
                         lavClickActive.visibility = visible
@@ -365,8 +365,8 @@ open class HomeFragment : BaseActivity<FragmentHomeBinding>(FragmentHomeBinding:
             txtActive.visibility = invisible
             txtInactive.visibility = visible
             if (showTxtContent) {
-                tvInactive.visibility = visible
-                llTvInactive.visibility = invisible
+//                tvInactive.visibility = visible
+//                llTvInactive.visibility = invisible
             }
 
             lavClickInactive.visibility = visible

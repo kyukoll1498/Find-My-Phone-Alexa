@@ -31,7 +31,7 @@
             android:paddingStart="@dimen/_12sdp"
             android:text="@string/ai_clap_finder"
             android:textColor="#15508F"
-            android:textSize="@dimen/_18sdp" />
+            android:textSize="20dp" />
 
         <ImageView
             android:id="@+id/iv_settings"
@@ -53,16 +53,16 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:background="@drawable/bg_header_fmp"
-            android:fontFamily="@font/roboto_semibold"
+            android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:paddingHorizontal="@dimen/_8sdp"
-            android:paddingVertical="@dimen/_10sdp"
+            android:paddingVertical="10dp"
             android:text="Find My Phone"
             android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_sc_alert"
@@ -73,10 +73,10 @@
             android:fontFamily="@font/roboto_semibold"
             android:gravity="center"
             android:paddingHorizontal="@dimen/_8sdp"
-            android:paddingVertical="@dimen/_10sdp"
+            android:paddingVertical="10dp"
             android:text="Screen Alert"
             android:textColor="#15508F"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="14dp" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -84,7 +84,7 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_12sdp"
-        app:layout_constraintBottom_toTopOf="@id/ll_more_sound"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_header">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -114,9 +114,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_click_tab"
-                    android:layout_width="@dimen/_144sdp"
-                    android:layout_height="@dimen/_144sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_width="169dp"
+                    android:layout_height="169dp"
+                    android:layout_marginTop="64dp"
                     android:background="@drawable/icon_tap_active"
                     android:clipToOutline="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -140,6 +140,7 @@
                         android:id="@+id/iv_avatar"
                         android:layout_width="@dimen/_65sdp"
                         android:layout_height="@dimen/_65sdp"
+                        android:padding="@dimen/_12sdp"
                         android:src="@drawable/avatar_turn_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -156,12 +157,12 @@
                     app:layout_constraintHorizontal_bias="0.7"
                     app:layout_constraintStart_toStartOf="@+id/cl_click_tab"
                     app:layout_constraintTop_toTopOf="@+id/cl_click_tab"
-                    app:layout_constraintVertical_bias="0.35" />
+                    app:layout_constraintVertical_bias="0.55" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lav_click_inactive"
-                    android:layout_width="@dimen/_107sdp"
-                    android:layout_height="@dimen/_113sdp"
+                    android:layout_width="100dp"
+                    android:layout_height="104dp"
                     app:layout_constraintStart_toEndOf="@+id/space"
                     app:layout_constraintTop_toBottomOf="@+id/space"
                     app:lottie_autoPlay="true"
@@ -171,8 +172,8 @@
 
                 <ImageView
                     android:id="@+id/lav_click_active"
-                    android:layout_width="@dimen/_107sdp"
-                    android:layout_height="@dimen/_113sdp"
+                    android:layout_width="100dp"
+                    android:layout_height="104dp"
                     android:padding="@dimen/_20sdp"
                     android:src="@drawable/ic_click"
                     android:visibility="invisible"
@@ -205,7 +206,7 @@
                 android:fontFamily="@font/roboto_semibold"
                 android:text="@string/tap_to_inactive"
                 android:textColor="#212121"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_center" />
@@ -279,74 +280,75 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/txt_inactive"
                 app:spanCount="3"
-                tools:itemCount="5"
+                tools:itemCount="15"
                 tools:listitem="@layout/item_sound" />
+
+            <LinearLayout
+                android:id="@+id/ll_more_sound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_create_sound"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="17dp"
+                app:layout_constraintTop_toBottomOf="@id/rcv_sound">
+
+                <ImageView
+                    android:layout_width="88dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/ic_img_more" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_semibold"
+                    android:text="@string/see_more_sounds"
+                    android:textColor="@color/color_212121"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_next_home" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_create_sound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_create_sound"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="17dp"
+                app:layout_constraintTop_toBottomOf="@id/ll_more_sound">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_head_phone" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_semibold"
+                    android:text="@string/create_your_own_sounds"
+                    android:textColor="@color/color_212121"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_next_home" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <LinearLayout
-        android:id="@+id/ll_more_sound"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:background="@drawable/bg_create_sound"
-        android:gravity="center"
-        android:paddingHorizontal="@dimen/_8sdp"
-        android:paddingVertical="@dimen/_12sdp"
-        app:layout_constraintBottom_toTopOf="@id/ll_create_sound">
-
-        <ImageView
-            android:layout_width="@dimen/_88sdp"
-            android:layout_height="@dimen/_22sdp"
-            android:src="@drawable/ic_img_more" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_semibold"
-            android:text="@string/see_more_sounds"
-            android:textColor="@color/color_212121"
-            android:textSize="@dimen/_14sdp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_next_home" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_create_sound"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:background="@drawable/bg_create_sound"
-        android:gravity="center"
-        android:paddingHorizontal="@dimen/_8sdp"
-        android:paddingVertical="@dimen/_12sdp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_head_phone" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_semibold"
-            android:text="@string/create_your_own_sounds"
-            android:textColor="@color/color_212121"
-            android:textSize="@dimen/_14sdp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_next_home" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
