@@ -1,10 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
-    <string name="text_on_boarding_1">Легко найдите потерянный телефон, хлопнув в ладоши</string>
-    <string name="text_on_boarding_2">Различные звуковые эффекты на выбор</string>
-    <string name="text_on_boarding_3">Хлопните, чтобы включить фонарик в темноте</string>
-    <string name="get_started">Начать</string>
+    <string name="app_name" translatable="false">Хлопни, чтобы найти мой телефон</string>
+    <string name="loading" translatable="false">Загрузка</string>
+    <string name="only" translatable="false">Только</string>
+    <string name="remove_ad_forever" translatable="false">Удалить рекламу НАВСЕГДА</string>
+    <string name="save_your_time" translatable="false">Сэкономьте свое время на бесполезную рекламу</string>
+    <string name="read_more_effect" translatable="false">Чтение более эффективно</string>
+    <string name="ready_premium" translatable="false">Я готов к Премиум</string>
+    <string name="oke_with_ad" translatable="false">Нет, меня не смущает реклама</string>
+    <string name="please_wait" translatable="false">Пожалуйста, подождите!</string>
+    <string name="processing_your_pack" translatable="false">Обработка вашего пакета…</string>
+    <string name="clap_to_find" translatable="false">Хлопнуть, чтобы найти</string>
+    <string name="my_phone" translatable="false">Мой телефон</string>
+    <string name="app_name_setting" translatable="false">Найди мой телефон</string>
+    <string name="facebook_app_id" translatable="false">7972717049505979</string>
+    <string name="facebook_client_token" translatable="false">d60d6122f2f767c77c250041594d6487</string>
+    <string name="text_on_boarding_df_fullscreen" translatable="false">#VALUE!</string>
+    <string name="text_on_boarding_1">Найдите свой телефон быстро</string>
+    <string name="text_on_boarding_2">Ищете свой телефон? Просто хлопайте.</string>
+    <string name="text_on_boarding_3">Очень прост в использовании.</string>
+    <string name="get_started">Начал</string>
     <string name="this_action_can_contain_ads">Это действие может содержать рекламу…</string>
     <string name="do_you_like_our_app">Вам нравится наше приложение?</string>
     <string name="write_your_feedback">Напишите свой отзыв…</string>
@@ -14,7 +28,7 @@
     <string name="language">Язык</string>
     <string name="english">Английский</string>
     <string name="learn_more">Узнать больше</string>
-    <string name="rate_us">Оцените приложение</string>
+    <string name="rate_us">Оценить приложение</string>
     <string name="privacy">политика конфиденциальности</string>
     <string name="feedback_us">Обратная связь</string>
     <string name="share">Поделиться приложением</string>
@@ -25,61 +39,61 @@
     <string name="next">Следующий</string>
     <string name="trumpet">Труба</string>
     <string name="police_whistle">Полицейский свисток</string>
-    <string name="party_horn">Вечеринка Рог</string>
+    <string name="party_horn">Праздничный рожок</string>
     <string name="door_bell">Дверной звонок</string>
-    <string name="car_horn">Автомобильный Рог</string>
+    <string name="car_horn">Автомобильный гудок</string>
     <string name="hello">Привет</string>
     <string name="whistle">Свист</string>
-    <string name="hey_stay_here">Эй, останься здесь</string>
-    <string name="dog_barking">Собака лает</string>
-    <string name="cat_meowing">Кошка мяукает</string>
+    <string name="hey_stay_here">Эй, оставайся здесь</string>
+    <string name="dog_barking">Лай собаки</string>
+    <string name="cat_meowing">Мяуканье кошки</string>
     <string name="tap_to_active">Нажмите, чтобы деактивировать</string>
     <string name="tap_to_inactive">Нажмите, чтобы активировать</string>
-    <string name="activation_text">Нажмите, чтобы активировать кнопку, и хлопните, чтобы найти свой телефон.</string>
+    <string name="activation_text">Нажмите кнопку активации и хлопните в ладоши, чтобы найти свой телефон.</string>
     <string name="txt_active">Хлопните, чтобы найти свой телефон</string>
-    <string name="txt_inactive">Нажмите, чтобы активировать кнопку, и хлопните, чтобы найти свой телефон.</string>
+    <string name="txt_inactive">Нажмите кнопку активации и хлопните в ладоши, чтобы найти свой телефон.</string>
     <string name="play">Играть</string>
     <string name="pause">Пауза</string>
-    <string name="volume">Объем</string>
-    <string name="duration">Продолжительность</string>
+    <string name="volume">Объем:</string>
+    <string name="duration">Продолжительность:</string>
     <string name="apply">Применять</string>
     <string name="flashlight">Фонарик</string>
     <string name="txt_default">По умолчанию</string>
-    <string name="disco_mode">Режим дискотеки</string>
+    <string name="disco_mode">Режим диско</string>
     <string name="sos_mode">Режим SOS</string>
     <string name="vibrate">Вибрация</string>
     <string name="strong_vibration">Сильная вибрация</string>
     <string name="heartbeat">Сердцебиение</string>
     <string name="ticktock">Тик-так</string>
-    <string name="txt_clap_running_notify">Хлопните и обнаружите, что мой телефон работает.</string>
+    <string name="txt_clap_running_notify">Хлопаю в ладоши, чтобы обнаружить, что мой телефон работает.</string>
     <string name="txt_touch_here_notify">Нажмите здесь, чтобы деактивировать</string>
-    <string name="touch_here_to_deactivate">Нажмите здесь, чтобы отключить</string>
-    <string name="clap_to_find_your_phone_is_running">Хлопните и обнаружите, что ваш телефон работает.</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"Файлов нет.\n Попробуем "</string>
+    <string name="touch_here_to_deactivate">Нажмите здесь, чтобы деактивировать</string>
+    <string name="clap_to_find_your_phone_is_running">Хлопните в ладоши, чтобы обнаружить, что ваш телефон работает</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">Файлов нет. Давайте попробуем создать новые файлы.</string>
     <string name="create_sound">Создать звук</string>
     <string name="import_audio">Импорт аудио</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Разрешите <b>Clap To Find Your Phone</b> доступ к микрофону</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Разрешите приложению Clap To Find Your Phone получить доступ к микрофону</string>
     <string name="deny">Отрицать</string>
     <string name="allow">Позволять</string>
     <string name="record_sound">Запись звука</string>
-    <string name="enter_name_sound">Введите звук имени</string>
+    <string name="enter_name_sound">Введите имя и звук</string>
     <string name="save_sound">Сохранить звук</string>
-    <string name="name_sound_is_empty">Звук имени пуст</string>
+    <string name="name_sound_is_empty">Звук имени — пустой</string>
     <string name="create_new">Создать новый</string>
-    <string name="name_sound_already_exists">Звук имени уже существует</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Разрешите <b>Clap To Find Your Phone</b> доступ к аудиофайлам</string>
+    <string name="name_sound_already_exists">Имя Звук уже существует</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Разрешите приложению Clap To Find Your Phone получать доступ к аудиофайлам</string>
     <string name="how_to_use">Как использовать</string>
     <string name="activate">АКТИВИРОВАТЬ</string>
-    <string name="click_the_activate_button">Нажмите кнопку активировать</string>
-    <string name="clap">хлопать в ладоши</string>
-    <string name="double_clap_to_find_your_phone">Двойной хлопок, чтобы найти свой телефон</string>
+    <string name="click_the_activate_button">Нажмите кнопку активации.</string>
+    <string name="clap">ХЛОПОК</string>
+    <string name="double_clap_to_find_your_phone">Дважды хлопните, чтобы найти телефон</string>
     <string name="detect">ОБНАРУЖИТЬ</string>
-    <string name="app_detect_the_clap_and_start_ringing">Приложение обнаруживает хлопок и начинает звонить</string>
+    <string name="app_detect_the_clap_and_start_ringing">Приложение распознает хлопок и начинает звонить</string>
     <string name="permission">РАЗРЕШЕНИЕ</string>
-    <string name="allow_permission_to_access_microphone_audio_files">Разрешите доступ к микрофону. аудиофайлы</string>
+    <string name="allow_permission_to_access_microphone_audio_files">Разрешить доступ к микрофону. Аудиофайлы</string>
     <string name="txt_settings">НАСТРОЙКИ</string>
-    <string name="before_activating_set_flashlight_adjust_volume">Перед активацией установите фонарик, отрегулируйте громкость..</string>
-    <string name="activation_text2">Нажмите, чтобы <font color="#1380FF">активировать кнопку</font> и <font color="#1380FF">хлопните</font>, чтобы найти свой телефон.</string>
+    <string name="before_activating_set_flashlight_adjust_volume">Перед активацией включите фонарик, отрегулируйте громкость.</string>
+    <string name="activation_text2">Нажмите кнопку активации и хлопните в ладоши, чтобы найти свой телефон.</string>
     <string name="save">Сохранять</string>
     <string name="rename">Переименовать</string>
     <string name="enter_name">Введите имя</string>
@@ -88,16 +102,16 @@
     <string name="delete">Удалить</string>
     <string name="maybe_later">Может быть позже</string>
     <string name="submit">Представлять на рассмотрение</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Разрешите <b>Clap To Find Your Phone</b> доступ к уведомлению</string>
-    <string name="grant_permission">Запрос разрешения</string>
-    <string name="please_grant">Пожалуйста, дайте разрешение на поиск телефона по хлопкам?</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Разрешите приложению Clap To Find Your Phone получить доступ к уведомлениям</string>
+    <string name="grant_permission">Запрос на разрешение</string>
+    <string name="please_grant">Пожалуйста, дайте разрешение на поиск телефона с помощью хлопков?</string>
     <string name="record_permission">Разрешение на запись</string>
     <string name="continue_permission">Продолжать</string>
-    <string name="toast_permission_continue">Разрешите продолжить!</string>
+    <string name="toast_permission_continue">Дайте разрешение продолжить!</string>
     <string name="start_like_a_pro">НАЧНИТЕ КАК ПРОФИ</string>
     <string name="remove_ads_100">Удалить рекламу</string>
     <string name="benefit_2">Легко найти телефон></string>
-    <string name="benefit_3">Рингтоны и усилители; фонарик</string>
+    <string name="benefit_3">Рингтоны и фонарик</string>
     <string name="benefit_4">Различные звуковые эффекты</string>
     <string name="free">Бесплатно</string>
     <string name="s_continue">Продолжать</string>
@@ -106,7 +120,7 @@
     <string name="include_ads">Включить рекламу</string>
     <string name="excel_reader_plus">НЕОГРАНИЧЕННЫЕ ВОЗМОЖНОСТИ</string>
     <string name="unlimited_access_to_all">Неограниченный доступ ко всем</string>
-    <string name="term_of_use_privacy_policy">меня устраивает реклама</string>
+    <string name="term_of_use_privacy_policy">Я нормально отношусь к рекламе</string>
     <string name="_7_days">%1$s дней</string>
     <string name="monthly">Сэкономьте 30%</string>
     <string name="save_50">Сэкономьте 50%</string>
@@ -119,7 +133,7 @@
     <string name="gym">Спортзал</string>
     <string name="friend_s_house">Дом друга</string>
     <string name="caf">Кафе</string>
-    <string name="outdoors">на открытом воздухе</string>
+    <string name="outdoors">На открытом воздухе</string>
     <string name="school">Школа</string>
     <string name="car">Машина</string>
     <string name="hotel">Отель</string>
@@ -134,5 +148,80 @@
     <string name="are_you_sure_you_want_to_exit">Вы уверены, что хотите выйти?</string>
     <string name="exit">Выход</string>
     <string name="txt_rate_us">Оцените нас</string>
-    <string name="save_successfully">Сохраняйтесь успешно!</string>
+    <string name="save_successfully">Сохранение выполнено успешно!</string>
+    <string name="ai_clap_finder">AI Clap Finder</string>
+    <string name="police_1">Полиция 1</string>
+    <string name="alarm_1">Сигнализация 1</string>
+    <string name="dog">Собака</string>
+    <string name="laughing">Смеясь</string>
+    <string name="ghost_1">Призрак 1</string>
+    <string name="lion">Лев</string>
+    <string name="air_horn">Воздушный гудок</string>
+    <string name="devil">Дьявол</string>
+    <string name="fire_alarm">Пожарная сигнализация</string>
+    <string name="grenade">Гранада</string>
+    <string name="gun">Пистолет</string>
+    <string name="ambulance">Скорая помощь</string>
+    <string name="create_your_own_sounds">Создавайте свои собственные звуки</string>
+    <string name="see_more_sounds">Смотреть больше звуков</string>
+    <string name="police_2">Полиция 2</string>
+    <string name="ghost_2">Призрак 2</string>
+    <string name="alarm_3">Сигнализация 3</string>
+    <string name="halloween">Хэллоуин</string>
+    <string name="ghost_3">Призрак 3</string>
+    <string name="cat">Кот</string>
+    <string name="alarm_4">Сигнализация 4</string>
+    <string name="alarm_2">Сигнализация 2</string>
+    <string name="truck">Грузовик</string>
+    <string name="fart">Пердеть</string>
+    <string name="piano">Фортепиано</string>
+    <string name="sound_sensitivity">Чувствительность к звуку</string>
+    <string name="high_sensitivity">Высокая чувствительность</string>
+    <string name="average_sensitivity">Средняя чувствительность</string>
+    <string name="low_sensitivity">Низкая чувствительность</string>
+    <string name="change_language">Изменить язык</string>
+    <string name="rate_app">Оценить приложение</string>
+    <string name="privacy_policy">политика конфиденциальности</string>
+    <string name="share_the_app">Поделитесь приложением</string>
+    <string name="note">Примечание</string>
+    <string name="txt_title_uninstall">Если вы столкнулись с нестабильностью во время использования приложения.</string>
+    <string name="txt_sub_title_install">Пожалуйста, отрегулируйте настройки чувствительности, чтобы улучшить производительность и обеспечить более плавную работу.</string>
+    <string name="txt_adjust_sensitivity">Отрегулируйте чувствительность</string>
+    <string name="txt_still_want_to_uninstall">Все еще хочу удалить</string>
+    <string name="title_issue_uninstall">Проблемы, с которыми вы столкнулись во время использования</string>
+    <string name="feature_does_not_work">Функция не работает</string>
+    <string name="too_many_ads">Слишком много рекламы</string>
+    <string name="i_do_not_need_it_anymore">Мне это не нужно.</string>
+    <string name="label_uninstall">Удалить</string>
+    <string name="screen_alert">Оповещение на экране</string>
+    <string name="screen_alert_tutorial">Учебное пособие по экранным оповещениям</string>
+    <string name="descript_tutorial">Функция умного оповещения – автоматически активируется при обнаружении хлопков, имеет красивый и впечатляющий интерфейс. Вы можете быстро и удобно отключить оповещение прямо с экрана блокировки.</string>
+    <string name="ok">хорошо</string>
+    <string name="screen_alert_enabled">Оповещение на экране включено</string>
+    <string name="descript_alert_enable">Интерфейс «Экранное оповещение» теперь применён. Пожалуйста, похлопайте в ладоши, чтобы попробовать его!</string>
+    <string name="back_to_home">Вернуться домой</string>
+    <string name="description_permission">Чтобы использовать эту функцию, разрешите показ Screen Alert на экране блокировки.</string>
+    <string name="apply_screen">Применить экран</string>
+    <string name="title_sc_alert">Нажмите кнопку, чтобы отключить оповещение.</string>
+    <string name="what_is_sound_sensitivity">Что такое звуковая чувствительность?</string>
+    <string name="the_higher_the_sound_sensitivity">Чем выше чувствительность к звуку, тем лучше телефон может улавливать звук на большем расстоянии.</string>
+    <string name="txt_note">Примечание</string>
+    <string name="sound_sensitivity_may_vary_across">Чувствительность звука может различаться на разных устройствах. Поэкспериментируйте, чтобы подобрать оптимальный уровень чувствительности для вашего устройства. Эта функция работает только в режиме «Поиск телефона хлопком».</string>
+    <string name="swipe_to_next">Проведите пальцем к следующему</string>
+    <string name="title_rate0">Спасибо за доверие!</string>
+    <string name="content_rate0">Если вы удовлетворены, ваш отзыв станет для нас весомым стимулом к ​​дальнейшему совершенствованию.</string>
+    <string name="title_rate1">Сожалеем, что ваш опыт оказался неудовлетворительным!</string>
+    <string name="content_rate1">Мы будем рады услышать ваши мысли, чтобы мы могли стать лучше для вас и других.</string>
+    <string name="title_rate2">Извините, мы не оправдали ваших ожиданий!</string>
+    <string name="content_rate2">Ваши отзывы бесценны и помогают нам совершенствоваться и расти.</string>
+    <string name="title_rate3">Спасибо за оценку!</string>
+    <string name="content_rate3">Мы всегда прислушиваемся к вашим пожеланиям и стремимся сделать ваше пребывание у нас еще лучше.</string>
+    <string name="title_rate4">Большое спасибо за вашу поддержку!</string>
+    <string name="content_rate4">Осталось еще немного до совершенства — и мы будем рады узнать ваше мнение о том, как этого добиться.</string>
+    <string name="title_rate5">Мы вам очень благодарны!</string>
+    <string name="content_rate5">Ваше удовлетворение — наша величайшая награда и источник вдохновения во всем, что мы делаем.</string>
+    <string name="rate">Ставка</string>
+    <string name="rate_on_play">Оценить в Google Play</string>
+    <string name="thank_you_for_your_feedback">Спасибо за ваш отзыв.</string>
+    <string name="content_tks_feedback">Мы внимательно прислушиваемся к вашим пожеланиям и каждый день стремимся сделать наше сотрудничество с вами еще лучше.</string>
 </resources>

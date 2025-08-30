@@ -209,6 +209,12 @@
         <activity
             android:name="com.alx.findphone.claptofind.flashalert.main.dialog.TutorialDialog"
             android:theme="@style/Transparent" />
+        <activity
+            android:name="com.alx.findphone.claptofind.flashalert.main.dialog.DialogThanksFeedback"
+            android:theme="@style/Transparent" />
+        <activity
+            android:name="com.alx.findphone.claptofind.flashalert.main.dialog.CustomRateAppDialog"
+            android:theme="@style/Transparent" />
     </application>
 
 </manifest>

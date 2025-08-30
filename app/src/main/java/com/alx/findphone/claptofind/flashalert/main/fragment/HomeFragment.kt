@@ -26,6 +26,7 @@ import com.alx.findphone.claptofind.flashalert.base.BaseActivity
 import com.alx.findphone.claptofind.flashalert.data.model.SoundItem
 import com.alx.findphone.claptofind.flashalert.data.repo.AppRepository
 import com.alx.findphone.claptofind.flashalert.databinding.FragmentHomeBinding
+import com.alx.findphone.claptofind.flashalert.main.activity.MainActivity
 import com.alx.findphone.claptofind.flashalert.main.activity.PlaySoundActivity
 import com.alx.findphone.claptofind.flashalert.main.activity.ScreenAlertActivity
 import com.alx.findphone.claptofind.flashalert.main.activity.UninstallActivity

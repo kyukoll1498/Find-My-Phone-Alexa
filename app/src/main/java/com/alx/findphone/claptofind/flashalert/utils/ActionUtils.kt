@@ -50,8 +50,7 @@ object ActionUtils {
     }
 
     fun showRateDialog(context: Activity, isFinish: Boolean, callback: (Boolean) -> Unit) {
-        val dialog = CustomRateAppDialog(context)
-        dialog.setCallback(object : RateCallback {
+        CustomRateAppDialog.start(context, object : RateCallback {
             override fun onMaybeLater() {
                 if (isFinish) {
                     SharedPrefs.increaseCountRate(context)
@@ -60,8 +59,6 @@ object ActionUtils {
             }
 
             override fun onSubmit(review: String) {
-                Toast.makeText(context, context.getString(R.string.thank_you), Toast.LENGTH_SHORT)
-                    .show()
                 callback(true)
                 SharedPrefs.setRated(context)
                 if (isFinish) {
@@ -82,10 +79,40 @@ object ActionUtils {
                     context.finishAffinity()
                 }
             }
-
-
         })
-        dialog.show()
+
+//        val dialog = CustomRateAppDialog(context)
+//        dialog.setCallback(object : RateCallback {
+//            override fun onMaybeLater() {
+//                if (isFinish) {
+//                    SharedPrefs.increaseCountRate(context)
+//                    context.finishAffinity()
+//                }
+//            }
+//
+//            override fun onSubmit(review: String) {
+//                callback(true)
+//                SharedPrefs.setRated(context)
+//                if (isFinish) {
+//                    context.finishAffinity()
+//                }
+//
+//            }
+//
+//            override fun onRate() {
+//                rateInApp(context)
+//                SharedPrefs.setRated(context)
+//                callback(true)
+//
+//            }
+//
+//            override fun starRate(v: Float) {
+//                if (isFinish) {
+//                    context.finishAffinity()
+//                }
+//            }
+//        })
+//        dialog.show()
     }
 
     private fun rateInApp(context: Activity) {

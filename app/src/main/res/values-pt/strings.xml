@@ -1,10 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Clap to find your phone</string>
-    <string name="text_on_boarding_1">Encontre facilmente seu telefone perdido batendo palmas</string>
-    <string name="text_on_boarding_2">Vários efeitos sonoros para escolher</string>
-    <string name="text_on_boarding_3">Bata palmas para ligar a lanterna no escuro</string>
-    <string name="get_started">Comece</string>
+    <string name="app_name" translatable="false">Bata palmas para encontrar meu telefone</string>
+    <string name="loading" translatable="false">Carregando</string>
+    <string name="only" translatable="false">Apenas</string>
+    <string name="remove_ad_forever" translatable="false">Remova os anúncios PARA SEMPRE</string>
+    <string name="save_your_time" translatable="false">Economize seu tempo com propagandas inúteis</string>
+    <string name="read_more_effect" translatable="false">Ler com mais eficácia</string>
+    <string name="ready_premium" translatable="false">Estou pronto para Premium</string>
+    <string name="oke_with_ad" translatable="false">Não, estou bem com anúncios</string>
+    <string name="please_wait" translatable="false">Por favor, aguarde!</string>
+    <string name="processing_your_pack" translatable="false">Processando seu pacote…</string>
+    <string name="clap_to_find" translatable="false">Bata palmas para encontrar</string>
+    <string name="my_phone" translatable="false">Meu telefone</string>
+    <string name="app_name_setting" translatable="false">Encontre meu telefone</string>
+    <string name="facebook_app_id" translatable="false">7972717049505979</string>
+    <string name="facebook_client_token" translatable="false">d60d6122f2f767c77c250041594d6487</string>
+    <string name="text_on_boarding_df_fullscreen" translatable="false">#VALUE!</string>
+    <string name="text_on_boarding_1">Encontre seu telefone rapidamente</string>
+    <string name="text_on_boarding_2">Procurando seu telefone, apenas bata palmas</string>
+    <string name="text_on_boarding_3">Muito fácil de usar</string>
+    <string name="get_started">Iniciado</string>
     <string name="this_action_can_contain_ads">Esta ação pode conter anúncios…</string>
     <string name="do_you_like_our_app">Você gosta do nosso aplicativo?</string>
     <string name="write_your_feedback">Escreva seu feedback…</string>
@@ -14,7 +28,7 @@
     <string name="language">Linguagem</string>
     <string name="english">Inglês</string>
     <string name="learn_more">Saber mais</string>
-    <string name="rate_us">Avaliar aplicativo</string>
+    <string name="rate_us">Avalie o aplicativo</string>
     <string name="privacy">política de Privacidade</string>
     <string name="feedback_us">Opinião</string>
     <string name="share">Compartilhar aplicativo</string>
@@ -24,9 +38,9 @@
     <string name="sound">Sons</string>
     <string name="next">Próximo</string>
     <string name="trumpet">Trombeta</string>
-    <string name="police_whistle">Apito da Polícia</string>
-    <string name="party_horn">Buzina de festa</string>
-    <string name="door_bell">Campainha da porta</string>
+    <string name="police_whistle">Apito policial</string>
+    <string name="party_horn">Chifre de festa</string>
+    <string name="door_bell">Campainha</string>
     <string name="car_horn">Buzina de carro</string>
     <string name="hello">Olá</string>
     <string name="whistle">Assobiar</string>
@@ -40,12 +54,12 @@
     <string name="txt_inactive">Clique para ativar o botão e bata palmas para encontrar seu telefone</string>
     <string name="play">Jogar</string>
     <string name="pause">Pausa</string>
-    <string name="volume">Volume</string>
-    <string name="duration">Duração</string>
+    <string name="volume">Volume:</string>
+    <string name="duration">Duração:</string>
     <string name="apply">Aplicar</string>
     <string name="flashlight">Lanterna</string>
     <string name="txt_default">Padrão</string>
-    <string name="disco_mode">Modo discoteca</string>
+    <string name="disco_mode">Modo Disco</string>
     <string name="sos_mode">Modo SOS</string>
     <string name="vibrate">Vibrar</string>
     <string name="strong_vibration">Vibração forte</string>
@@ -55,31 +69,31 @@
     <string name="txt_touch_here_notify">Toque aqui para desativar</string>
     <string name="touch_here_to_deactivate">Toque aqui para desativar</string>
     <string name="clap_to_find_your_phone_is_running">Bata palmas para descobrir que seu telefone está funcionando</string>
-    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">"Não há arquivos.\n Vamos tentar "</string>
+    <string name="there_are_no_files_n_let_s_try_to_create_new_files_now">Não há arquivos. Vamos tentar criar novos arquivos agora.</string>
     <string name="create_sound">Criar som</string>
     <string name="import_audio">Importar áudio</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Permitir que <b>Clap To Find Your Phone</b> acesse o microfone</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_microphone">Permitir que o Clap encontre seu telefone para acessar o microfone</string>
     <string name="deny">Negar</string>
     <string name="allow">Permitir</string>
     <string name="record_sound">Gravar som</string>
     <string name="enter_name_sound">Digite o nome do som</string>
     <string name="save_sound">Salvar som</string>
-    <string name="name_sound_is_empty">O som do nome está vazio</string>
+    <string name="name_sound_is_empty">O som do nome é vazio</string>
     <string name="create_new">Criar novo</string>
     <string name="name_sound_already_exists">O nome do som já existe</string>
-    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Permitir que <b>Clap To Find Your Phone</b> acesse arquivos de áudio</string>
+    <string name="allow_clap_to_find_your_phone_to_access_audio_files">Permita que o Clap encontre seu telefone para acessar arquivos de áudio</string>
     <string name="how_to_use">Como usar</string>
     <string name="activate">ATIVAR</string>
     <string name="click_the_activate_button">Clique no botão ativar</string>
-    <string name="clap">Aplauso</string>
+    <string name="clap">PALMAS</string>
     <string name="double_clap_to_find_your_phone">Bata palmas duas vezes para encontrar seu telefone</string>
     <string name="detect">DETECTAR</string>
     <string name="app_detect_the_clap_and_start_ringing">O aplicativo detecta as palmas e começa a tocar</string>
     <string name="permission">PERMISSÃO</string>
-    <string name="allow_permission_to_access_microphone_audio_files">Permita permissão para acessar o microfone. arquivos de áudio</string>
+    <string name="allow_permission_to_access_microphone_audio_files">Permitir permissão para acessar o microfone e arquivos de áudio</string>
     <string name="txt_settings">CONFIGURAÇÕES</string>
-    <string name="before_activating_set_flashlight_adjust_volume">Antes de ativar, ajuste a lanterna, ajuste o volume.</string>
-    <string name="activation_text2">Clique para <font color="#1380FF">botão ativar</font> e <font color="#1380FF">bater palmas</font> para encontrar seu telefone</string>
+    <string name="before_activating_set_flashlight_adjust_volume">Antes de ativar, ajuste a lanterna e o volume.</string>
+    <string name="activation_text2">Clique para ativar o botão e bata palmas para encontrar seu telefone</string>
     <string name="save">Salvar</string>
     <string name="rename">Renomear</string>
     <string name="enter_name">Digite o nome</string>
@@ -88,16 +102,16 @@
     <string name="delete">Excluir</string>
     <string name="maybe_later">Talvez mais tarde</string>
     <string name="submit">Enviar</string>
-    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Permitir que <b>Clap To Find Your Phone</b> acesse a notificação</string>
+    <string name="allow_clap_to_find_your_phone_to_access_the_notification">Permita que o Clap encontre seu telefone para acessar a notificação</string>
     <string name="grant_permission">Solicitação de permissão</string>
-    <string name="please_grant">Por favor, conceda permissão para fornecer localizador de telefone batendo palmas.</string>
+    <string name="please_grant">Por favor, conceda permissão para fornecer o localizador de telefone batendo palmas?</string>
     <string name="record_permission">Permissão de gravação</string>
     <string name="continue_permission">Continuar</string>
     <string name="toast_permission_continue">Permita permissão para continuar!</string>
-    <string name="start_like_a_pro">COMECE COMO UM PRO</string>
+    <string name="start_like_a_pro">COMECE COMO UM PROFISSIONAL</string>
     <string name="remove_ads_100">Remover anúncios</string>
     <string name="benefit_2">Telefone fácil de localizar></string>
-    <string name="benefit_3">Toques e toques lanterna</string>
+    <string name="benefit_3">Toques e lanterna</string>
     <string name="benefit_4">Vários efeitos sonoros</string>
     <string name="free">Livre</string>
     <string name="s_continue">Continuar</string>
@@ -117,22 +131,97 @@
     <string name="sofa">Sofá</string>
     <string name="work">Trabalhar</string>
     <string name="gym">Academia</string>
-    <string name="friend_s_house">Casa do amigo</string>
+    <string name="friend_s_house">Casa do Amigo</string>
     <string name="caf">Café</string>
     <string name="outdoors">Ao ar livre</string>
     <string name="school">Escola</string>
     <string name="car">Carro</string>
     <string name="hotel">Hotel</string>
     <string name="events">Eventos</string>
-    <string name="shopping_mall">Shopping</string>
+    <string name="shopping_mall">Shopping Center</string>
     <string name="park">Parque</string>
     <string name="others">Outros</string>
     <string name="skip">Pular</string>
     <string name="txt_share">Compartilhar</string>
-    <string name="txt_feedback_us">Feedback-nos</string>
+    <string name="txt_feedback_us">Dê-nos um feedback</string>
     <string name="txt_privacy">Privacidade</string>
     <string name="are_you_sure_you_want_to_exit">Tem certeza de que deseja sair?</string>
     <string name="exit">Saída</string>
     <string name="txt_rate_us">Avalie-nos</string>
     <string name="save_successfully">Salve com sucesso!</string>
+    <string name="ai_clap_finder">Localizador de palmas de IA</string>
+    <string name="police_1">Polícia 1</string>
+    <string name="alarm_1">Alarme 1</string>
+    <string name="dog">Cachorro</string>
+    <string name="laughing">Rindo</string>
+    <string name="ghost_1">Fantasma 1</string>
+    <string name="lion">Leão</string>
+    <string name="air_horn">Buzina de ar</string>
+    <string name="devil">Diabo</string>
+    <string name="fire_alarm">Alarme de incêndio</string>
+    <string name="grenade">Granada</string>
+    <string name="gun">Pistola</string>
+    <string name="ambulance">Ambulância</string>
+    <string name="create_your_own_sounds">Crie seus próprios sons</string>
+    <string name="see_more_sounds">Veja mais sons</string>
+    <string name="police_2">Polícia 2</string>
+    <string name="ghost_2">Fantasma 2</string>
+    <string name="alarm_3">Alarme 3</string>
+    <string name="halloween">Dia das Bruxas</string>
+    <string name="ghost_3">Fantasma 3</string>
+    <string name="cat">Gato</string>
+    <string name="alarm_4">Alarme 4</string>
+    <string name="alarm_2">Alarme 2</string>
+    <string name="truck">Caminhão</string>
+    <string name="fart">Peido</string>
+    <string name="piano">Piano</string>
+    <string name="sound_sensitivity">Sensibilidade ao som</string>
+    <string name="high_sensitivity">Alta Sensibilidade</string>
+    <string name="average_sensitivity">Sensibilidade média</string>
+    <string name="low_sensitivity">Baixa Sensibilidade</string>
+    <string name="change_language">Alterar idioma</string>
+    <string name="rate_app">Avalie o aplicativo</string>
+    <string name="privacy_policy">política de Privacidade</string>
+    <string name="share_the_app">Compartilhe o aplicativo</string>
+    <string name="note">Observação</string>
+    <string name="txt_title_uninstall">Se você encontrar instabilidade ao usar o aplicativo.</string>
+    <string name="txt_sub_title_install">Ajuste as configurações de sensibilidade para melhorar seu desempenho e garantir uma operação mais suave.</string>
+    <string name="txt_adjust_sensitivity">Ajustar sensibilidade</string>
+    <string name="txt_still_want_to_uninstall">Ainda quero desinstalar</string>
+    <string name="title_issue_uninstall">Problemas que você encontrou durante o uso</string>
+    <string name="feature_does_not_work">O recurso não funciona</string>
+    <string name="too_many_ads">Muitos anúncios</string>
+    <string name="i_do_not_need_it_anymore">Eu não preciso disso</string>
+    <string name="label_uninstall">Desinstalar</string>
+    <string name="screen_alert">Alerta de tela</string>
+    <string name="screen_alert_tutorial">Tutorial de alerta de tela</string>
+    <string name="descript_tutorial">Recurso de Alerta Inteligente – Ativa-se automaticamente ao detectar sons de palmas, com uma interface bonita e impressionante. Você pode ignorar o alerta diretamente da tela de bloqueio, de forma rápida e prática.</string>
+    <string name="ok">OK</string>
+    <string name="screen_alert_enabled">Alerta de tela ativado</string>
+    <string name="descript_alert_enable">A interface \"Alerta de Tela\" já está disponível. Por favor, batam palmas para experimentar!</string>
+    <string name="back_to_home">Voltar para casa</string>
+    <string name="description_permission">Ative a exibição do Alerta de Tela na sua tela de bloqueio para usar este recurso.</string>
+    <string name="apply_screen">Aplicar tela</string>
+    <string name="title_sc_alert">Toque no botão para desativar o alerta.</string>
+    <string name="what_is_sound_sensitivity">O que é sensibilidade sonora?</string>
+    <string name="the_higher_the_sound_sensitivity">Quanto maior a sensibilidade do som, melhor o telefone consegue captar sons de uma distância maior.</string>
+    <string name="txt_note">Observação</string>
+    <string name="sound_sensitivity_may_vary_across">A sensibilidade do som pode variar de acordo com o dispositivo. Experimente para encontrar o nível de sensibilidade mais adequado ao seu dispositivo. Este recurso só funciona no modo \"Bata palmas para encontrar o telefone\".</string>
+    <string name="swipe_to_next">Deslize para o próximo</string>
+    <string name="title_rate0">Obrigado por confiar em nós!</string>
+    <string name="content_rate0">Se você estiver satisfeito, sua avaliação será um incentivo significativo para que continuemos melhorando.</string>
+    <string name="title_rate1">Desculpe que sua experiência não tenha sido ótima!</string>
+    <string name="content_rate1">Gostaríamos de ouvir sua opinião para que possamos fazer melhor por você e pelos outros.</string>
+    <string name="title_rate2">Desculpe por não termos correspondido às suas expectativas!</string>
+    <string name="content_rate2">Seu feedback é inestimável para nos ajudar a melhorar e crescer.</string>
+    <string name="title_rate3">Obrigado por nos avaliar!</string>
+    <string name="content_rate3">Estamos sempre ouvindo e ansiosos para melhorar sua experiência.</string>
+    <string name="title_rate4">Muito obrigado pelo seu apoio!</string>
+    <string name="content_rate4">Faltando apenas um pouco mais para a perfeição — gostaríamos da sua opinião sobre como podemos chegar lá.</string>
+    <string name="title_rate5">Estamos realmente gratos!</string>
+    <string name="content_rate5">Sua satisfação é nossa maior recompensa e a inspiração por trás de tudo o que fazemos.</string>
+    <string name="rate">Avaliar</string>
+    <string name="rate_on_play">Avalie no Google Play</string>
+    <string name="thank_you_for_your_feedback">Obrigado pelo seu feedback</string>
+    <string name="content_tks_feedback">Estamos ouvindo atentamente e nos esforçando todos os dias para lhe proporcionar uma experiência melhor.</string>
 </resources>

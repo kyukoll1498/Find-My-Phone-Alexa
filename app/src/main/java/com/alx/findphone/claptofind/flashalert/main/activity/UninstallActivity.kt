@@ -8,6 +8,7 @@ import android.graphics.Shader
 import android.graphics.Shader.TileMode
 import com.alx.findphone.claptofind.flashalert.base.BaseActivity
 import com.alx.findphone.claptofind.flashalert.databinding.ActivityTryUninstallBinding
+import com.alx.findphone.claptofind.flashalert.main.fragment.SettingFragment
 
 class UninstallActivity : BaseActivity<ActivityTryUninstallBinding>(ActivityTryUninstallBinding::inflate) {
 
@@ -30,7 +31,7 @@ class UninstallActivity : BaseActivity<ActivityTryUninstallBinding>(ActivityTryU
             finish()
         }
         binding.tvTryAgain.setOnClickListener {
-            MainActivity.startFromUninstall(this)
+            SettingFragment.startFromUninstall(this)
             finish()
         }
         binding.tvStillUninstall.setOnClickListener {

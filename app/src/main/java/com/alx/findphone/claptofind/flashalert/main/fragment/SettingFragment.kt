@@ -56,69 +56,69 @@ class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBind
     private fun setUpSelection() {
         when (appPreferences.currentFlash) {
             MODE_FLASH_DEFAULT -> {
-                binding?.rbFlashDefault?.isChecked = true
+                binding.rbFlashDefault?.isChecked = true
             }
 
             MODE_FLASH_DISCO -> {
-                binding?.rbFlashDisco?.isChecked = true
+                binding.rbFlashDisco.isChecked = true
             }
 
             MODE_FLASH_SOS -> {
-                binding?.rbFlashSos?.isChecked = true
+                binding.rbFlashSos.isChecked = true
             }
         }
 
         when (appPreferences.currentVibrate) {
             MODE_VIBRATE_DEFAULT -> {
-                binding?.rbVibrateDefault?.isChecked = true
+                binding.rbVibrateDefault.isChecked = true
             }
 
             MODE_VIBRATE_STRONG -> {
-                binding?.rbVibrateStrong?.isChecked = true
+                binding.rbVibrateStrong.isChecked = true
             }
 
             MODE_VIBRATE_HEART -> {
-                binding?.rbVibrateHeart?.isChecked = true
+                binding.rbVibrateHeart.isChecked = true
             }
 
             MODE_VIBRATE_TICKTOCK -> {
-                binding?.rbVibrateTicktock?.isChecked = true
+                binding.rbVibrateTicktock.isChecked = true
             }
         }
 
         when (appPreferences.currentSoundSensitivity) {
             HIGH_SENSITIVITY -> {
-                binding?.rbHighSensitivity?.isChecked = true
+                binding.rbHighSensitivity.isChecked = true
             }
 
             AVERAGE_SENSITIVITY -> {
-                binding?.rbAverageSensitivity?.isChecked = true
+                binding.rbAverageSensitivity.isChecked = true
             }
 
             LOW_SENSITIVITY -> {
-                binding?.rbLowSensitivity?.isChecked = true
+                binding.rbLowSensitivity.isChecked = true
             }
         }
 
-        binding?.sbSound?.isChecked = appPreferences.hasSound
+        binding.sbSound.isChecked = appPreferences.hasSound
         if (appPreferences.hasFlash) {
-            binding?.sbFlash?.isChecked = true
+            binding.sbFlash.isChecked = true
             unlockFlash()
         } else {
-            binding?.sbFlash?.isChecked = false
+            binding.sbFlash.isChecked = false
             lockFlash()
         }
         if (appPreferences.hasVibrate) {
-            binding?.sbVibrate?.isChecked = true
+            binding.sbVibrate.isChecked = true
             unlockVibrate()
         } else {
-            binding?.sbVibrate?.isChecked = false
+            binding.sbVibrate.isChecked = false
             lockVibrate()
         }
     }
 
     override fun addEvent() {
-        binding?.apply {
+        binding.apply {
             rbFlashDefault.setOnClickListener {
                 logEvent("click_set_flash_default")
                 runVibrateFlashThread(MODE_FLASH_DEFAULT)
@@ -208,7 +208,7 @@ class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBind
             btnRate.setOnClickListener {
                 EventLogger.Companion.getInstance()?.logEvent("click_set_rate")
                 ActionUtils.showRateDialog(this@SettingFragment, false, callback = {
-                    if (it) hideRate()
+//                    if (it) hideRate()
                 })
             }
             btnShare.setOnClickListener {
@@ -249,34 +249,34 @@ class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBind
     }
 
     private fun unlockFlash() {
-        binding?.rgFlash?.alpha = 1F
-        binding?.vLockFlash?.visibility = View.GONE
+        binding.rgFlash.alpha = 1F
+        binding.vLockFlash.visibility = View.GONE
     }
 
     private fun lockFlash() {
         if (VibrateFlashThread.Companion.isCancellable) {
             VibrateFlashThread.Companion.stopFlash()
         }
-        binding?.rgFlash?.alpha = 0.3F
-        binding?.vLockFlash?.visibility = View.VISIBLE
+        binding.rgFlash.alpha = 0.3F
+        binding.vLockFlash.visibility = View.VISIBLE
     }
 
     private fun unlockVibrate() {
-        binding?.rgVibrate?.alpha = 1F
-        binding?.vLockVibrate?.visibility = View.GONE
+        binding.rgVibrate.alpha = 1F
+        binding.vLockVibrate.visibility = View.GONE
     }
 
     private fun lockVibrate() {
         if (VibrateFlashThread.Companion.isCancellable) {
             VibrateFlashThread.Companion.stopVibrate()
         }
-        binding?.rgVibrate?.alpha = 0.3F
-        binding?.vLockVibrate?.visibility = View.VISIBLE
+        binding.rgVibrate.alpha = 0.3F
+        binding.vLockVibrate.visibility = View.VISIBLE
     }
 
 
     public fun hideRate() {
-        binding?.btnRate?.hide()
+        binding.btnRate.hide()
     }
 
     private fun setUpRate() {
@@ -287,7 +287,7 @@ class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBind
 
     override fun onPause() {
         super.onPause()
-        binding?.apply {
+        binding.apply {
             appPreferences.hasSound = sbSound.isChecked
             appPreferences.hasFlash = sbFlash.isChecked
             appPreferences.hasVibrate = sbVibrate.isChecked

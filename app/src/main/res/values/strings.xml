@@ -15,7 +15,6 @@
     <string name="facebook_app_id" translatable="false">7972717049505979</string>
     <string name="facebook_client_token" translatable="false">d60d6122f2f767c77c250041594d6487</string>
     <string name="text_on_boarding_df_fullscreen" translatable="false"></string>
-
     <string name="text_on_boarding_1">Find your phone quickly</string>
     <string name="text_on_boarding_2">Looking for your phone just clap</string>
     <string name="text_on_boarding_3">Very easy for use</string>
@@ -209,4 +208,20 @@
     <string name="txt_note">Note</string>
     <string name="sound_sensitivity_may_vary_across">Sound sensitivity may vary across different devices. Please experiment to find the sensitivity level that best suits your device.\nThis feature only works in the \'Clap to Find Phone\' mode.</string>
     <string name="swipe_to_next">Swipe to next</string>
+    <string name="title_rate0">Thank you for trusting us!</string>
+    <string name="content_rate0">If you\'re satisfied, your review would be a meaningful encouragement for us to keep improving.</string>
+    <string name="title_rate1">Sorry your experience wasn’t great!</string>
+    <string name="content_rate1">We’d love to hear your thoughts so we can do better, for you and others.</string>
+    <string name="title_rate2">Sorry we didn’t meet your expectations!</string>
+    <string name="content_rate2">Your feedback is invaluable in helping us improve and grow.</string>
+    <string name="title_rate3">Thanks for rating us!</string>
+    <string name="content_rate3">We’re always listening and eager to enhance your experience.</string>
+    <string name="title_rate4">Thanks so much for your support!</string>
+    <string name="content_rate4">Just a little more to perfection — we’d love your input on how we can get there.</string>
+    <string name="title_rate5">We\'re truly grateful!</string>
+    <string name="content_rate5">Your satisfaction is our greatest reward and the inspiration behind everything we do.</string>
+    <string name="rate">Rate</string>
+    <string name="rate_on_play">Rate on Google Play</string>
+    <string name="thank_you_for_your_feedback">Thank you for your feedback</string>
+    <string name="content_tks_feedback">We’re listening closely and striving every day to bring you a better experience.</string>
 </resources>

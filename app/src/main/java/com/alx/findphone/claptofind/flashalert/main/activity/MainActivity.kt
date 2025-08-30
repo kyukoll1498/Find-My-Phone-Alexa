@@ -49,13 +49,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }
-
-        fun startFromUninstall(context: Context) {
-            val intent = Intent(context, MainActivity::class.java)
-            intent.action = Constants.ACTION_CLICKED_SENSITIVITY_UNINSTALL
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            context.startActivity(intent)
-        }
     }
 
     private var canRefreshBanner = true

@@ -113,7 +113,7 @@
                         android:includeFontPadding="false"
                         android:text="@string/sound_sensitivity"
                         android:textColor="@color/color_212121"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="14dp" />
 
                     <ImageView
                         android:id="@+id/iv_tutorial"
@@ -161,7 +161,7 @@
                             android:paddingStart="@dimen/_8sdp"
                             android:text="@string/high_sensitivity"
                             android:textColor="@color/color_212121"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="12dp"
                             app:buttonTint="@color/color_005eff" />
 
                         <androidx.appcompat.widget.AppCompatRadioButton
@@ -176,7 +176,7 @@
                             android:paddingStart="@dimen/_8sdp"
                             android:text="@string/average_sensitivity"
                             android:textColor="@color/color_212121"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="12dp"
                             app:buttonTint="@color/color_005eff" />
 
                         <androidx.appcompat.widget.AppCompatRadioButton
@@ -190,7 +190,7 @@
                             android:paddingStart="@dimen/_8sdp"
                             android:text="@string/low_sensitivity"
                             android:textColor="@color/color_212121"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="12dp"
                             app:buttonTint="@color/color_005eff" />
                     </RadioGroup>
                 </FrameLayout>
@@ -237,7 +237,7 @@
                             android:includeFontPadding="false"
                             android:text="@string/flashlight"
                             android:textColor="@color/color_212121"
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="14dp" />
 
                         <com.alx.findphone.claptofind.flashalert.main.widget.SwitchButton
                             android:id="@+id/sb_flash"
@@ -346,7 +346,7 @@
                             android:includeFontPadding="false"
                             android:text="@string/vibrate"
                             android:textColor="@color/color_212121"
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="14dp" />
 
                         <com.alx.findphone.claptofind.flashalert.main.widget.SwitchButton
                             android:id="@+id/sb_vibrate"
@@ -470,7 +470,7 @@
                         android:fontFamily="@font/roboto_semibold"
                         android:text="@string/change_language"
                         android:textColor="@color/color_212121"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="14dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -504,7 +504,7 @@
                         android:fontFamily="@font/roboto_semibold"
                         android:text="@string/rate_app"
                         android:textColor="@color/color_212121"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="14dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -538,7 +538,7 @@
                         android:fontFamily="@font/roboto_semibold"
                         android:text="@string/privacy_policy"
                         android:textColor="@color/color_212121"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="14dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -572,7 +572,7 @@
                         android:fontFamily="@font/roboto_semibold"
                         android:text="@string/share_the_app"
                         android:textColor="@color/color_212121"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="14dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
