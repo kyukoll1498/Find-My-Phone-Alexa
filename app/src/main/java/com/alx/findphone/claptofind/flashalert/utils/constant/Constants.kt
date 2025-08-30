@@ -1,6 +1,7 @@
 package com.alx.findphone.claptofind.flashalert.utils.constant
 
 object Constants {
+    val ACTION_CLICKED_SENSITIVITY_UNINSTALL: String = "ACTION_CLICKED_SENSITIVITY_UNINSTALL"
     val ACTION_FINISH_DETECT: String = "ACTION_FINISH_DETECT"
     val KEY_ITEM_ALERT: String = "KEY_ITEM_ALERT"
     const val APPLY_ACTIVE_CLAP: String = "apply_active_clap"

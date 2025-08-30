@@ -5,58 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_radius_10"
-    android:paddingBottom="@dimen/_8sdp"
+    android:paddingVertical="32dp"
     tools:ignore="ExtraText">
 
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
         android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="@dimen/_18sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:src="@drawable/logo_rate_clap"
-        app:layout_constraintDimensionRatio="264:151"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:src="@drawable/ic_0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:fontFamily="@font/poppins_medium"
-        android:paddingHorizontal="@dimen/_18sdp"
-        android:text="@string/do_you_like_our_app"
-        android:textAlignment="center"
-        android:textColor="#F86716"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="@dimen/_18sdp"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
-
-    <TextView
         android:id="@+id/tv_first_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_semibold"
         android:text="@string/first_content_rate"
         android:textAlignment="center"
-        android:textSize="@dimen/_12sdp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        android:textSize="16dp"
+        app:layout_constraintTop_toBottomOf="@id/icon" />
 
     <TextView
         android:id="@+id/tv_second_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_regular"
         android:paddingHorizontal="@dimen/_18sdp"
         android:text="@string/second_content_rate"
         android:textAlignment="center"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="14dp"
         app:layout_constraintTop_toBottomOf="@id/tv_first_content" />
 
     <com.ymb.ratingbar_lib.RatingBar
@@ -64,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginTop="24dp"
         app:drawable_empty="@drawable/img_star_nofill"
         app:drawable_filled="@drawable/img_star_fill"
         app:drawable_half="@drawable/img_star_nofill"
@@ -110,16 +93,16 @@
             android:id="@+id/tv_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:background="@drawable/bg_radius_gradient"
-            android:layout_marginHorizontal="@dimen/_15sdp"
             android:fontFamily="@font/poppins_medium"
+            android:includeFontPadding="false"
             android:padding="@dimen/_12sdp"
             android:text="@string/submit"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:includeFontPadding="false"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -129,13 +112,13 @@
 
     <LinearLayout
         android:id="@+id/ln_later"
-        android:layout_marginTop="@dimen/_16sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_16sdp"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rating">
 
         <TextView

@@ -19,7 +19,7 @@
     <string name="text_on_boarding_1">Find your phone quickly</string>
     <string name="text_on_boarding_2">Looking for your phone just clap</string>
     <string name="text_on_boarding_3">Very easy for use</string>
-    <string name="get_started">Get Started</string>
+    <string name="get_started">Started</string>
     <string name="this_action_can_contain_ads">This action can contain ads…</string>
     <string name="do_you_like_our_app">Do you like our App?</string>
     <string name="write_your_feedback">Write your feedback…</string>
@@ -184,7 +184,7 @@
     <string name="rate_app">Rate App</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="share_the_app">Share the app</string>
-    <string name="note">Note</string>
+    <string name="note"><u>Note</u></string>
     <string name="txt_title_uninstall">If you encounter instability while using the application.</string>
     <string name="txt_sub_title_install">Please adjusting the sensitivity settings to enhance its performance and ensure smoother operation.</string>
     <string name="txt_adjust_sensitivity">Adjust Sensitivity</string>
@@ -204,4 +204,9 @@
     <string name="description_permission">Please allow Screen Alert to be shown on your lock screen to use this feature.</string>
     <string name="apply_screen">Apply Screen</string>
     <string name="title_sc_alert">Tap the button to turn off the alert.</string>
+    <string name="what_is_sound_sensitivity">What is sound sensitivity?</string>
+    <string name="the_higher_the_sound_sensitivity">The higher the sound sensitivity, the better the phone can pick up sound from a greater distance.</string>
+    <string name="txt_note">Note</string>
+    <string name="sound_sensitivity_may_vary_across">Sound sensitivity may vary across different devices. Please experiment to find the sensitivity level that best suits your device.\nThis feature only works in the \'Clap to Find Phone\' mode.</string>
+    <string name="swipe_to_next">Swipe to next</string>
 </resources>

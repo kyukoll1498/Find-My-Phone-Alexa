@@ -9,7 +9,7 @@ import com.alx.findphone.claptofind.flashalert.consent_dialog.remote_config.Remo
 
 class ViewPagerAddFragmentsMainAdapter(private val context: Context, fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
-    private var pageSize = 4
+    private var pageSize = 3
     val mFragmentList: MutableList<Fragment> = ArrayList()
 
     init {

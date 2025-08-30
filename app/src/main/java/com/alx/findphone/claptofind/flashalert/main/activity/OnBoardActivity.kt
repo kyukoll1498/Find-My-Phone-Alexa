@@ -2,7 +2,11 @@ package com.alx.findphone.claptofind.flashalert.main.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.view.View
+import android.view.Window
+import androidx.activity.enableEdgeToEdge
 import androidx.viewpager2.widget.ViewPager2
 import com.alx.findphone.claptofind.flashalert.AdCache
 import com.alx.findphone.claptofind.flashalert.AdIds
@@ -19,6 +23,7 @@ import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.utils.InternetUtil
 import com.google.android.gms.ads.nativead.NativeAd
+
 
 class OnBoardActivity :
     BaseActivity<ActivityOnboardingBinding>(ActivityOnboardingBinding::inflate) {
@@ -46,6 +51,7 @@ class OnBoardActivity :
 
     override fun initView() {
         initViewPager()
+        enableEdgeToEdge()
     }
 
 //    override fun onResume() {

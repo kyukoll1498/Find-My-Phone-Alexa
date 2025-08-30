@@ -4,13 +4,13 @@
         <shape>
             <solid android:color="@color/white" />
             <stroke android:width="@dimen/_1sdp" android:color="#aaaaaa" />
-            <corners android:radius="@dimen/_8sdp" />
+            <corners android:radius="100dp" />
         </shape>
     </item>
     <item android:state_selected="true">
         <shape>
             <solid android:color="@color/white" />
-            <corners android:radius="@dimen/_8sdp" />
+            <corners android:radius="100dp" />
             <stroke android:width="@dimen/_1sdp" android:color="@color/color_005eff" />
         </shape>
     </item>

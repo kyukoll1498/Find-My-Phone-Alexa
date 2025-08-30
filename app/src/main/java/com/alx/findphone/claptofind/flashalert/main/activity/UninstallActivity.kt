@@ -12,17 +12,17 @@ import com.alx.findphone.claptofind.flashalert.databinding.ActivityTryUninstallB
 class UninstallActivity : BaseActivity<ActivityTryUninstallBinding>(ActivityTryUninstallBinding::inflate) {
 
     override fun initView() {
-        val textShader: Shader = LinearGradient(
-            0f,
-            0f,
-            0f,
-            20f,
-            intArrayOf(Color.parseColor("#3c92e3"), Color.parseColor("#25d9c0")),
-            floatArrayOf(0f, 1f),
-            TileMode.CLAMP
-        )
-        binding.tvTryAgain.paint.shader = textShader
-        binding.tvStillUninstall.paint.shader = textShader
+//        val textShader: Shader = LinearGradient(
+//            0f,
+//            0f,
+//            0f,
+//            20f,
+//            intArrayOf(Color.parseColor("#3c92e3"), Color.parseColor("#25d9c0")),
+//            floatArrayOf(0f, 1f),
+//            TileMode.CLAMP
+//        )
+//        binding.tvTryAgain.paint.shader = textShader
+//        binding.tvStillUninstall.paint.shader = textShader
     }
 
     override fun addEvent() {
@@ -30,6 +30,7 @@ class UninstallActivity : BaseActivity<ActivityTryUninstallBinding>(ActivityTryU
             finish()
         }
         binding.tvTryAgain.setOnClickListener {
+            MainActivity.startFromUninstall(this)
             finish()
         }
         binding.tvStillUninstall.setOnClickListener {

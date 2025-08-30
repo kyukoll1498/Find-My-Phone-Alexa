@@ -206,6 +206,9 @@
             android:screenOrientation="portrait"
             android:showWhenLocked="true"
             android:turnScreenOn="true" />
+        <activity
+            android:name="com.alx.findphone.claptofind.flashalert.main.dialog.TutorialDialog"
+            android:theme="@style/Transparent" />
     </application>
 
 </manifest>

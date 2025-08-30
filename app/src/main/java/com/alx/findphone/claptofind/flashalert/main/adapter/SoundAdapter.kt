@@ -17,6 +17,7 @@ import com.alx.findphone.claptofind.flashalert.consent_dialog.base.EventLogger
 import com.alx.findphone.claptofind.flashalert.data.model.SoundItem
 import com.alx.findphone.claptofind.flashalert.databinding.ItemNativeHolderBinding
 import com.alx.findphone.claptofind.flashalert.databinding.ItemSoundBinding
+import com.alx.findphone.claptofind.flashalert.main.activity.PlaySoundActivity
 import com.alx.findphone.claptofind.flashalert.utils.hide
 import com.alx.findphone.claptofind.flashalert.utils.show
 import com.bumptech.glide.Glide
@@ -101,12 +102,24 @@ class SoundAdapter(
                 binding.cardImage.visibility = View.GONE
                 binding.ivImage.visibility = View.VISIBLE
             }
-            if (soundItem.isSelected) {
-                binding.ctlContainer.setBackgroundResource(R.drawable.bg_selected_sound)
-                binding.ivChecked.show()
-            } else {
-                binding.ctlContainer.setBackgroundResource(R.drawable.bg_unselected_sound)
-                binding.ivChecked.hide()
+
+
+            if (context is PlaySoundActivity) {
+                if (soundItem.isSelected) {
+                    binding.ctlContainer.setBackgroundResource(R.drawable.bg_selected_play_sound)
+                    binding.ivChecked.show()
+                } else {
+                    binding.ctlContainer.setBackgroundResource(R.drawable.bg_unselected_play_sound)
+                    binding.ivChecked.hide()
+                }
+            }else{
+                if (soundItem.isSelected) {
+                    binding.ctlContainer.setBackgroundResource(R.drawable.bg_selected_sound)
+                    binding.ivChecked.show()
+                } else {
+                    binding.ctlContainer.setBackgroundResource(R.drawable.bg_unselected_sound)
+                    binding.ivChecked.hide()
+                }
             }
 
             if (showItemName) {

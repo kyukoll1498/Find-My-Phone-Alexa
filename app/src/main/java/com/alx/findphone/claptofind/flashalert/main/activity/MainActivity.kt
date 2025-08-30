@@ -26,6 +26,7 @@ import com.alx.findphone.claptofind.flashalert.main.fragment.SettingFragment
 import com.alx.findphone.claptofind.flashalert.utils.ActionUtils
 import com.alx.findphone.claptofind.flashalert.utils.EventLogger
 import com.alx.findphone.claptofind.flashalert.utils.PermissionUtils
+import com.alx.findphone.claptofind.flashalert.utils.constant.Constants
 import com.common.control.interfaces.AdCallback
 import com.common.control.manager.AdmobManager
 import com.common.control.manager.AppOpenManager
@@ -48,6 +49,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }
+
+        fun startFromUninstall(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.action = Constants.ACTION_CLICKED_SENSITIVITY_UNINSTALL
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            context.startActivity(intent)
+        }
     }
 
     private var canRefreshBanner = true
@@ -60,6 +68,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         setupViewpager()
 //        setupDrawerNavigation()
         loadAlternateBanner()
+
+        if (intent.action.equals(Constants.ACTION_CLICKED_SENSITIVITY_UNINSTALL)) {
+            SettingFragment.startFromUninstall(this)
+        }
     }
 
     private fun loadAlternateBanner() {
@@ -225,12 +237,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     private fun setupViewpager() {
         binding.viewpagerMain.apply {
-            adapter = ViewPagerAddFragmentsMainAdapter(context, supportFragmentManager, lifecycle).apply {
+            adapter =
+                ViewPagerAddFragmentsMainAdapter(context, supportFragmentManager, lifecycle).apply {
 //                addFrag(homeFragment)
 //                addFrag(SoundFragment())
 //                addFrag(AddFragment())
 //                addFrag(settingFragment)
-            }
+                }
         }
 //        binding.viewpagerMain.offscreenPageLimit = 2
         binding.viewpagerMain.isUserInputEnabled = false

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageView"
@@ -22,7 +23,7 @@
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_16sdp"
             android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +74,7 @@
             android:id="@+id/tv_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
             android:background="@drawable/bg_apply"
             android:fontFamily="@font/roboto_semibold"
             android:gravity="center"
@@ -87,38 +88,40 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
-        android:layout_width="@dimen/_240sdp"
-        android:layout_height="@dimen/_180sdp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/ll_container"
-        app:layout_constraintEnd_toEndOf="@+id/ll_container"
-        app:layout_constraintStart_toStartOf="@+id/ll_container"
-        app:layout_constraintTop_toTopOf="@+id/ll_container"
-        app:lottie_autoPlay="false"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/sound_animation" />
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/fr_ad"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_top">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ll_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:background="@drawable/bg_radius_12"
+                android:backgroundTint="@color/color_f0f6ff"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="@dimen/_240sdp"
+                    android:layout_height="@dimen/_180sdp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_sound_avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_sound_avatar"
+                    app:lottie_autoPlay="false"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/sound_animation" />
 
                 <ImageView
                     android:id="@+id/iv_sound_avatar"
@@ -127,26 +130,24 @@
                     android:src="@drawable/avatar_cat_meowing"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_top" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:id="@+id/ll_controller"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="72dp"
+                    android:layout_height="36dp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:background="@drawable/bg_apply"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_24sdp"
-                    android:paddingVertical="@dimen/_6sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_sound_avatar">
 
                     <ImageView
                         android:id="@+id/iv_player_controller"
-                        android:layout_width="@dimen/_22sdp"
-                        android:layout_height="@dimen/_22sdp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:src="@drawable/ic_pause"
                         app:tint="@color/color_005eff" />
 
@@ -175,7 +176,7 @@
                     app:layout_constraintTop_toBottomOf="@id/ll_controller"
                     tools:itemCount="5"
                     tools:listitem="@layout/item_sound" />
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/ll_volume"
@@ -351,9 +352,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
                 android:background="@drawable/bg_radius_12"
                 android:backgroundTint="#F0F6FF"
                 android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_volume">
 
                 <LinearLayout
@@ -367,8 +370,8 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/ic_sound_settings" />
 
                     <TextView
@@ -399,8 +402,8 @@
                     android:paddingEnd="@dimen/_16sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/ic_flash" />
 
                     <TextView
@@ -431,8 +434,8 @@
                     android:paddingEnd="@dimen/_16sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/ic_vibrate" />
 
                     <TextView
@@ -455,18 +458,6 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <FrameLayout
-        android:id="@+id/fr_ad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_1sdp"
-        android:layout_marginBottom="0dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <include layout="@layout/layout_banner_control" />
-    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

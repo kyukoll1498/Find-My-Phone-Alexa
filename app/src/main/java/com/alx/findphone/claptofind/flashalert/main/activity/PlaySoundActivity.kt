@@ -142,26 +142,6 @@ class PlaySoundActivity : BaseActivity<ActivityPlaySoundBinding>(ActivityPlaySou
 
     private fun loadAlternateNative() {
         Log.d("Refresh", "Play Refresh")
-        AdmobManager.getInstance().preloadAlternateNative(
-            this, listNative, object : AdCallback() {
-                override fun onNativeAds(nativeAd: NativeAd?) {
-                    super.onNativeAds(nativeAd)
-                    AdmobManager.getInstance().showNative(
-                        this@PlaySoundActivity, nativeAd, binding.frAd, AdmobManager.NativeAdType.SMALL
-                    )
-                }
-
-                override fun onAdImpression() {
-                    super.onAdImpression()
-                    logEvent("effect_native_view")
-                }
-
-                override fun onAdClicked() {
-                    super.onAdClicked()
-                    logEvent("effect_native_click")
-                }
-            })
-        AppOpenManager.getInstance().hideNativeOrBannerWhenShowOpenApp(this, binding.frAd)
     }
 
     override fun onResume() {

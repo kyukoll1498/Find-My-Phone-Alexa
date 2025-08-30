@@ -19,10 +19,12 @@ import com.alx.findphone.claptofind.flashalert.data.preferences.SharedPrefs
 import com.alx.findphone.claptofind.flashalert.databinding.FragmentSettingBinding
 import com.alx.findphone.claptofind.flashalert.main.activity.Language2Activity
 import com.alx.findphone.claptofind.flashalert.main.activity.PolicyWebViewActivity
+import com.alx.findphone.claptofind.flashalert.main.dialog.TutorialDialog
 import com.alx.findphone.claptofind.flashalert.utils.ActionUtils
 import com.alx.findphone.claptofind.flashalert.utils.EventLogger
 import com.alx.findphone.claptofind.flashalert.utils.app.AppPreferences
 import com.alx.findphone.claptofind.flashalert.utils.app.VibrateFlashThread
+import com.alx.findphone.claptofind.flashalert.utils.constant.Constants
 import com.alx.findphone.claptofind.flashalert.utils.hide
 
 class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
@@ -34,11 +36,21 @@ class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBind
             val starter = Intent(context, SettingFragment::class.java)
             context.startActivity(starter)
         }
+
+        fun startFromUninstall(context: Context) {
+            val starter = Intent(context, SettingFragment::class.java)
+            starter.action = Constants.ACTION_CLICKED_SENSITIVITY_UNINSTALL
+            context.startActivity(starter)
+        }
     }
 
     override fun initView() {
         setUpSelection()
         setUpRate()
+
+        if (intent.action.equals(Constants.ACTION_CLICKED_SENSITIVITY_UNINSTALL)) {
+            TutorialDialog.start(this)
+        }
     }
 
     private fun setUpSelection() {
@@ -211,6 +223,9 @@ class SettingFragment : BaseActivity<FragmentSettingBinding>(FragmentSettingBind
             }
             ivBack.setOnClickListener {
                 finish()
+            }
+            ivTutorial.setOnClickListener {
+                TutorialDialog.start(this@SettingFragment)
             }
         }
     }
